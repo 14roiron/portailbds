@@ -1,0 +1,15 @@
+bds_image_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDSImageBundle:Default:index }
+    
+bds_image_upload:
+    path:     /image/upload
+    defaults: {_controller: BDSImageBundle:Image:upload }
+    
+bds_image_view:
+    path:    /image/{nom}
+    defaults: {_controller: BDSImageBundle:Image:view }
+    
+bds_image_delete:
+    path:     /image/delete/{nom}
+    defaults: {_controller: BDSImageBundle:Image:delete }

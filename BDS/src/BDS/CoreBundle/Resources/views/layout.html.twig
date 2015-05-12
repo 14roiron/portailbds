@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>{% block title %}BDS MinesParistech{% endblock %}</title>
+	
+	{% block stylesheets %}
+		{# On charge le bootstrap depuis le site directement #}
+		<link rel="stylesheet" href="http://localhost:8888/BDS/bootstrap-3.3.1/dist/css/bootstrap.min.css">
+		{# <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
+		{% if domaine.fond != null %}
+		<style>
+			body
+			{
+				background-image:url( {{ asset(domaine.fond.getWebPath) }} );
+				background-attachment:fixed;
+			}
+		</style>
+		{% endif %}
+	{% endblock %}
+</head>
+
+<!--  barre de navigation évolutive -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {%  block brand %}
+      {% if domaine.logo != null %}
+      <a href="#"><img src="{{ asset(domaine.logo.getWebPath()) }}" height="50" /></a>
+      {% endif %}
+      {% endblock %}
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	{% block menu %}
+    	<ul class="nav navbar-nav">
+        	<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Accueil</a></li>
+        	<li><a href="{{ path('bds_sport_list',{'sport':domaine.nom }) }}">Sports</a></li>
+        	<li class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ domaine.nom }}<span class="caret"></span></a>
+          		<ul class="dropdown-menu" role="menu">
+          			<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">News</a></li>
+            		<li><a href="#">équipe</a></li>
+            		<li><a href="#">Le mot du capitaine</a></li>
+            		<li><a href="#">presentation</a></li>
+          		</ul>
+        	</li>
+        	<li class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Membre de l'équipe {{ domaine.nom }}<span class="caret"></span></a>
+          		<ul class="dropdown-menu" role="menu">
+            		<li><a href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">calendrier</a></li>
+            		<li><a href="#">resultats</a></li>
+            		<li><a href="#">feuille de match</a></li>
+            		<li><a href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">évènements</a></li>
+          		</ul>
+        	</li>
+      </ul>
+      {% endblock %}
+      <ul class="nav navbar-nav navbar-right">
+      	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        	<li class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+          			<ul class="dropdown-menu" role="menu">
+            			<li><a href="#">Ma page</a></li>
+            			<li class="divider"></li>
+            				<li><a href="{{ path('fos_user_security_logout') }}">se deconecter</a></li>
+          			</ul>
+        	</li>
+        {% else %}
+        	<li><a href="{{ path('fos_user_security_login') }}">Connexion</a>
+        {% endif %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<body>    
+	<div class="container">
+		<div id="header" class="jumbotron">
+			<h1> {{ domaine.equipe }}</h1>
+		</div>
+		
+		
+		<div class= "row">
+			<div id="content" class="col-md-8"> 
+				{% block body %}
+				{% endblock %}
+			</div>
+			<div id="aside" class="col-md-4">
+				{% block aside %}
+				{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}		
+				{% endblock %}
+			</div>
+		</div>
+		
+		<hr>
+		
+		<footer>
+			<p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+		</footer>
+	</div>
+	
+  	{% block javascripts %}
+		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	<script src="http://localhost:8888/BDS/bootstrap-3.3.1/dist/js/bootstrap.min.js"></script>
+    	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
+		{#<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script> #}
+  	{% endblock %}
+	
+</body>
+</html>

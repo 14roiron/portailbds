@@ -1,0 +1,12 @@
+{% extends "BDSCoreBundle:Sport:layout.html.twig" %}
+
+{% block title %}
+  Ajouter - {{ parent() }}
+{% endblock %}
+
+{% block bds_sport_body %}
+<h2>Ajouter un sport</h2>
+<div class="well">
+	{{ form(form) }}
+</div>
+{% endblock %}

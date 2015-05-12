@@ -1,0 +1,24 @@
+bds_core_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDSCoreBundle:Default:index }
+
+bds_sport_view:
+    path:     /admin/{nom}
+    defaults: { _controller: BDSCoreBundle:Sport:view }
+    
+bds_sport_add:
+    path:     /admin/sport/add
+    defaults: { _controller: BDSCoreBundle:Sport:add }
+    
+bds_sport_delete:
+    path:     /admin/{nom}/delete
+    defaults: { _controller: BDSCoreBundle:Sport:delete }
+    
+bds_sport_edit:
+    path:     /admin/{nom}/edit
+    defaults: { _controller: BDSCoreBundle:Sport:edit }  
+    
+bds_sport_list:
+    path:     /{sport}/sport
+    defaults: { _controller: BDSCoreBundle:Sport:list }
+    

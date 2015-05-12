@@ -1,0 +1,13 @@
+{% extends "BDSImageBundle::layout.html.twig" %}
+
+{% block title %}
+  Voir - {{ parent() }}
+{% endblock %}
+
+{% block bdsimage_body %}
+<h2>Voir une image</h2>
+<div class="well">
+	<img src="{{ asset(image.getWebPath()) }}" />
+   	<a class="btn btn-lg btn-danger" href="{{ path('bds_image_delete', {'domaine':domaine.nom, 'nom': image.nom}) }}">supprimer l'image</a>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+<ul class="nav nav-pills nav-stacked">
+  {% for news in listNews %}
+    <li>
+      <a href="{{ path('bds_news_view', {'id': advert.id, 'sport': domaine}) }}">
+        {{ news.titre }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

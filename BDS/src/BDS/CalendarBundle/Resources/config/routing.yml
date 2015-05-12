@@ -1,0 +1,7 @@
+bds_calendar_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDSCalendarBundle:Default:index }
+
+
+
+        

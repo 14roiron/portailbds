@@ -1,0 +1,12 @@
+{% extends "BDSNewsBundle::layout.html.twig" %}
+
+{% block title %}
+  suppression - {{ parent() }}
+{% endblock %}
+
+
+{% block bdsnews_body %}
+<h2>SUppression</h2>
+<p class="well">la news : {{ news.titre }} du {{ news.datePublication | date ('d/m/Y') }} a été supprimé avec succès</p>
+ <a class="btn btn-lg btn-default" href="{{ path('bds_news_home', {'sport': domaine}) }}">Retour aux News</a>
+ {%  endblock %}

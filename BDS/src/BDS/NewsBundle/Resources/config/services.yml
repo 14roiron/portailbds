@@ -1,0 +1,12 @@
+services:
+#    bds_news.example:
+#        class: BDS\NewsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    bds_news.manager:
+        class:      BDS\NewsBundle\Manager\NewsManager
+        arguments:  [ @doctrine.orm.entity_manager, @security.context ]  
+
+    bds_commentaire.manager:
+        class:      BDS\NewsBundle\Manager\CommentaireManager
+        arguments:   [ @doctrine.orm.entity_manager, @security.context ]

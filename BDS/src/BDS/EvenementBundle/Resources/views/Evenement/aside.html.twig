@@ -1,0 +1,7 @@
+<h3>évènement à venir</h3>
+	<ul>{% for evenement in evenements %}
+		<li>
+			<a class="btn btn-sm btn-primary" href="{{ path('bds_evenement_view', {'id':evenement.id, 'domaine': domaine.nom}) }}">{{ evenement.nom }}</a>
+			{{ evenement.debutEvenement|date('d/m/Y') }}
+		</li>
+		{% endfor %}</ul>

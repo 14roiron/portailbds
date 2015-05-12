@@ -1,0 +1,30 @@
+{% extends "BDSCoreBundle:Sport:layout.html.twig" %}
+
+{% block title %}
+  Liste - {{ parent() }}
+{% endblock %}
+
+
+{% block bds_sport_body %}
+ <a class="btn btn-lg btn-success" href="{{ path('bds_sport_add') }}">ajouter un sport</a>
+  <h2>Sports pratiqués à l'école</h2>
+  <ul>
+    {% for sport in listSport %}
+      <li class="well">
+        <a href="{{ path('bds_news_home', {'sport':sport.nom}) }}">{{ sport.nom }}</a>
+        {% if sport.fond %} </br>
+        <img src="{{ asset(sport.fond.getWebPath()) }}" height="100">
+        </br>
+        {% endif %}
+        <p>
+        	<a class="btn btn-md btn-warning" href="{{ path('bds_sport_edit', {'nom':sport.nom }) }}">éditer le sport</a>
+   			<a class="btn btn-md btn-danger" href="{{ path('bds_sport_delete', {'nom':sport.nom }) }}">supprimer le sport</a>
+   			<a class="btn btn-md btn-success" href="{{ path('bds_sport_view', {'nom':sport.nom}) }}">voir le sport</a>
+   		</p>
+      </li>
+    {% else %}
+      <li>Pas (encore !) de news</li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

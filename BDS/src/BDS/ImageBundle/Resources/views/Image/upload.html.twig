@@ -1,0 +1,12 @@
+{% extends "BDSImageBundle::layout.html.twig" %}
+
+{% block title %}
+  uploader - {{ parent() }}
+{% endblock %}
+
+{% block bdsimage_body %}
+<h2>Ajouter une News</h2>
+<div class="well">
+	{{ form(form) }}
+</div>
+{% endblock %}

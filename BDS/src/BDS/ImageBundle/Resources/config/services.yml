@@ -1,0 +1,8 @@
+services:
+#    bds_image.example:
+#        class: BDS\ImageBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    bds_image.manager:
+        class:      BDS\ImageBundle\Manager\ImageManager
+        arguments:  [ @doctrine.orm.entity_manager ]  

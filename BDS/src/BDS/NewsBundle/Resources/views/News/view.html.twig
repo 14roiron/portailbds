@@ -1,0 +1,35 @@
+{% extends "BDSNewsBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ news.titre }} - {{ parent() }}
+{% endblock %}
+
+
+{% block bdsnews_body %}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ news.titre }}</h3>
+	</div>
+	<div class="well">{{ news.resumer }}</div>
+	<div class="panel-body">
+		<p>{{ news.contenu }}</p>
+		<p><b>{{ news.auteur.username }}</b></p>
+		<p>{{ news.datePublication|date('d/m/Y') }}</p>
+			
+		{% for commentaire in listCommentaire %}
+			<div class="well">
+				<p>{{ commentaire.contenu }}</p>
+				<p>par {{ commentaire.auteur.username }}, le {{ commentaire.datePublication|date('d/m/Y') }}</p>
+			</div>
+		{% endfor %}
+			<div class="well">{{ form(form) }}</div>
+   		<a class="btn btn-lg btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
+   		<a class="btn btn-lg btn-danger" href="{{ path('bds_news_delete', {'sport':domaine.nom, 'id': news.id}) }}">supprimer la news</a>
+   		<a class="btn btn-lg btn-default" href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Retour au news</a>
+   		{# on s'interesse au news qui n'ont pas encore été validée #}
+   		{% if news.validation == FALSE %}
+   			<a class="btn btn-lg btn-primary" href="{{ path('bds_news_validate', {'sport':domaine.nom, 'id':news.id}) }}">Valider</a>
+   		{% endif %}
+   	</div>
+</div>
+{% endblock %}
