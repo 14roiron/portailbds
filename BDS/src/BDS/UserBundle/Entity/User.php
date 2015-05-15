@@ -12,6 +12,11 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="user")
+	 */
+	private $participations;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\News", mappedBy="editeur")
 	 */
 	private $newsEdit;
@@ -147,5 +152,38 @@ class User extends BaseUser
     public function getNewsEdit()
     {
         return $this->newsEdit;
+    }
+
+    /**
+     * Add participations
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participations
+     * @return User
+     */
+    public function addParticipation(\BDS\EvenementBundle\Entity\Participation $participations)
+    {
+        $this->participations[] = $participations;
+
+        return $this;
+    }
+
+    /**
+     * Remove participations
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participations
+     */
+    public function removeParticipation(\BDS\EvenementBundle\Entity\Participation $participations)
+    {
+        $this->participations->removeElement($participations);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
     }
 }

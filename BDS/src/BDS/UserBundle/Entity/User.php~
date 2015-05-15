@@ -12,6 +12,11 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="user")
+	 */
+	private $participations;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\News", mappedBy="editeur")
 	 */
 	private $newsEdit;

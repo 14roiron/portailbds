@@ -4,6 +4,8 @@ namespace BDS\EvenementBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use BDS\EvenementBundle\Entity\Evenement;
+use BDS\CoreBundle\Entity\Sport;
+use Doctrine\Common\Collections\Criteria;
 
 class EvenementManager
 {
@@ -46,17 +48,13 @@ class EvenementManager
 		}
 	}
 	
-	public function getEvenements($critere, $choixCritere, $tri, $choixTri, $limite, $offset )
+	public function getEvenements(Sport $sport, $evenements )
 	{
+		$criteria = Criteria::create();
+		$criteria->where(Criteria::expr()->eq('Sports', $sport->getId()));
 		
-		$listevenements = $this->getRepository()->findBy(
-				array($critere => $choixCritere),	 // Critere
-				array($tri => $choixTri),        	// Tri
-				$limite,                              	// Limite
-				$offset                               	// Offset
-		);
-		
-		return $listevenements;
+		return $evenements->matching($criteria);
+
 	}
 	
 }

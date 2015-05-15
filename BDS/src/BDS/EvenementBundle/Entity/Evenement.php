@@ -14,7 +14,13 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement")
+	 */
+	private $participations;
+	
+	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
+	 * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
 	 */
 	private $sports;
 	
@@ -285,5 +291,38 @@ class Evenement
     public function getSports()
     {
         return $this->sports;
+    }
+
+    /**
+     * Add participations
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participations
+     * @return Evenement
+     */
+    public function addParticipation(\BDS\EvenementBundle\Entity\Participation $participations)
+    {
+        $this->participations[] = $participations;
+
+        return $this;
+    }
+
+    /**
+     * Remove participations
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participations
+     */
+    public function removeParticipation(\BDS\EvenementBundle\Entity\Participation $participations)
+    {
+        $this->participations->removeElement($participations);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
     }
 }

@@ -124,13 +124,13 @@ class EvenementController extends Controller
 		//on se place dans le bon domaine 
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
-		//on recupere 8 evenements
-		$evenements = $this->get('bds_evenement.manager')->getEvenements('sports', $domaine->getId(), 'debutEvenement', 'DESC', 5, 0);
+		//on affiche les evenements filtrés
+		$evenements = $domaine->getEvenements();
 		
 		//on affiche les évenements dans le bloc aside 
 		return $this->render('BDSEvenementBundle:Evenement:aside.html.twig', array(
 				'evenements'	=>	$evenements,
-				//'domaine'		=>	$domaine	
+				'domaine'		=>	$domaine	
 		));	
 
 	}		
