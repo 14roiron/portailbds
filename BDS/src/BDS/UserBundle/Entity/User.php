@@ -11,6 +11,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="user")
 	 */
@@ -185,5 +186,38 @@ class User extends BaseUser
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    /**
+     * Add sports
+     *
+     * @param \BDSCoreBundle\Entity\Sport $sports
+     * @return User
+     */
+    public function addSport(\BDSCoreBundle\Entity\Sport $sports)
+    {
+        $this->sports[] = $sports;
+
+        return $this;
+    }
+
+    /**
+     * Remove sports
+     *
+     * @param \BDSCoreBundle\Entity\Sport $sports
+     */
+    public function removeSport(\BDSCoreBundle\Entity\Sport $sports)
+    {
+        $this->sports->removeElement($sports);
+    }
+
+    /**
+     * Get sports
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSports()
+    {
+        return $this->sports;
     }
 }

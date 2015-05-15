@@ -5,6 +5,7 @@ namespace BDS\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Translation\Tests\String;
+use Symfony\Component\Config\Definition\BooleanNode;
 
 /**
  * Sport
@@ -14,6 +15,7 @@ use Symfony\Component\Translation\Tests\String;
  */
 class Sport
 {
+	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
 	 */
@@ -231,5 +233,61 @@ class Sport
     public function getEquipe()
     {
         return $this->equipe;
+    }
+
+    /**
+     * Set validationCapitaine
+     *
+     * @param boolean $validationCapitaine
+     * @return Sport
+     */
+    public function setValidationCapitaine($validationCapitaine)
+    {
+        $this->validationCapitaine = $validationCapitaine;
+
+        return $this;
+    }
+
+    /**
+     * Get validationCapitaine
+     *
+     * @return boolean 
+     */
+    public function getValidationCapitaine()
+    {
+        return $this->validationCapitaine;
+    }
+
+    /**
+     * Add membres
+     *
+     * @param \BDS\UserBundle\Entity\User $membres
+     * @return Sport
+     */
+    public function addMembre(\BDS\UserBundle\Entity\User $membres)
+    {
+        $this->membres[] = $membres;
+
+        return $this;
+    }
+
+    /**
+     * Remove membres
+     *
+     * @param \BDS\UserBundle\Entity\User $membres
+     */
+    public function removeMembre(\BDS\UserBundle\Entity\User $membres)
+    {
+        $this->membres->removeElement($membres);
+    }
+
+    /**
+     * Get membres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMembres()
+    {
+        return $this->membres;
     }
 }

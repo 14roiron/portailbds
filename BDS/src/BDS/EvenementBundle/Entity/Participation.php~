@@ -50,16 +50,16 @@ class Participation
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validationCapitaine", type="boolean")
+     * @ORM\Column(name="validation_capitaine", type="boolean")
      */
-    private $validationCapitaine;
+    private $validationCapitaine = FALSE;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validationUser", type="boolean")
+     * @ORM\Column(name="validation_user", type="boolean")
      */
-    private $validationUser;
+    private $validationUser = FALSE;
 
 
     /**
@@ -162,5 +162,51 @@ class Participation
     public function getValidationUser()
     {
         return $this->validationUser;
+    }
+
+    /**
+     * Set evenement
+     *
+     * @param \BDS\EvenementBundle\Entity\Evenement $evenement
+     * @return Participation
+     */
+    public function setEvenement(\BDS\EvenementBundle\Entity\Evenement $evenement = null)
+    {
+        $this->evenement = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Get evenement
+     *
+     * @return \BDS\EvenementBundle\Entity\Evenement 
+     */
+    public function getEvenement()
+    {
+        return $this->evenement;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BDS\UserBundle\Entity\User $user
+     * @return Participation
+     */
+    public function setUser(\BDS\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BDS\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

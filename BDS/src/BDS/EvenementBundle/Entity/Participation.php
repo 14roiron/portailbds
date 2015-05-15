@@ -50,16 +50,16 @@ class Participation
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validationCapitaine", type="boolean")
+     * @ORM\Column(name="validation_capitaine", type="boolean")
      */
-    private $validationCapitaine;
+    private $validationCapitaine = FALSE;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validationUser", type="boolean")
+     * @ORM\Column(name="validation_user", type="boolean")
      */
-    private $validationUser;
+    private $validationUser = FALSE;
 
 
     /**
