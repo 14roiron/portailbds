@@ -10,7 +10,7 @@
 		{# On charge le bootstrap depuis le site directement #}
 		<link rel="stylesheet" href="http://localhost:8888/BDS/bootstrap-3.3.1/dist/css/bootstrap.min.css">
 		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
-		{% if domaine.fond != null %}
+		{% if domaine is defined and domaine.fond != null %}
 		<style>
 			body
 			{
@@ -34,7 +34,7 @@
         <span class="icon-bar"></span>
       </button>
       {%  block brand %}
-      {% if domaine.logo != null %}
+      {% if domaine is defined and domaine.logo != null %}
       <a href="#"><img src="{{ asset(domaine.logo.getWebPath()) }}" height="50" /></a>
       {% endif %}
       {% endblock %}
@@ -43,6 +43,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	{% block menu %}
+    	{% if domaine is defined %}
     	<ul class="nav navbar-nav">
         	<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Accueil</a></li>
         	<li><a href="{{ path('bds_sport_list',{'sport':domaine.nom }) }}">Sports</a></li>
@@ -65,6 +66,11 @@
           		</ul>
         	</li>
       </ul>
+      {% else %}
+      <ul class="nav navbar-nav">
+      	<li><a href="{{ path('bds_news_home', {'sport':'bds'}) }}">Accueil</a></li>
+      </ul>
+      {% endif %}
       {% endblock %}
       <ul class="nav navbar-nav navbar-right">
       	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -87,7 +93,11 @@
 <body>    
 	<div class="container">
 		<div id="header" class="jumbotron">
+			{% if domaine is defined %}
 			<h1> {{ domaine.equipe }}</h1>
+			{% else %}
+			<h1>BDS Mines Paristech</h1>
+			{% endif %}
 		</div>
 		
 		
@@ -98,7 +108,10 @@
 			</div>
 			<div id="aside" class="col-md-4">
 				{% block aside %}
-				{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}		
+				{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
+				{% if domaine is defined %}
+				{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}
+				{% endif %}		
 				{% endblock %}
 			</div>
 		</div>
