@@ -14,8 +14,10 @@
 		<style>
 			body
 			{
-				background-image:url( {{ asset(domaine.fond.getWebPath) }} );
-				background-attachment:fixed;
+				background: url( {{ asset(domaine.fond.getWebPath) }} ) no-repeat center fixed;
+				-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+				background-size: cover;			/* version stadardisé */
+				
 			}
 		</style>
 		{% endif %}
