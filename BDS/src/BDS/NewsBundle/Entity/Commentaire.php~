@@ -152,7 +152,7 @@ class Commentaire
     
     public function __construct()
     {
-    	//par défaut la dete de l'annonce sera celle d'aujourd'hui
+    	//par défaut la date de l'annonce sera celle d'aujourd'hui
     	$this->datePublication = new \DateTime();
     }
 }

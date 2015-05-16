@@ -8,6 +8,12 @@
 <h2>Voir un sport</h2>
 <div class="well">
 	<p>nom : <a href="{{path('bds_news_home', {'sport':sport.nom}) }}" >{{ sport.nom }}</a></p>
+	<h3>Rôles</h3>
+	<ul>
+	 {% for role in sport.roles %}
+	 	<li>{{ role.nom}}</li>
+	 {% endfor %}
+	</ul>
 	<p>logo :
 	{% if sport.logo %}
 	<img src="{{ asset(sport.logo.getWebPath()) }}" width="300" />

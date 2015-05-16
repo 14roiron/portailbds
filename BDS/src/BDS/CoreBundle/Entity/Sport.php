@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Translation\Tests\String;
 use Symfony\Component\Config\Definition\BooleanNode;
+use BDS\CoreBundle\Entity\Role;
 
 /**
  * Sport
@@ -15,6 +16,10 @@ use Symfony\Component\Config\Definition\BooleanNode;
  */
 class Sport
 {
+	/**
+	 * @ORM\OneToMany(targetEntity="BDS\CoreBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $roles;
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
@@ -98,6 +103,31 @@ class Sport
     public function __construct()
     {
         $this->News = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+        
+        //on ajoute les 4 roles par défaut 
+        $joueur = new Role();
+        $joueur->setNom("joueur");
+        $joueur->setSport($this);
+        $this->addRole($joueur);
+        
+        $ancien = new Role();
+        $ancien->setNom("ancien");
+        $ancien->setSport($this);
+        $this->addRole($ancien);
+        
+        $entraineur = new Role();
+        $entraineur->setNom("entraineur");
+        $entraineur->setSport($this);
+        $this->addRole($entraineur);
+        
+        $autre = new Role();
+        $autre->setNom("autre");
+        $autre->setSport($this);
+        $this->addRole($autre);
+        
+        
+        
     }
 
     /**
@@ -289,5 +319,43 @@ class Sport
     public function getMembres()
     {
         return $this->membres;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \BDS\CoreBundle\Entity\Role $roles
+     * @return Sport
+     */
+    public function addRole(\BDS\CoreBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+        
+        foreach ($roles as $role)
+        {
+        	$role->setSport($this);
+        } 
+		
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \BDS\CoreBundle\Entity\Role $roles
+     */
+    public function removeRole(\BDS\CoreBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }

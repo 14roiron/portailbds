@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role
 {
+	/**
+	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="roles")
+	 */
+	private $sport;
+	
     /**
      * @var integer
      *
@@ -27,8 +32,7 @@ class Role
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-
-
+    
     /**
      * Get id
      *
@@ -60,5 +64,28 @@ class Role
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set sport
+     *
+     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @return Role
+     */
+    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \BDS\CoreBundle\Entity\Sport 
+     */
+    public function getSport()
+    {
+        return $this->sport;
     }
 }
