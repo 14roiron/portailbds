@@ -1,21 +1,17 @@
 <?php
 namespace BDS\UserBundle\Controller;
 
-use FOS\UserBundle\Controller\SecurityController as BasController;
+use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 
 class SecurityController extends BaseController
 {
 	protected function renderLogin (array $data)
 	{	
-		// On récupère l'utilisateur
-		$security = $container->get('security.context');
-		$token = $security->getToken();
-		$user = $token->getUser();
 		
-		if ($user != null)
+		if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
 		{
-			//on appelle la page d'accueil
+			//on appelle la page d'accueil si on est déjà identifié
 			return $this->redirect($this->generateUrl('bds_news_home', array(
 					'sport' => 'bds'
 			)));

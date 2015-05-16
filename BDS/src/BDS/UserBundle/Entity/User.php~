@@ -5,6 +5,7 @@ namespace BDS\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
+
 /**
  * @ORM\Entity
  * 
@@ -48,11 +49,14 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    
+    
     /**
      * Constructor
      */
     public function __construct()
     {
+    	parent::__construct();
         $this->news = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
