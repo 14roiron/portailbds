@@ -102,6 +102,9 @@ class NewsController extends Controller
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
+		//on récupère le sport
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		
 		//On crée un objet news
 		$news = new News();
 		
@@ -123,7 +126,7 @@ class NewsController extends Controller
 
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'domaine' => $sport,
+					'sport' => $sport->getNom(),
 					'id' => $news->GetId()
 			)));
 			
@@ -192,6 +195,9 @@ class NewsController extends Controller
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
+		//on récupère le sport
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
 		
@@ -206,6 +212,9 @@ class NewsController extends Controller
 	{
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
+		
+		//on récupère le sport
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on valide la news 
 		$this->get('bds_news.manager')->validateNews($news);

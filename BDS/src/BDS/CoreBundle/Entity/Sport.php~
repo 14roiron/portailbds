@@ -17,6 +17,11 @@ use BDS\CoreBundle\Entity\Role;
 class Sport
 {
 	/**
+	 *@ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="sport", cascade={"persist"}, orphanRemoval=true) 
+	 */
+	private $membres;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\CoreBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $roles;
@@ -108,18 +113,22 @@ class Sport
         //on ajoute les 4 roles par défaut 
         $joueur = new Role();
         $joueur->setNom("joueur");
+        $joueur->setSport($this);
         $this->addRole($joueur);
         
         $ancien = new Role();
         $ancien->setNom("ancien");
+        $ancien->setSport($this);
         $this->addRole($ancien);
         
         $entraineur = new Role();
         $entraineur->setNom("entraineur");
+        $entraineur->setSport($this);
         $this->addRole($entraineur);
         
         $autre = new Role();
         $autre->setNom("autre");
+        $autre->setSport($this);
         $this->addRole($autre);
         
         
@@ -326,7 +335,12 @@ class Sport
     public function addRole(\BDS\CoreBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
-
+        
+        foreach ($roles as $role)
+        {
+        	$role->setSport($this);
+        } 
+		
         return $this;
     }
 

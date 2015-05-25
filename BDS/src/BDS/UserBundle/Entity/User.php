@@ -14,6 +14,12 @@ class User extends BaseUser
 {
 	
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="user", cascade="persist", orphanRemoval=true)
+	 */
+	private $membres;
+	
+
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="user")
 	 */
 	private $participations;
@@ -192,36 +198,37 @@ class User extends BaseUser
         return $this->participations;
     }
 
+
     /**
-     * Add sports
+     * Get membres
      *
-     * @param \BDSCoreBundle\Entity\Sport $sports
+     * @return \BDS\UserBundle\Entity\Membre 
+     */
+    public function getMembres()
+    {
+        return $this->membres;
+    }
+
+    /**
+     * Add membres
+     *
+     * @param \BDS\UserBundle\Entity\Membre $membres
      * @return User
      */
-    public function addSport(\BDSCoreBundle\Entity\Sport $sports)
+    public function addMembre(\BDS\UserBundle\Entity\Membre $membres)
     {
-        $this->sports[] = $sports;
+        $this->membres[] = $membres;
 
         return $this;
     }
 
     /**
-     * Remove sports
+     * Remove membres
      *
-     * @param \BDSCoreBundle\Entity\Sport $sports
+     * @param \BDS\UserBundle\Entity\Membre $membres
      */
-    public function removeSport(\BDSCoreBundle\Entity\Sport $sports)
+    public function removeMembre(\BDS\UserBundle\Entity\Membre $membres)
     {
-        $this->sports->removeElement($sports);
-    }
-
-    /**
-     * Get sports
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSports()
-    {
-        return $this->sports;
+        $this->membres->removeElement($membres);
     }
 }
