@@ -79,7 +79,7 @@
         	<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
           			<ul class="dropdown-menu" role="menu">
-            			<li><a href="#">Ma page</a></li>
+            			<li><a href="{{ path('fos_user_profile_show') }}">Ma page</a></li>
             			<li class="divider"></li>
             				<li><a href="{{ path('fos_user_security_logout') }}">se deconecter</a></li>
           			</ul>

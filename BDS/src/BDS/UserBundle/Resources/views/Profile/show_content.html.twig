@@ -10,5 +10,5 @@
 	</a>
     <p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
     <p><strong>Email : </strong> {{ user.email }}</p>
-    <p><strong>mot de passe : </strong><a href=#>changer le mot de passe</a>
+    <p><strong>mot de passe : </strong><a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
 </div>
