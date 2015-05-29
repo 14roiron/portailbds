@@ -1,0 +1,14 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="well well-lg">
+	<a href=#>
+	{% if gravatar_exists(user.email) %}
+  	<img src="{{ gravatar(user.email) }}" width="150">
+	{% else %}	
+	<img src={{ asset('images/no_profile_pic') }} width="150">
+	{% endif %}
+	</a>
+    <p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
+    <p><strong>Email : </strong> {{ user.email }}</p>
+    <p><strong>mot de passe : </strong><a href=#>changer le mot de passe</a>
+</div>
