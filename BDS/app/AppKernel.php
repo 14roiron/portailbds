@@ -26,7 +26,8 @@ class AppKernel extends Kernel
         	new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
             new BDS\EvenementBundle\BDSEvenementBundle(),
             new BDS\CalendarBundle\BDSCalendarBundle(),
-        	new BladeTester\CalendarBundle\BladeTesterCalendarBundle()
+        	new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
+        	new Ornicar\GravatarBundle\OrnicarGravatarBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

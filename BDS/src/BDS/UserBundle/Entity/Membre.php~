@@ -64,4 +64,27 @@ class Membre
     {
         return $this->user;
     }
+
+    /**
+     * Set sport
+     *
+     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @return Membre
+     */
+    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \BDS\CoreBundle\Entity\Sport 
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
 }

@@ -14,6 +14,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Image
 {
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\ImageBundle\Entity\Image", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $profile;
+	
     /**
      * @var integer
      *
@@ -102,5 +107,28 @@ class Image
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \BDS\ImageBundle\Entity\Image $profile
+     * @return Image
+     */
+    public function setProfile(\BDS\ImageBundle\Entity\Image $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \BDS\ImageBundle\Entity\Image 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

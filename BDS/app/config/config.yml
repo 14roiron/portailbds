@@ -88,3 +88,6 @@ blade_tester_calendar:
             entity: BDS\CalendarBundle\Entity\Event
         category:
             entity: BladeTester\CalendarBundle\Entity\EventCategory
+            
+# ornicar (gravatar) configuration
+ornicar_gravatar: ~
