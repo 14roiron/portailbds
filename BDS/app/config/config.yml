@@ -78,6 +78,12 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: BDS\UserBundle\Entity\User
+    registration:
+        confirmation:
+            enabled:  true
+    from_email:
+        address:  noreply@bdsmines.fr
+        sender_name:  BDS MINES ParisTech
 
 # BladeTesterCalendar Configuration
 blade_tester_calendar:
