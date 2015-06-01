@@ -1,14 +1,24 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="well well-lg">
-	<a href=#>
-	{% if gravatar_exists(user.email) %}
-  	<img src="{{ gravatar(user.email) }}" width="150">
-	{% else %}	
-	<img src={{ asset('images/no_profile_pic') }} width="150">
-	{% endif %}
-	</a>
-    <p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
-    <p><strong>Email : </strong> {{ user.email }}</p>
-    <p><strong>mot de passe : </strong><a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
+	<div>
+	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">modifier</a>
+	</div>
+	
+	<div class="media">
+		<div class="media-body">
+	    	<p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
+	    	<p><strong>Email : </strong> {{ user.email }}</p>
+	    	<p><strong>mot de passe : </strong><a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
+		</div>
+		<div class="media-right">
+			<a href=#>
+			{% if gravatar_exists(user.email) %}
+  				<img class="media-object" src="{{ gravatar(user.email) }}" width="150">
+			{% else %}	
+				<img class="media-object" src={{ asset('images/no_profile_pic') }} width="150">
+			{% endif %}
+			</a>
+		</div>		
+	</div>
 </div>
