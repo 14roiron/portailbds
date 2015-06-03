@@ -97,3 +97,16 @@ blade_tester_calendar:
             
 # ornicar (gravatar) configuration
 ornicar_gravatar: ~
+
+#ivory_CK_editor configuration
+ivory_ck_editor:
+    plugins:
+        wordcount:
+            path:     "/BDS/Newsbundle/Ressources/public/wordcount_1.12.1/"
+            filename: "plugin.js"
+    #jquery: true
+    #input_sync: true
+    default_config: my_config
+    configs:
+        my_config:
+            toolbar: standard

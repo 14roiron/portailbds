@@ -26,6 +26,7 @@
 		"friendsofsymfony/jsrouting-bundle" : "~1.1",
 		"adesigns/calendar-bundle" : "dev-master",
 		"carlescliment/calendar-bundle" : "dev-master",
+		"egeloen/ckeditor-bundle": "~2.0",
 		"ornicar/gravatar-bundle" : "dev-master"
 	},
 	"require-dev" : {

@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new BDS\EvenementBundle\BDSEvenementBundle(),
             new BDS\CalendarBundle\BDSCalendarBundle(),
         	new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
+        	new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         	new Ornicar\GravatarBundle\OrnicarGravatarBundle()
         );
 
