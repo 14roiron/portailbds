@@ -69,7 +69,6 @@ class Sport
      */
     private $equipe;
 
-
     /**
      * Get id
      *
