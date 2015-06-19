@@ -3,6 +3,12 @@
 <div class="well">
 	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
 	   	
+	    {# Les erreurs générales du formulaire. #}
+	    <div class="alert alert-danger alert-dismissible" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    {{ form_errors(form) }}
+	    </div>
+	    
 	   	<div class="form-group">
 	   	{#génération du label #}
 	   	{{ form_label(form.username, "nom d'utilisateur : ", {'label_attr': {'class': 'control-label'}}) }}
@@ -17,7 +23,7 @@
 	   	
 	   	<div class="form-group">
 	   	{{ form_label(form.current_password, "mot de passe : ", {'label_attr': {'class': 'control-label'}}) }}
-	   	{{ form_label(form.current_password, {'attr': {'class': 'form-control'}}) }}
+	   	{{ form_widget(form.current_password, {'attr': {'class': 'form-control'}}) }}
 	   	</div>
 	   	
 	   	{# Génération des champs pas encore écrit #}

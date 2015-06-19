@@ -5,3 +5,8 @@ bds_user_homepage:
 bds_user_list:
     path:     /admin/utilisateur/liste
     defaults: {_controller: BDSUserBundle:Default:index }
+    
+bds_user_sport_add:
+    path:     /profile/ajouter_un_sport
+    defaults: {_controller: BDSUserBundle:Sport:add }
+       
