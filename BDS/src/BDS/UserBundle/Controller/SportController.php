@@ -47,4 +47,18 @@ class SportController extends Controller
 		));
 		
 	}
+	
+	public function deleteAction ($id)
+	{
+		//on récupère le membre de l'utilisateur courant à supprimer 
+		$membre = $this->get('bds_membre.manager')->getMembre($id);
+		
+		//on supprime l'objet de la bdd
+		$this->get('bds_membre.manager')->delete($membre);
+		
+		//on rend la page de suppression 
+		return $this->render('BDSUserBundle:Sport:delete.html.twig', array(
+					'membre' => $membre
+		));
+	}
 }

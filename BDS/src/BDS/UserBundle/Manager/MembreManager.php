@@ -46,11 +46,10 @@ class MembreManager
 		//savoir s'il y a un membre
 		$membre = $membres->matching($criteria);
 		
-		/*if ($membre != NULL)
-		{
-			//impossible d'être 2 mais le if marche pas 
+		if ($membre->count() != 0)
+		{ 
 			throw new NotFoundHttpException('déjà membre de ce sport');
-		} */
+		} 
 	}
 	
 	public function save( Membre $membre)
@@ -60,6 +59,21 @@ class MembreManager
 		
 		//on sauvegarde dans la BDD
 		$this->em->persist($membre);
+		$this->em->flush();
+		
+	}
+	
+	public function getMembre ($id)
+	{
+		//on cherche le membre associé à l'id
+		return $this->getRepository()->findOneById($id);
+		
+	}
+	
+	public function delete ($membre)
+	{
+		//on le supprime de la bdd
+		$this->em->remove($membre);
 		$this->em->flush();
 		
 	}
