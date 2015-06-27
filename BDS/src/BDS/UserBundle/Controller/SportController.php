@@ -25,6 +25,9 @@ class SportController extends Controller
 		//on passe par une étape de validation des donnée
 		if($form->isValid())
 		{
+			// on vérifie qu'il n'y a pas de doublon 
+			$this->get('bds_membre.manager')->isMembre($membre->getSport()->getMembres());
+			
 			//on enregistre l'objet dans la base de donnée
 			$this->get('bds_membre.manager')->save($membre);
 			

@@ -22,8 +22,8 @@ class NewsType extends AbstractType
             ->add('sports',				'entity',		array(
             												'class'			=>	'BDSCoreBundle:Sport',
             												'property'		=>	'nom',
-            												'multiple'		=>	'true',
-            												'expanded'		=>	'true',
+            												'multiple'		=>	true,
+            												'expanded'		=>	true,
             ))
             ->add('ajouter',			'submit')
         ;

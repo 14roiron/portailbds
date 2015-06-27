@@ -21,8 +21,9 @@ class MembreType extends AbstractType
 			->add('sport',				'entity',		array(
 															'class'			=>	'BDSCoreBundle:Sport',
 															'property'		=>	'nom',
-															'multiple'		=>	'false',
-															'expanded'		=>	'true',
+															'expanded'		=>	true,
+															'multiple'		=>	false,
+
 			))
 			->add('ajouter',			'submit')
 			;
