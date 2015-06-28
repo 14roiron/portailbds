@@ -1,3 +1,16 @@
 bds_user_homepage:
     path:     /hello/{name}
     defaults: { _controller: BDSUserBundle:Default:index }
+    
+bds_user_list:
+    path:     /admin/utilisateur/liste
+    defaults: {_controller: BDSUserBundle:Default:index }
+    
+bds_user_sport_add:
+    path:     /profile/ajouter_un_sport
+    defaults: {_controller: BDSUserBundle:Sport:add }
+    
+bds_user_sport_delete:
+    path:     /profile/supprimer/{id}
+    defaults: {_controller: BDSUserBundle:Sport:delete }
+       

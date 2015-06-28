@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use BDS\EvenementBundle\Entity\Evenement;
 use BDS\CoreBundle\Entity\Sport;
 use Doctrine\Common\Collections\Criteria;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EvenementManager
 {
