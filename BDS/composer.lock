@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8789326b2f48334d087c126d5350f19e",
+    "hash": "c12aa0150b7e2f753dfca84eca44cd06",
     "packages": [
         {
             "name": "adesigns/calendar-bundle",
@@ -1412,12 +1412,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ornicar/GravatarBundle.git",
-                "reference": "1a97823ad7ae24bcf4c85fa31d68c84ffc8c46fb"
+                "reference": "8c2f9d7f2fe43d1a13f569a0b56933b2795dafd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ornicar/GravatarBundle/zipball/1a97823ad7ae24bcf4c85fa31d68c84ffc8c46fb",
-                "reference": "1a97823ad7ae24bcf4c85fa31d68c84ffc8c46fb",
+                "url": "https://api.github.com/repos/ornicar/GravatarBundle/zipball/8c2f9d7f2fe43d1a13f569a0b56933b2795dafd1",
+                "reference": "8c2f9d7f2fe43d1a13f569a0b56933b2795dafd1",
                 "shasum": ""
             },
             "require": {
@@ -1448,13 +1448,11 @@
             "authors": [
                 {
                     "name": "Thibault Duplessis",
-                    "email": "thibault.duplessis@gmail.com",
-                    "homepage": "http://ornicar.github.com"
+                    "email": "thibault.duplessis@gmail.com"
                 },
                 {
-                    "name": "Henrik Bjornskov",
-                    "email": "henrik@bjrnskov.dk",
-                    "homepage": "http://henrik.bjrnskov.dk"
+                    "name": "Henrik Bjørnskov",
+                    "email": "henrik@bjrnskov.dk"
                 }
             ],
             "description": "This bundles provides a Gravatar API various utilities to work with it in templates",
@@ -1464,7 +1462,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2014-05-30 08:11:27"
+            "time": "2015-07-30 18:44:55"
         },
         {
             "name": "psr/log",
@@ -1663,6 +1661,64 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2015-05-28 14:22:40"
+        },
+        {
+            "name": "stfalcon/tinymce-bundle",
+            "version": "dev-master",
+            "target-dir": "Stfalcon/Bundle/TinymceBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stfalcon/TinymceBundle.git",
+                "reference": "758c19947b04d93d9d79e0ae8432beaccc0097f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stfalcon/TinymceBundle/zipball/758c19947b04d93d9d79e0ae8432beaccc0097f2",
+                "reference": "758c19947b04d93d9d79e0ae8432beaccc0097f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/symfony": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Stfalcon\\Bundle\\TinymceBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stepan Tanasiychuk",
+                    "email": "ceo@stfalcon.com",
+                    "homepage": "http://blog.stfalcon.com"
+                },
+                {
+                    "name": "Igor Negrutsa",
+                    "email": "progi2007@gmail.com",
+                    "homepage": "http://igor-negrutsa.info"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/stfalcon/TinymceBundle/contributors"
+                }
+            ],
+            "description": "This Bundle integrates TinyMCE WYSIWYG editor into a Symfony2 project.",
+            "keywords": [
+                "editor",
+                "tinymce",
+                "wysiwyg"
+            ],
+            "time": "2014-09-15 12:37:07"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2222,7 +2278,8 @@
         "adesigns/calendar-bundle": 20,
         "carlescliment/calendar-bundle": 20,
         "ornicar/gravatar-bundle": 20,
-        "coresphere/console-bundle": 20
+        "coresphere/console-bundle": 20,
+        "stfalcon/tinymce-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

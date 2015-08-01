@@ -27,7 +27,8 @@
 		"adesigns/calendar-bundle" : "dev-master",
 		"carlescliment/calendar-bundle" : "dev-master",
 		"ornicar/gravatar-bundle" : "dev-master",
-		 "coresphere/console-bundle": "dev-master"
+		"coresphere/console-bundle": "dev-master",
+		"stfalcon/tinymce-bundle": "dev-master"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3"
