@@ -122,7 +122,7 @@ class NewsController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 				
-			//on envoi un mail au VP comunication pour qu'il valide la news
+			//on envoie un mail au VP comunication pour qu'il valide la news
 
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
