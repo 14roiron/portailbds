@@ -98,14 +98,66 @@ class EvenementController extends Controller
 			
 	}
 	
-	public function editAction ($domaine, Request $request)
+	public function editAction ($domaine,$id, Request $request)
 	{
+		//verifier que le visiteur a le droit d'acceder à cette page
+		
+		//on récupère le domaine 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
+		//on crée un objet Evenement 
+		$evenement= $this->get('bds_evenement.manager')->getEvenement($id);;
+		
+		//on lance une exception si l'évènement n'existe pas 
+		if ($evenement == NULL)
+		{
+			throw new NotFoundHttpException('Evènement "' .$id. '" inexistant');
+		}
+		//on crée le formulaire 
+		$form = $this->createForm(new EvenementType(), $evenement);
+
+		//on fait le lien requete formulaire 
+		$form->handleRequest($request);
+		
+		//on passe par une étape de validation 
+		if($form->isValid())
+		{
+			//on enregistre l'objet dans la bdd
+			$this->get('bds_evenement.manager')->save($evenement);
+			
+			$request->getSession()->getFlashBag()->add('notice', 'Evenement bien enregistré.');
+			
+			//on affiche la page du nouvel évenement
+			return $this->redirect($this->generateUrl('bds_evenement_view', array(
+					'domaine'	=>	$domaine->getNom(),
+					'id'		=> $evenement->getId()
+			)));
+		}
+			
+			//on passe le formulaire à la vue
+			return $this->render('BDSEvenementBundle:Evenement:add.html.twig', array(
+					'domaine'	=>	$domaine,
+					'form'		=>$form->createView()
+			));
 		
 	}
 	
 	public function deleteAction ($domaine, $id)
 	{
+		//on récupere l'évènement
+		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
 		
+		//on récupère le domaine 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
+		//on supprime l'objet de la base de donnée 
+		$this->get('bds_evenement.manager')->deleteEvenement($evenement);
+		
+		//on rend la page de suppression
+		return $this->render('BDSEvenementBundle:Evenement:delete.html.twig', array(
+				'domaine' => $sport,
+				'evenement' => $evenement
+		));
 	}
 	
 	public function calendarAction ($domaine)
