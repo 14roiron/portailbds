@@ -12,7 +12,7 @@ class EvenementController extends Controller
 {
 	public function indexAction ($domaine, $page)
 	{
-		//si la page est inferieur à 1, pas la peine de l'affiché 
+		//si la page est inferieur à 1, pas la peine de l'afficher
 		if ($page < 1)
 		{
 			throw new NotFoundHttpException('page "'.$page.'" inexistante');
