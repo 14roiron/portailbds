@@ -58,4 +58,10 @@ class EvenementManager
 
 	}
 	
+	public function deleteEvenement($evenement)
+	{
+		$this->em->remove($evenement);
+		$this->em->flush();
+	}
+	
 }

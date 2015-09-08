@@ -144,18 +144,18 @@ class EvenementController extends Controller
 	
 	public function deleteAction ($domaine, $id)
 	{
+		//on se place dans le bon domaine
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
 		//on récupere l'évènement
 		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
-		
-		//on récupère le domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_evenement.manager')->deleteEvenement($evenement);
 		
 		//on rend la page de suppression
 		return $this->render('BDSEvenementBundle:Evenement:delete.html.twig', array(
-				'domaine' => $sport,
+				'domaine' => $domaine,
 				'evenement' => $evenement
 		));
 	}
