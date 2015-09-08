@@ -108,4 +108,27 @@ class Image
     {
         return $this->nom;
     }
+
+    /**
+     * Set profile
+     *
+     * @param \BDS\ImageBundle\Entity\Image $profile
+     * @return Image
+     */
+    public function setProfile(\BDS\ImageBundle\Entity\Image $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \BDS\ImageBundle\Entity\Image 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 }

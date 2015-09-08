@@ -14,7 +14,7 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
-	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement")
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement", orphanRemoval=true)
 	 */
 	private $participations;
 	

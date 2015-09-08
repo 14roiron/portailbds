@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Membre
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="membre")
+	 */
+	private $participations;
+	
+	/**
 	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="membres")
 	 */
 	private $sport;
@@ -86,5 +91,46 @@ class Membre
     public function getSport()
     {
         return $this->sport;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     *
+     * @return Membre
+     */
+    public function addParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations[] = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Remove participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     */
+    public function removeParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations->removeElement($participation);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
     }
 }

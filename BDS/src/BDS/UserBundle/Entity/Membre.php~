@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Membre
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="membre")
+	 */
+	private $participations;
+	
+	/**
 	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="membres")
 	 */
 	private $sport;

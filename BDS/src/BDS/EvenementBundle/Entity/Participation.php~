@@ -20,9 +20,9 @@ class Participation
 	private $evenement;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="BDS\UserBundle\Entity\User", inversedBy="participations", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="BDS\UserBundle\Entity\Membre", inversedBy="participations", cascade={"persist"})
 	 */
-	private $user;
+	private $membre;
 	
     /**
      * @var integer
@@ -36,7 +36,7 @@ class Participation
     /**
      * @var boolean
      *
-     * @ORM\Column(name="participation", type="boolean")
+     * @ORM\Column(name="participation", type="boolean", nullable=true)
      */
     private $participation;
 
@@ -208,5 +208,29 @@ class Participation
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \BDS\UserBundle\Entity\Membre $membre
+     *
+     * @return Participation
+     */
+    public function setMembre(\BDS\UserBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \BDS\UserBundle\Entity\Membre
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }

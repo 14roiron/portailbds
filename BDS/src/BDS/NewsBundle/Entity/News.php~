@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="bds_news")
  * @ORM\Entity(repositoryClass="BDS\NewsBundle\Entity\NewsRepository")
- * @ORM\HasLifeCycleCallBacks()
+ * @ORM\HasLifecycleCallbacks
  */
 class News
 {

@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use BDS\EvenementBundle\Entity\Evenement;
 use BDS\EvenementBundle\Form\EvenementType;
+use BDS\CoreBundle\Entity\Sport;
+use BDS\EvenementBundle\Entity\Participation;
 
 class EvenementController extends Controller
 {
@@ -80,6 +82,28 @@ class EvenementController extends Controller
 		{
 			//on enregistre l'objet dans la bdd
 			$this->get('bds_evenement.manager')->save($evenement);
+			
+			//on parcour chaque sport de l'évenement 
+			$sports = $evenement->getSports();
+			
+			foreach ($sports as $sport)
+			{
+				//on ajoute la participation de tous les membres de l'équipe
+				$membres = $sport->getMembres();
+				
+				foreach ($membres as $membre)
+				{
+					//on crée une nouvelle participation 
+					$participation = new Participation();
+					
+					//on l'hydrate 
+					$participation->setMembre($membre);
+					$participation->setEvenement($evenement);
+					
+					//on sauvegarde la participation
+					$this->get('bds_participation.manager')->save($participation);
+				}
+			}
 			
 			$request->getSession()->getFlashBag()->add('notice', 'Evenement bien enregistré.');
 			
