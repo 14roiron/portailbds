@@ -9,6 +9,7 @@ use BDS\EvenementBundle\Entity\Evenement;
 use BDS\EvenementBundle\Form\EvenementType;
 use BDS\CoreBundle\Entity\Sport;
 use BDS\EvenementBundle\Entity\Participation;
+use BDS\EvenementBundle\Form\MAJEvenementType;
 
 class EvenementController extends Controller
 {
@@ -54,10 +55,14 @@ class EvenementController extends Controller
 			throw new NotFoundHttpException('Evenement "' .$id. '" inexistant');
 		}
 		
+		//on creer le formulaire géant 
+		$form = $this->createForm(new MAJEvenementType(),	$evenement);
+		
 		//on passe l'evenement à la vue 
 		return $this->render('BDSEvenementBundle:Evenement:view.html.twig', array(
 				'domaine' 	=>	$domaine,
-				'evenement'	=>	$evenement
+				'evenement'	=>	$evenement,
+				'form'		=>	$form->createView()
 		));
 	}
 	
