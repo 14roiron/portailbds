@@ -2244,7 +2244,8 @@
         "adesigns/calendar-bundle": 20,
         "carlescliment/calendar-bundle": 20,
         "ornicar/gravatar-bundle": 20,
-        "coresphere/console-bundle": 20
+        "coresphere/console-bundle": 20,
+        "stfalcon/tinymce-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

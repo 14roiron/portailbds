@@ -18,7 +18,10 @@ class NewsType extends AbstractType
         $builder
             ->add('titre',				'text')
             ->add('resumer',			'text')
-            ->add('contenu',			'textarea')
+            ->add('contenu',			'textarea',
+            array(
+            'attr' => array(
+            'class' => 'tinymce')))
             ->add('sports',				'entity',		array(
             												'class'			=>	'BDSCoreBundle:Sport',
             												'property'		=>	'nom',

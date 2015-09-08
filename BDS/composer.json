@@ -28,7 +28,8 @@
 		"carlescliment/calendar-bundle" : "dev-master",
 		"egeloen/ckeditor-bundle": "~2.0",
 		"ornicar/gravatar-bundle" : "dev-master",
-		"coresphere/console-bundle": "dev-master"
+		"coresphere/console-bundle" : "dev-master",
+		"stfalcon/tinymce-bundle" : "dev-master"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3"
