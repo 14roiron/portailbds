@@ -16,10 +16,10 @@ class EvenementType extends AbstractType
     {
         $builder
             ->add('nom',					'text')
-            ->add('debutEvenement',			'datetime')
-            ->add('finEvenement',			'datetime')
-            ->add('debutInscripsion',		'datetime')
-            ->add('finInscripsion',			'datetime')
+            ->add('debutEvenement',			'collot_datetime')
+            ->add('finEvenement',			'collot_datetime')
+            ->add('debutInscripsion',		'collot_datetime')
+            ->add('finInscripsion',			'collot_datetime')
             ->add('info',					'text')
             ->add('maxInscrit',				'integer')
             ->add('sports',					'entity',		array(

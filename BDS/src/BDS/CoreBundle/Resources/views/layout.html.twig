@@ -9,6 +9,7 @@
 	{% block stylesheets %}
 		{# On charge le bootstrap depuis le site directement #}
 		<link rel="stylesheet" href="http://localhost:8888/BDS/bootstrap-3.3.1/dist/css/bootstrap.min.css">
+		 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
 		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
 		{% if domaine is defined and domaine.fond != null %}
 		<style>
@@ -131,6 +132,8 @@
     	<script src="http://localhost:8888/BDS/bootstrap-3.3.1/dist/js/bootstrap.min.js"></script>
     	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
 		{#<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script>#} 
   	{% endblock %}

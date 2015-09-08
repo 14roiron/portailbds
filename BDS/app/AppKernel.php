@@ -28,7 +28,8 @@ class AppKernel extends Kernel
             new BDS\CalendarBundle\BDSCalendarBundle(),
         	new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
         	new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
-		new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
+			new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+        	new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

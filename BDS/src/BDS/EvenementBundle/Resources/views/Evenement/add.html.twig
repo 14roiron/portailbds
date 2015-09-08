@@ -7,6 +7,56 @@
 {% block bds_evenement_body %}
 <h2>Ajouter un evenement</h2>
 <div class="well">
-	{{ form(form) }}
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
+	
+	{# les erreurs du formulaire #}
+	{{ form_errors(form) }}
+	
+	{# nom de l'évènement #}
+	{{ form_label(form.nom, "nom de l'évènement", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+	
+	{#date de début #}
+	{{ form_label(form.debutEvenement, "début", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.debutEvenement, {'attr': {'class': 'form-control'}}) }}
+	
+	{# date de fin #}
+	{{ form_label(form.finEvenement, "fin", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.finEvenement, {'attr': {'class':'form-control'}}) }}
+	
+	{# début des inscripsion #}
+	{{ form_label(form.debutInscripsion, "Ouverture des inscripsions", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.debutInscripsion, {'attr': {'class':'form-control'}}) }}
+	
+	{# fin des inscripsions #}
+	{{ form_label(form.finInscripsion, "fin des inscripsions", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.finInscripsion, {'attr': {'class':'form-control'}}) }}
+	
+	{# information #}
+	{{ form_label(form.info, "Informations utiles", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.info, {'attr': {'class':'form-control'}}) }}
+	
+	{# nombre maximum d'inscrit #}
+	{{ form_label(form.maxInscrit, "nombre maximum de participant", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.maxInscrit, {'attr': {'class':'form-control'}}) }}
+	
+	{# sport #}
+	{{ form_label(form.sports, "Sport(s)", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.sports) }}
+	
+	
+	{# génération automatique de tout le reste #}
+	{{ form_rest(form) }}
+	
+	{# fermeture de la balise form #}
+	{{ form_end(form) }}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+{{ form_javascript(form) }}
+{{ form_stylesheet(form) }}
+
 {% endblock %}
