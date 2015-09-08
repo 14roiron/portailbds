@@ -11,7 +11,7 @@
 	},
 	"require" : {
 		"php" : ">=5.3.3",
-		"symfony/symfony" : "2.6.*",
+		"symfony/symfony" : "2.7.*",
 		"doctrine/orm" : "~2.2,>=2.2.3",
 		"doctrine/doctrine-bundle" : "~1.2",
 		"twig/extensions" : "~1.0",
@@ -27,8 +27,8 @@
 		"adesigns/calendar-bundle" : "dev-master",
 		"carlescliment/calendar-bundle" : "dev-master",
 		"ornicar/gravatar-bundle" : "dev-master",
-		"coresphere/console-bundle": "dev-master",
-		"stfalcon/tinymce-bundle": "dev-master"
+		"coresphere/console-bundle" : "dev-master",
+		"stfalcon/tinymce-bundle" : "dev-master"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3"
