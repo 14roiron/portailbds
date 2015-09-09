@@ -17,7 +17,7 @@ class ParticipationEvenementType extends AbstractType
 	{
 		$builder
 			->remove('validationCapitaine')
-			->remove('vaidationUser')
+			->remove('validationUser')
 			->remove('evenement')
 			->remove('membre')
 		;

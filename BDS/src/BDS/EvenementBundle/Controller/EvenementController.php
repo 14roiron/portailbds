@@ -39,7 +39,7 @@ class EvenementController extends Controller
 		
 	}
 	
-	public function viewAction ($domaine, $id)
+	public function viewAction ($domaine, $id, Request $request)
 	{
 		//on se place dans le bon domaine 
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
@@ -58,6 +58,27 @@ class EvenementController extends Controller
 		//on creer le formulaire géant 
 		$form = $this->createForm(new MAJEvenementType(),	$evenement);
 		
+		//on fait le lien requete formulaire 
+		$form->handleRequest($request);
+		
+		//on passe par une étape de validation des données 
+		if ($form->isValid())
+		{
+			/*
+			 * on sauvegarde l'évenement, 
+			 * normalement la persistence en cascade devrait 
+			 * permettre de mettre à jour les participations 
+			 */
+			$this->get('bds_evenement.manager')->save($evenement);
+			
+			$request->getSession()->getFlashBag()->add('notice', "l'évènement a été mis à jour");
+			
+			//on affiche la nouvelle page de l'évènement 
+			return $this->redirect($this->generateUrl('bds_evenement_view', array(
+					'domaine'	=>	$domaine->getNom(),
+					'id'		=> $id
+			)));
+		}
 		//on passe l'evenement à la vue 
 		return $this->render('BDSEvenementBundle:Evenement:view.html.twig', array(
 				'domaine' 	=>	$domaine,

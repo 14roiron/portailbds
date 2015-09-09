@@ -16,7 +16,9 @@ class MAJEvenementType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-		->add('participations',		'collection',		array('type'	=>	new ParticipationEvenementType()));
+		->add('participations',		'collection',		array('type'	=>	new ParticipationEvenementType()))
+		->add('enregistrer', 		'submit')
+		;
 	}
 	
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
