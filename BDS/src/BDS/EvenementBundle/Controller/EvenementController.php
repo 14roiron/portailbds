@@ -103,9 +103,27 @@ class EvenementController extends Controller
 		//on fait le lien requete formulaire 
 		$form->handleRequest($request);
 		
+		/*
+		 * si les champs complémentaires n'ont pas été rempli on
+		 * charge une date de fin et de début des inscripsion pour éviter mes inscripsion sauvage
+		 * 2 mois après
+		 */
+		if ($evenement->getDebutInscripsion() == NULL)
+		{
+			//il faut trouver un moyen de lui dire NOW typé dateTime, je suis dans le train, pas internet pour chercher 
+			$evenement->setDebutInscripsion($evenement->getDebutEvenement());
+		}
+			
+		if ($evenement->getFinInscripsion() == NULL)
+		{
+			$evenement->setFinInscripsion($evenement->getDebutEvenement());
+		}
+			
+		
 		//on passe par une étape de validation 
 		if($form->isValid())
 		{
+
 			//on enregistre l'objet dans la bdd
 			$this->get('bds_evenement.manager')->save($evenement);
 			

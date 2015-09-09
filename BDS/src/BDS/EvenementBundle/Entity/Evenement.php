@@ -57,28 +57,28 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="debut_inscripsion", type="datetime")
+     * @ORM\Column(name="debut_inscripsion", type="datetime", nullable=true)
      */
     private $debutInscripsion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fin_inscripsion", type="datetime")
+     * @ORM\Column(name="fin_inscripsion", type="datetime", nullable=true)
      */
     private $finInscripsion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="info", type="string", length=255)
+     * @ORM\Column(name="info", type="string", length=255, nullable=true)
      */
     private $info;
 
     /**
      * @var IntegerNode
      * 
-     * @ORM\Column(name="max_inscrit", type="integer")
+     * @ORM\Column(name="max_inscrit", type="integer", nullable=true)
      */
     private $maxInscrit;
 
@@ -235,6 +235,7 @@ class Evenement
     public function __construct()
     {
         $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
 
     /**

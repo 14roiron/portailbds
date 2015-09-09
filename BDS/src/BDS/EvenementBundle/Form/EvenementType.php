@@ -18,10 +18,10 @@ class EvenementType extends AbstractType
             ->add('nom',					'text')
             ->add('debutEvenement',			'collot_datetime')
             ->add('finEvenement',			'collot_datetime')
-            ->add('debutInscripsion',		'collot_datetime')
-            ->add('finInscripsion',			'collot_datetime')
-            ->add('info',					'text')
-            ->add('maxInscrit',				'integer')
+            ->add('debutInscripsion',		'collot_datetime', array('required' => false))
+            ->add('finInscripsion',			'collot_datetime', array('required' => false))
+            ->add('info',					'text', array('required' =>false))
+            ->add('maxInscrit',				'integer', array('required' => false))
             ->add('sports',					'entity',		array(
             													'class'		=>	'BDSCoreBundle:Sport',
             													'property'	=>	'nom',
