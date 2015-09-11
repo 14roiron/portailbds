@@ -14,6 +14,11 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"})
+	 */
+	private $lieu;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement", orphanRemoval=true)
 	 */
 	private $participations;
@@ -325,5 +330,29 @@ class Evenement
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    /**
+     * Set lieu
+     *
+     * @param \BDS\EvenementBundle\Entity\Lieu $lieu
+     *
+     * @return Evenement
+     */
+    public function setLieu(\BDS\EvenementBundle\Entity\Lieu $lieu = null)
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * Get lieu
+     *
+     * @return \BDS\EvenementBundle\Entity\Lieu
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
     }
 }

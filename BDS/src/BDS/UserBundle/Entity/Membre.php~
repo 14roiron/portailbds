@@ -92,4 +92,45 @@ class Membre
     {
         return $this->sport;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     *
+     * @return Membre
+     */
+    public function addParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations[] = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Remove participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     */
+    public function removeParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations->removeElement($participation);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
+    }
 }

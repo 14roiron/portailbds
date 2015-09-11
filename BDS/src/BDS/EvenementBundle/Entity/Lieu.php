@@ -196,4 +196,3 @@ class Lieu
         return $this->lng;
     }
 }
-

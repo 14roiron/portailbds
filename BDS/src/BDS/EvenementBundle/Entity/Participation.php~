@@ -38,12 +38,12 @@ class Participation
      *
      * @ORM\Column(name="participation", type="boolean", nullable=true)
      */
-    private $participation;
+    private $participation = NULL;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=255)
+     * @ORM\Column(name="commentaire", type="string", length=255, nullable=true)
      */
     private $commentaire;
 

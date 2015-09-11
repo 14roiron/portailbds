@@ -18,12 +18,6 @@ class User extends BaseUser
 	 */
 	private $membres;
 	
-
-	/**
-	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="user")
-	 */
-	private $participations;
-	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\News", mappedBy="editeur")
 	 */
