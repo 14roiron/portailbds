@@ -111,7 +111,7 @@ class EvenementController extends Controller
 		if ($evenement->getDebutInscripsion() == NULL)
 		{
 			//il faut trouver un moyen de lui dire NOW typé dateTime, je suis dans le train, pas internet pour chercher 
-			$evenement->setDebutInscripsion($evenement->getDebutEvenement());
+			$evenement->setDebutInscripsion(new \DateTime());
 		}
 			
 		if ($evenement->getFinInscripsion() == NULL)
