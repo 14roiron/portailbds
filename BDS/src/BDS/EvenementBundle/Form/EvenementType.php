@@ -18,6 +18,9 @@ class EvenementType extends AbstractType
             ->add('nom',					'text')
             ->add('debutEvenement',			'collot_datetime')
             ->add('finEvenement',			'collot_datetime')
+            ->add('lieu',					'entity', 		array(
+            													'class'		=>	'BDSEvenementBundle:Lieu'	
+            ))
             ->add('debutInscripsion',		'collot_datetime', array('required' => false))
             ->add('finInscripsion',			'collot_datetime', array('required' => false))
             ->add('info',					'text', array('required' =>false))

@@ -14,7 +14,7 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
-	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"})
+	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $lieu;
 	
