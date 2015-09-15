@@ -7,5 +7,5 @@
 {% block bds_evenement_body %}
 <h2>Suppression d'un evenement</h2>
 <p class="well">l'evenement : {{ evenement.nom }} du {{ evenement.debutEvenement | date ('d/m/Y') }} au {{ evenement.finEvenement | date ('d/m/Y') }} a été supprimé avec succès</p>
- <a class="btn btn-lg btn-default" href="{{ path('bds_evenement_index', {'domaine': domaine.nom}) }}">Retour aux Evenements</
+ <a class="btn btn-lg btn-default" href="{{ path('bds_evenement_index', {'domaine': domaine.nom}) }}">Retour aux Evenements</a>
 {% endblock %}
