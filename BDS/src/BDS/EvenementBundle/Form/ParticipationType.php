@@ -15,7 +15,13 @@ class ParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('participation')
+            ->add('participation',	'choice',	array( 'choices'	=>	array(
+            															true	=>	'oui',
+            															false	=>	'non',
+            															null	=>	'aucun'),
+            									'multiple'	=>	false,
+            									'expanded'	=>	true
+            ))
             ->add('commentaire')
             ->add('validationCapitaine')
             ->add('validationUser')
