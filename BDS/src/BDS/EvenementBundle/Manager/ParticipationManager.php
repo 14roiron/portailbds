@@ -30,7 +30,7 @@ class ParticipationManager
 		$this->em->flush();
 	}
 	
-	public function particpationValid($participations)
+	public function participationValid($participations)
 	{
 		$criteria = Criteria::create();
 		$criteria->where(Criteria::expr()->eq('validationCapitaine', TRUE));
