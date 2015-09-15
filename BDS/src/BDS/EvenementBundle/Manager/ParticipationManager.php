@@ -29,4 +29,13 @@ class ParticipationManager
 		$this->em->persist($participation);
 		$this->em->flush();
 	}
+	
+	public function particpationValid($participations)
+	{
+		$criteria = Criteria::create();
+		$criteria->where(Criteria::expr()->eq('validationCapitaine', TRUE));
+		
+		return $participations->matching($criteria);
+		
+	}
 }

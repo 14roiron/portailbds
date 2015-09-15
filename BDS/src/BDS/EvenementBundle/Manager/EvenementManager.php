@@ -63,5 +63,4 @@ class EvenementManager
 		$this->em->remove($evenement);
 		$this->em->flush();
 	}
-	
 }

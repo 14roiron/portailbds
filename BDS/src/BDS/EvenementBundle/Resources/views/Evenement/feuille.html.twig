@@ -1,0 +1,27 @@
+{%  extends "BDSEvenementBundle::layout.html.twig" %}
+
+{%  block title %}
+	Feuille de match - {{  parent() }}
+{% endblock %}
+
+{% block bds_evenement_body %}
+<h2>Feuille de match</h2>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3> liste des particiapant définitif à {{ evenement.nom }} du {{ evenement.debutEvenement | date('d/m/Y') }}</h3>
+	</div>
+	<div class="panel-body">
+		<ul>
+			{% for participation in participations %}
+			<li class="well">
+				{{ participation.membre.user.nom }}
+			</li>
+			{% else %}
+			<li>Pas (encore) de particpants validés !</li>
+			{% endfor %}
+		</ul>
+		<div>
+			<a class="btn btn-lg btn-primary" href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">retour aux évènments</a>
+		</div>
+	</div>
+</div>

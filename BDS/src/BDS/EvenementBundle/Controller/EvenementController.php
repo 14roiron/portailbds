@@ -252,5 +252,30 @@ class EvenementController extends Controller
 				'domaine'		=>	$domaine	
 		));	
 
-	}		
+	}
+	
+	public function feuilleAction ($domaine, $id,  Request $request)
+	{
+		
+		//on se place dans le bon domaine 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
+		//on récupère l'évènement 
+		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
+		
+		//on charge les participation de l'évènement 
+		$participations = $evenement->getParticipations();
+		
+		//on trie celles qui ont étés validées par le capitaine :
+		$particpations = $this->get('bds_participation.manager')->participationValid($participation);
+		
+		//on retourne la liste des participant 
+		return $this->render('BDSEvenementBundle:Evenement:feuille.html.twig', array(
+				'domaine'			=>	$domaine->getNom(),
+				'$articipations'	=>	$particpations
+		));
+		
+		
+		
+	}
 }
