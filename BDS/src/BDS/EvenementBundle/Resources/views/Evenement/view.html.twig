@@ -14,7 +14,21 @@
 		<p>commence le {{ evenement.debutEvenement | date('d/m/Y') }}</p>
 		<p>fini le {{ evenement.finEvenement | date('d/m/Y') }}</p>
 		<div class="well">
-			{{ form(form) }}
+			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
+	
+			{# les erreurs du formulaire #}
+			{{ form_errors(form) }}
+			
+			{# on plac la liste des champs participations #}
+			<ul>
+				{% for participation in form.participations %}
+					<li class="well">
+						{{ form_label(participation) }}
+						{{ form_widget(participation)}}
+					</li>
+				{% endfor %}
+			</ul>
+	
 		</div>
 	</div>
 		
