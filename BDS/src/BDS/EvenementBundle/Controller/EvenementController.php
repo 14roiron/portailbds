@@ -121,11 +121,7 @@ class EvenementController extends Controller
 		
 		//on passe par une étape de validation 
 		if($form->isValid())
-		{
-
-			//on enregistre l'objet dans la bdd
-			$this->get('bds_evenement.manager')->save($evenement);
-			
+		{	
 			//on parcour chaque sport de l'évenement 
 			$sports = $evenement->getSports();
 			
@@ -142,10 +138,14 @@ class EvenementController extends Controller
 					//on l'hydrate 
 					$participation->setMembre($membre);
 					$participation->setEvenement($evenement);
+					$evenement->addParticipation($participation);
 					
 					//on sauvegarde la participation
 					$this->get('bds_participation.manager')->save($participation);
 				}
+				
+				//on enregistre l'objet dans la bdd
+				$this->get('bds_evenement.manager')->save($evenement);
 			}
 			
 			$request->getSession()->getFlashBag()->add('notice', 'Evenement bien enregistré.');
