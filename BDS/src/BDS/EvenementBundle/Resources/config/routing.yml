@@ -36,6 +36,6 @@ bds_evenement_calendrier:
     defaults: { _controller: BDSEvenementBundle:Evenement:calendar }
     
 bds_evenement_feuille:
-    path:     /{domaine}/evenement/feuilleDeMatch
+    path:     /{domaine}/evenement/{id}/feuilleDeMatche
     defaults: { _controller: BDSEvenementBundle:Evenement:feuille }
     
