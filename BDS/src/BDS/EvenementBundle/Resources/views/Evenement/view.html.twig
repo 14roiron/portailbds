@@ -28,6 +28,12 @@
 					</li>
 				{% endfor %}
 			</ul>
+			
+			{# génération automatique de tout le reste #}
+			{{ form_rest(form) }}
+	
+			{# fermeture de la balise form #}
+			{{ form_end(form) }}
 	
 		</div>
 	</div>
