@@ -173,6 +173,9 @@ class Participation
     public function setEvenement(\BDS\EvenementBundle\Entity\Evenement $evenement = null)
     {
         $this->evenement = $evenement;
+        
+        //on ajoute la participation à l'évènement 
+        $evenement->addParticipation($this);
 
         return $this;
     }

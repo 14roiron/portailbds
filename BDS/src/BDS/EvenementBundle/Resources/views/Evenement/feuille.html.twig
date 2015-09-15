@@ -14,7 +14,7 @@
 		<ul>
 			{% for participation in participations %}
 			<li class="well">
-				{{ participation.membre.user.nom }}
+				{{ participation.membre.user.username }}
 			</li>
 			{% else %}
 			<li>Pas (encore) de particpants validés !</li>
@@ -25,3 +25,5 @@
 		</div>
 	</div>
 </div>
+
+{% endblock %}

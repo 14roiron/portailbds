@@ -240,6 +240,7 @@ class Evenement
     public function __construct()
     {
         $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
         
     }
 

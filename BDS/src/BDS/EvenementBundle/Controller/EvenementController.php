@@ -138,7 +138,6 @@ class EvenementController extends Controller
 					//on l'hydrate 
 					$participation->setMembre($membre);
 					$participation->setEvenement($evenement);
-					$evenement->addParticipation($participation);
 					
 					//on sauvegarde la participation
 					$this->get('bds_participation.manager')->save($participation);
@@ -267,12 +266,13 @@ class EvenementController extends Controller
 		$participations = $evenement->getParticipations();
 		
 		//on trie celles qui ont étés validées par le capitaine :
-		$particpations = $this->get('bds_participation.manager')->participationValid($participation);
+		$participations = $this->get('bds_participation.manager')->participationValid($participations);
 		
 		//on retourne la liste des participant 
 		return $this->render('BDSEvenementBundle:Evenement:feuille.html.twig', array(
 				'domaine'			=>	$domaine,
-				'$articipations'	=>	$participations
+				'participations'	=>	$participations,
+				'evenement'			=>	$evenement
 		));
 		
 		
