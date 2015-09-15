@@ -271,7 +271,7 @@ class EvenementController extends Controller
 		
 		//on retourne la liste des participant 
 		return $this->render('BDSEvenementBundle:Evenement:feuille.html.twig', array(
-				'domaine'			=>	$domaine->getNom(),
+				'domaine'			=>	$domaine,
 				'$articipations'	=>	$particpations
 		));
 		
