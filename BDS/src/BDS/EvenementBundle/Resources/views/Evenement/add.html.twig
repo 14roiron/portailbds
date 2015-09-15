@@ -44,6 +44,9 @@
 	{{ form_label(form.sports, "Sport(s)", {'label_attr': {'class':'control-label'}}) }}
 	{{ form_widget(form.sports) }}
 	
+	{# lieu #}
+	{{ form_label(form.lieu, "Lieu", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.lieu) }}
 	
 	{# génération automatique de tout le reste #}
 	{{ form_rest(form) }}
@@ -60,7 +63,9 @@
 {{ form_stylesheet(form) }}
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="/path/to/jquery.ui.addresspicker.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="{{asset('js/jquery.ui.addresspicker.js')}}"></script>
 
 
 {% endblock %}
