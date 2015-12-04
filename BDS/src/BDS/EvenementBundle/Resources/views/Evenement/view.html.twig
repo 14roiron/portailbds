@@ -23,7 +23,7 @@
 			<ul>
 				{% for participation in form.participations %}
 					<li class="well">
-						{{ form_label(participation) }}
+						{{ form_label(participation, objParticipations[loop.index0].membre.user.username) }}
 						{{ form_widget(participation)}}
 					</li>
 				{% endfor %}

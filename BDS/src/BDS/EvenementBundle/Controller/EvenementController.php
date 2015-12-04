@@ -55,6 +55,9 @@ class EvenementController extends Controller
 			throw new NotFoundHttpException('Evenement "' .$id. '" inexistant');
 		}
 		
+		//on récupère la liste des participations pour donner des noms au labels du formulaire
+		$objParticipations = $evenement->getParticipations();
+		
 		//on creer le formulaire géant 
 		$form = $this->createForm(new MAJEvenementType(),	$evenement);
 		
@@ -83,7 +86,9 @@ class EvenementController extends Controller
 		return $this->render('BDSEvenementBundle:Evenement:view.html.twig', array(
 				'domaine' 	=>	$domaine,
 				'evenement'	=>	$evenement,
-				'form'		=>	$form->createView()
+				'form'		=>	$form->createView(),
+				'objParticipations'	=>	$objParticipations
+				
 		));
 	}
 	
