@@ -8,10 +8,8 @@
 	
 	{% block stylesheets %}
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    {% stylesheets '@BDSCoreBundle/Resources/public/css/main.css' %}
-     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-    {% endstylesheets %}
 		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
+    <link rel="stylesheet" href="{{ asset('bundles/bdscore/css/main.css') }}" type="text/css" />
 		{% if domaine is defined and domaine.fond != null %}
 		<style>
 			body
