@@ -17,8 +17,13 @@ body {
     padding-top: 10%;
     padding-bottom: 10%;
 }
+.intro-message-lite {
+    position: relative;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
 
-.intro-message > h1 {
+.intro-message > h1, .intro-message-lite > h1 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;

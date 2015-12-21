@@ -96,10 +96,7 @@
 </nav>
 {% if domaine is defined  and domaine.fond != null %}
  <header class="intro-header" style="background: transparent url( {{ asset(domaine.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
- {% else %}
- <header class="intro-header" >
- {%endif%}
-        <div class="container">
+ <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
@@ -112,7 +109,25 @@
                 </div>
             </div>
         </div>
-    </header>   
+    </header>  
+ {% else %}
+ <header class="intro-header" >
+ <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-lite">
+                        {% if domaine is defined %}
+                          <h1> {{ domaine.equipe }}</h1>
+                       {% else %}
+                          <h1>BDS Mines Paristech</h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+ {%endif%}
+
 	
     <!-- Main Content -->
     <div class="container">
