@@ -19,6 +19,6 @@ bds_sport_edit:
     defaults: { _controller: BDSCoreBundle:Sport:edit }  
     
 bds_sport_list:
-    path:     /{sport}/sport
+    path:     /sport
     defaults: { _controller: BDSCoreBundle:Sport:list }
     
