@@ -38,4 +38,13 @@ placer le bouton "validation user"
 Calendrier web-dav 
 
 SECURITE
+Definir les roles:
+admin
+membrebds
+capitaine
+communitymanager
+membreequipe
+membredusite
+
+possibilited"ajouter des membres a son equipe
 
