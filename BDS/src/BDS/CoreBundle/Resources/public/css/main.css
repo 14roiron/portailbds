@@ -33,4 +33,5 @@ body {
     margin-bottom: 20px;
     padding: 30px 15px;
     background: rgba(240, 240, 240, 0.9) none repeat scroll 0% 0%;
+    border-style: solid;
 }
