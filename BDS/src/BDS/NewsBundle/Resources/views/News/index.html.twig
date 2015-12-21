@@ -15,7 +15,7 @@
         par {{ news.auteur.username }},
         le {{ news.datePublication|date('d/m/Y') }}
         <div class="block">
-          {{news.contenu|slice(0,150)}}
+          {{news.contenu|slice(0,150)|raw}}
         </div>
         <p>
         	<a class="btn btn-md btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
