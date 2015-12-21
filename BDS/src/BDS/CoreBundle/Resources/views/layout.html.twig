@@ -7,15 +7,21 @@
 	<title>{% block title %}BDS MinesParistech{% endblock %}</title>
 	
 	{% block stylesheets %}
+<<<<<<< HEAD
 		{# On charge le bootstrap depuis le site directement #}
 		<link rel="stylesheet" href="http://localhost:8888/BDS/bootstrap-3.3.1/dist/css/bootstrap.min.css">
 		 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
+=======
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+>>>>>>> master
 		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
+    <link rel="stylesheet" href="{{ asset('bundles/bdscore/css/main.css') }}" type="text/css" />
 		{% if domaine is defined and domaine.fond != null %}
 		<style>
 			body
 			{
-				background: url( {{ asset(domaine.fond.getWebPath) }} ) no-repeat center fixed;
+        margin-top:50px;
+				/*background: url( {{ asset(domaine.fond.getWebPath) }} ) no-repeat center fixed;*/
 				-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 				background-size: cover;			/* version stadardisé */
 				
@@ -24,7 +30,7 @@
 		{% endif %}
 	{% endblock %}
 </head>
-
+<body>
 <!--  barre de navigation évolutive -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -49,7 +55,7 @@
     	{% if domaine is defined %}
     	<ul class="nav navbar-nav">
         	<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Accueil</a></li>
-        	<li><a href="{{ path('bds_sport_list',{'sport':domaine.nom }) }}">Sports</a></li>
+        	<li><a href="{{ path('bds_sport_list') }}">Sports</a></li>
         	<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ domaine.nom }}<span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
@@ -81,7 +87,7 @@
           			<ul class="dropdown-menu" role="menu">
             			<li><a href="{{ path('fos_user_profile_show') }}">Ma page</a></li>
             			<li class="divider"></li>
-            				<li><a href="{{ path('fos_user_security_logout') }}">se deconecter</a></li>
+            				<li><a href="{{ path('fos_user_security_logout') }}">se déconnecter</a></li>
           			</ul>
         	</li>
         {% else %}
@@ -91,24 +97,56 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+{% if domaine is defined  and domaine.fond != null %}
+ <header class="intro-header" style="background: transparent url( {{ asset(domaine.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
+ <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        {% if domaine is defined %}
+                          <h1> {{ domaine.equipe }}</h1>
+                       {% else %}
+                          <h1>BDS Mines Paristech</h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+ {% else %}
+ <header class="intro-header" >
+ <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-lite">
+                        {% if domaine is defined %}
+                          <h1> {{ domaine.equipe }}</h1>
+                       {% else %}
+                          <h1>BDS Mines Paristech</h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+ {%endif%}
 
-<body>    
-	<div class="container">
-		<div id="header" class="jumbotron">
-			{% if domaine is defined %}
-			<h1> {{ domaine.equipe }}</h1>
-			{% else %}
-			<h1>BDS Mines Paristech</h1>
-			{% endif %}
-		</div>
+	
+    <!-- Main Content -->
+    <div class="container">
 		
 		
 		<div class= "row">
+    
 			<div id="content" class="col-md-8"> 
+      <div class="box">
 				{% block body %}
 				{% endblock %}
 			</div>
+      </div>
+    
 			<div id="aside" class="col-md-4">
+        <div class="box">
 				{% block aside %}
 				{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
 				{% if domaine is defined %}
@@ -116,6 +154,7 @@
 				{% endif %}		
 				{% endblock %}
 			</div>
+      </div>
 		</div>
 		
 		<hr>
@@ -128,7 +167,7 @@
   	{% block javascripts %}
 		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    	<script src="http://localhost:8888/BDS/bootstrap-3.3.1/dist/js/bootstrap.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

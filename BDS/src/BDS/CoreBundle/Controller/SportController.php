@@ -132,10 +132,10 @@ class SportController extends Controller
 		
 	}
 	
-	public function listAction ($sport)
+	public function listAction ()
 	{
 		//on récupère le domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($sport);
+		$domaine = $this->get('bds_sport.manager')->getSport("bds");
 		
 		//erreur si le sport n'existe pas
 		if ($domaine == NULL)
