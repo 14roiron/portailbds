@@ -115,11 +115,16 @@
 		
 		
 		<div class= "row">
+    
 			<div id="content" class="col-md-8"> 
+      <div class="box">
 				{% block body %}
 				{% endblock %}
 			</div>
+      </div>
+    
 			<div id="aside" class="col-md-4">
+        <div class="box">
 				{% block aside %}
 				{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
 				{% if domaine is defined %}
@@ -127,6 +132,7 @@
 				{% endif %}		
 				{% endblock %}
 			</div>
+      </div>
 		</div>
 		
 		<hr>

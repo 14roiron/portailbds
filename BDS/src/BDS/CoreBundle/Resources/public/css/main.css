@@ -23,3 +23,9 @@ body {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;
 }
+.box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px 15px;
+    background: rgba(240, 240, 240, 0.9) none repeat scroll 0% 0%;
+}
