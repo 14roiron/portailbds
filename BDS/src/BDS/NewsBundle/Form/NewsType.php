@@ -28,7 +28,7 @@ class NewsType extends AbstractType
             												'multiple'		=>	true,
             												'expanded'		=>	true,
             ))
-            ->add('ajouter',			'submit')
+            ->add('ajouter',			'submit');
         ;
     }
     

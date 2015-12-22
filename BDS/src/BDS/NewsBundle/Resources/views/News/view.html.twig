@@ -18,8 +18,12 @@
 			
 		{% for commentaire in listCommentaire %}
 			<div class="well">
-				<p>{{ commentaire.contenu }}</p>
+				<p>{{ commentaire.contenu | raw }}</p>
 				<p>par {{ commentaire.auteur.username }}, le {{ commentaire.datePublication|date('d/m/Y') }}</p>
+				{% if commentaire.auteur== app.user or isEditor %}
+				   		<a class="btn btn-lg btn-warning" href="{{ path('bds_commentaire_edit', {'sport':domaine.nom, 'id':commentaire.id}) }}">éditer le commentaire</a>
+   						<a class="btn btn-lg btn-danger" href="{{ path('bds_commentaire_delete', {'sport':domaine.nom, 'id': commentaire.id}) }}">supprimer le commentaire</a>
+				{% endif %}
 			</div>
 		{% endfor %}
 			<div class="well">
@@ -50,13 +54,11 @@
   				{# Fermeture de la balise <form> du formulaire HTML #}
   				{{ form_end(form) }}
 			</div>
+		 {% if isEditor %}
    		<a class="btn btn-lg btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
    		<a class="btn btn-lg btn-danger" href="{{ path('bds_news_delete', {'sport':domaine.nom, 'id': news.id}) }}">supprimer la news</a>
-   		<a class="btn btn-lg btn-default" href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Retour au news</a>
-   		{# on s'interesse au news qui n'ont pas encore été validée #}
-   		{% if news.validation == FALSE %}
-   			<a class="btn btn-lg btn-primary" href="{{ path('bds_news_validate', {'sport':domaine.nom, 'id':news.id}) }}">Valider</a>
    		{% endif %}
+   		<a class="btn btn-lg btn-default" href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Retour au news</a>
    	</div>
 </div>
 {% endblock %}

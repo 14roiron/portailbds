@@ -52,9 +52,9 @@ class NewsController extends Controller
 	{
 		
 		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		//si il n'est pas membre du sport concerne on bloque,
-		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
 		{
 			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
 		}
@@ -106,7 +106,8 @@ class NewsController extends Controller
 				'news' => $news,
 				'domaine' => $sportEdit,
 				'listCommentaire' => $listCommentaire,
-				'form' => $form->createView()
+				'form' => $form->createView(),
+				'isEditor' => $this->get('bds_membre.manager')->isNewsEditor($sportEdit)
 		));
 		
 	}
@@ -116,7 +117,7 @@ class NewsController extends Controller
 		//on récupere le sport
 		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		//si il n'est pas membre du sport concerne on bloque,
-		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
 		{
 			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
 		}
@@ -128,7 +129,8 @@ class NewsController extends Controller
 		$news = new News();
 		
 		//on crée le formulaire 
-		$form = $this->createForm( new NewsType(), $news );
+		$form = $this->createForm( new NewsType(), $news);
+
 		
 		//on fait le lien requete <-> formulaire
 		$form->handleRequest($request);
@@ -159,7 +161,6 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
-				'isEditor' => $this->get('bds_membre.manager')->isNewsEditor($sport),
 				'form' =>$form->createView()
 		));
 	}
@@ -169,13 +170,20 @@ class NewsController extends Controller
 		//verifier que le visiteur à le droit d'acceder à cette page 
 				
 		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		//si il n'est pas membre du sport concerne on bloque,
-		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
 		{
 			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
 		}
-	//on récupère la news
+
+		if(!$this->get('bds_membre.manager')->isNewsEditor($sportEdit))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+
+
+	    //on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
 		//on lance une exception si la news n'existe pas 
@@ -203,7 +211,7 @@ class NewsController extends Controller
 				
 				//on affiche la page de la nouvelle news
 				return $this->redirect($this->generateUrl('bds_news_view', array(
-						'domaine' => $sport,
+						'sport' => $sport,
 						'id' => $news->GetId()
 				)));
 			}
@@ -211,7 +219,65 @@ class NewsController extends Controller
 		
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
-				'domaine' => $sport,
+				'domaine' => $sportEdit,
+				'form' =>$form->createView()
+		));
+		 
+		
+	}
+		public function editCommentaireAction($sport, $id, Request $request)
+	{
+		//verifier que le visiteur à le droit d'acceder à cette page 
+				
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+	    //on récupère la news
+		$commentaire = $this->get('bds_Commentaire.manager')->getCommentaire($id);
+		
+		//on lance une exception si la news n'existe pas 
+		if ($commentaire == NULL)
+		{
+			throw new NotFoundHttpException('Commentaire "' .$id. '" inexistant');
+		}
+		//on en peut modifier le commentaire que si l\' community ou l'auteur
+		if($commentaire->getAuteur()!=$this->getUser() and !$this->get('bds_membre.manager')->isNewsEditor($sportEdit))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+
+		
+		//on crée le formulaire
+		$form = $this->createForm( new CommentaireType(), $commentaire );
+		
+		//si le visiteur a soumis le formulaire 
+		if ($request->isMethod('POST'))
+		{
+			//on fait le lien entre le formulaire et la requete 
+			$form->handleRequest($request);
+			
+			//on valide les données 
+			if ($form->isValid()){
+				
+				//on enregistre dans la bdd
+				$this->get('bds_commentaire.manager')->save($commentaire);
+				
+				$request->getSession()->getFlashBag()->add('notice', 'Commentaire bien modifiée.');
+				//on affiche la page de la nouvelle news
+				return $this->redirect($this->generateUrl('bds_news_view', array(
+						'sport' => $sport,
+						'id' => $commentaire->getNews()->GetId()
+				)));
+			}
+		}
+		
+		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
+		return $this->render('BDSNewsBundle:News:commentaire.html.twig', array(
+				'domaine' => $sportEdit,
 				'form' =>$form->createView()
 		));
 		 
@@ -222,18 +288,20 @@ class NewsController extends Controller
 	{
 				
 		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		//si il n'est pas membre du sport concerne on bloque,
 		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
 		{
 			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
 		}
 
+		if(!$this->get('bds_membre.manager')->isNewsEditor($sport))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
-		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
@@ -242,6 +310,33 @@ class NewsController extends Controller
 		return $this->render('BDSNewsBundle:News:delete.html.twig', array(
 				'domaine' => $sport,
 				'news' => $news
+		));
+	}
+	public function deleteCommentaireAction($sport, $id)
+	{
+				
+		//on récupere le sport
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+				//on récupere la news
+		$commentaire = $this->get('bds_commentaire.manager')->getCommentaire($id);
+		//on ne peut supprimer que sa news a moins d'etre news manager
+		if($commentaire->getAuteur()!=$this->getUser() and !$this->get('bds_membre.manager')->isNewsEditor($sport) )
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+		
+		//on supprime l'objet de la base de donnée 
+		$this->get('bds_commentaire.manager')->deleteCommentaire($commentaire);
+		
+		//on rend la page de suppression
+		return $this->render('BDSNewsBundle:News:delete.commentaire.html.twig', array(
+				'domaine' => $sport,
+				'commentaire' => $commentaire
 		));
 	}
 	
@@ -266,7 +361,7 @@ class NewsController extends Controller
 		
 		//on rend la page de validation 
 		return $this->render('BDSNewsBundle:News:validate.html.twig', array(
-				'domaine' => $sport,
+				'domaine' => $sportEdit,
 				'news' => $news
 		));
 	}

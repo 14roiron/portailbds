@@ -34,6 +34,17 @@ class CommentaireManager
 		return $this->securityContext->getToken()->getUser();
 		
 	}
+	public function getCommentaire($id)
+	{
+		//on retourne la News qui correspond à l'Id
+		return $this->getRepository()->findOneById($id);
+	}
+		public function save( commentaire $commentaire)
+	{
+		//on sauvegarde le commentaire dans la bdd
+		$this->em->persist($commentaire);
+		$this->em->flush();
+	}
 	
 	public function saveCommentaire(Commentaire $commentaire, News $news)
 	{
@@ -48,5 +59,13 @@ class CommentaireManager
 		//on enregistre l'objet dans la base de donnée 
 		$this->em->persist($news);
 		$this->em->flush();
+	}
+	public function deleteCommentaire($commentaire)
+	{	
+		//on la supprime de la base de donnée 
+		$this->em->remove($commentaire);
+		$this->em->flush();
+		
+		
 	}
 }
