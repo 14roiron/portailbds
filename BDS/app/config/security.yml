@@ -14,12 +14,15 @@ security:
             
     firewalls:
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            pattern:  ^/(_(profiler|wdt)|css|images|js|bundles)/
             security: false
+        public:
+            pattern:  ^/(public|(login$))
+            anonymous: true
             
         main:
             pattern:  ^/
-            anonymous: true
+            anonymous: false
             provider: main
             form_login:
                 login_path: fos_user_security_login

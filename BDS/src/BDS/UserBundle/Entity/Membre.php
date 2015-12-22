@@ -23,11 +23,17 @@ class Membre
 	private $user;
 	
     /**
-     * @var array
+     * @var integer
      *
-     * @ORM\Column(name="role", type="array")
+     * @ORM\Column(name="role", type="integer", options={"default" = 0})
      */
-    //roles: mod_admin, mod_news, mod_evenements
+    /*
+    roles:
+    role membre = 0b000
+    mod_admin = 0b111
+    mod_news = 0b010
+    mod_evenements = 0b001
+    */
     private $role;
 
     /**
@@ -54,7 +60,7 @@ class Membre
     /**
      * Set role
      *
-     * @param array $role
+     * @param integer $role
      *
      * @return Membre
      */
@@ -68,7 +74,7 @@ class Membre
     /**
      * Get role
      *
-     * @return array
+     * @return integer
      */
     public function getRole()
     {

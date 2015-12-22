@@ -1,6 +1,6 @@
 bds_news_home:
     path:     /{sport}/news/accueil/{page}
-    defaults: { _controller: BDSNewsBundle:News:index, page: 1, sport: 'bds' }
+    defaults: { _controller: BDSNewsBundle:News:index, page: 1, sport: 'public' }
     requirements:
         page: \d*
     

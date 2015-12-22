@@ -9,6 +9,12 @@ use Doctrine\Common\Collections\Criteria;
 use BDS\UserBundle\Entity\Membre;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
+
+	define("ROLE_NEWSEDITOR", 0b010);
+	define("ROLE_EVENEMENTEDITOR", 0b001);
+	define("ROLE_ADMIN", 0b100);
+
 class MembreManager
 {
 	protected $em;
@@ -37,7 +43,6 @@ class MembreManager
 	
 	public function isMembre ($membres)
 	{
-		//on récupère l'utilisateur courant 
 		$user = $this->getUser();
 		//on crée le critère 
 		$criteria = Criteria::create();
@@ -52,22 +57,22 @@ class MembreManager
 		} 
 		return false;
 	}
-	public function isMembreSport ($membres)
+	public function getMembreBySport($sport)
 	{
-		//on récupère l'utilisateur courant 
 		$user = $this->getUser();
-		//on crée le critère 
-		$criteria = Criteria::create();
-		$criteria->where(Criteria::expr()->eq('user', $user));
-		
-		//savoir s'il y a un membre
-		$membre = $membres->matching($criteria);
-		
-		if ($membre->count() != 0)
-		{ 
-			return true; 
-		} 
-		return false;
+		if($user==null)
+		{
+			return false;
+		}
+		//on recupere le role du membre, cette varriable ne devrait pas etre vide
+	  return $this
+      ->getRepository()
+      ->findOneBy(array('sport' => $sport,'user'=>$user));
+
+	}
+	public function isNewsEditor($sport)
+	{
+		return (($this->getMembreBySport($sport)->getRole() & ROLE_NEWSEDITOR) >0);
 	}
 	
 	public function save( Membre $membre)

@@ -44,16 +44,22 @@ class NewsController extends Controller
 		//on appelle le template 
 		return $this->render('BDSNewsBundle:News:index.html.twig', array(
 				'listNews' => $listNews,
+				'isEditor'=> $this->get('bds_membre.manager')->isNewsEditor($sport),
 				'domaine' => $sport
 		));
 	}
 	public function viewAction($sport, $id, Request $request)
 	{
+		
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
 		//on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
-		
-		//on récupère le sport 
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on lance une exception si la news n'existe pas 
 		if ($news == NULL)
@@ -106,8 +112,15 @@ class NewsController extends Controller
 	}
 	public function addAction($sport, Request $request)
 	{
-		//verifier que le visiteur a le droit d'acceder à cette page
 		
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+
 		//on récupère le sport
 		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
@@ -133,6 +146,7 @@ class NewsController extends Controller
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
 					'sport' => $sport->getNom(),
+					'isEditor' => $this->get('bds_membre.manager')->isNewsEditor($sport),
 					'id' => $news->GetId()
 			)));
 			
@@ -145,6 +159,7 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
+				'isEditor' => $this->get('bds_membre.manager')->isNewsEditor($sport),
 				'form' =>$form->createView()
 		));
 	}
@@ -152,7 +167,14 @@ class NewsController extends Controller
 	public function editAction($sport, $id, Request $request)
 	{
 		//verifier que le visiteur à le droit d'acceder à cette page 
-		
+				
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
 	//on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
@@ -198,6 +220,15 @@ class NewsController extends Controller
 	
 	public function deleteAction($sport, $id)
 	{
+				
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
+
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
@@ -216,6 +247,14 @@ class NewsController extends Controller
 	
 	public function validateAction($id, $sport)
 	{
+				
+		//on récupere le sport
+		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
