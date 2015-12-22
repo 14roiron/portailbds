@@ -23,6 +23,14 @@ class Membre
 	private $user;
 	
     /**
+     * @var array
+     *
+     * @ORM\Column(name="role", type="array")
+     */
+    //roles: mod_admin, mod_news, mod_evenements
+    private $role;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -32,15 +40,41 @@ class Membre
     private $id;
 
 
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
+
+    /**
+     * Set role
+     *
+     * @param array $role
+     *
+     * @return Membre
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return array
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
 
     /**
      * Set user

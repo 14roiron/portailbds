@@ -26,7 +26,10 @@ class SportController extends Controller
 		if($form->isValid())
 		{
 			// on vérifie qu'il n'y a pas de doublon 
-			$this->get('bds_membre.manager')->isMembre($membre->getSport()->getMembres());
+			if ($this->get('bds_membre.manager')->isMembre($membre->getSport()->getMembres()))
+			{
+				throw new NotFoundHttpException('déjà membre de ce sport'); //A modifer, pas ouf le 404 pour une erreur comme ca
+			}
 			
 			//on enregistre l'objet dans la base de donnée
 			$this->get('bds_membre.manager')->save($membre);

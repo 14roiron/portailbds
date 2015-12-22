@@ -17,6 +17,13 @@ class NewsController extends Controller
 {
 	public function indexAction($sport, $page)
 	{
+		//on récupere le sport
+		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		//si il n'est pas membre du sport concerne on bloque,
+		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
+		{
+			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
+		}
 		//si la page est inferieur à 1, pas la peine de chercher
 		if ($page < 1) 
 		{
@@ -24,11 +31,10 @@ class NewsController extends Controller
 		}
 		
 		//on recupere la liste des news du sport, on en affiche 10 par page 		
-		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
+		
 		
 		//on récupere les news
-		$listNews = $sportEdit->getNews();
+		$listNews = $sport->getNews();
 		
 		// si pas de news on affecte un tableau vide pour éviter l'erreur 
 		if ($listNews == NULL)
@@ -38,7 +44,7 @@ class NewsController extends Controller
 		//on appelle le template 
 		return $this->render('BDSNewsBundle:News:index.html.twig', array(
 				'listNews' => $listNews,
-				'domaine' => $sportEdit
+				'domaine' => $sport
 		));
 	}
 	public function viewAction($sport, $id, Request $request)

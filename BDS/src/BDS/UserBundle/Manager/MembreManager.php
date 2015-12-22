@@ -33,12 +33,12 @@ class MembreManager
 	{
 		return $this->securityContext->getToken()->getUser();
 	}
+
 	
 	public function isMembre ($membres)
 	{
 		//on récupère l'utilisateur courant 
 		$user = $this->getUser();
-		
 		//on crée le critère 
 		$criteria = Criteria::create();
 		$criteria->where(Criteria::expr()->eq('user', $user));
@@ -48,8 +48,26 @@ class MembreManager
 		
 		if ($membre->count() != 0)
 		{ 
-			throw new NotFoundHttpException('déjà membre de ce sport');
+			return true; 
 		} 
+		return false;
+	}
+	public function isMembreSport ($membres)
+	{
+		//on récupère l'utilisateur courant 
+		$user = $this->getUser();
+		//on crée le critère 
+		$criteria = Criteria::create();
+		$criteria->where(Criteria::expr()->eq('user', $user));
+		
+		//savoir s'il y a un membre
+		$membre = $membres->matching($criteria);
+		
+		if ($membre->count() != 0)
+		{ 
+			return true; 
+		} 
+		return false;
 	}
 	
 	public function save( Membre $membre)
