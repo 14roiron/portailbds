@@ -1,0 +1,12 @@
+{% extends "BDSNewsBundle::layout.html.twig" %}
+
+{% block title %}
+  suppression - {{ parent() }}
+{% endblock %}
+
+
+{% block bdsnews_body %}
+<h2>Suppression</h2>
+<p class="well">le commentaire : {{ commentaire.contenu|raw }} du {{ commentaire.datePublication | date ('d/m/Y') }} a été supprimé avec succès</p>
+ <a class="btn btn-lg btn-default" href="{{ path('bds_news_view', {'sport': domaine.nom, 'id': commentaire.news.id}) }}">Retour à la new</a>
+ {%  endblock %}

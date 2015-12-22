@@ -1,0 +1,13 @@
+{% extends "BDSNewsBundle::layout.html.twig" %}
+
+{% block title %}
+  Editer - {{ parent() }}
+{% endblock %}
+
+{% block bdsnews_body %}
+<h2>Editer un commentaire</h2>
+<div class="well">
+	{{ form(form) }}
+</div>
+ {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
+{% endblock %}
