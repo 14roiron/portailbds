@@ -30,7 +30,7 @@
 		"ornicar/gravatar-bundle" : "dev-master",
 		"coresphere/console-bundle" : "dev-master",
 		"stfalcon/tinymce-bundle" : "dev-master",
-		"stephanecollot/datetimepicker-bundle": "dev-master"
+		"stephanecollot/datetimepicker-bundle": "dev-master",
 		"doctrine/doctrine-migrations-bundle": "^1.0"
 	},
 	"require-dev" : {
