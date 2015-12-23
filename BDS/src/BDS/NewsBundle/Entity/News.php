@@ -54,11 +54,7 @@ class News
      */
     private $contenu;
     
-	/**
-	 * @ORM\ManyToOne(targetEntity="BDS\UserBundle\Entity\User", inversedBy="newsEdit", cascade={"persist"})
-	 * @ORM\JoinColumn(nullable=true)
-	 */
-    private $editeur;
+
     /**
      * @ORM\ManyToOne(targetEntity="BDS\UserBundle\Entity\User", inversedBy="news", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
@@ -80,11 +76,11 @@ class News
     private $dateEdition;
     
     /**
-     * @var boolean
-     * 
-     * @ORM\Column(name="validation", type="boolean")
+     * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\Validation", mappedBy="news", cascade={"all"})
+     * @ORM\JoinColumn(nullable=true)
      */
-	private $validation = FALSE;
+	private $validations;
+
 
     /**
      * Get id
@@ -168,7 +164,7 @@ class News
     /**
      * Set auteur
      *
-     * @param string $auteur
+     * @param BDS\UserBundle\Entity\User $auteur
      * @return News
      */
     public function setAuteur($auteur)
@@ -181,7 +177,7 @@ class News
     /**
      * Get auteur
      *
-     * @return string 
+     * @return BDS\UserBundle\Entity\User 
      */
     public function getAuteur()
     {
@@ -257,7 +253,7 @@ class News
     /**
      * Get sports
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return BDS\CoreBundle\Entity\Sport
      */
     public function getSports()
     {
@@ -265,27 +261,61 @@ class News
     }
 
     /**
-     * Set validation
+     * add validation
      *
-     * @param boolean $validation
+     * @param BDS\NewsBundle\Entity\Validation $validation
      * @return News
      */
-    public function setValidation($validation)
+    public function addValidation($validation)
     {
-        $this->validation = $validation;
+        $this->validations[]=$validation;
 
         return $this;
     }
 
     /**
+     * Remove validation
+     *
+     * @param \BDS\NewsBundle\Entity\validation $validation
+     */
+    public function removeValidation(\BDS\NewsBundle\Entity\Validation $validation)
+    {
+        $this->validations->removeElement($validation);
+    }
+    /**
+     * Remove all validations
+     *
+     */
+    public function removeAllValidations()
+    {
+        
+        foreach($this->validations as $validation)
+        {
+            $this->validations->removeElement($validation);
+        }
+    }
+    /**
      * Get validation
      *
-     * @return boolean 
+     * @return BDS\NewsBundle\Entity\Validation 
      */
-    public function getValidation()
+    public function getValidations()
     {
-        return $this->validation;
+        return $this->validations;
+    }    
+    /**
+     * Set validation
+     *
+     * @param BDS\NewsBundle\Entity\Validation $validations
+     * @return News
+     */
+    public function setValidations($validations)
+    {
+        
+        $this->validations=$validations;
+        return $this;
     }
+
 
     /**
      * Add commentaires
@@ -360,22 +390,12 @@ class News
     }
     
     /**
-     * Get editeur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEditeur()
-    {
-    	return $this->editeur;
-    }
-    
-    /**
      * @ORM\PreUpdate
      */
-    public function updateDate()
+    public function updateNews()
     {
     	$this->setDateEdition(new \DateTime());
-    	
     	return $this;
     }
+
 }

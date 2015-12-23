@@ -4,10 +4,12 @@ namespace BDS\NewsBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use BDS\NewsBundle\Entity\News;
+use BDS\NewsBundle\Entity\Validation;
 use BDS\UserBundle\Entity\User;
+
 use Symfony\Component\Security\Core\SecurityContext;
 
-class NewsManager
+class NewsManager 
 {
 	protected $em;
 	protected $securityContext;
@@ -52,6 +54,8 @@ class NewsManager
 		//on ajoute l'auteur 
 		$auteur = $this->getUser();
 		$news->setAuteur($auteur);
+		//mise a jour de la validation
+		$this->updateValidations($news);
 		
 		//la date est ajouté à la construction
 		
@@ -80,6 +84,7 @@ class NewsManager
 		//la date de modification est un compris dans le cycle de vie 
 		
 		//on sauvegarde la news dans la bdd
+		$this->updateValidations($news);
 		$this->em->persist($news);
 		$this->em->flush();
 	}
@@ -92,15 +97,39 @@ class NewsManager
 		
 		
 	}
+
 	
-	public function validateNews($news)
+	public function validateNews($news,$sport)
 	{
 		//on valide la news 
-		$news->setValidation(TRUE);
+		$validate=  $this->em
+      	->getRepository()
+      	->findBy(array('news' => $news,'sport'=>$sport));
+		$validate->setValide(TRUE);
+		$validate->setEditeur($this->getUser());
 		
 		//on MAJ la bdd
 		$this->em->flush();
 	}
+	public function updateValidations($news)
+    {
+        foreach($news->getValidations() as $validation)
+        {
+        	$this->em->remove($validation);
+        }
+        $news->removeAllValidations();
+        // a chaque modification de la news, elle doit etre revalide pour chaque sport
+        foreach ($news->getSports() as $sport) {
+
+            $validation=new Validation();
+            $validation->setSport($sport);
+            $validation->setValide(false);
+            $validation->setNews($news);
+            $this->em->persist($validation);
+            $news->addValidation($validation);
+        }
+        $this->em->flush();
+    }
 	
 	
 }
