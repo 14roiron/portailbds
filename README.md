@@ -41,10 +41,9 @@ SECURITE
 Definir les roles:
 admin
 membrebds
-capitaine
-communitymanager
-membreequipe
-membredusite
 
-possibilited"ajouter des membres a son equipe
+et pour chaque sport:
+Capitaine    NewsEditor     Evenement Editor     Membre
+
+possibilite d'ajouter des membres a son equipe pour le capitaine.
 
