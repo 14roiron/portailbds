@@ -42,9 +42,11 @@ class NewsVoter implements VoterInterface
 
         switch($attribute) {
             case self::VIEW:
-                return $this->canView($post, $user);
+                return $this->canView($news, $user);
             case self::EDIT:
-                return $this->canEdit($post, $user);
+                return $this->canEdit($news, $user);
+            case self::VALIDATE:
+                return $this->canValidate($news, $user);
         }
 
         throw new \LogicException('This code should not be reached! Error in news permission definition');
@@ -58,16 +60,26 @@ class NewsVoter implements VoterInterface
         {
             return false;
         }
-        // the Post object could have, for example, a method isPrivate()
-        // that checks a boolean $private property
-        return !$post->isPrivate();
+        return true;
     }
 
     private function canEdit(News $news, User $user)
     {
-        // this assumes that the data object has a getOwner() method
-        // to get the entity of the user who owns this data object
-        return $user === $post->getOwner();
+        $sport=$news->getSport();
+        if(!canValidate($news,$user) || $news->getAuteur()!=$user)
+        {
+            return false;
+        }
+        return true;
+    }
+    private function canValidate(News $news, User $user)
+    {
+        $sport=$news->getSport();
+        if(!$this->get('bds_membre.manager')->isNewsEditor($sport))
+        {
+            return false;
+        }
+        return true;
     }
 }
 

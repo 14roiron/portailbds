@@ -19,11 +19,7 @@ class NewsController extends Controller
 	{
 		//on récupere le sport
 		$sport = $this->get('bds_sport.manager')->getSport($sport);
-		//si il n'est pas membre du sport concerne on bloque,
-		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
+		$this->denyAccessUnlessGranted('ROLE_SPORT_VIEW', $sport);
 		//si la page est inferieur à 1, pas la peine de chercher
 		if ($page < 1) 
 		{
@@ -44,7 +40,6 @@ class NewsController extends Controller
 		//on appelle le template 
 		return $this->render('BDSNewsBundle:News:index.html.twig', array(
 				'listNews' => $listNews,
-				'isEditor'=> $this->get('bds_membre.manager')->isNewsEditor($sport),
 				'domaine' => $sport
 		));
 	}
@@ -57,7 +52,7 @@ class NewsController extends Controller
 		//on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 
-		$this->denyAccessUnlessGranted('ROLE_NEWS_VIEW', $post);
+		$this->denyAccessUnlessGranted('ROLE_NEWS_VIEW', $news);
 
 		
 		//on lance une exception si la news n'existe pas 
@@ -114,11 +109,7 @@ class NewsController extends Controller
 		
 		//on récupere le sport
 		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
-		//si il n'est pas membre du sport concerne on bloque,
-		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
+		$this->denyAccessUnlessGranted('ROLE_SPORT_VIEW', $sport);
 
 		//on récupère le sport
 		$sport = $this->get('bds_sport.manager')->getSport($sport);
@@ -146,7 +137,6 @@ class NewsController extends Controller
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
 					'sport' => $sport->getNom(),
-					'isEditor' => $this->get('bds_membre.manager')->isNewsEditor($sport),
 					'id' => $news->GetId()
 			)));
 			
@@ -166,24 +156,14 @@ class NewsController extends Controller
 	public function editAction($sport, $id, Request $request)
 	{
 		//verifier que le visiteur à le droit d'acceder à cette page 
-		$this->denyAccessUnlessGranted('ROLE_NEWS_EDIT', $post);
+		
 		//on récupere le sport
 		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
-		//si il n'est pas membre du sport concerne on bloque,
-		if($sportEdit->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sportEdit->getMembres()))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
-
-		if(!$this->get('bds_membre.manager')->isNewsEditor($sportEdit))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
-
 
 	    //on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
-		
+		//verifie les autorisations d'acces.
+		$this->denyAccessUnlessGranted('ROLE_NEWS_EDIT', $sport);
 		//on lance une exception si la news n'existe pas 
 		if ($news == NULL)
 		{
@@ -288,18 +268,12 @@ class NewsController extends Controller
 		//on récupere le sport
 		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		//si il n'est pas membre du sport concerne on bloque,
-		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
+		$this->denyAccessUnlessGranted('ROLE_SPORT_VIEW', $sport);
 
-		if(!$this->get('bds_membre.manager')->isNewsEditor($sport))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas autorisé à faire cela'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
+
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
-		
+		$this->denyAccessUnlessGranted('ROLE_NEWS_VALIDATE', $news);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
@@ -343,14 +317,9 @@ class NewsController extends Controller
 				
 		//on récupere le sport
 		$sportEdit = $this->get('bds_sport.manager')->getSport($sportEdit);
-		//si il n'est pas membre du sport concerne on bloque,
-		if($sport->getNom() !="public" && !$this->get('bds_membre.manager')->isMembre($sport->getMembres()))
-		{
-			throw new NotFoundHttpException('Vous n\'êtes pas membre de ce sport'); //a modifer, pas ouf le 404 pour une erreur comme ca
-		}
 		//on récupere la news
 		$news = $this->get('bds_news.manager')->getNews($id);
-		
+		$this->denyAccessUnlessGranted('ROLE_NEWS_VALIDATE', $news);
 		//on récupère le sport
 		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		

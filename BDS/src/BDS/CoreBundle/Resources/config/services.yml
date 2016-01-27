@@ -5,3 +5,10 @@ services:
     bds_sport.manager:
         class:      BDS\CoreBundle\Manager\SportManager
         arguments:  [ @doctrine.orm.entity_manager ]
+    bds_sport.sport_voter:
+        class: BDS\CoreBundle\Security\SportVoter
+        tags:
+            - { name: security.voter }
+        arguments: [ @doctrine.orm.entity_manager ]
+        # small performance boost
+        public: false

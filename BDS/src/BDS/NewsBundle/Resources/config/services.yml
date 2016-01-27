@@ -10,3 +10,11 @@ services:
     bds_commentaire.manager:
         class:      BDS\NewsBundle\Manager\CommentaireManager
         arguments:   [ @doctrine.orm.entity_manager, @security.context ]
+
+    bds_sport.news_voter:
+        class: BDS\NewsBundle\Security\NewsVoter
+        tags:
+            - { name: security.voter }
+        # small performance boost
+        arguments: [ @doctrine.orm.entity_manager ]
+        public: false
