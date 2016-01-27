@@ -24,10 +24,10 @@ class AppKernel extends Kernel
             new BDS\CoreBundle\BDSCoreBundle(),
             new BDS\ImageBundle\BDSImageBundle(),
         	new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-        	new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
             new BDS\EvenementBundle\BDSEvenementBundle(),
-            new BDS\CalendarBundle\BDSCalendarBundle(),
-        	new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
+            #new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            #new BDS\CalendarBundle\BDSCalendarBundle(),
+        	#new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
         	new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 		new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
         );

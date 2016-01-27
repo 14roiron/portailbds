@@ -4,103 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "877bbbc15900c9b5b8f96d2e736ebfb3",
-    "content-hash": "af1347049aeb0894bc53e0453373287e",
+    "hash": "a8295cba91548f36706d9611119e53fc",
+    "content-hash": "b27502ccb47b5df7e64e48da0304a28f",
     "packages": [
-        {
-            "name": "adesigns/calendar-bundle",
-            "version": "dev-master",
-            "target-dir": "ADesigns/CalendarBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/adesigns/calendar-bundle.git",
-                "reference": "c523526b464d900567ab23c40d2f39b5e4ae9985"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/adesigns/calendar-bundle/zipball/c523526b464d900567ab23c40d2f39b5e4ae9985",
-                "reference": "c523526b464d900567ab23c40d2f39b5e4ae9985",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/collections": ">=1.0",
-                "friendsofsymfony/jsrouting-bundle": "~1.1",
-                "symfony/symfony": "~2.1"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "ADesigns\\CalendarBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike Yudin",
-                    "email": "mikeyudin@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "This bundle allows you to integrate the jQuery FullCalendar plugin into your Symfony2 application.",
-            "homepage": "http://github.com/adesigns/calendar-bundle",
-            "keywords": [
-                "calendar",
-                "fullcalendar",
-                "jquery calendar"
-            ],
-            "time": "2014-10-31 22:28:06"
-        },
-        {
-            "name": "carlescliment/calendar-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/carlescliment/calendar-bundle.git",
-                "reference": "dc957ea6e5e4ffa27d2168568be58d5d90495f2c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/carlescliment/calendar-bundle/zipball/dc957ea6e5e4ffa27d2168568be58d5d90495f2c",
-                "reference": "dc957ea6e5e4ffa27d2168568be58d5d90495f2c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "sensio/framework-extra-bundle": ">=2.5"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "v1.5.0",
-                "doctrine/orm": "*",
-                "phpunit/phpunit": "*",
-                "symfony/symfony": "~2.5"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "BladeTester\\CalendarBundle": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Carles Climent Granell",
-                    "email": "carlescliment@gmail.com"
-                }
-            ],
-            "description": "A bundle for handling events in calendar",
-            "homepage": "https://github.com/carlescliment/calendar-bundle",
-            "keywords": [
-                "calendar",
-                "events"
-            ],
-            "time": "2015-07-15 20:54:31"
-        },
         {
             "name": "coresphere/console-bundle",
             "version": "dev-master",
@@ -1330,31 +1236,32 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "v1.3.6",
+            "version": "v2.0.0-alpha1",
             "target-dir": "FOS/UserBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "2022ac8463a8c50dd631f93a17064bd41795fff2"
+                "reference": "5a53273c3ae4e3f128c71522cd8398515718bbb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2022ac8463a8c50dd631f93a17064bd41795fff2",
-                "reference": "2022ac8463a8c50dd631f93a17064bd41795fff2",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/5a53273c3ae4e3f128c71522cd8398515718bbb8",
+                "reference": "5a53273c3ae4e3f128c71522cd8398515718bbb8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
+                "symfony/form": "~2.1",
                 "symfony/framework-bundle": "~2.1",
                 "symfony/security-bundle": "~2.1"
             },
             "require-dev": {
-                "doctrine/doctrine-bundle": "~1.3",
-                "swiftmailer/swiftmailer": "~4.3|~5",
+                "doctrine/doctrine-bundle": "*",
+                "swiftmailer/swiftmailer": ">=4.3, <6.0",
                 "symfony/validator": "~2.1",
                 "symfony/yaml": "~2.1",
                 "twig/twig": "~1.5",
-                "willdurand/propel-typehintable-behavior": "~1.0"
+                "willdurand/propel-typehintable-behavior": "dev-master"
             },
             "suggest": {
                 "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
@@ -1393,7 +1300,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-06-01 00:57:03"
+            "time": "2014-09-26 15:02:08"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -3317,8 +3224,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "adesigns/calendar-bundle": 20,
-        "carlescliment/calendar-bundle": 20,
+        "friendsofsymfony/user-bundle": 15,
         "ornicar/gravatar-bundle": 20,
         "coresphere/console-bundle": 20,
         "stfalcon/tinymce-bundle": 20
