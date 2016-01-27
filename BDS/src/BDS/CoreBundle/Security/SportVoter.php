@@ -2,9 +2,9 @@
 namespace BDS\CoreBundle\Security;
 
 
-#use UserBundle\Entity\Membre;
-#use UserBundle\Entity\User;
-#use CoreBundle\Entity\Sport;
+use UserBundle\Entity\Membre;
+use UserBundle\Entity\User;
+use CoreBundle\Entity\Sport;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -12,8 +12,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class SportVoter extends Voter
 {
 
-}
-/*    const VIEW = 'ROLE_SPORT_VIEW';
+    const VIEW = 'ROLE_SPORT_VIEW';
     const EDIT = 'ROLE_SPORT_EDIT';
 
     protected function supports($attribute, $subject)
@@ -41,7 +40,7 @@ class SportVoter extends Voter
         }
 
         // you know $subject is a News object, thanks to supports
-        /** @var Sport $sport *
+        /** @var Sport $sport */
         $sport = $subject;
 
         switch($attribute) {
