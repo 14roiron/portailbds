@@ -4,7 +4,6 @@ namespace BDS\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Translation\Tests\String;
 use Symfony\Component\Config\Definition\BooleanNode;
 use BDS\CoreBundle\Entity\Role;
 

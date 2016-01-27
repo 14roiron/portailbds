@@ -1,6 +1,6 @@
-bds_calendar:
-    resource: "@BDSCalendarBundle/Resources/config/routing.yml"
-    prefix:   /
+#bds_calendar:
+#    resource: "@BDSCalendarBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 bds_evenement:
     resource: "@BDSEvenementBundle/Resources/config/routing.yml"
@@ -22,9 +22,9 @@ bds_user:
     resource: "@BDSUserBundle/Resources/config/routing.yml"
     prefix:   /
     
-bladetester_calendar:
-    resource: "@BladeTesterCalendarBundle/Resources/config/routing.yml"
-    prefix:   /
+#bladetester_calendar:
+#    resource: "@BladeTesterCalendarBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 app:
     resource: @AppBundle/Controller/
@@ -52,8 +52,8 @@ fos_user_change_password:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
     
-adesigns_calendar:
-  resource: "@ADesignsCalendarBundle/Resources/config/routing.yml" 
+#adesigns_calendar:
+#  resource: "@ADesignsCalendarBundle/Resources/config/routing.yml" 
   
 
   
