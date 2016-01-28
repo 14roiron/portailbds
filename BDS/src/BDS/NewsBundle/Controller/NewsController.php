@@ -52,7 +52,7 @@ class NewsController extends Controller
 		//on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 
-		$this->denyAccessUnlessGranted('ROLE_NEWS_VIEW', $news);
+		$this->denyAccessUnlessGranted('ROLE_NEWS_VIEW', array('news' => $news,'sport'=>$sport ));
 
 		
 		//on lance une exception si la news n'existe pas 

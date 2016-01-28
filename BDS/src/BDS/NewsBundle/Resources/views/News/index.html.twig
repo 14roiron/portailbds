@@ -18,7 +18,7 @@
           {{news.contenu|slice(0,150)|raw}}
         </div>
         <p>
-        {% if isEditor %}
+        {% if is_granted('ROLE_NEWS_EDIT',news) %}
         <a class="btn btn-md btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
    			<a class="btn btn-md btn-danger" href="{{ path('bds_news_delete', {'sport':domaine.nom, 'id':news.id}) }}">supprimer la news</a>
         {% endif%}
