@@ -64,7 +64,7 @@ class Image
     	// nécessaire de le nettoyer pour éviter les problèmes de sécurité
     
     	// move copie le fichier présent chez le client dans le répertoire indiqué.
-    		$this->file->move($this->getUploadRootDir(), $this->nom);
+    	$this->file->move($this->getUploadRootDir(), $this->nom);
   
     	// La propriété file ne servira plus
     	$this->file = null;
@@ -131,4 +131,14 @@ class Image
     {
         return $this->profile;
     }
+        /**
+     * Get File
+     *
+     * @return File 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
 }

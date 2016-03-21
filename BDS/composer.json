@@ -11,7 +11,7 @@
 	},
 	"require" : {
 		"php" : ">=5.3.3",
-		"symfony/symfony" : "2.7.*",
+		"symfony/symfony" : "2.8.*",
 		"doctrine/orm" : "~2.2,>=2.2.3",
 		"doctrine/doctrine-bundle" : "~1.2",
 		"twig/extensions" : "~1.0",
@@ -22,11 +22,9 @@
 		"sensio/framework-extra-bundle" : "~3.0",
 		"incenteev/composer-parameter-handler" : "~2.0",
 		"doctrine/doctrine-fixtures-bundle" : "~2.2",
-		"friendsofsymfony/user-bundle" : "dev-master",
+		"friendsofsymfony/user-bundle": "2.0.0-alpha1",
 		"friendsofsymfony/jsrouting-bundle" : "~1.1",
-		"adesigns/calendar-bundle" : "dev-master",
-		"carlescliment/calendar-bundle" : "dev-master",
-		"egeloen/ckeditor-bundle" : "~2.0",
+		"egeloen/ckeditor-bundle": "~2.0",
 		"ornicar/gravatar-bundle" : "dev-master",
 		"coresphere/console-bundle" : "dev-master",
 		"stfalcon/tinymce-bundle" : "dev-master",
@@ -34,7 +32,8 @@
 		"doctrine/doctrine-migrations-bundle" : "^1.0"
 	},
 	"require-dev" : {
-		"sensio/generator-bundle" : "~2.3"
+		"sensio/generator-bundle" : "~2.3",
+		"symfony/phpunit-bridge": "^3.0"
 	},
 	"scripts" : {
 		"post-install-cmd" : [
@@ -63,9 +62,6 @@
 		"symfony-assets-install" : "relative",
 		"incenteev-parameters" : {
 			"file" : "app/config/parameters.yml"
-		},
-		"branch-alias" : {
-			"dev-master" : "2.6-dev"
 		}
 	}
 }

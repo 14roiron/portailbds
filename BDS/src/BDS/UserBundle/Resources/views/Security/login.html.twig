@@ -11,7 +11,6 @@
 {% endif %}
 
 <form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
     <label class = "control-label" for="username">nom d'utilisateur ou email</label>
     <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" /></br>

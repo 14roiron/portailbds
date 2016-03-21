@@ -31,9 +31,9 @@ class SportManager
 	{
 		$logo = $sport->getLogo();
 		//si le logo est non nul il faut la sauvegarder 
-		if($logo != NULL)
+		if($logo != NULL && $logo->getFile() !=NULL)
 		{	
-			//on le nomme de manière utomatique
+			//on le nomme de manière automatique
 			$logo->setNom('logo_'.$sport->getId(). '_' .$sport->getNom());
 			
 			//on enregistre l'image
@@ -42,7 +42,7 @@ class SportManager
 		
 		$fond = $sport->getFond();
 		//si le fond est non nul il faut le sauvegarder 
-		if ($fond != NULL)
+		if ($fond != NULL && $fond->getFile() != NULL)
 		{
 			//on le nomme de manière automatique
 			$fond->setNom('fond_' .$sport->getId(). '_' . $sport->getNom());
