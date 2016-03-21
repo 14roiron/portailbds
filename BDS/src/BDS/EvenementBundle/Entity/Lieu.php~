@@ -24,37 +24,65 @@ class Lieu
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
+     * @ORM\Column(name="numVoie", type="string", length=255)
      */
-    private $adress;
-
+    private $numVoie;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
+     * @ORM\Column(name="voie", type="string", length=255)
      */
-    private $locality;
-
+    private $voie;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     * @ORM\Column(name="zipcode", type="string", length=255)
      */
-    private $country;
-
+    private $zipcode;
+    
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="lat", type="float", nullable=false)
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     */
+    private $region;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
+     */
+    private $pays;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lat", type="string", length=50)
      */
     private $lat;
-
+    
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="lng", type="float", nullable=false)
+     * @ORM\Column(name="lng", type="string", length=50)
      */
     private $lng;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fullAdr", type="string", length=255)
+     */
+    private $fullAdr;
 
 
     /**

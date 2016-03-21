@@ -24,37 +24,65 @@ class Lieu
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
+     * @ORM\Column(name="numVoie", type="string", length=255)
      */
-    private $adress;
-
+    private $numVoie;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
+     * @ORM\Column(name="voie", type="string", length=255)
      */
-    private $locality;
-
+    private $voie;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     * @ORM\Column(name="zipcode", type="string", length=255)
      */
-    private $country;
-
+    private $zipcode;
+    
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="lat", type="float", nullable=false)
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     */
+    private $region;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
+     */
+    private $pays;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lat", type="string", length=50)
      */
     private $lat;
-
+    
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="lng", type="float", nullable=false)
+     * @ORM\Column(name="lng", type="string", length=50)
      */
     private $lng;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fullAdr", type="string", length=255)
+     */
+    private $fullAdr;
 
 
     /**
@@ -194,5 +222,173 @@ class Lieu
     public function getLng()
     {
         return $this->lng;
+    }
+
+    /**
+     * Set numVoie
+     *
+     * @param string $numVoie
+     *
+     * @return Lieu
+     */
+    public function setNumVoie($numVoie)
+    {
+        $this->numVoie = $numVoie;
+
+        return $this;
+    }
+
+    /**
+     * Get numVoie
+     *
+     * @return string
+     */
+    public function getNumVoie()
+    {
+        return $this->numVoie;
+    }
+
+    /**
+     * Set voie
+     *
+     * @param string $voie
+     *
+     * @return Lieu
+     */
+    public function setVoie($voie)
+    {
+        $this->voie = $voie;
+
+        return $this;
+    }
+
+    /**
+     * Get voie
+     *
+     * @return string
+     */
+    public function getVoie()
+    {
+        return $this->voie;
+    }
+
+    /**
+     * Set zipcode
+     *
+     * @param string $zipcode
+     *
+     * @return Lieu
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    /**
+     * Get zipcode
+     *
+     * @return string
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Lieu
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Lieu
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Lieu
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * Set fullAdr
+     *
+     * @param string $fullAdr
+     *
+     * @return Lieu
+     */
+    public function setFullAdr($fullAdr)
+    {
+        $this->fullAdr = $fullAdr;
+
+        return $this;
+    }
+
+    /**
+     * Get fullAdr
+     *
+     * @return string
+     */
+    public function getFullAdr()
+    {
+        return $this->fullAdr;
     }
 }
