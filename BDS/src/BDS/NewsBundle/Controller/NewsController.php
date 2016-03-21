@@ -146,7 +146,10 @@ class NewsController extends Controller
 	public function editAction($sport, $id, Request $request)
 	{
 		//verifier que le visiteur à le droit d'acceder à cette page 
-		
+	
+	//onrécupère le sport
+	$sport = $this->get('bds_sport.manager')->getSport($sport);
+	
 	//on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
