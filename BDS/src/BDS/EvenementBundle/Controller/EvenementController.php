@@ -110,7 +110,7 @@ class EvenementController extends Controller
 		
 		/*
 		 * si les champs complémentaires n'ont pas été rempli on
-		 * charge une date de fin et de début des inscripsion pour éviter mes inscripsion sauvage
+		 * charge une date de fin et de début des inscripsion pour éviter les inscripsions sauvages
 		 * 2 mois après
 		 */
 		if ($evenement->getDebutInscripsion() == NULL)
