@@ -7,7 +7,7 @@
 {% block bds_evenement_body %}
 <h2>Ajouter un evenement</h2>
 <div class="well">
-	{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
+	{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id': 'form'}})}}
 	
 	{# les erreurs du formulaire #}
 	{{ form_errors(form) }}
@@ -24,6 +24,22 @@
 	{{ form_label(form.finEvenement, "fin", {'label_attr': {'class':'control-label'}}) }}
 	{{ form_widget(form.finEvenement, {'attr': {'class':'form-control'}}) }}
 	
+	{# lieu #}
+	{{ form_label(form.lieu.fullAdr, "Adresse", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.lieu.fullAdr, {'id': 'infoadress', 'attr': {'class': 'form-control'}}) }}
+	
+	{{ form_widget(form.lieu.numVoie, {'id': 'street_number', 'attr': {'class': 'form-control', 'placeholder': 'numVoie'}}) }}
+    {{ form_widget(form.lieu.voie, {'id': 'route', 'attr': {'class': 'form-control', 'placeholder': 'voie'}}) }}
+    {{ form_widget(form.lieu.ville, {'id': 'locality', 'attr': {'class': 'form-control', 'placeholder': 'ville'}}) }}
+    {{ form_widget(form.lieu.region, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control', 'placeholder': 'region'}}) }}
+    {{ form_widget(form.lieu.pays, {'id': 'country', 'attr': {'class': 'form-control', 'placeholder': 'pays'}}) }}
+    {{ form_widget(form.lieu.zipcode, {'id': 'postal_code', 'attr': {'class': 'form-control', 'placeholder': 'zipcode'}}) }}
+    {{ form_widget(form.lieu.lat, {'id': 'lat', 'attr': {'class': 'form-control', 'placeholder': 'lat'}}) }}
+    {{ form_widget(form.lieu.lng, {'id': 'lng', 'attr': {'class': 'form-control', 'placeholder': 'lng'}}) }}
+    
+    {# la map #}
+    <div class="col-xs-12" id="map" style="height: 300px; margin-top: 10px;"></div>
+    
 	{# début des inscripsion #}
 	{{ form_label(form.debutInscripsion, "Ouverture des inscripsions", {'label_attr': {'class':'control-label'}}) }}
 	{{ form_widget(form.debutInscripsion, {'attr': {'class':'form-control'}}) }}
@@ -62,6 +78,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="{{asset('js/jquery.ui.addresspicker.js')}}"></script>
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('js/autoload.js') }}"></script>
 
 
 {% endblock %}
