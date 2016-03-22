@@ -18,7 +18,7 @@ var componentForm = {
  * pour s'en servir partout
  */
 var map;
-var maker;
+var marker;
 var autocomplete;
 
 //fonction d'initialisation de l'autoload et de la map

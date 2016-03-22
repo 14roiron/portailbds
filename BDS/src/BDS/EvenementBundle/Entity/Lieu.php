@@ -24,42 +24,42 @@ class Lieu
     /**
      * @var string
      *
-     * @ORM\Column(name="numVoie", type="string", length=255)
+     * @ORM\Column(name="numVoie", type="string", length=255, nullable=true)
      */
     private $numVoie;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="voie", type="string", length=255)
+     * @ORM\Column(name="voie", type="string", length=255, nullable=true)
      */
     private $voie;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="zipcode", type="string", length=255)
+     * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
      */
     private $zipcode;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
     private $region;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\Column(name="pays", type="string", length=255, nullable=true)
      */
     private $pays;
     

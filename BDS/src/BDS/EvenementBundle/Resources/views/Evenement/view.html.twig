@@ -13,6 +13,13 @@
 	<div class="panel-body">
 		<p>commence le {{ evenement.debutEvenement | date('d/m/Y') }}</p>
 		<p>fini le {{ evenement.finEvenement | date('d/m/Y') }}</p>
+		
+		{% if evenement.lieu %}
+			<p> à {{ evenement.lieu.fullAdr }}</p>
+			{# la map #}
+			<div id="map" style="height: 300px; margin-top: 10px;"></div>
+		{% endif %}
+		
 		<div class="well">
 			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
 	
@@ -37,6 +44,7 @@
 	
 		</div>
 	</div>
+</div>
 		
 	   	<a class="btn btn-lg btn-warning" href="{{ path('bds_evenement_edit', {'domaine':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
    		<a class="btn btn-lg btn-danger" href="{{ path('bds_evenement_delete', {'domaine':domaine.nom, 'id': evenement.id}) }}">supprimer l'evenement</a>
@@ -45,3 +53,19 @@
 
 
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
+<<script type="text/javascript">
+var myLat = {{ evenement.lieu.lat }};
+var myLng = {{ evenement.lieu.lng }};
+var fullAdr = "{{ evenement.lieu.fullAdr }}";
+</script>
+
+{% endblock %}
+
