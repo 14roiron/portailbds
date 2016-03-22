@@ -4,11 +4,6 @@
 TODO
 
 Evenement 
-ajouter la carte google au formulaire (en cours)
-
-ajouter la carte à l'affichage
-
-ajouter un label au participants (en cours) 
 
 affichage du calendrier dans la branche aside avec un mini calendrier
 
