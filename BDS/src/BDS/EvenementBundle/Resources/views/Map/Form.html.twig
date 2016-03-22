@@ -1,0 +1,44 @@
+{%  extends "BDSEvenementBundle::layout.html.twig" %}
+
+{%  block title %}
+	Formulaire de remplissage - {{  parent() }}
+{% endblock %}
+
+{% block bds_evenement_body %}
+<div class="col-xs-10 col-xs-offset-1">
+	
+	{{ form_start(form, {'action': path('bds_evenement_map', {'domaine':domaine.nom }), 'attr': {'id': 'form'}}) }}
+	{{ form_errors(form) }}
+	<!--  le champs qui va contenir l'autoload -->
+	<div class='form-group'>
+		{{ form_label(form.fullAdr, "Adresse", {'label_attr': {'class': ''}}) }}
+		{{ form_errors(form.fullAdr) }}
+		{{ form_widget(form.fullAdr, {'id': 'infoadress', 'attr': {'class': 'form-control'}}) }}
+	</div>
+	
+	<!-- les elements restants du formulaire -->
+	{{ form_widget(form.numVoie, {'id': 'street_number', 'attr': {'class': 'form-control', 'placeholder': 'numVoie'}}) }}
+    {{ form_widget(form.voie, {'id': 'route', 'attr': {'class': 'form-control', 'placeholder': 'voie'}}) }}
+    {{ form_widget(form.ville, {'id': 'locality', 'attr': {'class': 'form-control', 'placeholder': 'ville'}}) }}
+    {{ form_widget(form.region, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control', 'placeholder': 'region'}}) }}
+    {{ form_widget(form.pays, {'id': 'country', 'attr': {'class': 'form-control', 'placeholder': 'pays'}}) }}
+    {{ form_widget(form.zipcode, {'id': 'postal_code', 'attr': {'class': 'form-control', 'placeholder': 'zipcode'}}) }}
+    {{ form_widget(form.lat, {'id': 'lat', 'attr': {'class': 'form-control', 'placeholder': 'lat'}}) }}
+    {{ form_widget(form.lng, {'id': 'lng', 'attr': {'class': 'form-control', 'placeholder': 'lng'}}) }}
+    {{ form_rest(form) }}
+	
+	<!-- la div qui va contenir notre map -->
+    <div class="col-xs-12" id="map" style="height: 300px; margin-top: 10px;"></div>
+	
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('js/autoload.js') }}"></script>
+
+
+{% endblock %}
