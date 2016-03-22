@@ -15,14 +15,14 @@ class LieuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numVoie')
-            ->add('voie')
-            ->add('zipcode')
-            ->add('ville')
-            ->add('region')
-            ->add('pays')
-            ->add('lat')
-            ->add('lng')
+            ->add('numVoie',	'hidden')
+            ->add('voie',		'hidden')
+            ->add('zipcode',	'hidden')
+            ->add('ville',		'hidden')
+            ->add('region',		'hidden')
+            ->add('pays',		'hidden')
+            ->add('lat',		'hidden')
+            ->add('lng',		'hidden')
             ->add('fullAdr')
         ;
     }
