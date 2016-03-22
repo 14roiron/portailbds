@@ -22,3 +22,8 @@ bds_sport_list:
     path:     /sport
     defaults: { _controller: BDSCoreBundle:Sport:list }
     
+bds_sport_equipe:
+    path:     /{domaine}/equipe
+    defaults: {_controller: BDSCoreBundle:Sport:equipe }
+    
+    

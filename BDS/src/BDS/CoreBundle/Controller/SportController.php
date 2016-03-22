@@ -140,7 +140,7 @@ class SportController extends Controller
 		//erreur si le sport n'existe pas
 		if ($domaine == NULL)
 		{
-			throw new NotFoundHttpException("le sport " .$sport. " n'existe pas.");
+			throw new NotFoundHttpException("le sport " .$domaine. " n'existe pas.");
 		}
 		
 		//on récupère tout les sport sauf Admin 
@@ -152,5 +152,26 @@ class SportController extends Controller
 				'listSport'=>	$listSport
 		));
 		
+	}
+	
+	public function equipeAction ($domaine)
+	{
+		//on récupère le domaine 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
+		//erreur si le sport n'existe pas 
+		if ($domaine ==NULL)
+		{
+			throw new NotFoundHttpException("le sport " .$domaine. " n'existe pas");
+		}
+		
+		//on récupère les membres du sport 
+		$listMembre = $domaine->getMembres();
+		
+		//on passe à la vue 
+		return $this->render('BDSCoreBundle:Sport:equipe.html.twig', array(
+				'domaine'		=>	$domaine,
+				'listMembre'	=>	$listMembre
+		));
 	}
 }
