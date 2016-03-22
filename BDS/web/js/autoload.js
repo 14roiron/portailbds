@@ -33,12 +33,12 @@ function initMap(){
 	 */
 	autocomplete.addListener('place_changed', fillInAddress);
 	
-	//on cree un objet LatLng avec la position de base la map
-	var myLatLng = {lat: 50.695521, lng: 3.16398300000003};
+	//on cree un objet LatLng avec la position de base la map: la meuh
+	var myLatLng = {lat: 48.841776, lng: 2.341166};
 	//on initialise la map
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: myLatLng,
-		zoom: 15,
+		zoom: 14,
 		disableDefaultUI: true
 	});
 	//on initialise le marker
