@@ -1,13 +1,32 @@
 {% extends "BDSCoreBundle:Sport:layout.html.twig" %}
 
 {% block title %}
-	membres de l'équipe de {{ sport.nom }}
+	membres de l'équipe de {{ domaine.nom }}
 {% endblock %}
 
 {% block bds_sport_body %}
-<h2>Membre de l'équipe de {{ sport.nom }}</h2>
+<h2>Membre de l'équipe de {{ domaine.nom }}</h2>
 <ul>
 	{% for membre in listMembre %}
 	<li class="well">
-		
+		<div class="media">
+			<div class="media-body">
+				<p></a><strong>Nom d'utilisateur : </strong> {{ membre.user.username }}</p>
+			</div>
+			<div class="media-left">
+				<a href="#">
+				{% if gravatar_exists(membre.user.email) %}
+					<img class="media-object" src="{{ gravatar(membre.user.email) }}" width="150">
+				{% else %}
+					<img class="media-object" src="{{ asset('images/no_profile_pic') }}" width="150">
+				{% endif %}
+				</a>
+			</div>
+		</div>
+	</li>
+	{% else %}
+	<li> Pas (encore !) de membre ?! snif...</li>
+	{% endfor %}		
 </ul>
+
+{% endblock %}
