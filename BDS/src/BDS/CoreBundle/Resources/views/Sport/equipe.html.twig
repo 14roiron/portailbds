@@ -1,0 +1,13 @@
+{% extends "BDSCoreBundle:Sport:layout.html.twig" %}
+
+{% block title %}
+	membres de l'équipe de {{ sport.nom }}
+{% endblock %}
+
+{% block bds_sport_body %}
+<h2>Membre de l'équipe de {{ sport.nom }}</h2>
+<ul>
+	{% for membre in listMembre %}
+	<li class="well">
+		
+</ul>
