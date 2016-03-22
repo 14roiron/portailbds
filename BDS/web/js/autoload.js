@@ -71,8 +71,11 @@ function fillInAddress() {
           }
     }
     //on ajoute les bonnes valeurs pour les champs latitude et longitude
-    document.getElementById('lat').value = place.geometry.location.G;
-    document.getElementById('lng').value = place.geometry.location.K;
+    document.getElementById('lat').value = place.geometry.location.lat();
+    document.getElementById('lng').value = place.geometry.location.lng();
+    
+    //on deplace la map
+    fillInMap(place.geometry.location.lat(), place.geometry.location.lng());
 }
 
 //fonction qui vide les champs du formulaire
@@ -85,4 +88,15 @@ function emptyInputs() {
           document.getElementById('lat').value = "";
           document.getElementById('lng').value = "";
     }
+}
+
+//fonction qui remplit la carte 
+function fillInMap(lat, lng){
+	//on creer un objet latlng avec les données reçues
+	var LatLng = new google.maps.LatLng(lat, lng);
+	//on repositionne le marker
+	marker.setPosition(LatLng);
+	//on reposition le centre de la map
+	map.setCenter(LatLng);
+	
 }
