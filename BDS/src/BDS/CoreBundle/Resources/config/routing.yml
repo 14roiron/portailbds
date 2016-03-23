@@ -26,4 +26,17 @@ bds_sport_equipe:
     path:     /{domaine}/equipe
     defaults: {_controller: BDSCoreBundle:Sport:equipe }
     
+bds_sport_presentation:
+    path:     /{domaine}/presentation
+    defaults: {_controller: BDSCoreBundle:Sport:presentation }
+    
+bds_sport_presentation_edit:
+    path:     /{domaine}/presentation/edit
+    defaults: {_controller: BDSCoreBundle:Sport:presentationEdit }
+    
+bds_sport_motCapitaine:
+    path:     /{domaine}/mot_du_capitaine
+    defaults: {_controller: BDSCoreBundle:Sport:motCapitaineEdit }
+    
+    
     

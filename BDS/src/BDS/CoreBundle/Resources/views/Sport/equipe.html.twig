@@ -14,7 +14,7 @@
 				<p></a><strong>Nom d'utilisateur : </strong> {{ membre.user.username }}</p>
 			</div>
 			<div class="media-left">
-				<a href="#">
+				<a href="{{ path('fos_user_profile_show') }}">
 				{% if gravatar_exists(membre.user.email) %}
 					<img class="media-object" src="{{ gravatar(membre.user.email) }}" width="150">
 				{% else %}

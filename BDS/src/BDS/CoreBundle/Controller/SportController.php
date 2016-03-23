@@ -174,4 +174,24 @@ class SportController extends Controller
 				'listMembre'	=>	$listMembre
 		));
 	}
+	
+	public function presentationAction ($domaine)
+	{
+		
+	}
+	
+	public function editPresentatioAction ($domaine)
+	{
+		
+	}
+	
+	public function motCapitaineAction ($domaine)
+	{
+		
+	}
+	
+	public function motCapitaineEditAction ($domaine)
+	{
+		
+	}
 }
