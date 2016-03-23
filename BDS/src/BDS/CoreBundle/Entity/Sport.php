@@ -16,6 +16,11 @@ use BDS\CoreBundle\Entity\Role;
 class Sport
 {
 	/**
+	 * @ORM\OneToOne(targetEntity="BDS\UserBundle\Entity\User")
+	 */
+	private $capitaine;
+	
+	/**
 	 *@ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="sport", cascade={"persist"}, orphanRemoval=true) 
 	 */
 	private $membres;

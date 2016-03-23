@@ -22,9 +22,9 @@
 		"sensio/framework-extra-bundle" : "~3.0",
 		"incenteev/composer-parameter-handler" : "~2.0",
 		"doctrine/doctrine-fixtures-bundle" : "~2.2",
-		"friendsofsymfony/user-bundle": "2.0.0-alpha1",
+		"friendsofsymfony/user-bundle" : "2.0.0-alpha3",
 		"friendsofsymfony/jsrouting-bundle" : "~1.1",
-		"egeloen/ckeditor-bundle": "~2.0",
+		"egeloen/ckeditor-bundle" : "~2.0",
 		"ornicar/gravatar-bundle" : "dev-master",
 		"coresphere/console-bundle" : "dev-master",
 		"stfalcon/tinymce-bundle" : "dev-master",
@@ -33,7 +33,7 @@
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3",
-		"symfony/phpunit-bridge": "^3.0"
+		"symfony/phpunit-bridge" : "^3.0"
 	},
 	"scripts" : {
 		"post-install-cmd" : [
