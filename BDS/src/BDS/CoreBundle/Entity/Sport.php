@@ -367,4 +367,28 @@ class Sport
     {
         return $this->roles;
     }
+
+    /**
+     * Set capitaine
+     *
+     * @param \BDS\UserBundle\Entity\User $capitaine
+     *
+     * @return Sport
+     */
+    public function setCapitaine(\BDS\UserBundle\Entity\User $capitaine = null)
+    {
+        $this->capitaine = $capitaine;
+
+        return $this;
+    }
+
+    /**
+     * Get capitaine
+     *
+     * @return \BDS\UserBundle\Entity\User
+     */
+    public function getCapitaine()
+    {
+        return $this->capitaine;
+    }
 }
