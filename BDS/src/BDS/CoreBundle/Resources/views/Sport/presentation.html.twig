@@ -1,6 +1,6 @@
-{%  extends "BDSCoreBundle::layout.html.twig" %}
+{%  extends "BDSCoreBundle:Sport:layout.html.twig" %}
 
-{% bloc title %}
+{% block title %}
 	{{ domaine.nom }} presentation - {{ parent() }}
 {% endblock %}
 
@@ -17,7 +17,8 @@
 			<a class="btn btn-lg btn-default" href="{{ path('bds_prensentation_edit', {'domaine': domaine.nom}) }}">editer la présentation</a>
 		{% else %}
 			<p> pas encore de présentation pour {{ domaine.nom }} mais cela sera fait rapidement !!</p>
-			<a class="btn btn-lg btn-default" href="{{ path('bds_presentation_edit', {'domaine': domaine.nom}) }}">creer une présentation</a>
+			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'domaine': domaine.nom}) }}">creer une présentation</a>
 		{% endif %}
 	</div>
 </div>
+{% endblock %}

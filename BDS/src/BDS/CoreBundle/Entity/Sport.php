@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\BooleanNode;
 use BDS\CoreBundle\Entity\Role;
+use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 /**
  * Sport
@@ -65,6 +66,12 @@ class Sport
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
+    /**
+     * @var String
+     * 
+     * @ORM\Column(name="presentation", type="text")
+     */
+    private $presentation;
     
     /**
      * @var String
@@ -390,5 +397,29 @@ class Sport
     public function getCapitaine()
     {
         return $this->capitaine;
+    }
+
+    /**
+     * Set presentation
+     *
+     * @param string $presentation
+     *
+     * @return Sport
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return string
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
     }
 }
