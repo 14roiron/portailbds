@@ -1,0 +1,13 @@
+{% extends "BDSCoreBundle:Sport:layout.html.twig" %}
+
+{% block title %}
+  ajouter un mot - {{ parent() }}
+{% endblock %}
+
+{% block bds_sport_body %}
+<h2>Ajouter une mot pour vos ouailles</h2>
+<div class="well">
+	{{ form(form) }}
+</div>
+ {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
+{% endblock %}

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PresentationType extends AbstractType
+class motCapitaineType extends AbstractType
 {
 	/**
 	 * @param FormBuilderInterface $builder
@@ -15,18 +15,18 @@ class PresentationType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->remove('nom')
-			->remove('equipe')
-			->remove('logo')
-			->remove('fond')
-			->remove('capitaine')
-			->add('presentation',		'textarea',		array(
-															'attr' => array(
-																		'class' => 'tinymce'
-															)
-			));
+		->remove('nom')
+		->remove('equipe')
+		->remove('logo')
+		->remove('fond')
+		->remove('capitaine')
+		->add('motCapitaine',		'textarea',		array(
+				'attr' => array(
+						'class' => 'tinymce'
+				)
+		));
 	}
-	
+
 	/**
 	 *@param OptionResolverInterface $resolver
 	 */
@@ -36,15 +36,15 @@ class PresentationType extends AbstractType
 				'data_class'	=>	'BDS\CoreBundle\Entity\Sport'
 		));
 	}
-	
+
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getName()
 	{
-		return 'bds_corebundle_presentation';
+		return 'bds_corebundle_motCapitaine';
 	}
-	
+
 	public function getParent()
 	{
 		return new SportType();

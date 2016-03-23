@@ -11,6 +11,7 @@ use BDS\CoreBundle\Form\SportType;
 use BDS\ImageBundle\Entity\Image;
 use BDS\ImageBundle\Form\ImageLieeType;
 use BDS\CoreBundle\Form\PresentationType;
+use BDS\CoreBundle\Form\motCapitaineType;
 
 class SportController extends Controller
 {
@@ -223,18 +224,54 @@ class SportController extends Controller
 		
 		//on passe le formulaire à la vue 
 		return $this->render('BDSCoreBundle:Sport:presentationEdit.html.twig', array(
-				'domaine' => $domaine->getNom(),
+				'domaine' => $domaine,
 				'form'	=> $form->createView()
 		));
 	}
 	
 	public function motCapitaineAction ($domaine)
 	{
+		//on récupère le sport 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
+		//on le passe à la vue
+		return $this->render('BDSCoreBundle:Sport:motCapitaine.html.twig', array(
+				'domaine' => $domaine
+		));
 	}
 	
-	public function motCapitaineEditAction ($domaine)
+	public function motCapitaineEditAction ($domaine, Request $request)
 	{
+		//on récupère le sport
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		
+		//on creer le formulaire
+		$form = $this->createForm(new motCapitaineType(), $domaine);
+		
+		//si le visiteur a soumis le formulaire
+		if ($request->isMethod('POST'))
+		{
+			//on fait le lien entre le formulaire et la request
+			$form->handleRequest($request);
+				
+			//on valide les données
+			if ($form->isValid())
+			{
+				//on enregistre dans la bdd
+				$this->get('bds_sport.manager')->save($domaine);
+		
+				//on affiche la nouvelle présentation
+				return $this->redirect($this->generateUrl('bds_sport_motCapitaine', array(
+						'domaine'	=> $domaine->getNom(),
+				)));
+			}
+		}
+			
+			//on passe le formulaire à la vue
+			return $this->render('BDSCoreBundle:Sport:motCapitaineEdit.html.twig', array(
+					'domaine' => $domaine,
+					'form'	=> $form->createView()
+			));
 		
 	}
 }

@@ -57,7 +57,7 @@
           		<ul class="dropdown-menu" role="menu">
           			<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">News</a></li>
             		<li><a href="{{ path('bds_sport_equipe', {'domaine':domaine.nom}) }}">équipe</a></li>
-            		<li><a href="#">Le mot du capitaine</a></li>
+            		<li><a href="{{ path('bds_sport_motCapitaine', {'domaine':domaine.nom}) }}">Le mot du capitaine</a></li>
             		<li><a href="{{ path('bds_sport_presentation', {'domaine':domaine.nom}) }}">presentation</a></li>
           		</ul>
         	</li>

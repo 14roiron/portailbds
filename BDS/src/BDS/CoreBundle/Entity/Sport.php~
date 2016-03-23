@@ -62,6 +62,13 @@ class Sport
 
     /**
      * @var string
+     * 
+     * @ORM\Column(name="motCapitaine", type="text")
+     */
+    private $motCapitaine;
+    
+    /**
+     * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
@@ -397,5 +404,29 @@ class Sport
     public function getCapitaine()
     {
         return $this->capitaine;
+    }
+
+    /**
+     * Set presentation
+     *
+     * @param string $presentation
+     *
+     * @return Sport
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return string
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
     }
 }
