@@ -177,7 +177,19 @@ class SportController extends Controller
 	
 	public function presentationAction ($domaine)
 	{
+		//on récupère le sport 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
+		//on lance une exception si le sport n'existe pas 
+		if ($domaine == NULL)
+		{
+			throw new NotFoundHttpException("Le sport n'existe pas." );
+		}
+		
+		//on passe à la vue 
+		return $this->render('BDSCoreBundle:Sport:presentation.html.twig', array(
+				'domaine'	=>	$domaine
+		));
 	}
 	
 	public function editPresentatioAction ($domaine)
