@@ -10,6 +10,7 @@ use BDS\CoreBundle\Form\SportEditType;
 use BDS\CoreBundle\Form\SportType;
 use BDS\ImageBundle\Entity\Image;
 use BDS\ImageBundle\Form\ImageLieeType;
+use BDS\CoreBundle\Form\PresentationType;
 
 class SportController extends Controller
 {
@@ -192,9 +193,39 @@ class SportController extends Controller
 		));
 	}
 	
-	public function editPresentatioAction ($domaine)
+	public function presentationEditAction ($domaine, Request $request)
 	{
+	
+		//on récupère le sport 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
+		//on creer le formulaire 
+		$form = $this->createForm(new PresentationType(), $domaine);
+		
+		//si le visiteur a soumis le formulaire 
+		if ($request->isMethod('POST'))
+		{
+			//on fait le lien entre le formulaire et la request 
+			$form->handleRequest($request);
+			
+			//on valide les données
+			if ($form->isValid())
+			{
+				//on enregistre dans la bdd
+				$this->get('bds_sport.manager')->save($domaine);
+				
+				//on affiche la nouvelle présentation 
+				return $this->redirect($this->generateUrl('bds_sport_presentation', array(
+						'domaine'	=> $domaine->getNom(),
+				)));
+			}
+		}
+		
+		//on passe le formulaire à la vue 
+		return $this->render('BDSCoreBundle:Sport:presentationEdit.html.twig', array(
+				'domaine' => $domaine->getNom(),
+				'form'	=> $form->createView()
+		));
 	}
 	
 	public function motCapitaineAction ($domaine)
