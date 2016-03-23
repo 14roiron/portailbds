@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use BDS\ImageBundle\Form\ImageType;
 use BDS\ImageBundle\Form\ImageLieeType;
+use Doctrine\ORM\Mapping\Entity;
+use BDS\UserBundle\BDSUserBundle;
 
 class SportType extends AbstractType
 {
@@ -26,6 +28,11 @@ class SportType extends AbstractType
             ))
             ->add('fond',		new ImagelieeType(),		array(
             													'required'	=>	FALSE
+            ))
+            ->add('capitaine',	'entity',					array(
+            													'class'		=>	'BDSUserBundle:User',
+            													'property'	=>	'username',
+            													'multiple'	=>	false
             ))
             ->add('ajouter',	'submit')
         ;

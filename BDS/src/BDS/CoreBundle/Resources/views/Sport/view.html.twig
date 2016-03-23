@@ -27,7 +27,14 @@
 	{%  else %}
 	pas encore d'image de fond !
 	{% endif %}
+	<p>capitaine :
+	{% if sport.capitaine %}
+	<h3>{{ sport.capitaine.username }}</h3>
+	{% else %}
+	pas encore de capitaine !?
+	{% endif %}
 	</p>
+
 	   		<a class="btn btn-lg btn-warning" href="{{ path('bds_sport_edit', {'nom':sport.nom}) }}">éditer le sport</a>
    			<a class="btn btn-lg btn-danger" href="{{ path('bds_sport_delete', {'nom':sport.nom}) }}">supprimer le sport</a>
 </div>
