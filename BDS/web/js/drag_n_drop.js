@@ -66,6 +66,49 @@ var dndHandler ={
 			//suppression de l'élément d'origine 
 			draggedElement.parentNode.removeChild(draggedElement);
 			
+			//modification du formulaire 
+			switch (target.id){
+			case "dropper_oui":
+				//on récupère les elements radio 
+				var radioElements = $('#' + cloneElement.firstChild.nodeValue + ' :radio');
+				var radioLen = radioElements.length;
+				for (var i =0; i < radioLen; i++)
+				{
+					//on cherche celui qui a la bonne valeur (j'ai pas réussi à le faire en une fois) et on le check
+					if (radioElements[i].value == "1")
+					{
+						radioElements[i].checked = "checked";
+					}
+				}
+			break;
+				
+			case "dropper_non":
+				var radioElements = $('#' + cloneElement.firstChild.nodeValue + ' :radio');
+				var radioLen = radioElements.length;
+				for (var i =0; i < radioLen; i++)
+				{
+					if (radioElements[i].value == "0")
+					{
+						radioElements[i].checked = "checked";
+					}
+				}
+			break;
+			
+			case "dropper_aucun":
+				var radioElements = $('#' + cloneElement.firstChild.nodeValue + ' :radio');
+				var radioLen = radioElements.length;
+				for (var i =0; i < radioLen; i++)
+				{
+					if (radioElements[i].value == "")
+					{
+						radioElements[i].checked = "checked";
+					}
+				}
+			break;
+				
+			}
+				
+			
 		});
 	}		
 };

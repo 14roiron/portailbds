@@ -21,7 +21,7 @@
 		{% endif %}
 		<ul class="nav nav-tabs" id="panneau">
 			<li class="active"><a href"#">liste</a></li>
-			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id, 'affichage': 'drag_n_drop'}) }}">drag n drop</a></li>
+			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id}) }}">drag n drop</a></li>
 		</ul>
 		<div>
 			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}

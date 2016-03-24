@@ -20,7 +20,7 @@
 			<div id="map" style="height: 300px; margin-top: 10px;"></div>
 		{% endif %}
 		<ul class="nav nav-tabs", id="panneau">
-			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id}) }}">liste</a></li>
+			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id, 'affichage': 'liste'}) }}">liste</a></li>
 			<li class="active"><a href="#">drag n drop</a></li>
 		</ul>
 		<div>
@@ -45,23 +45,26 @@
 				</li>
 			</ul>
 		<div>
-			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
-	
-			{# les erreurs du formulaire #}
-			{{ form_errors(form) }}
+			<div class="hidden">
+				{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
+		
+				{# les erreurs du formulaire #}
+				{{ form_errors(form) }}
+				
+				{# on plac la liste des champs participations #}
+				<ul class="list-unstyled">
+					{% for participation in form.participations %}
+						<li id="{{ objParticipations[loop.index0].membre.user.username }}">
+							{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
+							{{ form_widget(participation)}}
+						</li>
+					{% endfor %}
+				</ul>
+				{# génération automatique de tout le reste #}
+				{{ form_rest(form) }}
+			</div>
 			
-			{# on plac la liste des champs participations #}
-			<ul class="list-unstyled">
-				{% for participation in form.participations %}
-					<li>
-						{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
-						{{ form_widget(participation)}}
-					</li>
-				{% endfor %}
-			</ul>
-			
-			{# génération automatique de tout le reste #}
-			{{ form_rest(form) }}
+			<button type="submit" class="btn btn-default">enregistrer les modifications</button>
 	
 			{# fermeture de la balise form #}
 			{{ form_end(form) }}
