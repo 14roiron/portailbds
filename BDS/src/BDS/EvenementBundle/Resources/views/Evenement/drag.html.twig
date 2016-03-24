@@ -24,22 +24,20 @@
 			<li class="active"><a href="#">drag n drop</a></li>
 		</ul>
 		<div>
-			<ul class="list-unstyled">
-				<li>
-					<div class="alert alert-success">
+			<ul id="dropzone" class="list-unstyled">
+				<li id="dropper_oui" class="alert alert-success">
 					<h2>oui</h2>
 					{% for participation in participationOui %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
 					{% endfor %}
-					</div>
 				</li>
-				<li class="alert alert-danger">
+				<li id="dropper_non" class="alert alert-danger">
 					<h2>non</h2>
 					{% for participation in participationNon %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
 					{% endfor %}
 				</li>
-				<li class="alert alert-warning">
+				<li id="dropper_aucun" class="alert alert-warning">
 					<h2>aucun</h2>
 					{% for participation in participationAucun %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
@@ -94,6 +92,7 @@
 	var fullAdr = "{{ evenement.lieu.fullAdr }}";
 {% endif %}
 </script>
+<script type="text/javascript" src="{{ asset('js/drag_n_drop.js') }}"></script>
 
 {% endblock %}
 
