@@ -39,7 +39,7 @@ class EvenementController extends Controller
 		
 	}
 	
-	public function viewAction ($domaine, $id, Request $request)
+	public function viewAction ($domaine, $id, Request $request, $affichage)
 	{
 		//on se place dans le bon domaine 
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
@@ -82,14 +82,34 @@ class EvenementController extends Controller
 					'id'		=> $id
 			)));
 		}
-		//on passe l'evenement à la vue 
-		return $this->render('BDSEvenementBundle:Evenement:view.html.twig', array(
-				'domaine' 	=>	$domaine,
-				'evenement'	=>	$evenement,
-				'form'		=>	$form->createView(),
-				'objParticipations'	=>	$objParticipations
-				
-		));
+		//deux affichage possibles 
+		if ($affichage == "liste"){
+
+			return $this->render('BDSEvenementBundle:Evenement:view.html.twig', array(
+					'domaine' 	=>	$domaine,
+					'evenement'	=>	$evenement,
+					'form'		=>	$form->createView(),
+					'objParticipations'	=>	$objParticipations
+					
+			));
+		} 
+		elseif ($affichage == "drag_n_drop")
+		{
+			$participationOui = $this->get('bds_participation.manager')->getParticipation($objParticipations, TRUE);
+			$participationNon = $this->get('bds_participation.manager')->getParticipation($objParticipations, FALSE);
+			$participationAucun = $this->get('bds_participation.manager')->getParticipation($objParticipations, NULL);
+			
+			return $this->render('BDSEvenementBundle:Evenement:drag.html.twig', array(
+					'domaine' 			=>	$domaine,
+					'evenement'			=>	$evenement,
+					'form'				=>	$form->createView(),
+					'objParticipations'	=>	$objParticipations,
+					'participationOui'	=>	$participationOui,
+					'participationNon'	=>	$participationNon,
+					'participationAucun'=>	$participationAucun
+						
+			));
+		}
 	}
 	
 	public function addAction ($domaine, Request $request)

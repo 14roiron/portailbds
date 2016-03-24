@@ -10,8 +10,8 @@ bds_evenement_index:
     
     
 bds_evenement_view:
-    path:     /{domaine}/evenement/view/{id}
-    defaults: { _controller: BDSEvenementBundle:Evenement:view }
+    path:     /{domaine}/evenement/view/{id}/{affichage}
+    defaults: { _controller: BDSEvenementBundle:Evenement:view, affichage: 'liste' }
     requirements:
         id: \d*
     

@@ -19,10 +19,33 @@
 			{# la map #}
 			<div id="map" style="height: 300px; margin-top: 10px;"></div>
 		{% endif %}
-		<ul class="nav nav-tabs" id="panneau">
-			<li class="active"><a href"#">liste</a></li>
-			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id, 'affichage': 'drag_n_drop'}) }}">drag n drop</a></li>
+		<ul class="nav nav-tabs", id="panneau">
+			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id}) }}">liste</a></li>
+			<li class="active"><a href="#">drag n drop</a></li>
 		</ul>
+		<div>
+			<ul class="list-unstyled">
+				<li>
+					<div class="alert alert-success">
+					<h2>oui</h2>
+					{% for participation in participationOui %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+					</div>
+				</li>
+				<li class="alert alert-danger">
+					<h2>non</h2>
+					{% for participation in participationNon %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+				</li>
+				<li class="alert alert-warning">
+					<h2>aucun</h2>
+					{% for participation in participationAucun %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+				</li>
+			</ul>
 		<div>
 			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
 	
@@ -32,7 +55,7 @@
 			{# on plac la liste des champs participations #}
 			<ul class="list-unstyled">
 				{% for participation in form.participations %}
-					<li class="well">
+					<li>
 						{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
 						{{ form_widget(participation)}}
 					</li>
@@ -71,7 +94,6 @@
 	var fullAdr = "{{ evenement.lieu.fullAdr }}";
 {% endif %}
 </script>
-<script type="text/javascript" src="{{ asset('js/poney.js') }}"></script>
 
 {% endblock %}
 

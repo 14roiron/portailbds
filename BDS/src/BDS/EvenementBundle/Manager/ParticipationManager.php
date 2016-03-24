@@ -38,4 +38,12 @@ class ParticipationManager
 		return $participations->matching($criteria);
 		
 	}
+	
+	public function getParticipation($participations, $etat)
+	{
+		$criteria = Criteria::create();
+		$criteria->where(Criteria::expr()->eq('participation', $etat));
+		
+		return $participations->matching($criteria);
+	}
 }
