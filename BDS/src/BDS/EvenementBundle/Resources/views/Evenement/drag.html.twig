@@ -26,19 +26,19 @@
 		<div>
 			<ul id="dropzone" class="list-unstyled">
 				<li id="dropper_oui" class="alert alert-success">
-					<h2>oui</h2>
+					<h3>evdement je viens</h3>
 					{% for participation in participationOui %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
 					{% endfor %}
 				</li>
 				<li id="dropper_non" class="alert alert-danger">
-					<h2>non</h2>
+					<h3>c'est mort j'ai poney</h3>
 					{% for participation in participationNon %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
 					{% endfor %}
 				</li>
 				<li id="dropper_aucun" class="alert alert-warning">
-					<h2>aucun</h2>
+					<h3>Pour l'instant je m'en fou</h3>
 					{% for participation in participationAucun %}
 						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
 					{% endfor %}
