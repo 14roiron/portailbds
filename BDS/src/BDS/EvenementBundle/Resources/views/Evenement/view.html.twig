@@ -19,15 +19,18 @@
 			{# la map #}
 			<div id="map" style="height: 300px; margin-top: 10px;"></div>
 		{% endif %}
-		
-		<div class="well">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href"#">liste</a></li>
+			<li><a href="#">drag n drop</a></li>
+		</ul>
+		<div>
 			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
 	
 			{# les erreurs du formulaire #}
 			{{ form_errors(form) }}
 			
 			{# on plac la liste des champs participations #}
-			<ul>
+			<ul class="list-unstyled">
 				{% for participation in form.participations %}
 					<li class="well">
 						{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
@@ -62,9 +65,11 @@
 </script>
 <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
 <script type="text/javascript">
-var myLat = {{ evenement.lieu.lat }};
-var myLng = {{ evenement.lieu.lng }};
-var fullAdr = "{{ evenement.lieu.fullAdr }}";
+{% if evenement.lieu %}
+	var myLat = {{ evenement.lieu.lat }};
+	var myLng = {{ evenement.lieu.lng }};
+	var fullAdr = "{{ evenement.lieu.fullAdr }}";
+{% endif %}
 </script>
 <script type="text/javascript" src="{{ asset('js/poney.js') }}"></script>
 
