@@ -49,7 +49,7 @@ function initMap(){
 	});
 	//quand on clique sur le marker on recentre la map et on zoom par defaut
 	marker.addListener('click', function() {
-		map.setZoom(15);
+		map.setZoom(14);
 		map.setCenter(marker.getPosition());
 	});
 }
