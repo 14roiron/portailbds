@@ -9,3 +9,7 @@ bds_sponsor_add:
 bds_sponsor_view:
     path:     /admin/sponsor/view/{nom}
     defaults: {_controller: BDSSponsorBundle:Sponsor:view } 
+    
+bds_sponsor_list:
+    path:     /admin/sponsor/list
+    defaults: {_controller: BDSSponsorBundle:Sponsor:list }

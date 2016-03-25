@@ -44,4 +44,9 @@ class SponsorManager
 	{
 		return $this->getRepository()->findOneBy(array('nom' => $nom));
 	}
+	
+	public function getSponsors()
+	{
+		return $this->getRepository()->findAll();
+	}
 }

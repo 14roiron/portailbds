@@ -54,7 +54,8 @@ class SponsorController extends Controller
 		
 		//on affiche la page 
 		return $this->render('BDSSponsorBundle:Sponsor:view.html.twig', array(
-				'sponsor'	=>	$sponsor
+				'sponsor'	=>	$sponsor,
+				'domaine'	=>	$domaine
 		));
 		
 	}
@@ -62,5 +63,20 @@ class SponsorController extends Controller
 	public function deleteAction($id)
 	{
 		
+	}
+	
+	public function listAction()
+	{
+		//on se place dans admin 
+		$domaine = $this->get('bds_sport.manager')->getSport('admin');
+		
+		//on fait la liste des sponsors
+		$listSponsors = $this->get('bds_sponsor.manager')->getSponsors();
+		
+		//on les affiches tous 
+		return $this->render('BDSSponsorBundle:Sponsor:list.html.twig', array(
+			'domaine'		=>	$domaine,
+			'listSponsors'	=>	$listSponsors
+		));
 	}
 }
