@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SponsorBundle\Entity;
 
 /**
  * SponsorRepository

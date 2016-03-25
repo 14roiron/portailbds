@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Form;
+namespace BDS\SponsorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,8 +16,8 @@ class SponsorType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('contactPrenom')
             ->add('contactNom')
+            ->add('contactPrenom')
             ->add('contactMail')
             ->add('contactTelephone')
             ->add('url')
@@ -30,7 +30,7 @@ class SponsorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BDS\CoreBundle\Entity\Sponsor'
+            'data_class' => 'BDS\SponsorBundle\Entity\Sponsor'
         ));
     }
 
@@ -39,6 +39,6 @@ class SponsorType extends AbstractType
      */
     public function getName()
     {
-        return 'bds_corebundle_sponsor';
+        return 'bds_sponsorbundle_sponsor';
     }
 }

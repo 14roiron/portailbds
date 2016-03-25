@@ -1,0 +1,12 @@
+{% extends "BDSSponsorBundle:Sponsor:layout.html.twig" %}
+
+{% block title %}
+  Ajouter - {{ parent() }}
+{% endblock %}
+
+{% block bds_sponsor_body %}
+<h2>Ajouter un sponsor</h2>
+<div class="well">
+	{{ form(form) }}
+</div>
+{% endblock %}

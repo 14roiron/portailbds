@@ -1,3 +1,7 @@
+bds_sponsor:
+    resource: "@BDSSponsorBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #bds_calendar:
 #    resource: "@BDSCalendarBundle/Resources/config/routing.yml"
 #    prefix:   /

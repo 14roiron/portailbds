@@ -5,3 +5,4 @@ services:
     bds_sport.manager:
         class:      BDS\CoreBundle\Manager\SportManager
         arguments:  [ @doctrine.orm.entity_manager ]
+    

@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SponsorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sponsor
  *
  * @ORM\Table(name="bds_sponsor")
- * @ORM\Entity(repositoryClass="BDS\CoreBundle\Entity\SponsorRepository")
+ * @ORM\Entity(repositoryClass="BDS\SponsorBundle\Entity\SponsorRepository")
  */
 class Sponsor
 {
@@ -31,16 +31,16 @@ class Sponsor
     /**
      * @var string
      *
-     * @ORM\Column(name="contactPrenom", type="string", length=255)
+     * @ORM\Column(name="contactNom", type="string", length=255)
      */
-    private $contactPrenom;
+    private $contactNom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contactNom", type="string", length=255)
+     * @ORM\Column(name="contactPrenom", type="string", length=255)
      */
-    private $contactNom;
+    private $contactPrenom;
 
     /**
      * @var string
@@ -99,30 +99,6 @@ class Sponsor
     }
 
     /**
-     * Set contactPrenom
-     *
-     * @param string $contactPrenom
-     *
-     * @return Sponsor
-     */
-    public function setContactPrenom($contactPrenom)
-    {
-        $this->contactPrenom = $contactPrenom;
-
-        return $this;
-    }
-
-    /**
-     * Get contactPrenom
-     *
-     * @return string
-     */
-    public function getContactPrenom()
-    {
-        return $this->contactPrenom;
-    }
-
-    /**
      * Set contactNom
      *
      * @param string $contactNom
@@ -144,6 +120,30 @@ class Sponsor
     public function getContactNom()
     {
         return $this->contactNom;
+    }
+
+    /**
+     * Set contactPrenom
+     *
+     * @param string $contactPrenom
+     *
+     * @return Sponsor
+     */
+    public function setContactPrenom($contactPrenom)
+    {
+        $this->contactPrenom = $contactPrenom;
+
+        return $this;
+    }
+
+    /**
+     * Get contactPrenom
+     *
+     * @return string
+     */
+    public function getContactPrenom()
+    {
+        return $this->contactPrenom;
     }
 
     /**
