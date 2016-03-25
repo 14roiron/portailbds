@@ -21,7 +21,7 @@ class Sponsor
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport")
+     * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="sponsorts")
      */
     private $sport;
     

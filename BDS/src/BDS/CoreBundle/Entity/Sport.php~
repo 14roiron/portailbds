@@ -22,6 +22,11 @@ class Sport
 	private $capitaine;
 	
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\SponsorBundle\Entity\Sponsor", mappedBy="sport", cascade={"persist"}, orphanRemoval=false)
+	 */
+	private $sponsorts;
+	
+	/**
 	 *@ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="sport", cascade={"persist"}, orphanRemoval=true) 
 	 */
 	private $membres;

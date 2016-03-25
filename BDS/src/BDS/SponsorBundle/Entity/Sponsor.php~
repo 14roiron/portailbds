@@ -21,7 +21,7 @@ class Sponsor
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport")
+     * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="sponsorts")
      */
     private $sport;
     
@@ -249,5 +249,29 @@ class Sponsor
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Set sport
+     *
+     * @param \BDS\CoreBundle\Entity\Sport $sport
+     *
+     * @return Sponsor
+     */
+    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \BDS\CoreBundle\Entity\Sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
     }
 }

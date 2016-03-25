@@ -22,6 +22,11 @@ class Sport
 	private $capitaine;
 	
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\SponsorBundle\Entity\Sponsor", mappedBy="sport", cascade={"persist"}, orphanRemoval=false)
+	 */
+	private $sponsorts;
+	
+	/**
 	 *@ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="sport", cascade={"persist"}, orphanRemoval=true) 
 	 */
 	private $membres;
@@ -452,5 +457,39 @@ class Sport
     public function getMotCapitaine()
     {
         return $this->motCapitaine;
+    }
+
+    /**
+     * Add sponsort
+     *
+     * @param \BDS\SponsorBundle\Entity\Sponsor $sponsort
+     *
+     * @return Sport
+     */
+    public function addSponsort(\BDS\SponsorBundle\Entity\Sponsor $sponsort)
+    {
+        $this->sponsorts[] = $sponsort;
+
+        return $this;
+    }
+
+    /**
+     * Remove sponsort
+     *
+     * @param \BDS\SponsorBundle\Entity\Sponsor $sponsort
+     */
+    public function removeSponsort(\BDS\SponsorBundle\Entity\Sponsor $sponsort)
+    {
+        $this->sponsorts->removeElement($sponsort);
+    }
+
+    /**
+     * Get sponsorts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSponsorts()
+    {
+        return $this->sponsorts;
     }
 }
