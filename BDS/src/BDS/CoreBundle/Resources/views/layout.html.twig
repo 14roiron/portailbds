@@ -127,32 +127,16 @@
     </header>  
  {%endif%}
 
+	<br>
 	
     <!-- Main Content -->
-    <div class="container">
-		
-		
+    <div class="container">	
 		<div class= "row">
-    
-			<div id="content" class="col-md-8"> 
-      <div class="box">
-				{% block body %}
-				{% endblock %}
-			</div>
-      </div>
-    
-			<div id="aside" class="col-md-4">
-        <div class="box">
-				{% block aside %}
-				{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
-				{% if domaine is defined %}
-				{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}
-				{% endif %}		
-				{% endblock %}
-			</div>
-      </div>
-		</div>
-		
+    		<div id="content" class="col-md-12"> 
+					{% block body %}
+					{% endblock %}
+      		</div>
+      	</div>	
 		<hr>
 		
 		<footer>
