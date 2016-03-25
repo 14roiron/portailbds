@@ -5,6 +5,7 @@ namespace BDS\SponsorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use BDS\ImageBundle\Form\ImageLieeType;
 
 class SponsorType extends AbstractType
 {
@@ -21,6 +22,15 @@ class SponsorType extends AbstractType
             ->add('contactMail')
             ->add('contactTelephone')
             ->add('url')
+            ->add('logo',				new ImageLieeType(),		array(
+            															'required'	=>	FALSE
+            ))
+            ->add('sport',				'entity',					array(
+            															'class'	=>	'BDSCoreBundle:sport',
+            															'property'	=>	'nom',
+            															'multiple'	=> false,
+            															'expanded'	=> false
+            ))
         ;
     }
     
