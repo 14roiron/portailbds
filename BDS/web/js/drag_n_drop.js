@@ -107,6 +107,21 @@ var dndHandler ={
 			break;
 				
 			}
+			
+			//sauvegarde du formulaire
+			$.ajax({
+				url: $('#form').attr('action'),
+				type: $('#form').attr('method'),
+				data: $('#form').serialize(),
+				dataType: 'html',
+				success: function(){
+					//il faudrait faire apparaitre une petite balise toute mignone 
+					//qui dit que les modifications ont été prise ne compte 
+				},
+				error: function (jqXHR, textStatus, errorThrown){
+					alert (errorThrown);
+				}
+			});
 				
 			
 		});
