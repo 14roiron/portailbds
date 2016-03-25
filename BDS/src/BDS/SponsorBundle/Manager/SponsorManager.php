@@ -4,12 +4,13 @@ namespace BDS\SponsorBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use BDS\SponsorBundle\Entity\Sponsor;
+use BDS\ImageBundle\Entity\Image;
 
 class SponsorManager
 {
 	protected $em;
 	
-	public function __construct(entityManager $em)
+	public function __construct(EntityManager $em)
 	{
 		//on récupère l'entityManager
 		$this->em = $em;
@@ -18,7 +19,7 @@ class SponsorManager
 	public function getRepository()
 	{
 		//on récupère la bdd
-		return $this->em->getRepository('BDSCoreBundle:Sponsor');
+		return $this->em->getRepository('BDSSponsorBundle:Sponsor');
 	}
 	
 	public function save(Sponsor $sponsor)
@@ -37,5 +38,10 @@ class SponsorManager
 		
 		$this->em->persist($sponsor);
 		$this->em->flush();
+	}
+	
+	public function getSponsor($nom)
+	{
+		return $this->getRepository()->findOneBy(array('nom' => $nom));
 	}
 }

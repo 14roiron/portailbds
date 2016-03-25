@@ -28,7 +28,7 @@ class SponsorController extends Controller
 		if ($form->isValid())
 		{
 			//on insert dans la bdd
-			$this ->get('bds_sponsort.manager')->save($sponsor);
+			$this ->get('bds_sponsor.manager')->save($sponsor);
 			
 			//on redirige vers la page de visualisation 
 			return $this->redirect($this->generateUrl('bds_sponsor_view', array(
@@ -44,8 +44,18 @@ class SponsorController extends Controller
 		
 	}
 	
-	public function viewAction($id)
+	public function viewAction($nom)
 	{
+		//on se place dans Admin
+		$domaine = $this->get('bds_sport.manager')->getSport('admin');
+		
+		//on récupère l'objet sponsor
+		$sponsor = $this->get('bds_sponsor.manager')->getSponsor($nom);
+		
+		//on affiche la page 
+		return $this->render('BDSSponsorBundle:Sponsor:view.html.twig', array(
+				'sponsor'	=>	$sponsor
+		));
 		
 	}
 	

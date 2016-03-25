@@ -4,4 +4,8 @@ bds_sponsor_homepage:
 
 bds_sponsor_add:
     path:     /admin/sponsor/add
-    defaults: {_controller: BDSSponsorBundle:Sponsor:add } 
+    defaults: {_controller: BDSSponsorBundle:Sponsor:add }
+    
+bds_sponsor_view:
+    path:     /admin/sponsor/view/{nom}
+    defaults: {_controller: BDSSponsorBundle:Sponsor:view } 

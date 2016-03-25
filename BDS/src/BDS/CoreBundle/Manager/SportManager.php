@@ -10,7 +10,7 @@ class SportManager
 {
 	protected $em;
 	
-	public function __construct (entityManager $em)
+	public function __construct (EntityManager $em)
 	{
 		//on récupère l'entityManaager
 		$this->em = $em;
