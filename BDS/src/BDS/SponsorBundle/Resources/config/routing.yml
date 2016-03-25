@@ -13,3 +13,7 @@ bds_sponsor_view:
 bds_sponsor_list:
     path:     /admin/sponsor/list
     defaults: {_controller: BDSSponsorBundle:Sponsor:list }
+
+bds_sponsor_delete:
+    path:     /admin/sponsor/delete/{nom}
+    defaults: {_controller: BDSSponsorBundle:Sponsor:delete }

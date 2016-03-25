@@ -27,7 +27,7 @@ class SportManager
 		return $this->getRepository()->findOneBy(array('nom' => $nom));
 	}
 	
-	public function save(sport $sport)
+	public function save(Sport $sport)
 	{
 		$logo = $sport->getLogo();
 		//si le logo est non nul il faut la sauvegarder 
@@ -55,14 +55,19 @@ class SportManager
 		$this->em->flush();	
 	}
 	
-	public function delete(sport $sport)
+	public function delete(Sport $sport)
 	{
 		$logo = $sport->getLogo();
-		//si le logo est non nul, il faut le supprimer 
+		$fond = $sport->getFond();
+		
+		//si le logo et le fond sont non nuls, il faut les supprimer 
 		if($logo != NULL)
 		{
-			//on supprime l'image 
 			$logo->removeImage();
+		}
+		if($fond != NULL)
+		{
+			$fond->removeImage();
 		}
 		
 		$this->em->remove($sport);

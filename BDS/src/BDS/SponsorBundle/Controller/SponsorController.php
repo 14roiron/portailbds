@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use BDS\SponsorBundle\Entity\Sponsor;
 use BDS\SponsorBundle\Form\SponsorType;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SponsorController extends Controller
 {
@@ -60,8 +61,29 @@ class SponsorController extends Controller
 		
 	}
 	
-	public function deleteAction($id)
+	public function deleteAction($nom)
 	{
+		//on se place dans admin 
+		$domaine = $this->get('bds_sport.manager')->getSport('admin');
+		
+		//on récupère l'objet sponsort 
+		$sponsort = $this->get('bds_sponsor.manager')->getsponsor($nom);
+		
+		//on revoit une erreur si le sponsort n'existe pas 
+		if ($sponsort == NULL)
+		{
+			throw new NotFoundHttpException("le sponsort " .$nom. " n'existe pas.");
+		}
+		
+		//on le supprime 
+		$this->get('bds_sponsor.manager')->delete($sponsort);
+		
+		//il faudrait renvoyer un petit message avec :-)
+		
+		//on retourne à la liste 
+		return $this->render('BDSSponsorBundle:Sponsor:list.html.twig', array(
+				'domaine'	=>	$domaine
+		));
 		
 	}
 	

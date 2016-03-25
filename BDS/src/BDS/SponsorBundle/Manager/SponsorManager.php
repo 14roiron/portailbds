@@ -49,4 +49,19 @@ class SponsorManager
 	{
 		return $this->getRepository()->findAll();
 	}
+	
+	public function delete(Sponsor $sponsort)
+	{
+		$logo = $sponsort->getLogo();
+		//si le logo est non nul, il faut le supprimer 
+		if($logo != NULL)
+		{
+			//on supprime l'image 
+			$logo->removeImage();
+		}
+		
+		$this->em->remove($sponsort);
+		$this->em->flush();
+		
+	}
 }

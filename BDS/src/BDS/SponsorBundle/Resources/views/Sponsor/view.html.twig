@@ -29,4 +29,10 @@
 		<p>Pas encore de logo !!!!!?</p>
 	{% endif %}
 </div>
+<div>
+	   	<a class="btn btn-lg btn-warning" href="#">éditer la news</a>
+   		<a class="btn btn-lg btn-danger" href="{{ path('bds_sponsor_delete', {'nom':sponsor.nom}) }}">supprimer le sponsor</a>
+   		<a class="btn btn-lg btn-default" href="{{ path('bds_sponsor_list') }}">Retour aux sponsors</a>
+</div>
+
 {% endblock %}
