@@ -5,28 +5,39 @@
 {% endblock %}
 
 {% block bds_sport_body %}
-<h2>Membre de l'équipe de {{ domaine.nom }}</h2>
-<ul>
-	{% for membre in listMembre %}
-	<li class="well">
-		<div class="media">
-			<div class="media-body">
-				<p></a><strong>Nom d'utilisateur : </strong> {{ membre.user.username }}</p>
-			</div>
-			<div class="media-left">
-				<a href="{{ path('fos_user_profile_show') }}">
-				{% if gravatar_exists(membre.user.email) %}
-					<img class="media-object" src="{{ gravatar(membre.user.email) }}" width="150">
-				{% else %}
-					<img class="media-object" src="{{ asset('images/no_profile_pic') }}" width="150">
-				{% endif %}
-				</a>
-			</div>
-		</div>
-	</li>
-	{% else %}
-	<li> Pas (encore !) de membre ?! snif...</li>
-	{% endfor %}		
-</ul>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>Membre de m'équipe de {{ domaine.nom }}</h2></div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-stiped table-bordered table-hover col-lg-12">
+			<tbody>
+				{% for membre in listMembre %}
+				<tr>
+					<th>
+						<div class="col-lg-2">
+						{% if gravatar_exists(membre.user.email) %}
+							<img src="{{ gravatar(membre.user.email) }}" width=100%>
+						{% else %}
+							<img src="{{ asset('images/no_profile_pic') }}" width=100%>
+						{% endif %}
+						</div>
+						<div class="col-lg-10">
+							<p><a href="#">{{ membre.user.username }}</a></p>
+						</div>
+					</th>
+				</tr>
+				{%  else %}
+				<tr>
+					<th>
+						<p>Pas encore de membre !! Il faut composer une équipe pour pouvoir jouer ;-)</p>
+					</th>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
 
 {% endblock %}
