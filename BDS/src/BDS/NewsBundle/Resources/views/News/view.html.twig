@@ -57,8 +57,9 @@
 	        					{# Génération de l'input. #}
 	        					{{ form_widget(form.contenu, {'attr': {'class': 'form-control', 'placeholder':'Votre Commentaire ...'}}) }}
 	    					</div>
-							
+
 	        				{{ form_widget(form.commenter, {'attr': {'class': 'btn btn-primary btn-block'}}) }}
+
 	
 							{# Génération automatique des champs pas encore écrits #}
 							{{ form_rest(form) }}

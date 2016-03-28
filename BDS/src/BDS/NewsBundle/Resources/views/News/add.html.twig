@@ -5,9 +5,35 @@
 {% endblock %}
 
 {% block bdsnews_body %}
-<h2>Ajouter une News</h2>
-<div class="well">
-	{{ form(form) }}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>{{ affichage }} une news</h2></div>
+	</div>
+	<div class="panel-body">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_errors(form) }}
+	
+	{{ form_label(form.titre, "titre : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.titre, {'attr': {'class': 'form-control', 'placeholder':'un titre...'}}) }}
+	
+	{{ form_label(form.resumer, "resumer : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.resumer, {'attr': {'class': 'form-control', 'placeholder':'un resumé évoquateur...'}}) }}
+	
+	{{ form_label(form.contenu, "la news : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+	
+	{{ form_label(form.sports, "sports concernés : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.sports, {'attr': {'class': ''}}) }}
+	
+	<button type="submit" id="bds_newsbundle_news_ajouter" name="bds_newsbundle_news[ajouter]" class="btn btn-primary btn-block">{{ affichage }}</button>
+	
+	
+	{{ form_rest(form) }}
+	
+	{{ form_end(form) }}
+	 
+	</div>
 </div>
+
  {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
 {% endblock %}

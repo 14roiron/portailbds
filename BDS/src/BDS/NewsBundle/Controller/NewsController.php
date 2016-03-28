@@ -139,7 +139,8 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
-				'form' =>$form->createView()
+				'form' =>$form->createView(),
+				'affichage' => 'ajouter'
 		));
 	}
 	
@@ -160,7 +161,7 @@ class NewsController extends Controller
 		}
 		
 		//on crée le formulaire
-		$form = $this->createForm( new NewsEditType(), $news );
+		$form = $this->createForm( new NewsType(), $news );
 		
 		//si le visiteur a soumis le formulaire 
 		if ($request->isMethod('POST'))
@@ -187,7 +188,8 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
-				'form' =>$form->createView()
+				'form' =>$form->createView(),
+				'affichage'	=> 'editer'
 		));
 		 
 		
