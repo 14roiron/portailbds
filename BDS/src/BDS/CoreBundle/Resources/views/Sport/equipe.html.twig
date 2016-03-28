@@ -16,11 +16,7 @@
 				<tr>
 					<th>
 						<div class="col-lg-2">
-						{% if gravatar_exists(membre.user.email) %}
-							<img src="{{ gravatar(membre.user.email) }}" width=100%>
-						{% else %}
-							<img src="{{ asset('images/no_profile_pic') }}" width=100%>
-						{% endif %}
+							{{ render(controller("BDSUserBundle:Security:profilePic", {'id': membre.user.id})) }}
 						</div>
 						<div class="col-lg-10">
 							<p><a href="#">{{ membre.user.username }}</a></p>

@@ -12,6 +12,10 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\ImageBundle\Entity\Image", cascade="persist", orphanRemoval=true)
+	 */
+	private $profilePic;
 	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="user", cascade="persist", orphanRemoval=true)
@@ -224,5 +228,29 @@ class User extends BaseUser
     public function removeMembre(\BDS\UserBundle\Entity\Membre $membres)
     {
         $this->membres->removeElement($membres);
+    }
+
+    /**
+     * Set profilePic
+     *
+     * @param \BDS\ImageBundle\Entity\Image $profilePic
+     *
+     * @return User
+     */
+    public function setProfilePic(\BDS\ImageBundle\Entity\Image $profilePic = null)
+    {
+        $this->profilePic = $profilePic;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePic
+     *
+     * @return \BDS\ImageBundle\Entity\Image
+     */
+    public function getProfilePic()
+    {
+        return $this->profilePic;
     }
 }

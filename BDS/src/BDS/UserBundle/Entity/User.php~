@@ -12,6 +12,10 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\ImageBundle\Entity\Image", cascade="persist", orphanRemoval=true)
+	 */
+	private $profilePic;
 	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Membre", mappedBy="user", cascade="persist", orphanRemoval=true)
