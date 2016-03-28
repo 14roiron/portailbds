@@ -7,8 +7,10 @@
 	<title>{% block title %}BDS MinesParistech{% endblock %}</title>
 	
 	{% block stylesheets %}
-		{# On charge le bootstrap depuis le site directement #}
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		{# on charge le bootstrap depuis le dossier web #}
+		<link rel="stylesheet" href="{{ asset('bootstrap-3.3.6-dist/css/bootstrap.min.css') }}">
+		{# On charge le bootstrap depuis le site directement 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> #}
 		 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
 		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
     <link rel="stylesheet" href="{{ asset('bundles/bdscore/css/main.css') }}" type="text/css" />
@@ -147,7 +149,8 @@
   	{% block javascripts %}
 		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    	<script src="{{ asset('bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
+    	{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>#}
     	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
