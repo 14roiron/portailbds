@@ -24,9 +24,9 @@
 						<th>
 							<div class="col-lg-2">
 								{% if gravatar_exists(commentaire.auteur.email) %}
-								<img src="{{ gravatar(commentaire.auteur.email) }}">
+								<img src="{{ gravatar(commentaire.auteur.email) }}" width=100%>
 								{% else %}
-								<img src="{{ asset('images/no_profile_pic') }}">
+								<img src="{{ asset('images/no_profile_pic') }}" width=100%>
 								{% endif %}
 							</div>
 							<div class="col-lg-10">
@@ -40,13 +40,13 @@
 					<th>
 						<div class="col-lg-2">
 							{% if gravatar_exists(app.user.email) %}
-							<img src="{{ gravatar(app.user.email) }}">
+							<img src="{{ gravatar(app.user.email) }}" width=100%>
 							{% else %}
-							<img src="{{ asset('images/no_profile_pic') }}">
+							<img src="{{ asset('images/no_profile_pic') }}" width=100%>
 							{% endif %}
 						</div>
 						<div class="col-lg-10">
-				  			{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+				  			{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id':'form'}}) }}
 	
 	    					{# Les erreurs générales du formulaire. #}
 	    					{{ form_errors(form) }}
@@ -87,4 +87,11 @@
    	{% if news.validation == FALSE %}
    	<a class="btn btn-lg btn-primary" href="{{ path('bds_news_validate', {'sport':domaine.nom, 'id':news.id}) }}">Valider</a>
    	{% endif %}
+{% endblock %}
+
+{% block javascript %}
+
+{{ parent() }}
+
+
 {% endblock %}
