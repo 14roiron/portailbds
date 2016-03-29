@@ -1,5 +1,5 @@
 # portailbds
-TODO (en vrac):
+#TODO (en vrac):
 
 - afficher la video youtube de présentation 
 - integrer assetics pour accelerer le mod prod
@@ -26,7 +26,7 @@ TODO (en vrac):
 - gestion de la "validation user"
 
 
-POUR L’INSTALLATION 
+#POUR L’INSTALLATION 
 
 il persiste un bug dans le datepicker Bundle il faut patcher manuellement le fichier de form :
 public function getName(){ return $this->getBlockPrefix();}
