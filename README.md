@@ -1,6 +1,7 @@
 # portailbds
 #TODO (en vrac):
 
+- utiliser les paramConverter pour tous les controller
 - afficher la video youtube de présentation 
 - integrer assetics pour accelerer le mod prod
 - enlever le sport du coreBundle et lui creer un bundle à lui pour des problemes de sémentique
