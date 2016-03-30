@@ -299,8 +299,44 @@ class EvenementController extends Controller
 				'participations'	=>	$participations,
 				'evenement'			=>	$evenement
 		));
+	}
+
+	public function calendrierAction($domaine)
+	{
+		//on se place dans le bon domaine 
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
+		//on vérifie que l'utilisateur à accès à cette page 
 		
+		//on récupère touts les évènements
+		$listEvents = $domaine->getEvenements();
+		//trouver un moyen de faire le tri 
 		
+		//variables utiles 
+		$anneeDebut = $listEvents->first()->getDebutEvenement()->format('Y');
+		$anneeFin = $listEvents->last()->getFinEvenement()->format('Y');
+		
+		//on donne les jours de la semaine
+		$listJour = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
+		//on donne les mois de l'année 
+		$listMois = array('janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout','septembre', 'octobre', 'novembre', 'decembre');
+		//on fait un tableau contenant toute les dates à afficher 
+		$listDate = $this->get('bds_evenement.manager')->getDate($anneeDebut, $anneeFin);
+		
+		$listAnnee = array();
+		for ($i = $anneeDebut; $i <= $anneeFin; $i++)
+		{
+			$listAnnee[$i] = $i;
+		}
+		
+		//on appelle le template 
+		return $this->render('BDSEvenementBundle:Evenement:calendrier.html.twig', array(
+				'listEvents'	=>	$listEvents,
+				'domaine'		=>	$domaine,
+				'listJour'			=>	$listJour,
+				'listMois'			=>	$listMois,
+				'listDate'			=>	$listDate,
+				'listAnnee'		=>	$listAnnee
+		));
 	}
 }

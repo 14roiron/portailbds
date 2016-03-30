@@ -30,10 +30,6 @@ bds_evenement_edit:
     defaults: { _controller: BDSEvenementBundle:Evenement:edit }
     requirements:
         id: \d*
-        
-bds_evenement_calendrier:
-    path:     /{domaine}/evenement/calendrier
-    defaults: { _controller: BDSEvenementBundle:Evenement:calendar }
     
 bds_evenement_feuille:
     path:     /{domaine}/evenement/{id}/feuilleDeMatche
@@ -42,3 +38,9 @@ bds_evenement_feuille:
 bds_evenement_map:
     path:   /{domaine}/map/form
     defaults: {_controller: BDSEvenementBundle:Map:Form }
+
+bds_evenement_calendrier:
+    path:     /{domaine}/calendrier
+    defaults: {_controller: BDSEvenementBundle:Evenement:calendrier }
+    requirements:
+        annee: \d*

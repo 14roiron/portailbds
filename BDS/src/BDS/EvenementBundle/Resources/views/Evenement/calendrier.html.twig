@@ -1,0 +1,70 @@
+{% extends "BDSEvenementBundle::layout.html.twig" %}
+
+
+{% block title %}
+	Calendrier - {{ parent() }}
+{% endblock %}
+
+{%  block bds_evenement_body %}
+
+<div>
+	<div id="annnee">
+		{%  for annee in listAnnee %}
+		<h2><a href="#">{{ annee }}</a></h2>
+		{% endfor %}
+	</div>
+	<div id="mois">
+		<ul class="list-unstyled list-inline">
+			{% for mois in listMois %}
+			<li id = "{{ loop.index0 }}"><h3><a href="#">{{ mois [:3]}}</a></h3></li> <!--je veux que les 3 première lettres -->
+			{% endfor %}
+		</ul>
+	</div>
+	{% for annee, list_mois in listDate %}
+	<div id="annnee_{{ annee }}">
+		{% for mois, list_jours in list_mois %}
+		<div id="mois_{{ mois }}">
+			<table class="table-active col-lg-7">
+				<thead>
+					<tr>
+						{%  for jour in listJour %}
+						<th class="col-lg-1 text-muted">{{ jour [:3]}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						{% for jour, jour_semaine in list_jours %}
+							{% if loop.first and jour_semaine != 1%}
+						<td height="100" colspan="{{ jour_semaine - 1 }}"></td>
+							{% endif %}
+							{% if annee == "now"|date('Y') and mois == "now"|date('m') and jour == "now"|date('d') %}
+						<td height="100" class="text-center table-bordered"><h2>{{ jour }}</h2></td>
+							{% else %}						
+						<td height="100" class="text-center table-bordered"><h2>{{ jour }}</h2></td>
+							{% endif %}
+							{% if jour_semaine == 7 and loop != loop.last %}
+					</tr><tr>
+							{% endif %}
+							{% if loop.last and jour_semaine != 7 %}
+						<td height="100" colspan="{{ 7- jour_semaine }}"></td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		{% endfor %}
+	</div>
+	{% endfor %}
+	
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/calendrier.js') }}"></script>
+{% endblock %}
