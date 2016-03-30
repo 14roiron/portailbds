@@ -10,18 +10,18 @@
 <div>
 	<div id="annnee">
 		{%  for annee in listAnnee %}
-		<h2><a href="#">{{ annee }}</a></h2>
+		<a id="lien_annee_{{ annee }}" href="#"><h3>{{ annee }}</h3></a>
 		{% endfor %}
 	</div>
 	<div id="mois">
 		<ul class="list-unstyled list-inline">
 			{% for mois in listMois %}
-			<li id = "{{ loop.index0 }}"><h3><a href="#">{{ mois [:3]}}</a></h3></li> <!--je veux que les 3 première lettres -->
+			<li id = "{{ loop.index }}"><a id="lien_mois_{{ loop.index }}" href="#"><h2>{{ mois [:3]}}</h2></a></li> <!--je veux que les 3 première lettres -->
 			{% endfor %}
 		</ul>
 	</div>
 	{% for annee, list_mois in listDate %}
-	<div id="annnee_{{ annee }}">
+	<div id="annee_{{ annee }}">
 		{% for mois, list_jours in list_mois %}
 		<div id="mois_{{ mois }}">
 			<table class="table-active col-lg-7">
