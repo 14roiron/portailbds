@@ -33,9 +33,7 @@ class SportType extends AbstractType
             													'class'		=>	'BDSUserBundle:User',
             													'property'	=>	'username',
             													'multiple'	=>	false
-            ))
-            ->add('ajouter',	'submit')
-        ;
+            ));
     }
     
     /**

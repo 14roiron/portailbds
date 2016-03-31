@@ -5,9 +5,27 @@
 {% endblock %}
 
 {% block bds_sport_body %}
-<h2>Ajouter une Présentation</h2>
-<div class="well">
-	{{ form(form) }}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>ajouter une presentation</h2></div>
+	</div>
+	<div class="panel-body">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_errors(form) }}
+	
+	{{ form_label(form.urlVideo, "url de la video de présentation : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.urlVideo, {'attr': {'class': 'form-control'}}) }}
+	
+	{#{{ form_label(form.presentation, "Presentation : ", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.presentation, {'attr': {'class': ''}}) }}#}
+	
+	{{ form_rest(form) }}
+	<hr>
+	<button type="submit" class="btn btn-primary btn-block">editer</button>
+	
+	{{ form_end(form) }}
+	 
+	</div>
 </div>
  {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
 {% endblock %}

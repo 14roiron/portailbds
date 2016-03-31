@@ -229,4 +229,28 @@ class User extends BaseUser
     {
         $this->membres->removeElement($membres);
     }
+
+    /**
+     * Set profilePic
+     *
+     * @param \BDS\ImageBundle\Entity\Image $profilePic
+     *
+     * @return User
+     */
+    public function setProfilePic(\BDS\ImageBundle\Entity\Image $profilePic = null)
+    {
+        $this->profilePic = $profilePic;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePic
+     *
+     * @return \BDS\ImageBundle\Entity\Image
+     */
+    public function getProfilePic()
+    {
+        return $this->profilePic;
+    }
 }

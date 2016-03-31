@@ -74,15 +74,24 @@ class Sport
     
     /**
      * @var string
+     * 
+     * @ORM\Column(name="urlVideo", type="string", length=255)
+     */
+    
+    private $urlVideo;
+    /**
+     * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
+    
     private $nom;
     /**
      * @var String
      * 
      * @ORM\Column(name="presentation", type="text", nullable=true)
      */
+    
     private $presentation;
     
     /**
@@ -491,5 +500,29 @@ class Sport
     public function getSponsorts()
     {
         return $this->sponsorts;
+    }
+
+    /**
+     * Set urlVideo
+     *
+     * @param string $urlVideo
+     *
+     * @return Sport
+     */
+    public function setUrlVideo($urlVideo)
+    {
+        $this->urlVideo = $urlVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get urlVideo
+     *
+     * @return string
+     */
+    public function getUrlVideo()
+    {
+        return $this->urlVideo;
     }
 }

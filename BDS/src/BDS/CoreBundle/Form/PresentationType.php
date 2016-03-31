@@ -23,8 +23,9 @@ class PresentationType extends AbstractType
 			->add('presentation',		'textarea',		array(
 															'attr' => array(
 																		'class' => 'tinymce'
-															)
-			));
+															)												
+			))
+			->add('urlVideo');
 	}
 	
 	/**

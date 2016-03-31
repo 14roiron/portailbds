@@ -74,15 +74,24 @@ class Sport
     
     /**
      * @var string
+     * 
+     * @ORM\Column(name="urlVideo", type="string", length=255)
+     */
+    
+    private $urlVideo;
+    /**
+     * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
+    
     private $nom;
     /**
      * @var String
      * 
      * @ORM\Column(name="presentation", type="text", nullable=true)
      */
+    
     private $presentation;
     
     /**
