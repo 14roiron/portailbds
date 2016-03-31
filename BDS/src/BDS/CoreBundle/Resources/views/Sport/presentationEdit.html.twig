@@ -13,6 +13,9 @@
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 	{{ form_errors(form) }}
 	
+	<div class="col-lg-12" id="video">
+	</div>
+	
 	{{ form_label(form.urlVideo, "url de la video de présentation : ", {'label_attr': {'class':'control-label'}}) }}
 	{{ form_widget(form.urlVideo, {'attr': {'class': 'form-control'}}) }}
 	
@@ -28,4 +31,12 @@
 	</div>
 </div>
  {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
+{% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script type="text/javascript" src="{{ asset('js/loadVideo.js') }}"></script>
+
 {% endblock %}
