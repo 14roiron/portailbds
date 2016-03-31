@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block bds_sport_body %}
-<div class="panel panel-primary">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">presentation de {{ domaine.nom }}</h3>
 	</div>
@@ -13,12 +13,13 @@
 		{% if domaine.presentation %}
 			<p>{{ domaine.presentation |  raw}}</p>
 			<p><b>{{ domaine.capitaine.username }}</b></p>
-			{# à sécuriser #}
-			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'domaine': domaine.nom}) }}">editer la présentation</a>
 		{% else %}
 			<p> pas encore de présentation pour {{ domaine.nom }} mais cela sera fait rapidement !!</p>
 			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'domaine': domaine.nom}) }}">creer une présentation</a>
 		{% endif %}
 	</div>
 </div>
+
+{# à sécuriser #}
+<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'domaine': domaine.nom}) }}">editer la présentation</a>
 {% endblock %}
