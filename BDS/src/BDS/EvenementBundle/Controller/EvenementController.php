@@ -317,9 +317,9 @@ class EvenementController extends Controller
 		$anneeFin = $listEvents->last()->getFinEvenement()->format('Y');
 		
 		//on donne les jours de la semaine
-		$listJour = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
+		$listJour = $this->get('bds_evenement.manager')->getJourSemaine();
 		//on donne les mois de l'année 
-		$listMois = array('janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout','septembre', 'octobre', 'novembre', 'decembre');
+		$listMois = $this->get('bds_evenement.manager')->getMois();
 		//on fait un tableau contenant toute les dates à afficher 
 		$listDate = $this->get('bds_evenement.manager')->getDate($anneeDebut, $anneeFin);
 		

@@ -5,16 +5,23 @@
 {% endblock %}
 
 {% block body %}
+<div class="row">
+	<div class="col-lg-12">
+	{% block head %}
+	{% endblock %}
+	</div>
+</div>
 
-  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h1>Evenement</h1>
- 
-  
-
-  <hr>
-
-  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
-  {% block bds_evenement_body %}
-  {% endblock %}
+<div class="row">
+		<div class="col-lg-8">  
+		{% block bds_evenement_body %}
+	 	{% endblock %}
+	 	</div>
+	 	
+	 	<div class="col-lg-4">
+	 	{% block aside %}
+	 	{% endblock %}
+	 	</div>
+</div>
 
 {% endblock %}

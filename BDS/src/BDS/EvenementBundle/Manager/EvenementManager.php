@@ -86,13 +86,51 @@ class EvenementManager
 		{
 			//on veut $r[annee][mois][jour] = jour de la semaine
 			$a = $date->format('Y');
-			$m = $date->format('n');
-			$j = $date->format('j');
+			$m = $date->format('m');
+			$j = $date->format('d');
 			$js = str_replace('0', '7', $date->format('w'));
 			$r[$a][$m][$j] = $js;
 			$date->add(new \DateInterval('P1D'));
 		}
 		
 		return $r;
+	}
+	
+	public function getMois()
+	{
+		$mois = array();
+		
+		$mois['01'] = 'Janvier';
+		$mois['02'] = 'Fevrier';
+		$mois['03'] = 'Mars';
+		$mois['04'] = 'Avril';
+		$mois['05'] = 'Mai';
+		$mois['06'] = 'Juin';
+		$mois['07'] = 'Juillet';
+		$mois['08'] = 'Aout';
+		$mois['09'] = 'Septembre';
+		$mois['10'] = 'Octobre';
+		$mois['11'] = 'Novembre';
+		$mois['12'] = 'Decembre';
+		
+		return $mois;
+		
+	}
+	
+	public function getJourSemaine()
+	{
+		$semaine = array();
+		
+		$semaine[1] = 'lundi';
+		$semaine[2] = 'mardi';
+		$semaine[3] = 'mercredi';
+		$semaine[4] = 'jeudi';
+		$semaine[5] = 'vendredi';
+		$semaine[6] = 'samedi';
+		$semaine[7] = 'dimanche';
+		
+		return $semaine;
+
+		
 	}
 }
