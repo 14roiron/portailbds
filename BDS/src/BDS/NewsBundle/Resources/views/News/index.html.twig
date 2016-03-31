@@ -23,7 +23,7 @@
 	        			<h3><a href="{{ path('bds_news_view', {'id': news.id, 'sport': domaine.nom}) }}">{{ news.titre }}</a></h3>
 	        			<p><strong>par <em>{{ news.auteur.username }}</em>, le {{ news.datePublication|date('d/m/Y') }}</strong></p>
 						<p>{{news.contenu|slice(0,150)|raw}}</p>
-	   					<p><em>{{ news.commentaires|length }} commentaires</em></p>
+	   					<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
 	      			</div>
 	      		</div>
 	      		</div>

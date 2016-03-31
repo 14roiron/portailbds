@@ -7,9 +7,13 @@
 
 {% block head %}
 	<div id="annnee">
-		{%  for annee in listAnnee %}
-		<a id="lien_annee_{{ annee }}" href="#"><h3>{{ annee }}</h3></a>
+		<ul class="list-unstyled list-inline">
+			{%  for annee in listAnnee %}
+			<li>
+				<a id="lien_annee_{{ annee }}" href="#"><h3>{{ annee }}</h3></a>
+			</li>
 		{% endfor %}
+		</ul>
 	</div>
 	<div id="mois">
 		<ul class="list-unstyled list-inline">
@@ -73,11 +77,13 @@
 
 	{% for key, event in listEvents  %}
 		<div id="panel_event_{{ event.id }}" class="panel panel-default">
-			<div class="panel panel-heading">{{ event.nom }}</div>
+			<div class="panel-heading">
+				<a href="{{ path('bds_evenement_view', {'domaine':domaine.nom, 'id':event.id}) }}">{{ event.nom }}</a>
+			</div>
 			<div class="panel-body">
 				<div>
-				<span class="glyphicon glyphicon-calendar">{{ event.debutEvenement|date('d/m/Y h:i') }}</span>
-				<span class="glyphicon glyphicon-map-marker">{{ event.lieu.fullAdr }}</span>
+				<span class="glyphicon glyphicon-calendar"> {{ event.debutEvenement|date('d/m/Y h:i') }}</span>
+				<span class="glyphicon glyphicon-map-marker"> {{ event.lieu.fullAdr }}</span>
 				</div>
 			</div>
 		</div>
