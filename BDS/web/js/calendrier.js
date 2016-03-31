@@ -9,9 +9,10 @@
 */
 
 $(document).ready(function(){
-	//on masque les année et les mois 
+	//on masque les année et les mois et les panels 
 	$("[id^=annee_]").hide();
 	$("[id^=mois_]").hide();
+	$("[id^=panel_event_]").hide();
 	
 	//on recupere la date 
 	var laDate = new Date();
@@ -59,6 +60,32 @@ $(document).ready(function(){
 		
 		return false;
 		
+	});
+	
+	//variable pour indiquer le panel courant 
+	var currentPanel = null;
+	
+	$("[id^=lien_event_]").click(function(){
+		
+		var panel = $(this).attr('id').replace('lien_event_','');
+		
+		if(panel != currentPanel){
+			
+			if (currentPanel == null){
+	
+				$("[id=panel_event_"+panel+"]").show();
+			} else {
+				
+				$("[id=panel_event_"+currentPanel+"]").slideUp();
+				$("[id=panel_event_"+panel+"]").slideDown();
+			}
+			
+			$("[id^=lien_event_]").removeClass('active');
+			$("[id=lien_event_"+panel+"]").addClass('active');
+			currentPanel = panel;
+		}
+		
+		return false;
 	});
 	
 	
