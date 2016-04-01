@@ -1,7 +1,3 @@
-bds_core_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSCoreBundle:Default:index }
-
 bds_sport_view:
     path:     /admin/{nom}
     defaults: { _controller: BDSCoreBundle:Sport:view }

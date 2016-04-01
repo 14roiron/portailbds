@@ -1,7 +1,3 @@
-bds_sponsor_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSSponsorBundle:Default:index }
-
 bds_sponsor_add:
     path:     /admin/sponsor/add
     defaults: {_controller: BDSSponsorBundle:Sponsor:add }

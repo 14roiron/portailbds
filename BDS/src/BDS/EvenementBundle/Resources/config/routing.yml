@@ -1,7 +1,3 @@
-bds_evenement_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSEvenementBundle:Default:index }
-    
 bds_evenement_index:
     path:     /{domaine}/evenement/{page}
     defaults: { _controller: BDSEvenementBundle:Evenement:index, page: 1 }
