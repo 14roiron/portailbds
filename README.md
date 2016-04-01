@@ -30,3 +30,8 @@ il persiste un bug dans le datepicker Bundle il faut patcher manuellement le fic
 public function getName(){ return $this->getBlockPrefix();}
 
 pour que ça marche avec 2.8
+
+#A FAIRE QUAND J’AURAIS INTERNET ET UN CHARGEUR
+- mettre à jour la table 
+-generer toutes les entités 
+

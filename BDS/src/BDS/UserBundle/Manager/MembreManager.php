@@ -14,7 +14,7 @@ class MembreManager
 	protected $em;
 	protected $securityContext;
 	
-	public function __construct (entitymanager $em, $securityContext)
+	public function __construct (EntityManager $em, $securityContext)
 	{
 		//on récupère l'entitymanager
 		$this->em = $em;

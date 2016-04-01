@@ -4,3 +4,27 @@
 {{ parent() }}
 
 {% endblock %}
+
+{% block navigation %}
+<div clas="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">Messages</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-bordered table-hover">
+			<tbody>
+				{% for message in listMessage %}
+				<tr class="active-{{ message.importance }}">
+					{{ message.contenu|raw }}
+				</tr>
+				{% else %}
+				<tr>
+					Personne ne t'envois de message, ne t'inquiète pas c'est qu'ils t'aiment trop,
+					il préfère te le dire en face !
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
