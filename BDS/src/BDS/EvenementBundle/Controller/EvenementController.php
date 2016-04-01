@@ -13,7 +13,10 @@ use BDS\EvenementBundle\Form\MAJEvenementType;
 
 class EvenementController extends Controller
 {
-	public function indexAction ($domaine, $page)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine:'nom'}))
+	 */
+	public function indexAction (Sport $domaine, $page)
 	{
 		//si la page est inferieur à 1, pas la peine de l'afficher
 		if ($page < 1)
@@ -22,7 +25,7 @@ class EvenementController extends Controller
 		}
 		
 		//on se place dans le bon domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on vérifie que l'utilisateur à accès à cette page 
 		
@@ -39,24 +42,27 @@ class EvenementController extends Controller
 		
 	}
 	
-	public function viewAction ($domaine, $id, Request $request, $affichage)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
+	public function viewAction (Sport $domaine, Evenement $evenement, Request $request, $affichage)
 	{
 		//on se place dans le bon domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on vérifie que l'utilisateur à accès à cette page
 		
 		//on recupere l'evenement 
-		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
+		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
 		
-		//on lance une exception si l'event n'eiste pas 
+		/*on lance une exception si l'event n'eiste pas 
 		if ($evenement == NULL)
 		{
 			throw new NotFoundHttpException('Evenement "' .$id. '" inexistant');
-		}
+		}*/
 		
 		//on récupère la liste des participations pour donner des noms au labels du formulaire
-		$objParticipations = $evenement->getParticipations();
+		$listParticipations = $evenement->getParticipations();
 		
 		//on creer le formulaire géant 
 		$form = $this->createForm(new MAJEvenementType(),	$evenement);
@@ -79,7 +85,7 @@ class EvenementController extends Controller
 			//on affiche la nouvelle page de l'évènement 
 			return $this->redirect($this->generateUrl('bds_evenement_view', array(
 					'domaine'	=>	$domaine->getNom(),
-					'id'		=> 	$id
+					'id'		=> 	$evenement->getId()
 			)));
 		}
 		//deux affichage possibles 
@@ -89,21 +95,21 @@ class EvenementController extends Controller
 					'domaine' 	=>	$domaine,
 					'evenement'	=>	$evenement,
 					'form'		=>	$form->createView(),
-					'objParticipations'	=>	$objParticipations
+					'objParticipations'	=>	$listParticipations
 					
 			));
 		} 
 		elseif ($affichage == "drag_n_drop")
 		{
-			$participationOui = $this->get('bds_participation.manager')->getParticipation($objParticipations, TRUE);
-			$participationNon = $this->get('bds_participation.manager')->getParticipation($objParticipations, FALSE);
-			$participationAucun = $this->get('bds_participation.manager')->getParticipation($objParticipations, NULL);
+			$participationOui = $this->get('bds_participation.manager')->getParticipation($listParticipations, TRUE);
+			$participationNon = $this->get('bds_participation.manager')->getParticipation($listParticipations, FALSE);
+			$participationAucun = $this->get('bds_participation.manager')->getParticipation($listParticipations, NULL);
 			
 			return $this->render('BDSEvenementBundle:Evenement:drag.html.twig', array(
 					'domaine' 			=>	$domaine,
 					'evenement'			=>	$evenement,
 					'form'				=>	$form->createView(),
-					'objParticipations'	=>	$objParticipations,
+					'objParticipations'	=>	$listParticipations,
 					'participationOui'	=>	$participationOui,
 					'participationNon'	=>	$participationNon,
 					'participationAucun'=>	$participationAucun
@@ -112,12 +118,15 @@ class EvenementController extends Controller
 		}
 	}
 	
-	public function addAction ($domaine, Request $request)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
+	public function addAction (Sport $domaine, Request $request)
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
 		//on récupère le domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on crée un objet Evenement 
 		$evenement = new Evenement();
@@ -188,22 +197,25 @@ class EvenementController extends Controller
 			));
 			
 	}
-	
-	public function editAction ($domaine,$id, Request $request)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
+	public function editAction (Sport $domaine, Evenement $evenement, Request $request)
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
 		//on récupère le domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on crée un objet Evenement 
-		$evenement= $this->get('bds_evenement.manager')->getEvenement($id);;
+		//$evenement= $this->get('bds_evenement.manager')->getEvenement($id);;
 		
-		//on lance une exception si l'évènement n'existe pas 
+		/*on lance une exception si l'évènement n'existe pas 
 		if ($evenement == NULL)
 		{
 			throw new NotFoundHttpException('Evènement "' .$id. '" inexistant');
-		}
+		}*/
+		
 		//on crée le formulaire 
 		$form = $this->createForm(new EvenementType(), $evenement);
 
@@ -233,13 +245,16 @@ class EvenementController extends Controller
 		
 	}
 	
-	public function deleteAction ($domaine, $id)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom}))
+	 */
+	public function deleteAction (Sport $domaine, Evenement $evenement)
 	{
 		//on se place dans le bon domaine
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on récupere l'évènement
-		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
+		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_evenement.manager')->deleteEvenement($evenement);
@@ -250,24 +265,29 @@ class EvenementController extends Controller
 				'evenement' => $evenement
 		));
 	}
-	
-	public function calendarAction ($domaine)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
+	public function calendarAction (Sport $domaine)
 	{
 		//on se place dans le bon domaine
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
-		//on affiche le calendrier (on s'interessera plus tard au visiteur
+		//on affiche le calendrier (on s'interessera plus tard au visiteur)
 		return $this->render('BDSEvenementBundle:Evenement:calendrier.html.twig', array(
 				'domaine'	=> $domaine
 		));
 	}
 	
+	/*
+	 * @parmaConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
 	public function asideAction ( $domaine)
 	{
 		//on se place dans le bon domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
-		//on affiche les evenements filtrés
+		//on affiche les evenements filtrés (le filtre est pour l'instant des plus succint)
 		$evenements = $domaine->getEvenements();
 		
 		//on affiche les évenements dans le bloc aside 
@@ -278,14 +298,17 @@ class EvenementController extends Controller
 
 	}
 	
-	public function feuilleAction ($domaine, $id,  Request $request)
+	/*
+	 * @paramConverter('Sport', option=('mapping(: {'domaine':'nom'}))
+	 */
+	public function feuilleAction (Sport $domaine, Evenement $evenement,  Request $request)
 	{
 		
 		//on se place dans le bon domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on récupère l'évènement 
-		$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
+		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
 		
 		//on charge les participation de l'évènement 
 		$participations = $evenement->getParticipations();
@@ -301,14 +324,17 @@ class EvenementController extends Controller
 		));
 	}
 
-	public function calendrierAction($domaine)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	 */
+	public function calendrierAction(Sport $domaine)
 	{
 		//on se place dans le bon domaine 
-		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on vérifie que l'utilisateur à accès à cette page 
 		
-		//on récupère touts les évènements
+		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
 		$listEvents = $domaine->getEvenements();
 		//trouver un moyen de faire le tri 
 		
