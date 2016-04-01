@@ -19,19 +19,19 @@
 		<hr>
 		<div class="col-lg-12">
 			<div class="col-lg-3">
-				<a><h3>{{ user.membres|length }}</h3></a>
+				<a id="lien_sport"><h3>{{ user.membres|length }}</h3></a>
 				<p class="text-muted">Sports</p>
 			</div>
 			{#  <div class="col-lg-3">
-				<a><h3>{{ user.membres.participations.participation[true]|length }}</h3></a>
+				<a id="lien_participation"><h3>{{ user.membres.participations.participation[true]|length }}</h3></a>
 				<p class="text-muted">{{ partcipations }}</p>
 			</div> #}
 			<div class="col-lg-3">
-				<a><h3>{{ user.news|length }}</h3></a>
+				<a id="lien_news"><h3>{{ user.news|length }}</h3></a>
 				<p class="text-muted">news</p>
 			</div>
 			<div class="col-lg-3">
-				<a><h3>{{ user.commentaires|length }}</h3></a>
+				<a id="lien_commentaire"><h3>{{ user.commentaires|length }}</h3></a>
 				<p class="text-muted">commentaires</p>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 		</div>
 		
 		{# panneau des ports pratiqués par l'utilisateur #}
-		<div class="panel panel-default">
+		<div id="panneau_sport" class="panel panel-default">
 			<div class="panel-heading">
 				<p class="panel-title">Sport Pratiqués par {{ user.username }}</p>
 			</div>
@@ -90,7 +90,7 @@
 		</div>
 		
 		{# panneau des news écrites par l'utilisateur #}
-		<div class="panel panel-default">
+		<div id="panneau_news" class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-title">News écrites par {{ user.username }}</div>
 			</div>
@@ -112,17 +112,18 @@
 	      					</div>
 	      				</div>
 	      			</div>
+	      		</div>
 	    			{% else %}
-	      			<div>{{ user.username }} ne s'exprime pas par écrit il clame ses exploits sur le toit de la Mine</div>
+	    		</div>
+	      		<div>{{ user.username }} ne s'exprime pas par écrit, il clame ses exploits sur le toit de la Mine</div>
 	    		{% endfor %}
- 		 		</div>
- 		 	</div>
+	    	</div>
  		</div>
  		
  		{# panneau des commentaires de l'utilisateur #}
- 		<div class="panel panel-default">
+ 		<div id="panneau_commentaire" class="panel panel-default">
  			<div class="panel-heading">
- 				<div class="panel-title"> COmmentaires de {{ user.username }}</div>
+ 				<div class="panel-title"> Commentaires de {{ user.username }}</div>
  			</div>
  			<div class="panel-body">
  				<table class="table table-striped table-bordered table-hover col-lg-12">
@@ -158,34 +159,15 @@
 </div>
 
 <div class="">
-	<div>
-	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">modifier</a>
-	</div>
-	
-	<div class="media">
-		<div class="media-body">
-	    	<p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
-	    	<p><strong>Email : </strong> {{ user.email }}</p>
 	    	<p><strong>mot de passe : </strong><a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
 	    	<p><strong>sports : </strong><a href="{{ path('bds_user_sport_add') }}">ajouter un sport</a>
-	    		<ul>
-	    			{% for membre in user.membres %}
-	    				<li><a href="{{ path('bds_news_home', {'sport': membre.sport.nom}) }}">{{ membre.sport.nom }}</a><a href="{{ path('bds_user_sport_delete', {'id': membre.id}) }}"> (supprimer)</a></li>
-	    			{% else %}
-	    				<li>pas encore de sport ! il faut en ajouter au moin un !</li>
-	    			{% endfor %}
-				</ul>
-		</div>
-		<div class="media-right">
-			<a href=#>
-			{% if gravatar_exists(user.email) %}
-  				<img class="media-object" src="{{ gravatar(user.email) }}" width="150">
-			{% else %}	
-				<img class="media-object" src={{ asset('images/no_profile_pic') }} width="150">
-			{% endif %}
-			</a>
-		</div>		
-	</div>
+
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('js/profile.js') }}"></script>
 {% endblock %}
