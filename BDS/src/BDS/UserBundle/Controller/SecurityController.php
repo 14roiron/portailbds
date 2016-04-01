@@ -30,10 +30,11 @@ class SecurityController  extends Controller
     	));
   	}
   	
-  	public function profilePicAction (User $user)
+  	public function profilePicAction (User $user, $size=80)
   	{	
   		return $this->render('BDSUserBundle:profile:pic.html.twig', array(
-  				'user' => $user
+  				'user'	=>	$user,
+  				'size'	=>	$size
   		));
   	}
 	
