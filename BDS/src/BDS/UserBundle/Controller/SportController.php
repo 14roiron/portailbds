@@ -48,10 +48,10 @@ class SportController extends Controller
 		
 	}
 	
-	public function deleteAction ($id)
+	public function deleteAction (Membre $membre)
 	{
 		//on récupère le membre de l'utilisateur courant à supprimer 
-		$membre = $this->get('bds_membre.manager')->getMembre($id);
+		//$membre = $this->get('bds_membre.manager')->getMembre($id);
 		
 		//on supprime l'objet de la bdd
 		$this->get('bds_membre.manager')->delete($membre);
