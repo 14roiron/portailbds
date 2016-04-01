@@ -84,17 +84,7 @@ fos_user:
     from_email:
         address:  noreply@bdsmines.fr
         sender_name:  BDS MINES ParisTech
-
-# BladeTesterCalendar Configuration
-#blade_tester_calendar:
-#    driver: doctrine/orm
-#    engine: twig
-#    classes:
-#        event:
-#            entity: BDS\CalendarBundle\Entity\Event
-#        category:
-#            entity: BladeTester\CalendarBundle\Entity\EventCategory
-#            
+           
 # ornicar (gravatar) configuration
 ornicar_gravatar: ~
 
