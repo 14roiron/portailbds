@@ -15,7 +15,7 @@
 	<div class="row">
 		{%  endif %}
 			<div class="col-lg-4" style="height:20em;">
-				<a style="text-decoration:none" href="{{ path('bds_news_home', {'sport':sport.nom}) }} class="thumbnail" >
+				<a style="text-decoration:none" href="{{ path('bds_news_home', {'sport':sport.nom}) }}">
 					{% if sport.fond %}
 					<div class="text-center" style="height: 100%; background: transparent url( {{ asset(sport.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
 					{% else %}	

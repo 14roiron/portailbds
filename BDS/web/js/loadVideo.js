@@ -7,7 +7,7 @@ $(document).ready(function(){
 	
 	if (url != null){
 		//on ajoute la balise Iframe et on passe isBalise à true
-		$("#video").append('"<iframe id="balise" width="100%"height="350" src="'+url+'" frameborder="0" allowfullscreen></iframe>"');
+		$("#video").append('"<iframe class="embed-responsive-item" id="balise" src="'+url+'" allowfullscreen></iframe>"');
 		isBalise = true;
 	}
 	
@@ -15,7 +15,7 @@ $(document).ready(function(){
 		
 		if (isBalise == false){
 			//on ajoute la balise Iframe et on passe isBalise à true
-			$("#video").append('"<iframe id="balise" width="100%"height="350" src="'+$(this).val()+'" frameborder="0" allowfullscreen></iframe>"');
+			$("#video").append('"<iframe id="balise" class="embed-responsive-item" src="'+$(this).val()+'" allowfullscreen></iframe>"');
 			isBalise = true;
 		} else {
 			$("#balise").attr('src', $(this).val())
