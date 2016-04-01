@@ -45,13 +45,14 @@ class SponsorController extends Controller
 		
 	}
 	
-	public function viewAction($nom)
+	
+	public function viewAction(Sponsor $sponsor)
 	{
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
 		
 		//on récupère l'objet sponsor
-		$sponsor = $this->get('bds_sponsor.manager')->getSponsor($nom);
+		//$sponsor = $this->get('bds_sponsor.manager')->getSponsor($nom);
 		
 		//on affiche la page 
 		return $this->render('BDSSponsorBundle:Sponsor:view.html.twig', array(
@@ -61,22 +62,22 @@ class SponsorController extends Controller
 		
 	}
 	
-	public function deleteAction($nom)
+	public function deleteAction(Sponsor $sponsor)
 	{
 		//on se place dans admin 
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
 		
 		//on récupère l'objet sponsort 
-		$sponsort = $this->get('bds_sponsor.manager')->getsponsor($nom);
+		//$sponsort = $this->get('bds_sponsor.manager')->getsponsor($nom);
 		
-		//on revoit une erreur si le sponsort n'existe pas 
-		if ($sponsort == NULL)
+		/*on revoit une erreur si le sponsort n'existe pas 
+		if ($sponsor == NULL)
 		{
 			throw new NotFoundHttpException("le sponsort " .$nom. " n'existe pas.");
-		}
+		}*/
 		
 		//on le supprime 
-		$this->get('bds_sponsor.manager')->delete($sponsort);
+		$this->get('bds_sponsor.manager')->delete($sponsor);
 		
 		//il faudrait renvoyer un petit message avec :-)
 		
