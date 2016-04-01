@@ -151,19 +151,9 @@ class SportController extends Controller
 		));
 	}
 	
-	/*
-	 * @paramConverter('Sport, option=('mapping': {'domaine':'nom'}))
-	 */
+
 	public function presentationAction (Sport $domaine)
 	{
-		//on récupère le sport 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		/*on lance une exception si le sport n'existe pas 
-		if ($domaine == NULL)
-		{
-			throw new NotFoundHttpException("Le sport n'existe pas." );
-		}*/
 		
 		//on passe à la vue 
 		return $this->render('BDSCoreBundle:Sport:presentation.html.twig', array(
