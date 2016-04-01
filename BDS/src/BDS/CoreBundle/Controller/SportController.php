@@ -84,9 +84,6 @@ class SportController extends Controller
 	{
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
-
-		//on récupère le sport 
-		//$sport = $this->get('bds_sport.manager')->getSport($nom);
 		
 		//on crée le formulaire
 		$form = $this->createform( new SportEditType(), $sport);
