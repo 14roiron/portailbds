@@ -95,10 +95,11 @@
 				<div class="panel-title">News écrites par {{ user.username }}</div>
 			</div>
   			<div class="panel-body">
-  				<div class="row">
 	    		{% for news in user.news %}
 	    			{% if loop.index0 is divisible by(3) %}
+	    		{% if loop.index0 != 0 %}
 	    		</div>
+	    		{% endif %}
 				<div class="row">
 					{% endif %}
 					<div class="col-lg-4">
@@ -112,11 +113,10 @@
 	      					</div>
 	      				</div>
 	      			</div>
-	      		</div>
-	    			{% else %}
-	    		</div>
-	      		<div>{{ user.username }} ne s'exprime pas par écrit, il clame ses exploits sur le toit de la Mine</div>
+	    		{% else %}
+	      		<div>{{ user.username }} ne s'exprime pas par écrit, il clame ses exploits sur le toit de la Mine
 	    		{% endfor %}
+	    		</div>
 	    	</div>
  		</div>
  		
