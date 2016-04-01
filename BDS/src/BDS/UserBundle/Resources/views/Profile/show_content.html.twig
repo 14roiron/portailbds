@@ -42,9 +42,11 @@
 	{% block navigation %}
 		<ul class="nav nav-tabs">
 			<li role="presentation" class="active">Profile</li>
+			{% if user == app.user %}
 			<li role="presentation"><a href="#">messages</a></li>
 			<li role="presentation"><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
 			<li role="presentaiotn"><a href="#">statistique</a></li>
+			{% endif %}
 		</ul>
 		<div class="panel panel-default">
 			<div class="panel-heading">
