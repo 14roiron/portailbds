@@ -56,15 +56,6 @@ class SportController extends Controller
 	{
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
-				
-		//on récupere le sport 
-		//$sport = $this->get('bds_sport.manager')->getSport($nom);
-		
-		//on lance une exeption si le sport n'existe pas 
-		if($sport == NULL)
-		{
-			throw new NotFoundHttpException("le sport " .$nom. " n'existe pas.");
-		}
 		
 		//on supprime le sport 
 		$this->get('bds_sport.manager')->delete($sport);
