@@ -361,4 +361,28 @@ class User extends BaseUser
     {
         return $this->messages;
     }
+
+    /**
+     * Set sexe
+     *
+     * @param boolean $sexe
+     *
+     * @return User
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return boolean
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
 }

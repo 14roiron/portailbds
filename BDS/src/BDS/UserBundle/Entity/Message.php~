@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
 	/**
+	 * @var \DateTime
+	 * 
+	 * @ORM\Column(name="date", type="datetime")
+	 */
+	private $date;
+	
+	/**
 	 * @ORM\ManyToOne(targetEntity="BDS\UserBundle\Entity\User", inversedBy="messages")
 	 */
 	private $destinataire;
@@ -25,12 +32,14 @@ class Message
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
 	/**
 	 * @var string
 	 * 
 	 * @ORM\Column(name="importance", type="string")
 	 */
     private $importance;
+    
     /**
      * @var string
      *
@@ -95,5 +104,29 @@ class Message
     public function getDestinataire()
     {
         return $this->destinataire;
+    }
+
+    /**
+     * Set importance
+     *
+     * @param string $importance
+     *
+     * @return Message
+     */
+    public function setImportance($importance)
+    {
+        $this->importance = $importance;
+
+        return $this;
+    }
+
+    /**
+     * Get importance
+     *
+     * @return string
+     */
+    public function getImportance()
+    {
+        return $this->importance;
     }
 }
