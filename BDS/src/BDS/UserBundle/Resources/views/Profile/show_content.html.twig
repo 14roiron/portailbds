@@ -53,6 +53,13 @@
 				<p class="panel-title">{{ user.username }} en bref</p>
 			</div>
 			<div class="panel-body">
+				{% if user.sexe == true %}
+				<p>{{ user.prenom }} est un bel homme viril.</p>
+				{% elseif user.sexe == false %}
+				<p>{{ user.prenom }} est une gracieuse jeune femme.</p>
+				{% else %}
+				<p>{{ user.prenom }} n'a pas de genre !</p>
+				{% endif %}
 				<p><strong>Son petit nom : </strong>{{ user.nom }}</p>
 				<p><strong>Son petit prénom : </strong>{{ user.prenom }}</p>
 				<p><strong> contact :</strong></p>

@@ -1,7 +1,7 @@
 # portailbds
 #TODO (en vrac):
 
-- utiliser les paramConverter pour tous les controller
+- tester les paramConverter
 - integrer assetics pour accelerer le mod prod
 - enlever le sport du coreBundle et lui creer un bundle à lui pour des problemes de sémentique
 - gestion des evenements repetitif (comme les entraienments par exemple)
@@ -14,7 +14,6 @@
 - page participation (résumé pour chaque user)
 - statistiques de l'équipe (qui vient quand)
 - resultats sportifs
-- ajouter le sexe de la personne
 - gestionnaire admin pertinent
 - fixture bundle (pour partager la bdd)
 - utiliser la V4 de bootstrap 
@@ -22,6 +21,7 @@
 - affichage du calendrier dans la branche aside avec un mini calendrier
 - gestion de la "validation capitaine"
 - gestion de la "validation user"
+- mettre en place des testers
 
 
 #POUR L’INSTALLATION 

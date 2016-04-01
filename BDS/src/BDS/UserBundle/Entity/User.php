@@ -4,7 +4,6 @@ namespace BDS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 
 /**
@@ -13,6 +12,13 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
  */
 class User extends BaseUser
 {
+	/**
+	 * @var boolean
+	 * 
+	 * @ORM\Column(name="sexe", type="boolean")
+	 */
+	private $sexe;
+	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Message", mappedBy="destinataire", cascade="persist", orphanRemoval=true)
 	 */
