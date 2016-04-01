@@ -11,11 +11,15 @@ use BDS\NewsBundle\Form\NewsType;
 use BDS\NewsBundle\Entity\Commentaire;
 use BDS\NewsBundle\Form\CommentaireType;
 use BDS\NewsBundle\Manager\NewsManager;
+use BDS\CoreBundle\Entity\Sport;
 
 
 class NewsController extends Controller
 {
-	public function indexAction($sport, $page)
+	/*
+	 * @ParamConverter('Sport', option=('mapping': {'sport':'nom'})
+	 */
+	public function indexAction( Sport $sportEdit, $page)
 	{
 		//si la page est inferieur à 1, pas la peine de chercher
 		if ($page < 1) 
@@ -25,7 +29,7 @@ class NewsController extends Controller
 		
 		//on recupere la liste des news du sport, on en affiche 10 par page 		
 		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
+		//$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on récupere les news
 		$listNews = $sportEdit->getNews();
@@ -41,19 +45,22 @@ class NewsController extends Controller
 				'domaine' => $sportEdit
 		));
 	}
-	public function viewAction($sport, $id, Request $request)
+	/*
+	 * @paramConverter('Sport', option=('mapping': {'sport':'nom'}))
+	 */
+	public function viewAction(Sport $sportEdit, News $news, Request $request)
 	{
 		//on récupère la news
-		$news = $this->get('bds_news.manager')->getNews($id);
+		//$news = $this->get('bds_news.manager')->getNews($id);
 		
 		//on récupère le sport 
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
+		//$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		
-		//on lance une exception si la news n'existe pas 
+		/*on lance une exception si la news n'existe pas 
 		if ($news == NULL)
 		{
 			throw new NotFoundHttpException('News "' .$id. '" inexistante');
-		}
+		}*/
 		
 		//on crée un objet commentaire
 		$commentaire = new Commentaire();
@@ -73,8 +80,8 @@ class NewsController extends Controller
 			
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'sport' => $sport,
-					'id' => $id
+					'sport' => $sportEdit->getNom(),
+					'id' => $news->getId()
 			)));
 			
 			
@@ -98,12 +105,16 @@ class NewsController extends Controller
 		));
 		
 	}
-	public function addAction($sport, Request $request)
+	
+	/*
+	 * @paramConverter('Sport', option=('Mapping': {'sport':'nom'}))
+	 */
+	public function addAction(Sport $sport, Request $request)
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
 		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		//$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//On crée un objet news
 		$news = new News();
@@ -144,21 +155,24 @@ class NewsController extends Controller
 		));
 	}
 	
-	public function editAction($sport, $id, Request $request)
+	/*
+	 * @paramConverter('Sport', option=('Mapping': {'sport':'nom'}))
+	 */
+	public function editAction(Sport $sport, News $news, Request $request)
 	{
 		//verifier que le visiteur à le droit d'acceder à cette page 
 	
 	//onrécupère le sport
-	$sport = $this->get('bds_sport.manager')->getSport($sport);
+	//$sport = $this->get('bds_sport.manager')->getSport($sport);
 	
-	//on récupère la news
+	/*on récupère la news
 		$news = $this->get('bds_news.manager')->getNews($id);
 		
 		//on lance une exception si la news n'existe pas 
 		if ($news == NULL)
 		{
 			throw new NotFoundHttpException('News "' .$id. '" inexistante');
-		}
+		}*/
 		
 		//on crée le formulaire
 		$form = $this->createForm( new NewsType(), $news );
@@ -195,13 +209,16 @@ class NewsController extends Controller
 		
 	}
 	
-	public function deleteAction($sport, $id)
+	/*
+	 * @paramConverter('Sport', option=('Mapping': {'sport':'nom'}))
+	 */
+	public function deleteAction(Sport $sport, News $news)
 	{
 		//on récupere la news
-		$news = $this->get('bds_news.manager')->getNews($id);
+		//$news = $this->get('bds_news.manager')->getNews($id);
 		
 		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		//$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
@@ -213,13 +230,16 @@ class NewsController extends Controller
 		));
 	}
 	
-	public function validateAction($id, $sport)
+	/*
+	 * @paramConverter('Sport', option=('Mapping': {'sport', 'nom'}))
+	 */
+	public function validateAction(News $news, Sport $sport)
 	{
 		//on récupere la news
-		$news = $this->get('bds_news.manager')->getNews($id);
+		//$news = $this->get('bds_news.manager')->getNews($id);
 		
 		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
+		//$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on valide la news 
 		$this->get('bds_news.manager')->validateNews($news);
