@@ -4,6 +4,7 @@ namespace BDS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 
 /**
@@ -36,6 +37,20 @@ class User extends BaseUser
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\Commentaire", mappedBy="auteur")
 	 */
 	private $commentaires;
+	
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="nom", type="string")
+	 */
+	private $nom;
+	
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="prenom", type="string")
+	 */
+	private $prenom;
 	
 	/**
 	 * @ORM\Column(name="id", type="integer")

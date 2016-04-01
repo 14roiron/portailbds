@@ -4,6 +4,7 @@ namespace BDS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 
 /**
@@ -36,6 +37,20 @@ class User extends BaseUser
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\Commentaire", mappedBy="auteur")
 	 */
 	private $commentaires;
+	
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="nom", type="string")
+	 */
+	private $nom;
+	
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="prenom", type="string")
+	 */
+	private $prenom;
 	
 	/**
 	 * @ORM\Column(name="id", type="integer")
@@ -252,5 +267,53 @@ class User extends BaseUser
     public function getProfilePic()
     {
         return $this->profilePic;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
     }
 }

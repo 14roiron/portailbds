@@ -4,6 +4,7 @@ namespace BDS\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use BDS\UserBundle\Entity\User;
 
 class SecurityController  extends Controller
 {
@@ -29,14 +30,8 @@ class SecurityController  extends Controller
     	));
   	}
   	
-  	public function profilePicAction ($id)
-  	{
-  		//on cherche l'utilisateur 
-  		$em = $this->get('doctrine.orm.entity_manager');
-  		$rep = $em->getRepository('BDSUserBundle:User');
-  		
-  		$user = $rep->find($id);
-  		
+  	public function profilePicAction (User $user)
+  	{	
   		return $this->render('BDSUserBundle:profile:pic.html.twig', array(
   				'user' => $user
   		));

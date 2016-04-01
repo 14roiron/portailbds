@@ -17,6 +17,8 @@ class ProfileController  extends Controller
 				throw new AccessDeniedException('This user does not have access to this section.');
 			}*/
 		}
+		
+		//on récupère les évènements auquels participe l'utilisateur 
 		 
 		return $this->render('BDSUserBundle:Profile:show_content.html.twig', array(
 				'user' => $user

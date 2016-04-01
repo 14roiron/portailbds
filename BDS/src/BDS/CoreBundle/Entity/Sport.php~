@@ -501,4 +501,28 @@ class Sport
     {
         return $this->sponsorts;
     }
+
+    /**
+     * Set urlVideo
+     *
+     * @param string $urlVideo
+     *
+     * @return Sport
+     */
+    public function setUrlVideo($urlVideo)
+    {
+        $this->urlVideo = $urlVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get urlVideo
+     *
+     * @return string
+     */
+    public function getUrlVideo()
+    {
+        return $this->urlVideo;
+    }
 }
