@@ -17,7 +17,7 @@ use BDS\CoreBundle\Entity\Sport;
 class NewsController extends Controller
 {
 	/*
-	 * @ParamConverter('Sport', option=('mapping': {'sport':'nom'})
+	 * @ParamConverter("sportEdit", options={"mapping": {"sport": "nom"}})
 	 */
 	public function indexAction( Sport $sportEdit, $page)
 	{
@@ -46,7 +46,7 @@ class NewsController extends Controller
 		));
 	}
 	/*
-	 * @paramConverter('Sport', option=('mapping': {'sport':'nom'}))
+	 * @ParamConverter('sportEdit', options={'mapping': {'sport':'nom'}})
 	 */
 	public function viewAction(Sport $sportEdit, News $news, Request $request)
 	{

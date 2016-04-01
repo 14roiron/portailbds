@@ -82,15 +82,6 @@ class SportController extends Controller
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
 		
-		//on recupere le sport 
-		//$sport = $this->get('bds_sport.manager')->getSport($nom);
-		
-		//on lance une exception si le sport n'existe pas 
-		if ($sport == NULL)
-		{
-			throw new NotFoundHttpException("le sport " .$sport->getNom(). " n'existe pas.");
-		}
-		
 		//on affiche le sport 
 		return $this->render('BDSCoreBundle:Sport:view.html.twig', array(
 				'sport' => $sport,
