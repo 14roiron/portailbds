@@ -13,4 +13,8 @@ bds_user_sport_add:
 bds_user_sport_delete:
     path:     /profile/supprimer/{id}
     defaults: {_controller: BDSUserBundle:Sport:delete }
+    
+bds_user_show:
+    path:     /profile/{username}
+    defaults: {_controller: BDSUserBundle:Profile:show }
        

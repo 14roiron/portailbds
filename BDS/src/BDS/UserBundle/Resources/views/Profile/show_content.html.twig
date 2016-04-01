@@ -1,5 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block body %}
 <div class="well well-lg">
 	<div>
 	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">modifier</a>
@@ -30,3 +33,4 @@
 		</div>		
 	</div>
 </div>
+{% endblock %}

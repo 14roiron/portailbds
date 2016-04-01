@@ -5,7 +5,6 @@
 - integrer assetics pour accelerer le mod prod
 - enlever le sport du coreBundle et lui creer un bundle à lui pour des problemes de sémentique
 - gestion des evenements repetitif (comme les entraienments par exemple)
-- affichage du profil d'un autre utilisateur
 - alerte sur toutes les pages quand on réalise une action 
 - message perso pour les utilisateur (1er pas vers les mails)
 - revoir l'emplacement des images 
