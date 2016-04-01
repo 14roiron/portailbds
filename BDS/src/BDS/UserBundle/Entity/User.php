@@ -14,6 +14,11 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class User extends BaseUser
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Message", mappedBy="destinataire", cascade="persist", orphanRemoval=true)
+	 */
+	private $messages;
+	
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\ImageBundle\Entity\Image", cascade="persist", orphanRemoval=true)
 	 */
 	private $profilePic;
@@ -315,5 +320,39 @@ class User extends BaseUser
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Add message
+     *
+     * @param \BDS\UserBundle\Entity\Message $message
+     *
+     * @return User
+     */
+    public function addMessage(\BDS\UserBundle\Entity\Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param \BDS\UserBundle\Entity\Message $message
+     */
+    public function removeMessage(\BDS\UserBundle\Entity\Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

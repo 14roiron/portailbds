@@ -18,3 +18,6 @@ bds_user_show:
     path:     /{username}/profile
     defaults: {_controller: BDSUserBundle:Profile:show }
        
+bds_user_message:
+    path:     /{username}/message
+    defaults: {_controller: BDSUserBundle:MonUser:Message }

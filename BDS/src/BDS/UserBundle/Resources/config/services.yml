@@ -6,3 +6,7 @@ services:
     bds_membre.manager:
         class:        BDS\UserBundle\Manager\MembreManager
         arguments:    [ @doctrine.orm.entity_manager, @security.context ]
+        
+    bds_user.manager:
+        class:        BDS\userBundle\Manager\UserManager
+        arguments:    [ @doctrine.orm.entity_manager, @security.context ]
