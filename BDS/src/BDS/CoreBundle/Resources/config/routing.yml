@@ -19,7 +19,7 @@ bds_sport_list:
     defaults: { _controller: BDSCoreBundle:Sport:list }
     
 bds_sport_equipe:
-    path:     /{domaine}/equipe
+    path:     /{nom}/equipe
     defaults: {_controller: BDSCoreBundle:Sport:equipe }
     
 bds_sport_presentation:

@@ -129,9 +129,7 @@ class SportController extends Controller
 		
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
+
 	public function equipeAction (Sport $domaine)
 	{
 		//on récupère le domaine 
