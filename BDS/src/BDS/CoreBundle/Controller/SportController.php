@@ -196,9 +196,6 @@ class SportController extends Controller
 		));
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
 	public function motCapitaineAction (Sport $domaine)
 	{
 		//on récupère le sport 
