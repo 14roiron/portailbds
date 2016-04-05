@@ -161,9 +161,6 @@ class SportController extends Controller
 		));
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
 	public function presentationEditAction (Sport $domaine, Request $request)
 	{
 	

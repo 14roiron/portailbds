@@ -27,7 +27,7 @@ bds_sport_presentation:
     defaults: {_controller: BDSCoreBundle:Sport:presentation }
     
 bds_sport_presentation_edit:
-    path:     /{domaine}/presentation/edit
+    path:     /{nom}/presentation/edit
     defaults: {_controller: BDSCoreBundle:Sport:presentationEdit }
     
 bds_sport_motCapitaine:
