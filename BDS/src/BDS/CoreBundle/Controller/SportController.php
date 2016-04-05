@@ -131,16 +131,7 @@ class SportController extends Controller
 	
 
 	public function equipeAction (Sport $domaine)
-	{
-		//on récupère le domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		/*erreur si le sport n'existe pas 
-		if ($domaine ==NULL)
-		{
-			throw new NotFoundHttpException("le sport " .$domaine. " n'existe pas");
-		}*/
-		
+	{	
 		//on récupère les membres du sport 
 		$listMembre = $domaine->getMembres();
 		
@@ -163,10 +154,6 @@ class SportController extends Controller
 	
 	public function presentationEditAction (Sport $domaine, Request $request)
 	{
-	
-		//on récupère le sport 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
 		//on creer le formulaire 
 		$form = $this->createForm(new PresentationType(), $domaine);
 		
@@ -197,22 +184,15 @@ class SportController extends Controller
 	}
 	
 	public function motCapitaineAction (Sport $domaine)
-	{
-		//on récupère le sport 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
+	{		
 		//on le passe à la vue
 		return $this->render('BDSCoreBundle:Sport:motCapitaine.html.twig', array(
 				'domaine' => $domaine
 		));
 	}
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
+
 	public function motCapitaineEditAction (Sport $domaine, Request $request)
 	{
-		//on récupère le sport
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on creer le formulaire
 		$form = $this->createForm(new motCapitaineType(), $domaine);

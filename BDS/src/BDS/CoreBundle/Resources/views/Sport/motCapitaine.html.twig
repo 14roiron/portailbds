@@ -17,7 +17,7 @@
 			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_motCapitaineEdit', {'domaine': domaine.nom}) }}">editer le "mot du capitaine"</a>
 		{% else %}
 			<p> Le capitaine de {{ domaine.nom }} n'a rien publié pour vous, mais cela sera fait rapidement !!</p>
-			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_motCapitaineEdit', {'domaine': domaine.nom}) }}">creer un "mot du capitaine"</a>
+			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_motCapitaineEdit', {'nom': domaine.nom}) }}">creer un "mot du capitaine"</a>
 		{% endif %}
 	</div>
 </div>
