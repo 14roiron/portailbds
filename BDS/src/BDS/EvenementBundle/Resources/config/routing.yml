@@ -1,5 +1,5 @@
 bds_evenement_index:
-    path:     /{domaine}/evenement/{page}
+    path:     /{nom}/evenement/{page}
     defaults: { _controller: BDSEvenementBundle:Evenement:index, page: 1 }
     requirements:
         page: \d*

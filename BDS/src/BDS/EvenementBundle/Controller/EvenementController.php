@@ -13,9 +13,7 @@ use BDS\EvenementBundle\Form\MAJEvenementType;
 
 class EvenementController extends Controller
 {
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine:'nom'}))
-	 */
+
 	public function indexAction (Sport $domaine, $page)
 	{
 		//si la page est inferieur à 1, pas la peine de l'afficher
