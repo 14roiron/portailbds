@@ -1,7 +1,6 @@
 # portailbds
 #TODO (en vrac):
 
-- tester les paramConverter
 - integrer assetics pour accelerer le mod prod
 - enlever le sport du coreBundle et lui creer un bundle à lui pour des problemes de sémentique
 - gestion des evenements repetitif (comme les entraienments par exemple)
