@@ -75,19 +75,21 @@
 		<hr>
    	</div>
 </div>
+
 {% endblock %}
 
 {% block aside %}
 
 {{ parent() }}
-<div>
+<div class="row">
 	<a class="btn btn-sm btn-warning" href="{{ path('bds_news_edit', {'nom':domaine.nom, 'id':news.id}) }}">éditer la news</a>
    	<a class="btn btn-sm btn-danger" href="{{ path('bds_news_delete', {'nom':domaine.nom, 'id': news.id}) }}">supprimer la news</a>
    	<a class="btn btn-sm btn-default" href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">Retour au news</a>
    	{# on s'interesse au news qui n'ont pas encore été validée #}
    	{% if news.validation == FALSE %}
-   	<a class="btn btn-lg btn-primary" href="{{ path('bds_news_validate', {'sport':domaine.nom, 'id':news.id}) }}">Valider</a>
+   	<a class="btn btn-sm btn-primary" href="{{ path('bds_news_validate', {'nom':domaine.nom, 'id':news.id}) }}">Valider</a>
    	{% endif %}
+</div>
 {% endblock %}
 
 {% block javascript %}

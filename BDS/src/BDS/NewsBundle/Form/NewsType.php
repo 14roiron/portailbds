@@ -37,7 +37,8 @@ class NewsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BDS\NewsBundle\Entity\News'
+            'data_class' => 'BDS\NewsBundle\Entity\News',
+        	'allow_extra_fields'	=>	true
         ));
     }
 

@@ -113,12 +113,13 @@ class NewsController extends Controller
 			$this->get('bds_news.manager')->firstSave($news);
 
 			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
 				
 			//on envoie un mail au VP comunication pour qu'il valide la news
 
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'sport' => $sport->getNom(),
+					'nom' => $sport->getNom(),
 					'id' => $news->GetId()
 			)));
 			
