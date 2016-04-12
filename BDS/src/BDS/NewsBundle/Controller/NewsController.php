@@ -63,11 +63,11 @@ class NewsController extends Controller
 		{
 			$this->get('bds_commentaire.manager')->saveCommentaire($commentaire, $news);
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistré.');
+			$request->getSession()->getFlashBag()->add('success', 'Commentaire bien enregistré.');
 			
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'sport' => $sportEdit->getNom(),
+					'nom' => $sportEdit->getNom(),
 					'id' => $news->getId()
 			)));
 			
@@ -112,7 +112,7 @@ class NewsController extends Controller
 			//on enregistre l'objet dans la base de donnée
 			$this->get('bds_news.manager')->firstSave($news);
 
-			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('warning', 'La news '.$news->getTitre().' a été enregistré, elle est maintenant en attente de validation.');
 
 				
 			//on envoie un mail au VP comunication pour qu'il valide la news
@@ -159,11 +159,11 @@ class NewsController extends Controller
 				//on enregistre dans la bdd
 				$this->get('bds_news.manager')->save($news);
 				
-				$request->getSession()->getFlashBag()->add('notice', 'News bien modifiée.');
+				$request->getSession()->getFlashBag()->add('info', 'La news ' .$news->getTitre() .' a été modifiée.');
 				
 				//on affiche la page de la nouvelle news
 				return $this->redirect($this->generateUrl('bds_news_view', array(
-						'domaine' => $sport,
+						'nom' => $sport->getNom(),
 						'id' => $news->GetId()
 				)));
 			}
@@ -182,32 +182,38 @@ class NewsController extends Controller
 	/**
 	 * @ParamConverter("sport", options={"mapping": {"nom": "nom"}})
 	 */
-	public function deleteAction(Sport $sport, News $news)
+	public function deleteAction(Sport $sport, News $news, Request $request)
 	{
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
 		
-		//on rend la page de suppression
-		return $this->render('BDSNewsBundle:News:delete.html.twig', array(
-				'domaine' => $sport,
-				'news' => $news
-		));
+		//on fait un flag
+		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' a été supprimée avec succès.');
+		
+		//on retourne à l'index 
+		return $this->redirect($this->generateUrl('bds_news_home', array(
+				'nom'	=>	$sport->getNom()
+		)));
+		
 	}
 	
 	/**
 	 * @ParamConverter("sport", options={"mapping": {"nom": "nom"}})
 	 */
-	public function validateAction(News $news, Sport $sport)
+	public function validateAction(News $news, Sport $sport, Request $request)
 	{
 		
 		//on valide la news 
 		$this->get('bds_news.manager')->validateNews($news);
 		
-		//on rend la page de validation 
-		return $this->render('BDSNewsBundle:News:validate.html.twig', array(
-				'domaine' => $sport,
-				'news' => $news
-		));
+		//on fait un flag
+		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' est désormais affichée.');
+		
+		//on retourne à l'index
+		return $this->redirect($this->generateUrl('bds_news_home', array(
+				'nom'	=>	$sport->getNom()
+		)));
+
 	}
 }

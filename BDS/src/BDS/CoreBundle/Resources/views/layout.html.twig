@@ -136,7 +136,16 @@
     <div class="container">	
 		<div class= "row">
     		<div id="content" class="col-md-12"> 
+    			<div>
+    				<!-- c'est certain il existe une meilleure façon de faire mais pour l'instant la flemme -->
+    				{% for key in app.session.flashbag.keys %}
+    					{% for message in app.session.flashbag.get(key) %}
+    				<div class='alert alert-{{ key }} alert-dismissible'>{{ message }}</div>
+    					{% endfor %}
+    				{% endfor %}
+    			</div>
 					{% block body %}
+				
 					{% endblock %}
       		</div>
       	</div>	
