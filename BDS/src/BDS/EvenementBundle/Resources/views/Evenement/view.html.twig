@@ -21,7 +21,7 @@
 		{% endif %}
 		<ul class="nav nav-tabs" id="panneau">
 			<li class="active"><a href"#">liste</a></li>
-			<li><a href="{{ path('bds_evenement_view', {'domaine': domaine.nom, 'id': evenement.id}) }}">drag n drop</a></li>
+			<li><a href="{{ path('bds_evenement_view', {'nom': domaine.nom, 'id': evenement.id}) }}">drag n drop</a></li>
 		</ul>
 		<div>
 			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
@@ -51,7 +51,7 @@
 		
 	   	<a class="btn btn-lg btn-warning" href="{{ path('bds_evenement_edit', {'domaine':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
    		<a class="btn btn-lg btn-danger" href="{{ path('bds_evenement_delete', {'domaine':domaine.nom, 'id': evenement.id}) }}">supprimer l'evenement</a>
-   		<a class="btn btn-lg btn-primary" href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">retour aux évènements</a>
+   		<a class="btn btn-lg btn-primary" href="{{ path('bds_evenement_index', {'nom':domaine.nom}) }}">retour aux évènements</a>
 </div>
 
 

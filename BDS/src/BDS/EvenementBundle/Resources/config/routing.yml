@@ -6,7 +6,7 @@ bds_evenement_index:
     
     
 bds_evenement_view:
-    path:     /{domaine}/evenement/view/{id}/{affichage}
+    path:     /{nom}/evenement/view/{id}/{affichage}
     defaults: { _controller: BDSEvenementBundle:Evenement:view, affichage: 'drag_n_drop' }
     requirements:
         id: \d*

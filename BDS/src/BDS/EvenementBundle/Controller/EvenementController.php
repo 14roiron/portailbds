@@ -10,6 +10,7 @@ use BDS\EvenementBundle\Form\EvenementType;
 use BDS\CoreBundle\Entity\Sport;
 use BDS\EvenementBundle\Entity\Participation;
 use BDS\EvenementBundle\Form\MAJEvenementType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class EvenementController extends Controller
 {
@@ -21,9 +22,6 @@ class EvenementController extends Controller
 		{
 			throw new NotFoundHttpException('page "'.$page.'" inexistante');
 		}
-		
-		//on se place dans le bon domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on vérifie que l'utilisateur à accès à cette page 
 		
@@ -40,24 +38,12 @@ class EvenementController extends Controller
 		
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	/**
+	 * @ParamConverter("domaine", options={"mapping": {"nom": "nom"}})
+	 * @ParamConverter("evenement", options={"mapping": {"id": "id"}})
 	 */
-	public function viewAction (Sport $domaine, Evenement $evenement, Request $request, $affichage)
+	public function viewAction ($affichage, Sport $domaine, Evenement $evenement, Request $request)
 	{
-		//on se place dans le bon domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		//on vérifie que l'utilisateur à accès à cette page
-		
-		//on recupere l'evenement 
-		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
-		
-		/*on lance une exception si l'event n'eiste pas 
-		if ($evenement == NULL)
-		{
-			throw new NotFoundHttpException('Evenement "' .$id. '" inexistant');
-		}*/
 		
 		//on récupère la liste des participations pour donner des noms au labels du formulaire
 		$listParticipations = $evenement->getParticipations();
