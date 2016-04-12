@@ -242,13 +242,11 @@ class EvenementController extends Controller
 		));
 	}
 	
-	/*
-	 * @parmaConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
+	
 	public function asideAction ( $domaine)
 	{
 		//on se place dans le bon domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
+		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on affiche les evenements filtrés (le filtre est pour l'instant des plus succint)
 		$evenements = $domaine->getEvenements();

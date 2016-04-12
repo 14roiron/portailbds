@@ -4,7 +4,7 @@
 		<ul class="list-unstyled">
 			{% for evenement in evenements %}
 				<li>
-					<a class="btn btn-sm btn-primary" href="{{ path('bds_evenement_view', {'id':evenement.id, 'domaine': domaine.nom}) }}">{{ evenement.nom }}</a>
+					<a class="btn btn-sm btn-primary" href="{{ path('bds_evenement_view', {'id':evenement.id, 'nom': domaine.nom}) }}">{{ evenement.nom }}</a>
 				    {{ evenement.debutEvenement|date('d/m/Y') }}
 				</li>
 				<hr>

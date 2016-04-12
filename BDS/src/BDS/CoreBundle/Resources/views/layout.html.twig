@@ -52,12 +52,12 @@
     	{% block menu %}
     	{% if domaine is defined %}
     	<ul class="nav navbar-nav">
-        	<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}"><span class="glyphicon glyphicon-home"/></a></li>
+        	<li><a href="{{ path('bds_news_home', {'nom':domaine.nom}) }}"><span class="glyphicon glyphicon-home"/></a></li>
         	<li><a href="{{ path('bds_sport_list') }}">Sports</a></li>
         	<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ domaine.nom }}<span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
-          			<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">News</a></li>
+          			<li><a href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">News</a></li>
             		<li><a href="{{ path('bds_sport_equipe', {'nom':domaine.nom}) }}">équipe</a></li>
             		<li><a href="{{ path('bds_sport_motCapitaine', {'nom':domaine.nom}) }}">Le mot du capitaine</a></li>
             		<li>
