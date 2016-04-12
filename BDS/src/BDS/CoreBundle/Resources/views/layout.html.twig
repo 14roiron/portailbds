@@ -140,7 +140,12 @@
     				<!-- c'est certain il existe une meilleure façon de faire mais pour l'instant la flemme -->
     				{% for key in app.session.flashbag.keys %}
     					{% for message in app.session.flashbag.get(key) %}
-    				<div class='alert alert-{{ key }} alert-dismissible'>{{ message }}</div>
+    				<div class="alert alert-{{ key }} alert-dismissible" role="alert">
+    					<button type="button" class="close" data-dismiss="alert" aria-label="close">
+    						<span aria-hidden="true">&times;</span>
+    					</button>
+    					{{ message }}
+    				</div>
     					{% endfor %}
     				{% endfor %}
     			</div>
