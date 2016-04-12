@@ -16,7 +16,7 @@ bds_evenement_add:
     defaults: { _controller: BDSEvenementBundle:Evenement:add }
     
 bds_evenement_delete:
-    path:     /{domaine}/evenement/delete/{id}
+    path:     /{nom}/evenement/delete/{id}
     defaults: { _controller: BDSEvenementBundle:Evenement:delete }
     requirements:
         id: \d*

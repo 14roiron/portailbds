@@ -106,9 +106,6 @@ class EvenementController extends Controller
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
-		//on récupère le domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
 		//on crée un objet Evenement 
 		$evenement = new Evenement();
 		
@@ -225,17 +222,13 @@ class EvenementController extends Controller
 			));
 		
 	}
-	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom}))
+	/**
+	 * 
+	 * @ParamConverter("domaine", options={"mapping": {"nom": "nom"}})
+	 * @ParamConverter("evenement", options={"mapping": {"id": "id"}})
 	 */
 	public function deleteAction (Sport $domaine, Evenement $evenement)
 	{
-		//on se place dans le bon domaine
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		//on récupere l'évènement
-		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_evenement.manager')->deleteEvenement($evenement);
