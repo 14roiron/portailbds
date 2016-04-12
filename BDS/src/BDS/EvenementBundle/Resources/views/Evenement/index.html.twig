@@ -7,7 +7,7 @@
 
 {% block bds_evenement_body %}
 
- <a class="btn btn-lg btn-success" href="{{ path('bds_evenement_add', {'domaine': domaine.nom}) }}">ajouter un evenement</a>
+ <a class="btn btn-lg btn-success" href="{{ path('bds_evenement_add', {'nom': domaine.nom}) }}">ajouter un evenement</a>
   <h2>Liste des evenements</h2>
   <ul>
     {% for evenement in listEvents %}

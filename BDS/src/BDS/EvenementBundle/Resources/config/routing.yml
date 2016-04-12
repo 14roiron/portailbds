@@ -12,7 +12,7 @@ bds_evenement_view:
         id: \d*
     
 bds_evenement_add:
-    path:     /{domaine}/evenement/add
+    path:     /{nom}/evenement/add
     defaults: { _controller: BDSEvenementBundle:Evenement:add }
     
 bds_evenement_delete:

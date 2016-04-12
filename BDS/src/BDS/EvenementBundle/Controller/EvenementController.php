@@ -102,9 +102,6 @@ class EvenementController extends Controller
 		}
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
 	public function addAction (Sport $domaine, Request $request)
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
