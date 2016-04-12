@@ -50,15 +50,6 @@ class ImageController extends Controller
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
 				
-		//on récupère l'image 
-		//$image = $this->get('bds_image.manager')->findImage($nom);
-		
-		/*on lance un exception si l'image n'existe pas 
-		if ($image == NULL)
-		{
-			throw new NotFoundHttpException("L'image " .$nom. " n'existe pas.");
-		} */
-		
 		//on affiche l'image 
 		return $this->render('BDSImageBundle:Image:view.Html.twig', array(
 				'image' => $image,
@@ -71,15 +62,7 @@ class ImageController extends Controller
 		//on se place dans Admin
 		$domaine = $this->get('bds_sport.manager')->getSport('admin');
 		
-		//on récupère l'image 
-		//$image = $this->get('bds_image.manager')->findImage($nom);
-		
-		/*on lance une exception si l'image n'existe pas 
-		if ($image == NULL)
-		{
-			throw new NotFoundHttpException("l'image " .$nom. " n'existe pas.");
-		}*/
-		
+
 		//on supprime l'image 
 		$this->get('bds_image.manager')->removeImage($image);
 		
