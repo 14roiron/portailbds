@@ -183,18 +183,6 @@ class EvenementController extends Controller
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
 		
-		//on récupère le domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		//on crée un objet Evenement 
-		//$evenement= $this->get('bds_evenement.manager')->getEvenement($id);;
-		
-		/*on lance une exception si l'évènement n'existe pas 
-		if ($evenement == NULL)
-		{
-			throw new NotFoundHttpException('Evènement "' .$id. '" inexistant');
-		}*/
-		
 		//on crée le formulaire 
 		$form = $this->createForm(new EvenementType(), $evenement);
 
@@ -273,8 +261,9 @@ class EvenementController extends Controller
 
 	}
 	
-	/*
-	 * @paramConverter('Sport', option=('mapping(: {'domaine':'nom'}))
+	/**
+	 * @ParamConverter("domaine", options={"mapping": {"nom":"nom"}})
+	 * @ParamConverter("evenement", options={"mapping": {"id": "id"}})
 	 */
 	public function feuilleAction (Sport $domaine, Evenement $evenement,  Request $request)
 	{

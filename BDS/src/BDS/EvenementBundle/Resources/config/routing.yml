@@ -28,7 +28,7 @@ bds_evenement_edit:
         id: \d*
     
 bds_evenement_feuille:
-    path:     /{domaine}/evenement/{id}/feuilleDeMatche
+    path:     /{nom}/evenement/{id}/feuilleDeMatche
     defaults: { _controller: BDSEvenementBundle:Evenement:feuille }
     
 bds_evenement_map:
