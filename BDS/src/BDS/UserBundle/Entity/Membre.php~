@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Membre
 {
 	/**
+	 * @var \DateTime
+	 * @ORM\Column(name="inscripsion", type="datetime")
+	 */
+	private $inscripsion;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="membre")
 	 */
 	private $participations;

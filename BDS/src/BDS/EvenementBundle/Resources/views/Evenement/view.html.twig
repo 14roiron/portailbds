@@ -49,8 +49,8 @@
 	</div>
 </div>
 		
-	   	<a class="btn btn-lg btn-warning" href="{{ path('bds_evenement_edit', {'domaine':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
-   		<a class="btn btn-lg btn-danger" href="{{ path('bds_evenement_delete', {'domaine':domaine.nom, 'id': evenement.id}) }}">supprimer l'evenement</a>
+	   	<a class="btn btn-lg btn-warning" href="{{ path('bds_evenement_edit', {'nom':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
+   		<a class="btn btn-lg btn-danger" href="{{ path('bds_evenement_delete', {'nom':domaine.nom, 'id': evenement.id}) }}">supprimer l'evenement</a>
    		<a class="btn btn-lg btn-primary" href="{{ path('bds_evenement_index', {'nom':domaine.nom}) }}">retour aux évènements</a>
 </div>
 

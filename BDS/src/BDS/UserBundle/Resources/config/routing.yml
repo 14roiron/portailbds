@@ -17,3 +17,7 @@ bds_user_show:
 bds_user_message:
     path:     /{username}/message
     defaults: {_controller: BDSUserBundle:MonUser:Message }
+    
+bds_user_stats:
+    path:     /{username}/stats
+    defaults: {_controller: BDSUserBundle:MonUser:stats }

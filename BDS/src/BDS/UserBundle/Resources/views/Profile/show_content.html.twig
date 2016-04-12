@@ -45,7 +45,7 @@
 			{% if user == app.user %}
 			<li role="presentation"><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
 			<li role="presentation"><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
-			<li role="presentaiotn"><a href="#">statistique</a></li>
+			<li role="presentaiotn"><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
 			{% endif %}
 		</ul>
 		<div class="panel panel-default">
@@ -81,7 +81,7 @@
 				<div class="row">
 				{%  endif %}
 					<div class="col-lg-6" style="height:10em;">
-						<a style="text-decoration:none" href="{{ path('bds_news_home', {'sport':membre.sport.nom}) }}">
+						<a style="text-decoration:none" href="{{ path('bds_news_home', {'nom':membre.sport.nom}) }}">
 							{% if membre.sport.fond %}
 							<div class="text-center" style="height: 100%; background: transparent url( {{ asset(membre.sport.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
 							{% else %}	
@@ -117,7 +117,7 @@
 	      					{# à terme j'aimerai que ce soit le logo de la news #}
 	      					<img src="{{ asset(news.sports[0].logo.getWebPath) }}">
 	      					<div class="caption">
-	        					<h3><a href="{{ path('bds_news_view', {'id': news.id, 'sport': news.sports[0].nom}) }}">{{ news.titre }}</a></h3>
+	        					<h3><a href="{{ path('bds_news_view', {'id': news.id, 'nom': news.sports[0].nom}) }}">{{ news.titre }}</a></h3>
 								<p>{{news.contenu|slice(0,150)|raw}}</p>
 	   							<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
 	      					</div>
@@ -148,7 +148,7 @@
 									<p><a>{{ commentaire.auteur.username }} </a>{{ commentaire.contenu }}</p>
 									<p class="text-muted">
 										{{ commentaire.datePublication|date('d/m/Y') }} dans 
-										<a href="{{ path('bds_news_view', {'sport':commentaire.news.sports[0].nom, 'id':commentaire.news.id}) }}">
+										<a href="{{ path('bds_news_view', {'nom':commentaire.news.sports[0].nom, 'id':commentaire.news.id}) }}">
 											{{ commentaire.news.titre }}
 										</a>
 									</p>
