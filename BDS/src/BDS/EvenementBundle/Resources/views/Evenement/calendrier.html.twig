@@ -78,7 +78,7 @@
 	{% for key, event in listEvents  %}
 		<div id="panel_event_{{ event.id }}" class="panel panel-default">
 			<div class="panel-heading">
-				<a href="{{ path('bds_evenement_view', {'domaine':domaine.nom, 'id':event.id}) }}">{{ event.nom }}</a>
+				<a href="{{ path('bds_evenement_view', {'nom':domaine.nom, 'id':event.id}) }}">{{ event.nom }}</a>
 			</div>
 			<div class="panel-body">
 				<div>

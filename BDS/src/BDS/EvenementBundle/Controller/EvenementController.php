@@ -268,12 +268,6 @@ class EvenementController extends Controller
 	public function feuilleAction (Sport $domaine, Evenement $evenement,  Request $request)
 	{
 		
-		//on se place dans le bon domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
-		
-		//on récupère l'évènement 
-		//$evenement = $this->get('bds_evenement.manager')->getEvenement($id);
-		
 		//on charge les participation de l'évènement 
 		$participations = $evenement->getParticipations();
 		
@@ -288,13 +282,8 @@ class EvenementController extends Controller
 		));
 	}
 
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
 	public function calendrierAction(Sport $domaine)
 	{
-		//on se place dans le bon domaine 
-		//$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on vérifie que l'utilisateur à accès à cette page 
 		
