@@ -175,8 +175,9 @@ class EvenementController extends Controller
 			));
 			
 	}
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
+	/**
+	 * @ParamConverter("domaine", options={"mapping": {"nom": "nom"}})
+	 * @ParamConverter("evenement", options={"mapping": {"id": "id"}})
 	 */
 	public function editAction (Sport $domaine, Evenement $evenement, Request $request)
 	{

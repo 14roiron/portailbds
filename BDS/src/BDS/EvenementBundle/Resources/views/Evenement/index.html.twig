@@ -16,7 +16,7 @@
         du {{ evenement.debutEvenement | date('d/m/Y H:i:s') }},
         au {{ evenement.finEvenement |date('d/m/Y H:i:s') }}
         <p>
-        	<a class="btn btn-md btn-warning" href="{{ path('bds_evenement_edit', {'domaine':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
+        	<a class="btn btn-md btn-warning" href="{{ path('bds_evenement_edit', {'nom':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
    			<a class="btn btn-md btn-danger" href="{{ path('bds_evenement_delete', {'nom':domaine.nom, 'id':evenement.id}) }}">supprimer l'evenement</a>
    			<a class="btn btn-md btn-primary" href="{{ path('bds_evenement_feuille', {'domaine':domaine.nom, 'id':evenement.id}) }}">feuille de match</a>
    		</p>
