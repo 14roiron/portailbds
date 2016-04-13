@@ -10,7 +10,6 @@
 - personaliser bootstrap
 - securité du site 
 - mettre des glyphicones un peu partout 
-- page participation (résumé pour chaque user)
 - statistiques de l'équipe (qui vient quand)
 - resultats sportifs
 - gestionnaire admin pertinent
