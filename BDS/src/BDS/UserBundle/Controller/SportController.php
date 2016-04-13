@@ -31,7 +31,7 @@ class SportController extends Controller
 			//on enregistre l'objet dans la base de donnée
 			$this->get('bds_membre.manager')->save($membre);
 			
-			$request->getSession()->getFlashBag()->add('notice', 'le sport a bien été ajouté.');
+			$request->getSession()->getFlashBag()->add('success', 'le sport '.$membre->getSport()->getNom().' a bien été ajouté.');
 			
 			//on envoie un mail au capitaine pour qu'il valide
 			

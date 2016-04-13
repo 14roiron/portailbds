@@ -1,6 +1,61 @@
-{% extends "BDSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-<h2>ajouter un sport</h2>
-<div class="well">{{ form(form) }}</div>
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block body %}
+
+<div class="col-lg-12">
+	<div class="col-lg-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Paramettres Personels</p>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td><a href="{{ path('fos_user_profile_edit') }}">Profile</a></td>
+							</tr>
+							<tr>
+								<td><a href="{{ path('fos_user_change_password') }}">Sécurité</a></td>
+							</tr>
+							{% for membre in app.user.membres %}
+								<tr>
+									<td><a href="#">{{ membre.sport.nom }}</a></td>
+								</tr>
+							{% endfor %}
+							<tr class="info">
+								<td><a href="">Ajouter un sport</a></td>
+							</tr>
+							<tr>
+								<td><a href="{{ path('fos_user_profile_show') }}">Retour</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+
+	<div class="col-lg-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">Ajouter un sport</p>
+			</div>
+			<div class="panel-body">
+					{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+					{{ form_errors(form) }}
+					
+					{{ form_label(form.sport, "Sport à ajouter : ", {'label_attr': {'class':'control-label'}}) }}
+					{{ form_widget(form.sport, {'attr': {'class': 'form-control'}}) }}
+					
+					{{ form_rest(form) }}
+					
+					<button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+					
+					{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

@@ -22,10 +22,9 @@ class MembreType extends AbstractType
 															'class'			=>	'BDSCoreBundle:Sport',
 															'property'		=>	'nom',
 															'expanded'		=>	true,
-															'multiple'		=>	false,
+															'multiple'		=>	true,
 
 			))
-			->add('ajouter',			'submit')
 			;
 	}
 	
