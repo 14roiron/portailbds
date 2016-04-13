@@ -25,3 +25,11 @@
 		</div>
 	</div>
 {% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script type="text/javascript" src="{{ asset('js/miniCal.js') }}"></script>
+
+{% endblock %}

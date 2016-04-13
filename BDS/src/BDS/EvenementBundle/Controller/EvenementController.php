@@ -243,19 +243,34 @@ class EvenementController extends Controller
 	}
 	
 	
-	public function asideAction ( $domaine)
+	public function asideAction ( $domaine, $annee = null)
 	{
+		//on récupère l'année courante 
+		if ($annee == null)
+		{
+			$annee = date('Y');
+		}
+		
 		//on se place dans le bon domaine 
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
-		//on affiche les evenements filtrés (le filtre est pour l'instant des plus succint)
-		$evenements = $domaine->getEvenements();
+		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
+		$listEvents = $domaine->getEvenements();
+		//trouver un moyen de faire le tri 
 		
-		//on affiche les évenements dans le bloc aside 
+		//on donne les mois de l'année 
+		$listMois = $this->get('bds_evenement.manager')->getMois();
+		//on fait un tableau contenant toute les dates à afficher 
+		$listDate = $this->get('bds_evenement.manager')->getDate($annee, $annee);
+		
+		
+		//on appelle le template 
 		return $this->render('BDSEvenementBundle:Evenement:aside.html.twig', array(
-				'evenements'	=>	$evenements,
-				'domaine'		=>	$domaine	
-		));	
+				'listEvents'	=>	$listEvents,
+				'domaine'		=>	$domaine,
+				'listMois'		=>	$listMois,
+				'listDate'		=>	$listDate,
+		));
 
 	}
 	

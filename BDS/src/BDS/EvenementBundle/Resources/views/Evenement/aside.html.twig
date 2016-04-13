@@ -1,14 +1,47 @@
 <div class="panel panel-default">	
 	<div class="panel-heading"><h2>évènements à venir</h2></div>
 	<div class="panel-body">
-		<ul class="list-unstyled">
-			{% for evenement in evenements %}
-				<li>
-					<a class="btn btn-sm btn-primary" href="{{ path('bds_evenement_view', {'id':evenement.id, 'nom': domaine.nom}) }}">{{ evenement.nom }}</a>
-				    {{ evenement.debutEvenement|date('d/m/Y') }}
-				</li>
-				<hr>
-			{% endfor %}
-		</ul>
+		{% for annee, list_mois in listDate %}
+		{% for mois, list_jours in list_mois %}
+		<div id="tableau_{{ mois }}_{{ annee }}">
+			<div class = "col-lg-12">
+				<a><span id="gauche_{{ mois }}" class="glyphicon glyphicon-chevron-left"/></a>
+				 {{ listMois[mois] }} {{ annee }} 
+				<a></span><span id="droite_{{ mois }}" class="glyphicon glyphicon-chevron-right"/></a>
+			</div>
+			<table class="table-active col-lg-12">
+				<tbody>
+					<tr>
+					{% for jour, jour_semaine in list_jours %}
+						{% if loop.first and jour_semaine != 1 %}
+						<td colspan="{{ jour_semaine - 1 }}">
+						{% endif %}
+						{% if annee == "now"|date('Y') and mois == "now"|date('m') and jour == "now"|date('d') %}
+						<td class="text-center table-bordered">{{ jour }}
+						{% else %}
+						<td class="text-center table-bordered">{{ jour }}
+						{% endif %}
+							<ul class="list-inline">
+							{% for event in listEvents %}
+								{% if event.debutEvenement|date('d/m/Y') == jour~"/"~mois~"/"~annee %}
+								<li><a id="lien_event_{{ event.id }}" href="#"><span class="glyphicon glyphicon-info-sign"></a></a></span></li>
+								{% endif %}
+							{% endfor %}
+							</ul>
+						</td>
+						{% if jour_semaine == 7 and loop != loop.last %}
+					</tr>
+					<tr>
+						{% endif %}
+						{% if loop.last and jour_semaine != 7 %}
+						<td colspan="{{ 7 - jour_semaine }}"></td>
+						{% endif %}
+					{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		{% endfor %}
+		{% endfor %}
 	</div>
 </div>

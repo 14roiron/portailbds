@@ -1,12 +1,6 @@
 /**
  * 
  */
-/*jQuery(function($){
-	
-	//on cache toute les année et tous les mois 
-	$("")
-});
-*/
 
 $(document).ready(function(){
 	//on masque les année et les mois et les panels 

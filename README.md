@@ -17,7 +17,7 @@
 - fixture bundle (pour partager la bdd)
 - utiliser la V4 de bootstrap 
 - passer à symphony3
-- affichage du calendrier dans la branche aside avec un mini calendrier
+- Ajax du mini calendrier
 - gestion de la "validation capitaine"
 - gestion de la "validation user"
 - mettre en place des testers
