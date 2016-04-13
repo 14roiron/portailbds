@@ -169,9 +169,12 @@ class SportController extends Controller
 				//on enregistre dans la bdd
 				$this->get('bds_sport.manager')->save($domaine);
 				
+				//on met un flag
+				$request->getSession()->getFlashBag()->add('success', 'La présentation de '.$domaine->getNom().' a été modifiée.');
+				
 				//on affiche la nouvelle présentation 
 				return $this->redirect($this->generateUrl('bds_sport_presentation', array(
-						'domaine'	=> $domaine->getNom(),
+						'nom'	=> $domaine->getNom(),
 				)));
 			}
 		}

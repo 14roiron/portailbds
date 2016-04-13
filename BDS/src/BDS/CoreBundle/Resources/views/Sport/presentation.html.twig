@@ -20,11 +20,10 @@
 			<p><b>{{ domaine.capitaine.username }}</b></p>
 		{% else %}
 			<p> pas encore de présentation pour {{ domaine.nom }} mais cela sera fait rapidement !!</p>
-			<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'nom': domaine.nom}) }}">creer une présentation</a>
 		{% endif %}
 	</div>
 </div>
 
 {# à sécuriser #}
-<a class="btn btn-lg btn-default" href="{{ path('bds_sport_presentation_edit', {'nom': domaine.nom}) }}">editer la présentation</a>
+<a class="btn btn-block btn-default" href="{{ path('bds_sport_presentation_edit', {'nom': domaine.nom}) }}">editer la présentation</a>
 {% endblock %}
