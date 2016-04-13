@@ -1,0 +1,46 @@
+{% extends "BDSCoreBundle:Sport:layout.html.twig" %}
+
+{% block title %}
+	membres de l'équipe de {{ domaine.nom }}
+{% endblock %}
+
+{% block bds_sport_body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>Membre de m'équipe de {{ domaine.nom }}</h2></div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-stiped table-bordered table-hover col-lg-12">
+			<tbody>
+				{% for membre in listMembre %}
+				<tr>
+					<td class="col-lg-1">
+						{{ render(controller("BDSUserBundle:Security:profilePic", {'username': membre.user.username, 'size':150})) }}
+					</td>
+					<td>
+						<p><a href="{{ path('bds_user_show', {'username': membre.user.username}) }}">{{ membre.user.username }}</a></p>
+					</td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
+							<a class="btn btn-primary"><span class="glyphicon glyphicon-ok"/> Valider</a>
+						</div>
+					</td>
+					<td>
+						<!-- formulaire pour les role -->
+					</td>
+				</tr>
+				{%  else %}
+				<tr>
+					<th>
+						<p>Pas encore de membre !! Il faut composer une équipe pour pouvoir jouer ;-)</p>
+					</th>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{% endblock %}

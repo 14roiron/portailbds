@@ -38,5 +38,8 @@ bds_sport_motCapitaineEdit:
     path:     /{nom}/mot_du_capitaine/edit
     defaults: {_controller: BDSCoreBundle:Sport:motCapitaineEdit }
    
+bds_capitaine_equipe:
+    path:     /capitaine/{nom}/equipe
+    defaults: {_controller: BDSCoreBundle:Sport:CapitaineEquipe }
     
     

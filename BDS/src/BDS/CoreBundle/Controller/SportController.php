@@ -226,4 +226,18 @@ class SportController extends Controller
 			));
 		
 	}
+	
+	public function CapitaineEquipeAction (Sport $domaine)
+	{
+		//verifier que l'utilisateur courant est le capitaine 
+		
+		//on récupère les membres du sport
+		$listMembre = $domaine->getMembres();
+		
+		//on passe à la vue
+		return $this->render('BDSCoreBundle:Sport:capitaineEquipe.html.twig', array(
+				'domaine'		=>	$domaine,
+				'listMembre'	=>	$listMembre
+			));
+	}
 }
