@@ -214,7 +214,7 @@ class SportController extends Controller
 		
 				//on affiche la nouvelle présentation
 				return $this->redirect($this->generateUrl('bds_sport_motCapitaine', array(
-						'domaine'	=> $domaine->getNom(),
+						'nom'	=> $domaine->getNom(),
 				)));
 			}
 		}
