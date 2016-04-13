@@ -31,6 +31,9 @@ bds_news_validate:
     defaults: { _controller: BDSNewsBundle:News:validate }
     requirements:
         id: \d*
+bds_capitaine_news:
+    path:     /capitaine/{nom}/news
+    defaults: {_controller: BDSNewsBundle:News:CapitaineNews }
 
 bds_home_page:
     pattern: /

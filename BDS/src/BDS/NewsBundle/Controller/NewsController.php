@@ -216,4 +216,17 @@ class NewsController extends Controller
 		)));
 
 	}
+	
+	public function CapitaineNewsAction (Sport $domaine)
+	{
+		//on verifie que l'utilisateur courant est bien le capitaine 
+		
+		//on recupere les news du domaine 
+		$listNews = $domaine->getNews();
+		
+		return $this->render('BDSNewsBundle:News:capitaineNews.html.twig', array(
+				'domaine'	=>	$domaine,
+				'listNews'	=>	$listNews
+		));
+	}
 }

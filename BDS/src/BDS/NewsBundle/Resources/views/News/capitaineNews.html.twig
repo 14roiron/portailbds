@@ -1,0 +1,45 @@
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	News de {{ domaine.nom }}
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>News de {{ domaine.nom }}</h2></div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-stiped table-bordered table-hover col-lg-12">
+			<tbody>
+				{% for news in listNews %}
+				<tr>
+					<td class="col-lg-1">
+						<img src="{{ asset(domaine.logo.getWebPath) }}" width="100%">
+					</td>
+					<td>
+						<p><a href="{{ path('bds_news_view', {'nom': domaine.nom, 'id':news.id}) }}"><strong>{{ news.titre }}</strong></a></p>
+						<p>{{ news.resumer }}</p>
+					</td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
+							<a class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/> Editer</a>
+							<a class="btn btn-primary"><span class="glyphicon glyphicon-ok"/> Valider</a>
+						</div>
+					</td>
+				</tr>
+				{%  else %}
+				<tr>
+					<th>
+						<p>Pas encore de membre !! Il faut composer une équipe pour pouvoir jouer ;-)</p>
+					</th>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{% endblock %}
