@@ -19,6 +19,7 @@
 - gestion de la "validation capitaine"
 - gestion de la "validation user"
 - mettre en place des testers
+-pour la selection des sports précocher les sports déjà sélectionnés (faire pareil pour le delete)
 
 
 #POUR L’INSTALLATION 
