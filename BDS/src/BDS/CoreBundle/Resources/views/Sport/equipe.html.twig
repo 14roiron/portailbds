@@ -19,7 +19,7 @@
 							{{ render(controller("BDSUserBundle:Security:profilePic", {'id': membre.user.id})) }}
 						</div>
 						<div class="col-lg-10">
-							<p><a href="#">{{ membre.user.username }}</a></p>
+							<p><a href="{{ path('bds_user_show', {'username': membre.user.username}) }}">{{ membre.user.username }}</a></p>
 						</div>
 					</th>
 				</tr>

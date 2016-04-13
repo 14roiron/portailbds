@@ -12,7 +12,7 @@ bds_user_sport_delete:
     
 bds_user_show:
     path:     /{username}/profile
-    defaults: {_controller: BDSUserBundle:Profile:show }
+    defaults: {_controller: BDSUserBundle:MonUser:show }
        
 bds_user_message:
     path:     /{username}/message
