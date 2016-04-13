@@ -16,7 +16,6 @@
 - utiliser la V4 de bootstrap 
 - passer à symphony3
 - Ajax du mini calendrier
-- gestion de la "validation capitaine"
 - gestion de la "validation user"
 - mettre en place des testers
 -pour la selection des sports précocher les sports déjà sélectionnés (faire pareil pour le delete)

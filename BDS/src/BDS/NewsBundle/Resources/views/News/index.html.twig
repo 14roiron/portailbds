@@ -11,22 +11,20 @@
   		<div class="panel-body">
   			<div class="row">
 	    		{% for news in listNews %}
-	    			{% if loop.index0 is divisible by(3) %}
-	    	</div>
-			<div class="row">
-					{% endif %}
+	    		{% if app.user == domaine.capitaine or news.validation == true %}
 				<div class="col-lg-4">
-	      		<div class="thumbnail">
-	      			{# à terme j'aimerai que ce soit le logo de la news #}
-	      			<img src="{{ asset(domaine.logo.getWebPath) }}">
-	      			<div class="caption">
-	        			<h3><a href="{{ path('bds_news_view', {'id': news.id, 'nom': domaine.nom}) }}">{{ news.titre }}</a></h3>
-	        			<p><strong>par <em>{{ news.auteur.username }}</em>, le {{ news.datePublication|date('d/m/Y') }}</strong></p>
-						<p>{{news.contenu|slice(0,150)|raw}}</p>
-	   					<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
-	      			</div>
+		      		<div class="thumbnail">
+		      			{# à terme j'aimerai que ce soit le logo de la news #}
+		      			<img src="{{ asset(domaine.logo.getWebPath) }}">
+		      			<div class="caption">
+		        			<h3><a href="{{ path('bds_news_view', {'id': news.id, 'nom': domaine.nom}) }}">{{ news.titre }}</a></h3>
+		        			<p><strong>par <em>{{ news.auteur.username }}</em>, le {{ news.datePublication|date('d/m/Y') }}</strong></p>
+							<p>{{news.contenu|slice(0,150)|raw}}</p>
+		   					<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
+		      			</div>
+		      		</div>
 	      		</div>
-	      		</div>
+	      		{% endif %}
 	    		{% else %}
 	      		<div>Pas (encore !) de news</div>
 	    		{% endfor %}

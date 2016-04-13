@@ -12,7 +12,7 @@ class NewsManager
 	protected $em;
 	protected $securityContext;
 	
-	public function __construct(entityManager $em, $securityContext)
+	public function __construct(EntityManager $em, $securityContext)
 	{
 		//on recupere l'entityManager dont on va se servir 
 		$this->em = $em;
@@ -38,7 +38,7 @@ class NewsManager
 		return $this->getRepository()->findOneById($id);
 	}
 	
-	public function firstSave(news $news)
+	public function firstSave(News $news)
 	{
 		/*
 		 * la news arrive d'un commentaire elle contient donc déjà 
@@ -61,7 +61,7 @@ class NewsManager
 		
 	}
 	
-	public function save( news $news)
+	public function save( News $news)
 	{
 		/*
 		 * la news arrive d'un commentaire elle contient donc déjà
@@ -101,6 +101,4 @@ class NewsManager
 		//on MAJ la bdd
 		$this->em->flush();
 	}
-	
-	
 }

@@ -199,7 +199,7 @@ class EvenementController extends Controller
 			
 			//on affiche la page du nouvel évenement
 			return $this->redirect($this->generateUrl('bds_evenement_view', array(
-					'domaine'	=>	$domaine->getNom(),
+					'nom'	=>	$domaine->getNom(),
 					'id'		=> $evenement->getId()
 			)));
 		}
@@ -228,9 +228,7 @@ class EvenementController extends Controller
 				'evenement' => $evenement
 		));
 	}
-	/*
-	 * @paramConverter('Sport', option=('mapping': {'domaine':'nom'}))
-	 */
+	
 	public function calendarAction (Sport $domaine)
 	{
 		//on se place dans le bon domaine
