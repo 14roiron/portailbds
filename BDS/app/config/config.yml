@@ -81,6 +81,9 @@ fos_user:
     registration:
         confirmation:
             enabled:  true
+    profile:
+        form:
+            type: bds_user_edit
     from_email:
         address:  noreply@bdsmines.fr
         sender_name:  BDS MINES ParisTech
