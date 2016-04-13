@@ -15,7 +15,7 @@
 								<td><a href="{{ path('fos_user_profile_edit') }}">Profile</a></td>
 							</tr>
 							<tr>
-								<td><a href="#">Sécurité</a></td>
+								<td><a href="{{ path('fos_user_change_password') }}">Sécurité</a></td>
 							</tr>
 							{% for membre in app.user.membres %}
 								<tr>

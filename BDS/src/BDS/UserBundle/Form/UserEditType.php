@@ -19,10 +19,6 @@ class UserEditType extends AbstractType
 			->add('adresse',			new LieuType()		)
 			->add('sexe'									)
 			->add('anniversaire',		'collot_datetime'	)
-			->add('profilePic',			new ImageLieeType(),		array(
-																		'required'	=>	FALSE
-			))
-															
 			;
 	}
 	
