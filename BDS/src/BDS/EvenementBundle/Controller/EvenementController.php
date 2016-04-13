@@ -163,7 +163,7 @@ class EvenementController extends Controller
 			
 			//on affiche la page du nouvel évenement
 			return $this->redirect($this->generateUrl('bds_evenement_view', array(
-					'domaine'	=>	$domaine->getNom(),
+					'nom'	=>	$domaine->getNom(),
 					'id'		=> $evenement->getId()
 			)));
 		}
