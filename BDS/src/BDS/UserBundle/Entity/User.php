@@ -4,6 +4,7 @@ namespace BDS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 
 /**
@@ -23,6 +24,11 @@ class User extends BaseUser
 	 * @ORM\OneToMany(targetEntity="BDS\UserBundle\Entity\Message", mappedBy="destinataire", cascade="persist", orphanRemoval=true)
 	 */
 	private $messages;
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade="persist", orphanRemoval=true)
+	 */
+	private $adresse;
 	
 	/**
 	 * @ORM\OneToOne(targetEntity="BDS\ImageBundle\Entity\Image", cascade="persist", orphanRemoval=true)
@@ -48,6 +54,12 @@ class User extends BaseUser
 	 * @ORM\OneToMany(targetEntity="BDS\NewsBundle\Entity\Commentaire", mappedBy="auteur")
 	 */
 	private $commentaires;
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="telephone", type="string")
+	 */
+	private $telephone;
 	
 	/**
 	 * @var string
@@ -384,5 +396,53 @@ class User extends BaseUser
     public function getSexe()
     {
         return $this->sexe;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \BDS\EvenementBundle\Entity\Lieu $adresse
+     *
+     * @return User
+     */
+    public function setAdresse(\BDS\EvenementBundle\Entity\Lieu $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \BDS\EvenementBundle\Entity\Lieu
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param string $telephone
+     *
+     * @return User
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
     }
 }

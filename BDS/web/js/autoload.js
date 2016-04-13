@@ -33,8 +33,15 @@ function initMap(){
 	 */
 	autocomplete.addListener('place_changed', fillInAddress);
 	
-	//on cree un objet LatLng avec la position de base la map: la meuh
+	//on cree un objet LatLng avec la position de base la map
+	if (document.getElementById('lat').value != null && document.getElementById('lng').value != null){
+		//centré sur l'emplacement prérempli
+		var myLatLng = {lat: Number(document.getElementById('lat').value), lng: Number(document.getElementById('lng').value)};
+	} else {
+	//centrer sur la meuh
 	var myLatLng = {lat: 48.841776, lng: 2.341166};
+	}
+	
 	//on initialise la map
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: myLatLng,

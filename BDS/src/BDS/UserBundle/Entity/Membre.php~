@@ -41,8 +41,7 @@ class Membre
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
+    
     /**
      * Get id
      *
@@ -104,6 +103,7 @@ class Membre
     public function __construct()
     {
         $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscripsion = new \DateTime();
     }
 
     /**
@@ -138,5 +138,29 @@ class Membre
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    /**
+     * Set inscripsion
+     *
+     * @param \DateTime $inscripsion
+     *
+     * @return Membre
+     */
+    public function setInscripsion($inscripsion)
+    {
+        $this->inscripsion = $inscripsion;
+
+        return $this;
+    }
+
+    /**
+     * Get inscripsion
+     *
+     * @return \DateTime
+     */
+    public function getInscripsion()
+    {
+        return $this->inscripsion;
     }
 }
