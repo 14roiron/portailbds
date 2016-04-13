@@ -40,7 +40,15 @@
 				   	
 				    {# Les erreurs générales du formulaire. #}
 				    {{ form_errors(form) }}
-
+					<div class="col-lg-12">
+						<div class="col-lg-3">
+							{{ render(controller('BDSUserBundle:Security:profilePic', {'username':app.user.username, 'size':250})) }}
+						</div>
+						<div class="col-lg-9">
+							<a class="btn btn-primary" href="{{ path('bds_user_pic') }}">Changer la photo de profile</a>
+						</div>
+					</div>
+					
 				   	{{ form_label(form.username, "nom d'utilisateur : ", {'label_attr': {'class': 'control-label'}}) }}
 				   	{{ form_widget(form.username, {'attr' : {'class': 'form-control'}}) }}
 

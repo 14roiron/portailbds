@@ -26,7 +26,7 @@ class SportType extends AbstractType
             ->add('logo',		new ImageLieeType(),		array(
             													'required'	=> FALSE
             ))
-            ->add('fond',		new ImagelieeType(),		array(
+            ->add('fond',		new ImageLieeType(),		array(
             													'required'	=>	FALSE
             ))
             ->add('capitaine',	'entity',					array(

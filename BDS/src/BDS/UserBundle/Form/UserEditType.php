@@ -5,6 +5,7 @@ namespace BDS\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use BDS\EvenementBundle\Form\LieuType;
+use BDS\ImageBundle\Form\ImageLieeType;
 
 class UserEditType extends AbstractType
 {
@@ -18,6 +19,9 @@ class UserEditType extends AbstractType
 			->add('adresse',			new LieuType()		)
 			->add('sexe'									)
 			->add('anniversaire',		'collot_datetime'	)
+			->add('profilePic',			new ImageLieeType(),		array(
+																		'required'	=>	FALSE
+			))
 															
 			;
 	}

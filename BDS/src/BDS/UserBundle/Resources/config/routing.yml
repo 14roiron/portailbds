@@ -20,4 +20,9 @@ bds_user_message:
     
 bds_user_stats:
     path:     /{username}/stats
-    defaults: {_controller: BDSUserBundle:MonUser:stats }
+    defaults: {_controller: BDSUserBundle:MonUser:Stats }
+    
+bds_user_pic:
+    path:     /profilePic/changer_tof
+    defaults: {_controller: BDSUserBundle:MonUser:Pic }
+    

@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use BDS\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use BDS\UserBundle\BDSUserBundle;
+use BDS\UserBundle\Form\PicEditType;
 
 class MonUserController  extends Controller
 {
@@ -103,5 +105,37 @@ class MonUserController  extends Controller
 				'user' => $user
 	
 		));
+	}
+	
+	public function PicAction (Request $request)
+	{
+		//on récupère l'utilisateur courant 
+		$user = $this->get('security.context')->getToken()->getUser();
+		if (!is_object($user) || !$user instanceof UserInterface) {
+			throw new AccessDeniedException('This user does not have access to this section.');
+		}
+		
+		//on creer le formulaire 
+		$form = $this->createForm(new PicEditType(), $user);
+		
+		//on fait le lien requete formulaire 
+		$form->handleRequest($request);
+		
+		//on passe par une étape de validation 
+		if ($form->isValid())
+		{
+			//on insert dans la bdd
+			$this->get('bds_user.manager')->save($user);
+			
+			$request->getSession()->getFlashBag()->add('success', 'Votre photo de profil a bie été modifiée. ');
+			
+		} else {
+			$request->getSesion()->getFlashBag()->add('danger', "Le formulaire n'est pas valide.");
+		}
+		
+		return $this->render('BDSUserBundle:MonUser:pic.html.twig', array(
+				'form' =>	$form->createView()
+		));
+		
 	}
 }
