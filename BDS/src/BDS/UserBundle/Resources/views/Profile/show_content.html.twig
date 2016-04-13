@@ -56,15 +56,30 @@
 				{% if user.sexe == true %}
 				<p>{{ user.prenom }} est un bel homme viril.</p>
 				{% elseif user.sexe == false %}
-				<p>{{ user.prenom }} est une gracieuse jeune femme.</p>
+				<p>{{ user.username }} est une gracieuse jeune femme.</p>
 				{% else %}
-				<p>{{ user.prenom }} n'a pas de genre !</p>
+				<p>{{ user.username }} n'a pas de genre !</p>
 				{% endif %}
 				<p><strong>Son petit nom : </strong>{{ user.nom }}</p>
 				<p><strong>Son petit prénom : </strong>{{ user.prenom }}</p>
+				<p><span class="glyphicon glyphicon-gift"/>
+					{% if user.anniversaire %}
+						{{ user.anniversaire|date('d/m/Y') }}
+					{% endif %}
 				<p><strong> contact :</strong></p>
-				<p><span class="glyphicon glyphicon-phone-alt"/></p>
+				<p><span class="glyphicon glyphicon-phone-alt"/>
+					{% if user.telephone %}
+						{{ user.telephone }}
+					{% endif %}
+				</p>
 				<p><span class="glyphicon glyphicon-envelope"/> {{ user.email }}</p>
+				<p><span class="glyphicon glyphicon-map-marker"/> 
+					{% if user.adresse %}
+						<strong>Adresse : </strong> {{ user.adresse.fullAdr }}
+				</p>
+				{# la map #}
+				<div id="map" style="height: 300px; margin-top: 10px;"></div>
+					{% endif %}
 			</div>
 		</div>
 		
@@ -179,5 +194,16 @@
 {% block javascripts %}
 	{{ parent() }}
 	
+	<script type="text/javascript">
+		{% if user.adresse %}
+			var myLat = {{ user.adresse.lat }};
+			var myLng = {{ user.adresse.lng }};
+			var fullAdr = "{{ user.adresse.fullAdr }}";
+		{% endif %}
+	</script>
+	<script async defer 
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+	</script>
 	<script type="text/javascript" src="{{ asset('js/profile.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/Map.js') }}"></script>
 {% endblock %}

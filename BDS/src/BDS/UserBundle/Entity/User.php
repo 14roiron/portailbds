@@ -5,6 +5,7 @@ namespace BDS\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
+use Symfony\Component\Validator\Constraints\Date;
 
 
 /**
@@ -60,6 +61,13 @@ class User extends BaseUser
 	 * @ORM\Column(name="telephone", type="string")
 	 */
 	private $telephone;
+	
+	/**
+	 * @var date
+	 * 
+	 * @ORM\Column(name="anniversaire", type="date", nullable=true)
+	 */
+	private $anniversaire;
 	
 	/**
 	 * @var string
@@ -444,5 +452,29 @@ class User extends BaseUser
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Set anniversaire
+     *
+     * @param \DateTime $anniversaire
+     *
+     * @return User
+     */
+    public function setAnniversaire($anniversaire)
+    {
+        $this->anniversaire = $anniversaire;
+
+        return $this;
+    }
+
+    /**
+     * Get anniversaire
+     *
+     * @return \DateTime
+     */
+    public function getAnniversaire()
+    {
+        return $this->anniversaire;
     }
 }

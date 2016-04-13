@@ -11,12 +11,14 @@ class UserEditType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->remove('current_password'					)
-			->add('prenom',				'text'			)
-			->add('nom',				'text'			)
-			->add('telephone',			'text'			)
-			->add('adresse',			new LieuType()	)
-			->add('sexe'								)
+			->remove('current_password'						)
+			->add('prenom',				'text'				)
+			->add('nom',				'text'				)
+			->add('telephone',			'text'				)
+			->add('adresse',			new LieuType()		)
+			->add('sexe'									)
+			->add('anniversaire',		'collot_datetime'	)
+															
 			;
 	}
 	
