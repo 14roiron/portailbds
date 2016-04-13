@@ -29,7 +29,7 @@
 	<div id="annee_{{ annee }}">
 		{% for mois, list_jours in list_mois %}
 		<div id="mois_{{ mois }}">
-			<table class="table-active col-lg-12">
+			<table class="table col-lg-12">
 				<thead>
 					<tr>
 						{%  for jour in listJour %}
@@ -44,7 +44,7 @@
 						<td height="100" colspan="{{ jour_semaine - 1 }}"></td>
 							{% endif %}
 							{% if annee == "now"|date('Y') and mois == "now"|date('m') and jour == "now"|date('d') %}
-						<td height="100" class="text-center table-bordered"><h2>{{ jour }}</h2>
+						<td height="100" class="text-center table-bordered info"><h2>{{ jour }}</h2>
 							{% else %}						
 						<td height="100" class="text-center table-bordered"><h2>{{ jour }}</h2>
 							{% endif %}
