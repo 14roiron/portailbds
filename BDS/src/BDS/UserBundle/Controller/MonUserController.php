@@ -9,6 +9,9 @@ use BDS\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BDS\UserBundle\BDSUserBundle;
 use BDS\UserBundle\Form\PicEditType;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Model\UserInterface;
 
 class MonUserController  extends Controller
 {
@@ -130,7 +133,8 @@ class MonUserController  extends Controller
 			$request->getSession()->getFlashBag()->add('success', 'Votre photo de profil a bie été modifiée. ');
 			
 		} else {
-			$request->getSesion()->getFlashBag()->add('danger', "Le formulaire n'est pas valide.");
+			//il s'affiche tout le temps c'est pas normal 
+			$request->getSession()->getFlashBag()->add('danger', "Le formulaire n'est pas valide.");
 		}
 		
 		return $this->render('BDSUserBundle:MonUser:pic.html.twig', array(

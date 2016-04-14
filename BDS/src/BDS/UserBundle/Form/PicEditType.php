@@ -17,6 +17,8 @@ class PicEditType extends AbstractType
 			->remove('adresse')
 			->remove('sexe')
 			->remove('anniversaire')
+			->remove('username')
+			->remove('email')
 			->add('profilePic', new ImageLieeType(),		array(
 																'required'	=>	false
 			));

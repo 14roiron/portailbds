@@ -35,5 +35,4 @@ class UserManager
 		$this->em->persist($user);
 		$this->em->flush();
 	}
-	
 }

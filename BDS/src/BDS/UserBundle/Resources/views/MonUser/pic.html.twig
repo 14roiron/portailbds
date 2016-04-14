@@ -38,8 +38,18 @@
 					<div class="col-lg-3">
 						{{ render(controller('BDSUserBundle:Security:profilePic', {'username':app.user.username, 'size':250})) }}
 					</div>
-					<div>
-						{{ form(form) }}
+					<div class="col-lg-9">
+						{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+						{{ form_errors(form) }}
+						
+						{{ form_label(form.profilePic, "Photo de profil : ", {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(form.profilePic, {'attr': {'class': 'form-control'}}) }}
+						
+						{{ form_rest(form) }}
+						<hr>
+						<button type="submit" class="btn btn-primary btn-block">Modifier</button>
+						
+						{{ form_end(form) }}
 					</div>
 				</div>
 			</div>
