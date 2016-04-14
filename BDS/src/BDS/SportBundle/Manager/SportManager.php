@@ -1,9 +1,9 @@
 <?php
 
-namespace BDS\CoreBundle\Manager;
+namespace BDS\SportBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use BDS\ImageBundle\Entity\Image;
 
 class SportManager
@@ -19,7 +19,7 @@ class SportManager
 	public function getRepository()
 	{
 		//on récuère la bdd
-		return $this->em->getRepository('BDSCoreBundle:Sport');
+		return $this->em->getRepository('BDSSportBundle:Sport');
 	}
 	
 	public function getSport($nom)
