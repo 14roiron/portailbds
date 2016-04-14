@@ -98,9 +98,9 @@ class SportController extends Controller
 			$request->getSession()->getFlashBag()->add('success', 'Le sport '.$sport->getNom().' a bien été modifié.');
 				
 			//on redirige vers l page de visualisation du sport
-			/*return $this->redirect($this->generateUrl('bds_sport_view', array(
+			return $this->redirect($this->generateUrl('bds_sport_view', array(
 					'nom' => $sport->getNom()
-			)));*/
+			)));
 		}
 		
 		//le formuaire n'st pas valide donc on le passe à la vue
