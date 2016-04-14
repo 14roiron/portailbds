@@ -9,7 +9,7 @@ use BDS\SportBundle\Entity\Sport;
 use BDS\UserBundle\Entity\Membre;
 use BDS\UserBundle\Form\MembreType;
 
-class SportController extends Controller
+class MembreController extends Controller
 {
 	public function addAction(Request $request)
 	{
