@@ -24,7 +24,7 @@ class EvenementType extends AbstractType
             ->add('info',					'text', array('required' =>false))
             ->add('maxInscrit',				'integer', array('required' => false))
             ->add('sports',					'entity',		array(
-            													'class'		=>	'BDSCoreBundle:Sport',
+            													'class'		=>	'BDSSportBundle:Sport',
             													'property'	=>	'nom',
             													'multiple'	=>	'true',
             													'expanded'	=>	'true',

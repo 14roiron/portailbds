@@ -26,7 +26,7 @@ class SponsorType extends AbstractType
             															'required'	=>	FALSE
             ))
             ->add('sport',				'entity',					array(
-            															'class'	=>	'BDSCoreBundle:sport',
+            															'class'	=>	'BDSSportBundle:sport',
             															'property'	=>	'nom',
             															'multiple'	=> false,
             															'expanded'	=> false

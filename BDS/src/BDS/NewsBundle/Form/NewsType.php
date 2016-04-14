@@ -5,7 +5,7 @@ namespace BDS\NewsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 
 class NewsType extends AbstractType
 {
@@ -23,7 +23,7 @@ class NewsType extends AbstractType
             'attr' => array(
             'class' => 'tinymce')))
             ->add('sports',				'entity',		array(
-            												'class'			=>	'BDSCoreBundle:Sport',
+            												'class'			=>	'BDSSportBundle:Sport',
             												'property'		=>	'nom',
             												'multiple'		=>	true,
             												'expanded'		=>	true,

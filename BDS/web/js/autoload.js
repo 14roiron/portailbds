@@ -34,7 +34,7 @@ function initMap(){
 	autocomplete.addListener('place_changed', fillInAddress);
 	
 	//on cree un objet LatLng avec la position de base la map
-	if (document.getElementById('lat').value != null && document.getElementById('lng').value != null){
+	if (document.getElementById('lat').value != '' && document.getElementById('lng').value != ''){
 		//centré sur l'emplacement prérempli
 		var myLatLng = {lat: Number(document.getElementById('lat').value), lng: Number(document.getElementById('lng').value)};
 	} else {

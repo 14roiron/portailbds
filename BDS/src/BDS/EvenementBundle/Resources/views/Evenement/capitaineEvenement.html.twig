@@ -10,6 +10,8 @@
 		<div class="panel-title"><h2>Evenements de {{ domaine.nom }}</h2></div>
 	</div>
 	<div class="panel-body">
+		<a class="btn btn-success btn-block" href="{{ path('bds_evenement_add', {'nom': domaine.nom}) }}">Ajouter</a>
+		<hr>
 		<table class="table table-stiped table-bordered table-hover col-lg-12">
 			<tbody>
 				{% for event in listEvents %}
@@ -19,8 +21,10 @@
 					</td>
 					<td>
 						<div class="btn-group">
-							<a class="btn btn-danger" href="{{ path('bds_evenement_delete', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
+							<a class="btn btn-danger" href="{{ path('bds_evenement_delete', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-trash"/> Supprimer</a>
 							<a class="btn btn-warning" href="{{ path('bds_evenement_edit', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-pencil"/> Editer</a>
+							<a class="btn btn-info" href="{{ path('bds_evenement_feuille', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-eye-open"/> Voir Compo</a>
+							<a class="btn btn-primary" href="{{ path('bds_evenement_edit', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-pencil"/> Editer Compo</a>
 						</div>
 					</td>
 				</tr>

@@ -4,7 +4,7 @@ namespace BDS\UserBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use BDS\UserBundle\Entity\User;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use Doctrine\Common\Collections\Criteria;
 use BDS\UserBundle\Entity\Membre;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

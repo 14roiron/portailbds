@@ -159,7 +159,7 @@ class EvenementController extends Controller
 				$this->get('bds_evenement.manager')->save($evenement);
 			}
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Evenement bien enregistré.');
+			$request->getSession()->getFlashBag()->add('success', 'Evenement'. $evenement->getNom().' bien enregistré.');
 			
 			//on affiche la page du nouvel évenement
 			return $this->redirect($this->generateUrl('bds_evenement_view', array(
