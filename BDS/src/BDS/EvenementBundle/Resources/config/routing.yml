@@ -34,3 +34,7 @@ bds_evenement_feuille:
 bds_evenement_calendrier:
     path:     /{nom}/calendrier
     defaults: {_controller: BDSEvenementBundle:Evenement:calendrier }
+
+bds_capitaine_evenement:
+    path:     /capitaine/{nom}/evenement
+    defaults: {_controller: BDSEvenementBundle:Evenement:CapitaineEvenement }

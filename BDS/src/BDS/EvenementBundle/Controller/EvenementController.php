@@ -329,4 +329,19 @@ class EvenementController extends Controller
 				'listAnnee'		=>	$listAnnee
 		));
 	}
+	
+	public function CapitaineEvenementAction (Sport $domaine)
+	{
+		//on verifie que l'utilisateur courant est bien le capitaine 
+		
+		//on récupère tous les evenements du domaine
+		$listEvents = $domaine->getEvenements();
+		
+		//on passe à la vue 
+		return $this->render('BDSEvenementBundle:Evenement:capitaineEvenement.html.twig', array(
+				'domaine'		=>	$domaine,
+				'listEvents'	=>	$listEvents
+		));
+		
+	}
 }

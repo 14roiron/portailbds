@@ -1,25 +1,21 @@
 {% extends "BDSCoreBundle::layout.html.twig" %}
 
 {% block title %}
-	News de {{ domaine.nom }}
+	Evenements de {{ domaine.nom }}
 {% endblock %}
 
 {% block body %}
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="panel-title"><h2>News de {{ domaine.nom }}</h2></div>
+		<div class="panel-title"><h2>Evenements de {{ domaine.nom }}</h2></div>
 	</div>
 	<div class="panel-body">
 		<table class="table table-stiped table-bordered table-hover col-lg-12">
 			<tbody>
-				{% for news in listNews %}
+				{% for event in listEvents %}
 				<tr>
-					<td class="col-lg-1">
-						<img src="{{ asset(domaine.logo.getWebPath) }}" width="100%">
-					</td>
 					<td>
-						<p><a href="{{ path('bds_news_view', {'nom': domaine.nom, 'id':news.id}) }}"><strong>{{ news.titre }}</strong></a></p>
-						<p>{{ news.resumer }}</p>
+						<p><a href="{{ path('bds_evenement_view', {'nom': domaine.nom, 'id':event.id}) }}">{{ event.nom }}</a></p>
 					</td>
 					<td>
 						<div class="btn-group">
@@ -32,7 +28,7 @@
 				{%  else %}
 				<tr>
 					<th>
-						<p>Sans un minimum de communication ersonne ne s'interesera à votre sport !</p>
+						<p> Si vous voulez faire des choses ensemble il va falloir penser à creer des évènements !</p>
 					</th>
 				</tr>
 				{% endfor %}
