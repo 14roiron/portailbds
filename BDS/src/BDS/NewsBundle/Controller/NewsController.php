@@ -11,7 +11,7 @@ use BDS\NewsBundle\Form\NewsType;
 use BDS\NewsBundle\Entity\Commentaire;
 use BDS\NewsBundle\Form\CommentaireType;
 use BDS\NewsBundle\Manager\NewsManager;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 

@@ -5,7 +5,7 @@ namespace BDS\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use BDS\UserBundle\Entity\Membre;
 use BDS\UserBundle\Form\MembreType;
 

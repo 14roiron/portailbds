@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use BDS\EvenementBundle\Entity\Evenement;
 use BDS\EvenementBundle\Form\EvenementType;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use BDS\EvenementBundle\Entity\Participation;
 use BDS\EvenementBundle\Form\MAJEvenementType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
