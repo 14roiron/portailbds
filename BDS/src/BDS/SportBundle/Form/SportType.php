@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Form;
+namespace BDS\SportBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,7 +42,7 @@ class SportType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BDS\CoreBundle\Entity\Sport'
+            'data_class' => 'BDS\SportBundle\Entity\Sport'
         ));
     }
 
@@ -51,6 +51,6 @@ class SportType extends AbstractType
      */
     public function getName()
     {
-        return 'bds_corebundle_sport';
+        return 'bds_SportBundle_sport';
     }
 }

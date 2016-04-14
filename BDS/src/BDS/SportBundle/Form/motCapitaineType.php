@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Form;
+namespace BDS\SportBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +33,7 @@ class motCapitaineType extends AbstractType
 	public function steDefaultOption(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-				'data_class'	=>	'BDS\CoreBundle\Entity\Sport'
+				'data_class'	=>	'BDS\SportBundle\Entity\Sport'
 		));
 	}
 
@@ -42,7 +42,7 @@ class motCapitaineType extends AbstractType
 	 */
 	public function getName()
 	{
-		return 'bds_corebundle_motCapitaine';
+		return 'bds_SportBundle_motCapitaine';
 	}
 
 	public function getParent()
