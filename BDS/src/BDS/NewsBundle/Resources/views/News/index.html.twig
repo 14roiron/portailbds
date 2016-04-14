@@ -11,7 +11,7 @@
   		<div class="panel-body">
   			<div class="row">
 	    		{% for news in listNews %}
-	    		{% if app.user == domaine.capitaine or news.validation == true %}
+	    		{% if news.validation == true or app.user == news.auteur or app.user == news.editeur %}
 				<div class="col-lg-4">
 		      		<div class="thumbnail">
 		      			{# à terme j'aimerai que ce soit le logo de la news #}
@@ -21,6 +21,9 @@
 		        			<p><strong>par <em>{{ news.auteur.username }}</em>, le {{ news.datePublication|date('d/m/Y') }}</strong></p>
 							<p>{{news.contenu|slice(0,150)|raw}}</p>
 		   					<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
+		   					{% if news.validation == false %}
+		   					<p class="alert alert-warning">La news n'est pas publique</p>
+		   					{% endif %}
 		      			</div>
 		      		</div>
 	      		</div>
