@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SportBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,12 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
  * Role
  *
  * @ORM\Table(name="bds_role")
- * @ORM\Entity(repositoryClass="BDS\CoreBundle\Entity\RoleRepository")
+ * @ORM\Entity(repositoryClass="BDS\SportBundle\Entity\RoleRepository")
  */
 class Role
 {
 	/**
-	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="roles")
+	 * @ORM\ManyToOne(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="roles")
 	 */
 	private $sport;
 	
@@ -69,10 +69,10 @@ class Role
     /**
      * Set sport
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @param \BDS\SportBundle\Entity\Sport $sport
      * @return Role
      */
-    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    public function setSport(\BDS\SportBundle\Entity\Sport $sport = null)
     {
         $this->sport = $sport;
 
@@ -82,7 +82,7 @@ class Role
     /**
      * Get sport
      *
-     * @return \BDS\CoreBundle\Entity\Sport 
+     * @return \BDS\SportBundle\Entity\Sport 
      */
     public function getSport()
     {

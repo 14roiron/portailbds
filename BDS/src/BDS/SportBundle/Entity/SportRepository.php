@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SportBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

@@ -1,7 +1,3 @@
-bds_sport_view:
-    path:     /admin/{nom}
-    defaults: { _controller: BDSCoreBundle:Sport:view }
-    
 bds_sport_add:
     path:     /admin/sport/add
     defaults: { _controller: BDSCoreBundle:Sport:add }

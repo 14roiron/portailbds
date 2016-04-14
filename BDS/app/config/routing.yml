@@ -1,3 +1,7 @@
+bds_sport:
+    resource: "@BDSSportBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bds_sponsor:
     resource: "@BDSSponsorBundle/Resources/config/routing.yml"
     prefix:   /

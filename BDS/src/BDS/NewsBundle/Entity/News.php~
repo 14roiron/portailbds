@@ -20,7 +20,7 @@ class News
 	private $commentaires;
 	
 	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="News", cascade={"persist"})
+	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="News", cascade={"persist"})
 	 */
 	private $sports;
 	
@@ -225,10 +225,10 @@ class News
     /**
      * Add sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      * @return News
      */
-    public function addSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function addSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports[] = $sports;
         
@@ -243,9 +243,9 @@ class News
     /**
      * Remove sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      */
-    public function removeSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function removeSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports->removeElement($sports);
         

@@ -24,7 +24,7 @@ class Evenement
 	private $participations;
 	
 	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
+	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
 	 * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
 	 */
 	private $sports;
@@ -270,10 +270,10 @@ class Evenement
     /**
      * Add sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      * @return Evenement
      */
-    public function addSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function addSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports[] = $sports;
 
@@ -283,9 +283,9 @@ class Evenement
     /**
      * Remove sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      */
-    public function removeSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function removeSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports->removeElement($sports);
     }

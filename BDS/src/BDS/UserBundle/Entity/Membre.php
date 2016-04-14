@@ -24,7 +24,7 @@ class Membre
 	private $participations;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="membres")
+	 * @ORM\ManyToOne(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="membres")
 	 */
 	private $sport;
 	
@@ -78,10 +78,10 @@ class Membre
     /**
      * Set sport
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @param \BDS\SportBundle\Entity\Sport $sport
      * @return Membre
      */
-    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    public function setSport(\BDS\SportBundle\Entity\Sport $sport = null)
     {
         $this->sport = $sport;
 
@@ -91,7 +91,7 @@ class Membre
     /**
      * Get sport
      *
-     * @return \BDS\CoreBundle\Entity\Sport 
+     * @return \BDS\SportBundle\Entity\Sport 
      */
     public function getSport()
     {

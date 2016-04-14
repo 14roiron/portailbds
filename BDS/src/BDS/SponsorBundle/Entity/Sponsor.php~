@@ -21,7 +21,7 @@ class Sponsor
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="sponsorts")
+     * @ORM\ManyToOne(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="sponsorts")
      */
     private $sport;
     
@@ -254,11 +254,11 @@ class Sponsor
     /**
      * Set sport
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @param \BDS\SportBundle\Entity\Sport $sport
      *
      * @return Sponsor
      */
-    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    public function setSport(\BDS\SportBundle\Entity\Sport $sport = null)
     {
         $this->sport = $sport;
 
@@ -268,7 +268,7 @@ class Sponsor
     /**
      * Get sport
      *
-     * @return \BDS\CoreBundle\Entity\Sport
+     * @return \BDS\SportBundle\Entity\Sport
      */
     public function getSport()
     {

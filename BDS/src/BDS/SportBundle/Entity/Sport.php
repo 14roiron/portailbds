@@ -1,18 +1,18 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SportBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\BooleanNode;
-use BDS\CoreBundle\Entity\Role;
+use BDS\SportBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 /**
  * Sport
  *
  * @ORM\Table(name="bds_sport")
- * @ORM\Entity(repositoryClass="BDS\CoreBundle\Entity\SportRepository")
+ * @ORM\Entity(repositoryClass="BDS\SportBundle\Entity\SportRepository")
  */
 class Sport
 {
@@ -32,7 +32,7 @@ class Sport
 	private $membres;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="BDS\CoreBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
+	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $roles;
 	
@@ -361,10 +361,10 @@ class Sport
     /**
      * Add roles
      *
-     * @param \BDS\CoreBundle\Entity\Role $roles
+     * @param \BDS\SportBundle\Entity\Role $roles
      * @return Sport
      */
-    public function addRole(\BDS\CoreBundle\Entity\Role $roles)
+    public function addRole(\BDS\SportBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
         
@@ -379,9 +379,9 @@ class Sport
     /**
      * Remove roles
      *
-     * @param \BDS\CoreBundle\Entity\Role $roles
+     * @param \BDS\SportBundle\Entity\Role $roles
      */
-    public function removeRole(\BDS\CoreBundle\Entity\Role $roles)
+    public function removeRole(\BDS\CSportBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }

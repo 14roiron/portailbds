@@ -65,7 +65,7 @@ class User extends BaseUser
 	/**
 	 * @var date
 	 * 
-	 * @ORM\Column(name="anniversaire", type="date")
+	 * @ORM\Column(name="anniversaire", type="date", nullable=true)
 	 */
 	private $anniversaire;
 	
@@ -452,5 +452,29 @@ class User extends BaseUser
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Set anniversaire
+     *
+     * @param \DateTime $anniversaire
+     *
+     * @return User
+     */
+    public function setAnniversaire($anniversaire)
+    {
+        $this->anniversaire = $anniversaire;
+
+        return $this;
+    }
+
+    /**
+     * Get anniversaire
+     *
+     * @return \DateTime
+     */
+    public function getAnniversaire()
+    {
+        return $this->anniversaire;
     }
 }

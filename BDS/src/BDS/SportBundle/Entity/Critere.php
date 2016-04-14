@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CoreBundle\Entity;
+namespace BDS\SportBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Critere
  *
  * @ORM\Table(name="bds_critere")
- * @ORM\Entity(repositoryClass="BDS\CoreBundle\Entity\CritereRepository")
+ * @ORM\Entity(repositoryClass="BDS\SportBundle\Entity\CritereRepository")
  */
 class Critere
 {
