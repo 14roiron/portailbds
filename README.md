@@ -2,7 +2,6 @@
 #TODO (en vrac):
 
 - integrer assetics pour accelerer le mod prod
-- enlever le sport du coreBundle et lui creer un bundle à lui pour des problemes de sémentique
 - gestion des evenements repetitif (comme les entraienments par exemple)
 - message perso pour les utilisateur (1er pas vers les mails)
 - revoir l'emplacement des images 
