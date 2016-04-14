@@ -45,8 +45,9 @@ class SportController extends Controller
 		
 		//le formuaire n'st pas valide donc on le passe à la vue 
 		return $this->render('BDSCoreBundle:Sport:add.html.twig', array(
-				'form' => $form->createView(),
-				'domaine' => $domaine
+				'form' 		=>	$form->createView(),
+				'domaine' 	=>	$domaine,
+				'affichage'	=> 'ajouter'
 		));
 		
 		
@@ -81,12 +82,9 @@ class SportController extends Controller
 	}
 	
 	public function editAction(Sport $sport, Request $request)
-	{
-		//on se place dans Admin
-		$domaine = $this->get('bds_sport.manager')->getSport('admin');
-		
+	{	
 		//on crée le formulaire
-		$form = $this->createform( new SportEditType(), $sport);
+		$form = $this->createform( new SportType(), $sport);
 		
 		//on fait le lien requete<->formulaire
 		$form->handleRequest($request);
@@ -97,7 +95,7 @@ class SportController extends Controller
 			//on insert dans la bdd
 			$this->get('bds_sport.manager')->save($sport);
 				
-			$request->getSession()->getFlashBag()->add('notice', 'Le sport a bien été modifié.');
+			$request->getSession()->getFlashBag()->add('success', 'Le sport '.$sport->getNom().' a bien été modifié.');
 				
 			//on redirige vers l page de visualisation du sport
 			/*return $this->redirect($this->generateUrl('bds_sport_view', array(
@@ -107,8 +105,9 @@ class SportController extends Controller
 		
 		//le formuaire n'st pas valide donc on le passe à la vue
 		return $this->render('BDSCoreBundle:Sport:add.html.twig', array(
-				'form' => $form->createView(),
-				'domaine' => $domaine
+				'form' 		=> 	$form->createView(),
+				'domaine' 	=> 	$sport,
+				'affichage'	=>	'editer'
 		));
 		
 	}

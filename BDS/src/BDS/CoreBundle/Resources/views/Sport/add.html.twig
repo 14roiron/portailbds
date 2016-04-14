@@ -1,12 +1,59 @@
 {% extends "BDSCoreBundle:Sport:layout.html.twig" %}
 
 {% block title %}
-  Ajouter - {{ parent() }}
+  {{ affichage }} - {{ parent() }}
 {% endblock %}
 
 {% block bds_sport_body %}
-<h2>Ajouter un sport</h2>
-<div class="well">
-	{{ form(form) }}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="panel-title">{{ affichage }} un Sport</p>
+	</div>
+	<div class="panel-body">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(form) }}
+		
+		{{ form_label(form.nom, "Nom : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		
+		{{ form_label(form.equipe, "Equipe : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.equipe, {'attr': {'class': 'form-control'}}) }}
+		
+		<div class="row">
+			<div class="col-lg-6">
+			{% if domaine.fond %}
+				<img src="{{ asset(domaine.fond.getWebPath) }}" width="100%">
+			{% else %}
+				<img src="{{ asset('images/no_fond_pic') }}" width="100%">
+			{% endif %}
+			</div>
+			<div class="col-lg-6">
+				{{ form_label(form.fond, "Fond : ", {'label_attr': {'class':'control-label'}}) }}
+				{{ form_widget(form.fond.file, {'attr': {'class': 'file', 'data-preview-file-type':'text'}}) }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-3">
+			{% if domaine.logo %}
+				<img src="{{ asset(domaine.logo.getWebPath) }}" width="100%">
+			{% else %}
+				<img src="{{ asset('images/no_logo_pic') }}" width="100%">
+			{% endif %}
+			</div>
+			<div class="col-lg-9">
+				{{ form_label(form.logo, "Logo : ", {'label_attr': {'class':'control-label'}}) }}
+				{{ form_widget(form.logo.file, {'attr': {'class':'file', 'data-preview-file-type':'text'}}) }}
+			</div>
+		</div>
+		
+		{{ form_rest(form) }}
+		
+		<hr>
+		
+		<button type="submit" class="btn btn-success btn-block">{{ affichage }}</button>
+		
+		{{ form_end(form) }}
+	</div>
 </div>
 {% endblock %}

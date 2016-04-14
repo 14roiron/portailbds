@@ -11,7 +11,7 @@ bds_sport_delete:
     defaults: { _controller: BDSCoreBundle:Sport:delete }
     
 bds_sport_edit:
-    path:     /admin/{nom}/edit
+    path:     /capitaine/{nom}/edit
     defaults: { _controller: BDSCoreBundle:Sport:edit }  
     
 bds_sport_list:
