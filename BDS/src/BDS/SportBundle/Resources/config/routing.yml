@@ -1,3 +1,43 @@
 bds_sport_view:
-    path:     /admin/{nom}
+    path:     /capitaine/{nom}
     defaults: { _controller: BDSSportBundle:Sport:view }
+    
+bds_sport_add:
+    path:     /admin/sport/add
+    defaults: { _controller: BDSCoreBundle:Sport:add }
+    
+bds_sport_delete:
+    path:     /admin/{nom}/delete
+    defaults: { _controller: BDSCoreBundle:Sport:delete }
+    
+bds_sport_edit:
+    path:     /capitaine/{nom}/edit
+    defaults: { _controller: BDSCoreBundle:Sport:edit }  
+
+bds_sport_list:
+    path:     /sport
+    defaults: { _controller: BDSCoreBundle:Sport:list }
+    
+bds_sport_equipe:
+    path:     /{nom}/equipe
+    defaults: {_controller: BDSCoreBundle:Sport:equipe }
+    
+bds_sport_presentation:
+    path:     /{nom}/presentation
+    defaults: {_controller: BDSCoreBundle:Sport:presentation }
+    
+bds_sport_presentation_edit:
+    path:     /{nom}/presentation/edit
+    defaults: {_controller: BDSCoreBundle:Sport:presentationEdit }
+    
+bds_sport_motCapitaine:
+    path:     /{nom}/mot_du_capitaine
+    defaults: {_controller: BDSCoreBundle:Sport:motCapitaine }
+
+bds_sport_motCapitaineEdit:
+    path:     /{nom}/mot_du_capitaine/edit
+    defaults: {_controller: BDSCoreBundle:Sport:motCapitaineEdit }
+   
+bds_capitaine_equipe:
+    path:     /capitaine/{nom}/equipe
+    defaults: {_controller: BDSCoreBundle:Sport:CapitaineEquipe }
