@@ -43,7 +43,7 @@
 						{{ form_errors(form) }}
 						
 						{{ form_label(form.profilePic, "Photo de profil : ", {'label_attr': {'class': 'control-label'}}) }}
-						{{ form_widget(form.profilePic, {'attr': {'class': 'form-control'}}) }}
+						{{ form_widget(form.profilePic.file, {'attr': {'class': 'file', 'data-preview-file-type':'text'}}) }}
 						
 						{{ form_rest(form) }}
 						<hr>
@@ -59,3 +59,10 @@
 
 {% endblock %}
 
+{% block javascripts %}
+
+{{ parent() }}
+
+<script type="text/javascript" src="{{ asset('js/fileInputOption.js') }}"></script>
+
+{% endblock %}
