@@ -192,7 +192,7 @@ class NewsController extends Controller
 		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' a été supprimée avec succès.');
 		
 		//on retourne à l'index 
-		return $this->redirect($this->generateUrl('bds_news_home', array(
+		return $this->redirect($this->generateUrl('bds_capitaine_news', array(
 				'nom'	=>	$sport->getNom()
 		)));
 		
@@ -211,7 +211,7 @@ class NewsController extends Controller
 		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' est désormais affichée.');
 		
 		//on retourne à l'index
-		return $this->redirect($this->generateUrl('bds_news_home', array(
+		return $this->redirect($this->generateUrl('bds_capitaine_news', array(
 				'nom'	=>	$sport->getNom()
 		)));
 

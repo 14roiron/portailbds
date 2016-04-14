@@ -23,9 +23,11 @@
 					</td>
 					<td>
 						<div class="btn-group">
-							<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
-							<a class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/> Editer</a>
-							<a class="btn btn-primary"><span class="glyphicon glyphicon-ok"/> Valider</a>
+							<a class="btn btn-danger" href="{{ path('bds_news_delete', {'nom': domaine.nom, 'id': news.id}) }}"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
+							<a class="btn btn-warning" href="{{ path('bds_news_edit', {'nom': domaine.nom, 'id': news.id}) }}"><span class="glyphicon glyphicon-pencil"/> Editer</a>
+							{% if news.validation == false %}
+							<a class="btn btn-primary" href="{{ path('bds_news_validate', {'nom': domaine.nom, 'id': news.id}) }}"><span class="glyphicon glyphicon-ok"/> Valider</a>
+							{% endif %}
 						</div>
 					</td>
 				</tr>

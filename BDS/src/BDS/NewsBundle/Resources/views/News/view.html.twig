@@ -73,7 +73,26 @@
 		</table>
 		
 		<hr>
-   	</div>
+	   	<div class="btn-group btn-group-justified">
+			<a class="btn btn-warning" href="{{ path('bds_news_edit', {'nom':domaine.nom, 'id':news.id}) }}">
+				<span class="glyphicon glyphicon-pencil"/>
+			 	 Editer
+			</a>
+			{% if app.user == domaine.capitaine %}
+	   		<a class="btn btn-danger" href="{{ path('bds_news_delete', {'nom':domaine.nom, 'id': news.id}) }}">
+	   			<span class="glyphicon glyphicon-remove"/>	
+	   		 	 Supprimer
+	   		</a>
+	   		{% endif %}
+	   		<a class="btn btn-default" href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">Retour</a>
+	   		{% if news.validation == FALSE and app.user == domaine.capitaine %}
+	   		<a class="btn btn-primary" href="{{ path('bds_news_validate', {'nom':domaine.nom, 'id':news.id}) }}">
+	   			<span class="glyphicon glyphicon-ok"/>	
+	   		 	 Valider
+	   		</a>
+	   		{% endif %}
+		</div>
+	</div>
 </div>
 
 {% endblock %}
@@ -81,15 +100,7 @@
 {% block aside %}
 
 {{ parent() }}
-<div class="row">
-	<a class="btn btn-sm btn-warning" href="{{ path('bds_news_edit', {'nom':domaine.nom, 'id':news.id}) }}">éditer la news</a>
-   	<a class="btn btn-sm btn-danger" href="{{ path('bds_news_delete', {'nom':domaine.nom, 'id': news.id}) }}">supprimer la news</a>
-   	<a class="btn btn-sm btn-default" href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">Retour au news</a>
-   	{# on s'interesse au news qui n'ont pas encore été validée #}
-   	{% if news.validation == FALSE %}
-   	<a class="btn btn-sm btn-primary" href="{{ path('bds_news_validate', {'nom':domaine.nom, 'id':news.id}) }}">Valider</a>
-   	{% endif %}
-</div>
+
 {% endblock %}
 
 {% block javascript %}

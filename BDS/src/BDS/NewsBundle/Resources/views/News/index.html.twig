@@ -39,6 +39,6 @@
 {% block aside %}
 {{ parent() }}
 <hr>
- <a class="btn btn-lg btn-success" href="{{ path('bds_news_add', {'nom': domaine.nom}) }}">ajouter une news</a>
+ <a class="btn btn-success btn-block" href="{{ path('bds_news_add', {'nom': domaine.nom}) }}">ajouter une news</a>
 
 {% endblock %}
