@@ -19,9 +19,8 @@
 					</td>
 					<td>
 						<div class="btn-group">
-							<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
-							<a class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/> Editer</a>
-							<a class="btn btn-primary"><span class="glyphicon glyphicon-ok"/> Valider</a>
+							<a class="btn btn-danger" href="{{ path('bds_evenement_delete', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-remove"/> Supprimer</a>
+							<a class="btn btn-warning" href="{{ path('bds_evenement_edit', {'nom': domaine.nom, 'id': event.id}) }}"><span class="glyphicon glyphicon-pencil"/> Editer</a>
 						</div>
 					</td>
 				</tr>

@@ -195,7 +195,7 @@ class EvenementController extends Controller
 			//on enregistre l'objet dans la bdd
 			$this->get('bds_evenement.manager')->save($evenement);
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Evenement bien enregistré.');
+			$request->getSession()->getFlashBag()->add('success', 'Evenement '.$evenement->getNom().' bien enregistré.');
 			
 			//on affiche la page du nouvel évenement
 			return $this->redirect($this->generateUrl('bds_evenement_view', array(
@@ -216,17 +216,19 @@ class EvenementController extends Controller
 	 * @ParamConverter("domaine", options={"mapping": {"nom": "nom"}})
 	 * @ParamConverter("evenement", options={"mapping": {"id": "id"}})
 	 */
-	public function deleteAction (Sport $domaine, Evenement $evenement)
+	public function deleteAction (Sport $domaine, Evenement $evenement, Request $request)
 	{
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_evenement.manager')->deleteEvenement($evenement);
 		
-		//on rend la page de suppression
-		return $this->render('BDSEvenementBundle:Evenement:delete.html.twig', array(
-				'domaine' => $domaine,
-				'evenement' => $evenement
-		));
+		//on fait un flag
+		$request->getSession()->getFlashBag()->add('success', "l'Evenement ".$evenement->getNom().' a été supprimé.');
+		
+		//on revient à la page de gestion capitaine
+		return $this->redirect($this->generateUrl('bds_capitaine_evenement', array(
+				'nom'	=>	$domaine->getNom()
+		)));
 	}
 	
 	public function calendarAction (Sport $domaine)

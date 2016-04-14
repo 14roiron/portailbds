@@ -7,23 +7,38 @@
 
 {% block bds_evenement_body %}
 
- <a class="btn btn-lg btn-success" href="{{ path('bds_evenement_add', {'nom': domaine.nom}) }}">ajouter un evenement</a>
-  <h2>Liste des evenements</h2>
-  <ul>
-    {% for evenement in listEvents %}
-      <li>
-        <a href="{{ path('bds_evenement_view', {'id': evenement.id, 'nom': domaine.nom}) }}">{{ evenement.nom }}</a>
-        du {{ evenement.debutEvenement | date('d/m/Y H:i:s') }},
-        au {{ evenement.finEvenement |date('d/m/Y H:i:s') }}
-        <p>
-        	<a class="btn btn-md btn-warning" href="{{ path('bds_evenement_edit', {'nom':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
-   			<a class="btn btn-md btn-danger" href="{{ path('bds_evenement_delete', {'nom':domaine.nom, 'id':evenement.id}) }}">supprimer l'evenement</a>
-   			<a class="btn btn-md btn-primary" href="{{ path('bds_evenement_feuille', {'nom':domaine.nom, 'id':evenement.id}) }}">feuille de match</a>
-   		</p>
-      </li>
-    {% else %}
-      <li>Pas (encore !) d'evenement</li>
-    {% endfor %}
-  </ul>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="panel-title">Liste des Evenements</p>
+	</div>
+	<div class="panel-body">
+	{% for event in listEvents %}
+		<div class="col-lg-4">
+			<div class="thumbnail">
+				{# je sais pas trop quoi lettre pour l'instant #}
+				<img src="{{ asset(domaine.logo.getWebPath) }}">
+				<div class="caption">
+					<h3><a href="{{ path('bds_evenement_view', {'nom': domaine.nom, 'id': event.id}) }}">{{ event.nom }}</a></h3>
+					<p>
+						<span class="glyphicon glyphicon-calendar"/> 
+						 de {{ event.debutEvenement|date('d/m/Y H:i') }} à {{ event.finEvenement|date('d/m/Y H:i') }}
+					</p>
+						<span class="glyphicon glyphicon-map-marker"/>
+						 {{ event.lieu.fullAdr }}
+					<p>
+					<p>
+						<a class="btn btn-primary btn-block" href="{{ path('bds_evenement_feuille', {'nom': domaine.nom, 'id':event.id}) }}">
+							Composition
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<p>Pas encore d'évènement !</p>
+	{% endfor %}
+	</div>
+</div>
+
 
 {% endblock %}
