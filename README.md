@@ -25,4 +25,6 @@ public function getName(){ return $this->getBlockPrefix();}
 
 pour que ça marche avec 2.8
 
+J’ai installer un nouveau bundle pour le chat (il n’y en a que 2 sur le net et aucun n’est vraiment maintenu. j’ai du faire beaucoup de motif pour qu’il fonctionne directement dans vendor (elles sont rertorier sur mon fork https://github.com/12rambau/ChatBundle)
+
 

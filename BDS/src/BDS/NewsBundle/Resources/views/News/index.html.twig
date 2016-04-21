@@ -40,5 +40,14 @@
 {{ parent() }}
 <hr>
  <a class="btn btn-success btn-block" href="{{ path('bds_news_add', {'nom': domaine.nom}) }}">ajouter une news</a>
+ <hr>
+ {% render(controller('CunningsoftChatBundle:Chat:show', {'channel':'default'})) %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
 
 {% endblock %}

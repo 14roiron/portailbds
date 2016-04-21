@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
 use Symfony\Component\Validator\Constraints\Date;
+use Cunningsoft\ChatBundle\Entity\AuthorInterface;
 
 
 /**
  * @ORM\Entity
  * 
  */
-class User extends BaseUser
+class User extends BaseUser implements AuthorInterface
 {
 	/**
 	 * @var boolean
