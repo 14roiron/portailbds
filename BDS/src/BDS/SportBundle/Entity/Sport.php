@@ -386,7 +386,7 @@ class Sport
      *
      * @param \BDS\SportBundle\Entity\Role $roles
      */
-    public function removeRole(\BDS\CSportBundle\Entity\Role $roles)
+    public function removeRole(\BDS\SportBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }

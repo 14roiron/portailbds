@@ -41,11 +41,11 @@
 	<div class="col-lg-9">
 	{% block navigation %}
 		<ul class="nav nav-tabs">
-			<li role="presentation" class="active">Profile</li>
+			<li class="active"><a href="#">Profile</a></li>
 			{% if user == app.user %}
-			<li role="presentation"><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
-			<li role="presentation"><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
-			<li role="presentaiotn"><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
+			<li><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
+			<li><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
+			<li><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
 			{% endif %}
 		</ul>
 		<div class="panel panel-default">

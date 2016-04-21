@@ -2,11 +2,11 @@
 
 {% block navigation %}
 	<ul class="nav nav-tabs">
-		<li role="presentation">Profile</li>
+		<li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
 		{% if user == app.user %}
-		<li role="presentation"><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
-		<li role="presentation"><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
-		<li role="presentaiotn" class="active"><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
+		<li><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
+		<li><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
+		<li class="active"><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
 		{% endif %}
 	</ul>
 	
