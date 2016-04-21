@@ -35,7 +35,7 @@ class SportController extends Controller
 			//on insert dans la bdd
 			$this->get('bds_sport.manager')->save($sport);
 				
-			$request->getSession()->getFlashBag()->add('notice', 'Le sport a bien été ajouté.');
+			$request->getSession()->getFlashBag()->add('success', 'Le sport a bien été ajouté.');
 				
 			//on redirige vers l page de visualisation du sport
 			return $this->redirect($this->generateUrl('bds_sport_view', array(

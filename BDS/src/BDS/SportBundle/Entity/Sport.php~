@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class Sport
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $configurations;
+	
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\UserBundle\Entity\User")
 	 */
 	private $capitaine;

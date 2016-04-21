@@ -41,3 +41,7 @@ bds_sport_motCapitaineEdit:
 bds_capitaine_equipe:
     path:     /capitaine/{nom}/equipe
     defaults: {_controller: BDSSportBundle:Sport:CapitaineEquipe }
+    
+bds_admin_configuration_add:
+    path:     /admin/configuration/add
+    defaults: {_controller: BDSSportBundle:Configuration:add }

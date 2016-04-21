@@ -1,0 +1,40 @@
+{% extends "BDSSportBundle::layout.html.twig" %}
+
+{% block title %}
+	ajouter une configuration
+{% endblock %}
+
+{% block bds_sport_body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="panel-title">Ajouter une configuration</p>
+	</div>
+	<div class="panel-body">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(form) }}
+		
+		{{ form_label(form.nom, "Nom : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		
+		{{ form_label(form.image, "Image : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.image.file, {'attr': {'class': 'file', 'data-preview-file-type':'text'}}) }}
+		
+		{{ form_label(form.contenu, "code html : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+		
+		{{ form_label(form.sport, "Nom : ", {'label_attr': {'class':'control-label'}}) }}
+		{{ form_widget(form.sport, {'attr': {'class': 'form-control'}}) }}
+		
+		{{ form_rest(form) }}
+		
+		<hr>
+		
+		<button type="submit" class="btn btn-success btn-block">Ajouter</button>
+		
+		{{ form_end(form) }}
+		
+		
+	</div>
+</div>
+
+{% endblock %}

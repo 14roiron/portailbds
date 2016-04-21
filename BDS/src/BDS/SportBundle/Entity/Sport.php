@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class Sport
 {
 	/**
+	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $configurations;
+	
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\UserBundle\Entity\User")
 	 */
 	private $capitaine;
@@ -524,5 +529,39 @@ class Sport
     public function getUrlVideo()
     {
         return $this->urlVideo;
+    }
+
+    /**
+     * Add configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     *
+     * @return Sport
+     */
+    public function addConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations[] = $configuration;
+
+        return $this;
+    }
+
+    /**
+     * Remove configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     */
+    public function removeConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations->removeElement($configuration);
+    }
+
+    /**
+     * Get configurations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
     }
 }
