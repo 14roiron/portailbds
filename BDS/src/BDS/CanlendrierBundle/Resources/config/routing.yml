@@ -2,4 +2,6 @@ bds_canlendrier_homepage:
     path:     /profile/dashboard
     defaults: { _controller: BDSCanlendrierBundle:Calendrier:Dashboard }
     
+    
+    
 
