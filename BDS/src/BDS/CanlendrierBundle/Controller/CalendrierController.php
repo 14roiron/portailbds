@@ -22,7 +22,7 @@ class CalendrierController extends Controller
     		throw new AccessDeniedException('This user does not have access to this section.');
     	}
     	
-    	return $this->render('BDSCalendrierBundle:calendrier:dahboard.html.twig', array(
+    	return $this->render('BDSCalendrierBundle:calendrier:dashboard.html.twig', array(
     			'user'	=>	$user
     	));
     }
