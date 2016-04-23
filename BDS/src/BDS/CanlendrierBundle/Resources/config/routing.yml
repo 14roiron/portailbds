@@ -1,0 +1,3 @@
+bds_canlendrier_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDSCanlendrierBundle:Default:index }

@@ -1,3 +1,7 @@
+bds_canlendrier:
+    resource: "@BDSCanlendrierBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bds_chat:
     resource: "@BDSChatBundle/Resources/config/routing.yml"
     prefix:   /chat/
