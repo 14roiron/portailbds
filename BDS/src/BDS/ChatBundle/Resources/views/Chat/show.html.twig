@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p class="panel-title"><span class="glyphicon glyphicon-comment"/> Chat</p>
+	</div>
+	<div class="panel-body">
+		{% render(controller('BDSChatBundle:Chat:list', {'channel': channel})) %}
+	</div>
+	<div class="panel-footer">
+		<form id="chatForm" action="{{ path('bds_chat_post', {'channel': channel}) }}" method="post">
+    		<label for="chatMessage">Message</label>
+    		<input type="text" name="message" id="chatMessage" />
+    		<input class="btn btn-success" type="submit" value="submit" />
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var updateInterval = {{ updateInterval }};
+	var pathPost = "{{ path('bds_chat_post', {'channel': channel}) }}";
+	var pathList = "{{ path('bds_chat_list', {'channel': channel}) }}";
+</script>

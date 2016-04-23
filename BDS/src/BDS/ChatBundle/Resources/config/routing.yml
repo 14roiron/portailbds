@@ -1,0 +1,11 @@
+bds_chat_show:
+    path:     /show/{channel}
+    defaults:  {_controller: BDSChatBundle:Chat:Show, channel: "default" }
+    
+bds_chat_list:
+    path:     /list/{channel}
+    defaults:  {_controller: BDSChatBundle:Chat:list, channel: "default" }
+    
+bds_chat_post:
+    path:     /post/{channel}
+    defaults:  {_controller: BDSChatBundle:Chat:post, channel: "default" }

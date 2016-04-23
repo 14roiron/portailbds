@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
 use Symfony\Component\Validator\Constraints\Date;
-use Cunningsoft\ChatBundle\Entity\AuthorInterface;
+use BDS\ChatBundle\Entity\AuthorInterface;
 
 
 /**
@@ -478,4 +478,15 @@ class User extends BaseUser implements AuthorInterface
     {
         return $this->anniversaire;
     }
+	/**
+	 * {@inheritDoc}
+	 * @see \BDS\ChatBundle\Entity\AuthorInterface::__toString()
+	 */
+	public function __toString() 
+	{
+		// TODO: Auto-generated method stub
+		return $this->username;
+
+	}
+
 }

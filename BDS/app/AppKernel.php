@@ -30,8 +30,8 @@ class AppKernel extends Kernel
         	new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
             new BDS\SponsorBundle\BDSSponsorBundle(),
             new BDS\SportBundle\BDSSportBundle(),
-        	new Cunningsoft\ChatBundle\CunningsoftChatBundle(),
         	new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new BDS\ChatBundle\BDSChatBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

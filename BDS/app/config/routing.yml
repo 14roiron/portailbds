@@ -1,3 +1,7 @@
+bds_chat:
+    resource: "@BDSChatBundle/Resources/config/routing.yml"
+    prefix:   /chat/
+
 bds_sport:
     resource: "@BDSSportBundle/Resources/config/routing.yml"
     prefix:   /
@@ -51,10 +55,6 @@ fos_user_change_password:
     
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-    
-cunningsoft_chat_bundle:
-    resource: "@CunningsoftChatBundle/Controller"
-    type: annotation
  
   
 

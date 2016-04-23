@@ -65,7 +65,7 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
         resolve_target_entities:
-            Cunningsoft\ChatBundle\Entity\AuthorInterface: BDS\UserBundle\Entity\User
+            BDS\ChatBundle\Entity\AuthorInterface: BDS\UserBundle\Entity\User
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -124,10 +124,9 @@ sc_datetimepicker:
     picker: ~
     
 #chat configuration
-cunningsoft_chat:
-    # refresh interval in milliseconds
+bds_chat:
+    # en milliseconde
     update_interval: 5000
-    # messages to be shown in chat
     number_of_messages: 10
 
 
