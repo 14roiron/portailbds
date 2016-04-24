@@ -9,10 +9,9 @@
 			"SymfonyStandard" : "app/"
 		}
 	},
-	"minimum-stability" : "dev",
 	"require" : {
 		"php" : ">=5.3.3",
-		"symfony/symfony" : "2.8.4",
+		"symfony/symfony" : "2.8.*",
 		"doctrine/orm" : "~2.2,>=2.2.3",
 		"doctrine/doctrine-bundle" : "~1.2",
 		"twig/extensions" : "~1.0",
@@ -32,7 +31,7 @@
 		"stephanecollot/datetimepicker-bundle" : "dev-master",
 		"doctrine/doctrine-migrations-bundle" : "^1.0",
 		"knplabs/knp-time-bundle" : "1.5.*",
-		"baikal/core" : "dev-master as 2.0.0-alpha1"
+		"sabre/dav": "3.1.*"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3",

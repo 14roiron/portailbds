@@ -1,3 +1,7 @@
+bds_sabre_dav:
+    resource: "@BDSSabreDavBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bds_canlendrier:
     resource: "@BDSCanlendrierBundle/Resources/config/routing.yml"
     prefix:   /
