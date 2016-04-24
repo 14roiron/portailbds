@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class Sport
 {
 	/**
+	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", orphanRemoval=true)
+	 */
+	private $calendrier;
+	
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $configurations;
@@ -40,11 +45,6 @@ class Sport
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $roles;
-	
-	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
-	 */
-	private $Evenements;
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\NewsBundle\Entity\News", mappedBy="sports")

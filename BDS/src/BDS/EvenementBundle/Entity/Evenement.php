@@ -27,12 +27,6 @@ class Evenement
 	 */
 	private $participations;
 	
-	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
-	 * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
-	 */
-	private $sports;
-	
     /**
      * @var integer
      *

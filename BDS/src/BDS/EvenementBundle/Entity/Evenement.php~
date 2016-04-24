@@ -27,12 +27,6 @@ class Evenement
 	 */
 	private $participations;
 	
-	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
-	 * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
-	 */
-	private $sports;
-	
     /**
      * @var integer
      *
@@ -359,5 +353,39 @@ class Evenement
     public function getLieu()
     {
         return $this->lieu;
+    }
+
+    /**
+     * Add calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     *
+     * @return Evenement
+     */
+    public function addCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers[] = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     */
+    public function removeCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers->removeElement($calendrier);
+    }
+
+    /**
+     * Get calendriers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCalendriers()
+    {
+        return $this->calendriers;
     }
 }
