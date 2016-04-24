@@ -22,7 +22,7 @@ class MembreType extends AbstractType
 															'class'			=>	'BDSSportBundle:Sport',
 															'property'		=>	'nom',
 															'expanded'		=>	true,
-															'multiple'		=>	true,
+															'multiple'		=>	false,
 
 			))
 			;
