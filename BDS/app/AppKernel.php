@@ -32,7 +32,7 @@ class AppKernel extends Kernel
             new BDS\SportBundle\BDSSportBundle(),
         	new Knp\Bundle\TimeBundle\KnpTimeBundle(),
             new BDS\ChatBundle\BDSChatBundle(),
-            new BDS\CanlendrierBundle\BDSCanlendrierBundle(),
+            new BDS\CalendrierBundle\BDSCalendrierBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

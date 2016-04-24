@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class Sport
 {
 	/**
+	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", orphanRemoval=true)
+	 */
+	private $calendrier;
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $configurations;
@@ -563,5 +567,29 @@ class Sport
     public function getConfigurations()
     {
         return $this->configurations;
+    }
+
+    /**
+     * Set calendrier
+     *
+     * @param \BDS\CalendrierBundle\Calendrier $calendrier
+     *
+     * @return Sport
+     */
+    public function setCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier = null)
+    {
+        $this->calendrier = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Get calendrier
+     *
+     * @return \BDS\CalendrierBundle\Calendrier
+     */
+    public function getCalendrier()
+    {
+        return $this->calendrier;
     }
 }

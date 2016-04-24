@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
 class Sport
 {
 	/**
+	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Calendrier", orphanRemoval=true)
+	 */
+	private $calendrier;
+	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $configurations;
@@ -386,7 +390,7 @@ class Sport
      *
      * @param \BDS\SportBundle\Entity\Role $roles
      */
-    public function removeRole(\BDS\CSportBundle\Entity\Role $roles)
+    public function removeRole(\BDS\SportBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }
@@ -529,5 +533,39 @@ class Sport
     public function getUrlVideo()
     {
         return $this->urlVideo;
+    }
+
+    /**
+     * Add configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     *
+     * @return Sport
+     */
+    public function addConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations[] = $configuration;
+
+        return $this;
+    }
+
+    /**
+     * Remove configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     */
+    public function removeConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations->removeElement($configuration);
+    }
+
+    /**
+     * Get configurations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
     }
 }

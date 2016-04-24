@@ -30,7 +30,8 @@
 		"stfalcon/tinymce-bundle" : "dev-master",
 		"stephanecollot/datetimepicker-bundle" : "dev-master",
 		"doctrine/doctrine-migrations-bundle" : "^1.0",
-		"knplabs/knp-time-bundle" : "1.5.*"
+		"knplabs/knp-time-bundle" : "1.5.*",
+		"baikal/core" : "dev-master as 2.0.0-alpha1"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3",

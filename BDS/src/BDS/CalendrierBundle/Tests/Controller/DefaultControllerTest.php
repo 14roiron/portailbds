@@ -1,6 +1,6 @@
 <?php
 
-namespace BDS\CanlendrierBundle\Tests\Controller;
+namespace BDS\CalendrierBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

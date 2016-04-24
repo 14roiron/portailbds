@@ -16,6 +16,10 @@ use BDS\ChatBundle\Entity\AuthorInterface;
 class User extends BaseUser implements AuthorInterface
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", mappedBy="users")
+	 */
+	private $calendriers;
+	/**
 	 * @var boolean
 	 * 
 	 * @ORM\Column(name="sexe", type="boolean")
@@ -489,4 +493,38 @@ class User extends BaseUser implements AuthorInterface
 
 	}
 
+
+    /**
+     * Add calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     *
+     * @return User
+     */
+    public function addCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers[] = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     */
+    public function removeCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers->removeElement($calendrier);
+    }
+
+    /**
+     * Get calendriers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCalendriers()
+    {
+        return $this->calendriers;
+    }
 }
