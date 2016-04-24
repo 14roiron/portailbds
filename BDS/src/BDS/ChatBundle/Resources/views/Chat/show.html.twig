@@ -7,9 +7,12 @@
 	</div>
 	<div class="panel-footer">
 		<form id="chatForm" action="{{ path('bds_chat_post', {'channel': channel}) }}" method="post">
-    		<label for="chatMessage">Message</label>
-    		<input type="text" name="message" id="chatMessage" />
-    		<input class="btn btn-success" type="submit" value="submit" />
+    		<div class="input-group">
+    			<input type="text" name="message" id="chatMessage" class="form-control" placeholder="votre message..."/>
+    			<span class="input-group-btn">
+   	    			<input class="btn btn-success" type="submit" value="poster" />
+   	    		</span>
+    		</div>
 		</form>
 	</div>
 </div>
