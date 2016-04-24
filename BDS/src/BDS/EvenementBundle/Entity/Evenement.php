@@ -14,6 +14,10 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
+	 */
+	private $calendriers;
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $lieu;
@@ -355,5 +359,39 @@ class Evenement
     public function getLieu()
     {
         return $this->lieu;
+    }
+
+    /**
+     * Add calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     *
+     * @return Evenement
+     */
+    public function addCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers[] = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     */
+    public function removeCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers->removeElement($calendrier);
+    }
+
+    /**
+     * Get calendriers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCalendriers()
+    {
+        return $this->calendriers;
     }
 }

@@ -16,6 +16,11 @@ use BDS\ChatBundle\Entity\AuthorInterface;
 class User extends BaseUser implements AuthorInterface
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="users")
+	 */
+	private $calendriers;
+	
+	/**
 	 * @var boolean
 	 * 
 	 * @ORM\Column(name="sexe", type="boolean")

@@ -14,6 +14,10 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
+	 */
+	private $calendriers;
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $lieu;
