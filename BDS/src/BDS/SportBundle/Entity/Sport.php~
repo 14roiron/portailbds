@@ -15,12 +15,7 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
  * @ORM\Entity(repositoryClass="BDS\SportBundle\Entity\SportRepository")
  */
 class Sport
-{
-	/**
-	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", orphanRemoval=true)
-	 */
-	private $calendrier;
-	
+{	
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */

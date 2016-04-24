@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Calendrier
 {
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\SportBundle\Entity\Sport", mappedBy="calendrier")
+	 */
+	private $sport;
+	
     /**
      * @var integer
      *
@@ -178,5 +183,29 @@ class Calendrier
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set sport
+     *
+     * @param \BDS\SportBundle\ntity\Sport $sport
+     *
+     * @return Calendrier
+     */
+    public function setSport(\BDS\SportBundle\ntity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \BDS\SportBundle\ntity\Sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
     }
 }

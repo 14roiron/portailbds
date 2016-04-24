@@ -19,16 +19,16 @@ class EvenementType extends AbstractType
             ->add('debutEvenement',			'collot_datetime')
             ->add('finEvenement',			'collot_datetime')
             ->add('lieu',					new LieuType())
-            ->add('debutInscripsion',		'collot_datetime', array('required' => false))
-            ->add('finInscripsion',			'collot_datetime', array('required' => false))
-            ->add('info',					'text', array('required' =>false))
-            ->add('maxInscrit',				'integer', array('required' => false))
-            ->add('sports',					'entity',		array(
-            													'class'		=>	'BDSSportBundle:Sport',
-            													'property'	=>	'nom',
-            													'multiple'	=>	'true',
-            													'expanded'	=>	'true',
-            ))
+            ->add('debutInscripsion',		'collot_datetime', 	array('required' => false))
+            ->add('finInscripsion',			'collot_datetime', 	array('required' => false))
+            ->add('info',					'text', 			array('required' =>false))
+            ->add('maxInscrit',				'integer', 			array('required' => false))
+            ->add('calendriers',			'entity',			array(
+            														'class'		=>	'BDSCalendrierBundle:Calendrier',
+            														'property'	=>	'nom',
+            														'multiple'	=>	'true',
+            														'expanded'	=>	'true',
+            														))
             ->add('ajouter',				'submit')
         ;
     }
