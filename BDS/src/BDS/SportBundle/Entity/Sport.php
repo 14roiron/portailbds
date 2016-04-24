@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\BooleanNode;
 use BDS\SportBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
+use BDS\CalendrierBundle\Entity\Calendrier;
 
 /**
  * Sport
@@ -15,7 +16,11 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
  * @ORM\Entity(repositoryClass="BDS\SportBundle\Entity\SportRepository")
  */
 class Sport
-{	
+{
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $calendrier;
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
@@ -142,6 +147,7 @@ class Sport
         $this->News = new ArrayCollection();
         $this->roles = new ArrayCollection();
         
+        
         //on ajoute les 4 roles par défaut 
         $joueur = new Role();
         $joueur->setNom("joueur");
@@ -162,6 +168,13 @@ class Sport
         $autre->setNom("autre");
         $autre->setSport($this);
         $this->addRole($autre);
+        
+        //on creer le calendrier à la construction d'un nouveau sport
+        $this->calendrier = new ArrayCollection();
+        
+        $calendrier = new Calendrier();
+        $this->setCalendrier($calendrier);
+        
         
         
         
