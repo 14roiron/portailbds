@@ -12,10 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Calendrier
 {
-	/**
-	 * @ORM\OneToOne(targetEntity="BDS\SportBundle\Entity\Sport", mappedBy="calendrier")
-	 */
-	private $sport;
 	
     /**
      * @var integer
@@ -41,12 +37,12 @@ class Calendrier
     private $couleur;
     
     /**
-     * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="Calendriers")
+     * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="calendriers")
      */
     private $evenements;
     
     /**
-     * @ORM\ManyToMany(targetEntity="BDS\UserBundle\Entity\User", mappedBy="Calendriers")
+     * @ORM\ManyToMany(targetEntity="BDS\UserBundle\Entity\User", inversedBy="calendriers")
      */
     private $users;
 
@@ -185,27 +181,5 @@ class Calendrier
         return $this->users;
     }
 
-    /**
-     * Set sport
-     *
-     * @param \BDS\SportBundle\ntity\Sport $sport
-     *
-     * @return Calendrier
-     */
-    public function setSport(\BDS\SportBundle\ntity\Sport $sport = null)
-    {
-        $this->sport = $sport;
 
-        return $this;
-    }
-
-    /**
-     * Get sport
-     *
-     * @return \BDS\SportBundle\ntity\Sport
-     */
-    public function getSport()
-    {
-        return $this->sport;
-    }
 }

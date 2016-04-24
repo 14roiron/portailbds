@@ -26,7 +26,7 @@ class EvenementController extends Controller
 		//on vérifie que l'utilisateur à accès à cette page 
 		
 		//on récupère touts les évènements
-		$listEvents = $domaine->getEvenements();
+		$listEvents = $domaine->getCalendrier()->getEvenements();
 		
 		//trouver un moyen de faire le tri 
 		
@@ -255,7 +255,7 @@ class EvenementController extends Controller
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
-		$listEvents = $domaine->getEvenements();
+		$listEvents = $domaine->getCalendrier()->getEvenements();
 		//trouver un moyen de faire le tri 
 		
 		//on donne les mois de l'année 
@@ -301,7 +301,7 @@ class EvenementController extends Controller
 		//on vérifie que l'utilisateur à accès à cette page 
 		
 		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
-		$listEvents = $domaine->getEvenements();
+		$listEvents = $domaine->getCalendrier()->getEvenements();
 		//trouver un moyen de faire le tri 
 		
 		//variables utiles 
