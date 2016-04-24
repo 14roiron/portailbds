@@ -33,6 +33,11 @@ class AppKernel extends Kernel
         	new Knp\Bundle\TimeBundle\KnpTimeBundle(),
             new BDS\ChatBundle\BDSChatBundle(),
             new BDS\CalendrierBundle\BDSCalendrierBundle(),
+            new Baikal\SystemBundle\BaikalSystemBundle(),
+            new Baikal\ModelBundle\BaikalModelBundle(),
+            new Baikal\DavServicesBundle\BaikalDavServicesBundle(),
+            new Baikal\RestBundle\BaikalRestBundle(),
+            new Baikal\WellknownBundle\BaikalWellknownBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

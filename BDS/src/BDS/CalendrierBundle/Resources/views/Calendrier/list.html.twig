@@ -1,0 +1,42 @@
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	list des calendriers de {{ user.username }}
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>Calendriers de {{ user.username }}</h2></div>
+	</div>
+	<div class="panel-body">
+		<hr>
+		<table class="table table-stiped table-bordered table-hover col-lg-12">
+			<tbody>
+				{% for calendrier in calendriers %}
+				<tr>
+					<td>
+						<p><a href="#">{{ calendrier.nom }}</a></p>
+					</td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-danger" href="#"><span class="glyphicon glyphicon-trash"/> Supprimer</a>
+							<a class="btn btn-warning" href="#"><span class="glyphicon glyphicon-pencil"/> Editer</a>
+							<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-eye-open"/> Se connecter</a>
+							<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-pencil"/> Voir</a>
+						</div>
+					</td>
+				</tr>
+				{%  else %}
+				<tr>
+					<th>
+						<p> Si tu veux te tenir au courant de ce qu'il se passe il va falloir s'inscrire à des calendriers !</p>
+					</th>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
