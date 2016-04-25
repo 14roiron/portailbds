@@ -31,7 +31,8 @@
 		"stephanecollot/datetimepicker-bundle" : "dev-master",
 		"doctrine/doctrine-migrations-bundle" : "^1.0",
 		"knplabs/knp-time-bundle" : "1.5.*",
-		"sabre/dav" : "3.1.*"
+		"sabre/dav" : "3.1.*",
+		"teraone/twig-strftime-extension" : "dev-master"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3",
