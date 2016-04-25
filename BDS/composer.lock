@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0ba16caccfd490dfb306464ea33ae2e4",
-    "content-hash": "2820271d7adfc34e6badd95d2e91f4fb",
+    "hash": "b2d2b7e055c83748daa3b2a02cc053a1",
+    "content-hash": "bfc870885c2e4cd37f10acab84ad3839",
     "packages": [
         {
             "name": "coresphere/console-bundle",
@@ -3438,6 +3438,47 @@
             "time": "2016-03-27 12:57:53"
         },
         {
+            "name": "teraone/twig-strftime-extension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teraone/twig-strftime-extension.git",
+                "reference": "742c3b3f97711b7fe3e8abf03fbc4f68aff87661"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teraone/twig-strftime-extension/zipball/742c3b3f97711b7fe3e8abf03fbc4f68aff87661",
+                "reference": "742c3b3f97711b7fe3e8abf03fbc4f68aff87661",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Teraone\\Twig": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gotre",
+                    "email": "gotre@teraone.de",
+                    "homepage": "https://teraone.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "use strftime function in  twig",
+            "time": "2016-03-18 12:22:03"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.3.0",
             "source": {
@@ -3809,7 +3850,8 @@
         "ornicar/gravatar-bundle": 20,
         "coresphere/console-bundle": 20,
         "stfalcon/tinymce-bundle": 20,
-        "stephanecollot/datetimepicker-bundle": 20
+        "stephanecollot/datetimepicker-bundle": 20,
+        "teraone/twig-strftime-extension": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

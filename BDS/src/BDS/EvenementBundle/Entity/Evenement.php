@@ -394,12 +394,6 @@ class Evenement
     {
         return $this->calendriers;
     }
-        public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
 
     /**
      * Get couleur

@@ -8,76 +8,88 @@
 
 <div class="col-lg-2">
 	<div class="row">
-		<div class="">{{ date|strftime('%b') }}</div>
-		<div> {{ now|date("%B") }}</div>
+		<div class="">{{ now|strftime('%b') }}</div>
 	</div>
 </div>
 <div class="col-lg-10">
 	<div class="row">
-		<div class="">{{ date|strftime('%B') }} Semaine : {{ date|strftime('%U') }}</div>
-		<div class="">
-			<div class="btn-group" role="group">
-  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"/></button>
-  				<button type="button" class="btn btn-default">Aujourd'hui</button>
-  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"/></button>
+		<div class="col-lg-6"><h1>{{ now|strftime('%B') }} <small>S{{ now|strftime('%U') }}</small></h1></div>
+		<div class="col-lg-6 text-right">
+			<div class="col-lg-12">
+				<div class="btn-group" role="group">
+	  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"/></button>
+	  				<button type="button" class="btn btn-default">Aujourd'hui</button>
+	  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"/></button>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="">
-		<table>
+	<div class="col-lg-12">
+		<table class="col-lg-12 table table-hover">
 			<tbody>
 				<tr>
-					<td style="width: 30px;"></td>
-					{{ for dateAffichee in datesAffichees }}
+					<td style="width: 40px;"></td>
+					{% for jourSemaine in joursSemaine %}
 					<td>
-						{{ dateAffichee|strftime('%b') }}
-						<span {{ if dateAffichee|format('d/m/Y') == now|format('d/m/Y') }} class="badge" {{ endif }}>
-							{{ dateAffichee|strftime('%e') }}
-						</span> 
+						<h3>{{ jourSemaine|strftime('%a') }}
+							{% if jourSemaine|date('d/m/Y') == now|date('d/m/Y') %}
+								<span  class="badge">
+							{% else %}
+								<span class="">
+							{% endif %}
+								{{ jourSemaine|strftime('%e') }}
+							</span>
+						</h3>
 					</td>
-					{{ endfor }}
+					{% endfor %}
 				</tr>
 			</tbody>
 		</table>
-		<div style="overflow-y: scroll; height: 913px; position: relative;">
-			<table>
-				{{ for i in 1..24 }}
-				<tr style="height: 60px;">
-					<td style="width: 30px;">
-						{{ if i|length == 1 }}
-							0{{ i }}:00
-						{{ else }}
-							{{ i }}:00
-						{{ endif }}
-					</td>
-					{{ for j in 1..7 }}
-					<td>
-						<div class="" style="height: 30px"></div>
-						<div class="" style="height: 30px"></div>
-					</td>
-					{{ endfor }}
+	</div>
+	<div class="col-lg-12" style="overflow-y: scroll; height: 913px; position: relative;">
+		<table class="table table-hover">
+			<tbody>
+				{% for i in 0..48 %}
+					{% if i is even %}
+						<tr style="height: 30px; border-bottom: 1px #eeeeee dotted;">
+							<td style="width: 40px; border-top: none; padding-top: 0px;">
+								<small class="text-muted" style="padding-top: 0px;">{{ i/2 }}:00</small>
+							</td>
+							{% for j in 1..7 %}
+							<td class="table-bordered" style="height: 30px; border-bottom: 1px #eeeeee dotted;"></td>
+							{% endfor %}
+						</tr>
+					{% else %}
+						<tr style="height: 30px; border-top: 1px #eeeeee dotted";">
+							<td style="width: 40px; border-top: none"></td>
+							{% for h in 1..7 %}
+							<td class="table-bordered" style="height: 30px; border-top: 1px #eeeeee dotted"></td>
+							{% endfor %}
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+		<table style="position: absolute; top 0px; right: 0px; z-index: 2; opacity: 0">
+			<!-- cette table contiendra les evenements chargés en javascript -->
+			<tbody>
+				<tr>
+					<td id="jour_1"></td>
+					<td id="jour_2"></td>
+					<td id="jour_3"></td>
+					<td id="jour_4"></td>
+					<td id="jour_5"></td>
+					<td id="jour_6"></td>
+					<td id="jour_7"></td>
 				</tr>
-				{{ endfor }}
-			</table>
-			<table style="position: absolute; top 0px; right: 0px; z-index: 2;">
-				<!-- cette table contiendra les evenements chargés en javascript -->
-				<tbody>
-					<tr>
-						<td id="jour_1"></td>
-						<td id="jour_2"></td>
-						<td id="jour_3"></td>
-						<td id="jour_4"></td>
-						<td id="jour_5"></td>
-						<td id="jour_6"></td>
-						<td id="jour_7"></td>
-					</tr>
-				</tbody>
-			</table>
-			<div style="z_index: 50;">
-				<!-- contiendra la ligne de maintenant (je sais pas encore comment la faire mais j'y travaille -->
-			</div>
+			</tbody>
+		</table>
+		<div style="z_index: 50;">
+			<!-- contiendra la ligne de maintenant (je sais pas encore comment la faire mais j'y travaille -->
 		</div>
 	</div>
 </div>
+{{ dump(lundi) }}
+{{ dump(now) }}
 
 {% endblock %}
