@@ -7,6 +7,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BDS\SportBundle\Entity\Sport;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CalendrierController extends Controller
 {
@@ -64,6 +65,14 @@ class CalendrierController extends Controller
 		$events = $this->get('bds_evnement.manager')getbyDateIntervallCal($lundi, $dimanche, $cal);
 		
 		//on renvoit les infos au script 
+		$reponse = new JsonResponse();
+		$response->setDate(array(
+			'lundi'		=>	$lundi,
+			'events'	=>	$events,
+			
+			));
+			
+		return $response;
 		
 	}
 }
