@@ -35,7 +35,13 @@ class Evenement
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="couleur", type="string", length=255)
+	 */
+	 private $couleur;
+	 
     /**
      * @var string
      *
@@ -387,5 +393,34 @@ class Evenement
     public function getCalendriers()
     {
         return $this->calendriers;
+    }
+        public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get couleur
+     *
+     * @return string 
+     */
+    public function getCouleur()
+    {
+        return $this->couleur;
+    }
+    
+    /**
+     * Set couleur
+     *
+     * @param string $couleur
+     * @return Evenement
+     */
+    public function setCouleur($couleur)
+    {
+        $this->couleur = $couleur;
+
+        return $this;
     }
 }
