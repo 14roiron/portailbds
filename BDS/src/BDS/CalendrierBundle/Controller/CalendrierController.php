@@ -49,4 +49,21 @@ class CalendrierController extends Controller
 				'now'		=>	$now
 		));
 	}
+	
+	public function loadCalSportAction (Calendrier $cal, $day)
+	{
+		//on récupère le domaine
+		$domaine = $this->get('bds_sport.manager')->getSport($cal->getNom());
+		
+		//on cherche la semaine en cours
+		$day = new DateTime($day);
+		$lundi = $day - (DateTime(strftime('%u', $day->getTimestamp())*24*60*60));
+		$dimanche = $day + (DateTime((7 - strftime('%u', $day->getTimestamp()))*24*60*60));
+		
+		//on recupere les evenementscompris entre ces 2 date 
+		$events = $this->get('bds_evnement.manager')getbyDateIntervallCal($lundi, $dimanche, $cal);
+		
+		//on renvoit les infos au script 
+		
+	}
 }
