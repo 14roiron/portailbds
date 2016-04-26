@@ -18,6 +18,11 @@ use BDS\CalendrierBundle\Entity\Calendrier;
 class Sport
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
+	 */
+	private $evenements;
+	
+	/**
 	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $calendrier;

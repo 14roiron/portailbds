@@ -14,6 +14,11 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="evenements")
+	 */
+	private $sports;
+	
+	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
 	 */
 	private $calendriers;
@@ -35,7 +40,13 @@ class Evenement
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="couleur", type="string", length=255)
+	 */
+	 private $couleur;
+	 
     /**
      * @var string
      *
@@ -387,5 +398,28 @@ class Evenement
     public function getCalendriers()
     {
         return $this->calendriers;
+    }
+
+    /**
+     * Get couleur
+     *
+     * @return string 
+     */
+    public function getCouleur()
+    {
+        return $this->couleur;
+    }
+    
+    /**
+     * Set couleur
+     *
+     * @param string $couleur
+     * @return Evenement
+     */
+    public function setCouleur($couleur)
+    {
+        $this->couleur = $couleur;
+
+        return $this;
     }
 }

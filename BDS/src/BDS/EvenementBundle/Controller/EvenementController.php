@@ -115,6 +115,14 @@ class EvenementController extends Controller
 		//on fait le lien requete formulaire 
 		$form->handleRequest($request);
 		
+		//on ajoute les sport 
+		$cals = $evenement->getCalendriers();
+		if ($cals != null){
+			foreach ($cals as $cal)
+			{
+				$evenement->addSport($this->get('bds_sport.manager')->getSport($cal->getNom()));
+			}
+		}
 		/*
 		 * si les champs complémentaires n'ont pas été rempli on
 		 * charge une date de fin et de début des inscripsion pour éviter les inscripsions sauvages
@@ -134,7 +142,7 @@ class EvenementController extends Controller
 		//on passe par une étape de validation 
 		if($form->isValid())
 		{	
-			//on parcour chaque sport de l'évenement 
+			//on parcour chaque sport associés à de l'évenement 
 			$sports = $evenement->getSports();
 			
 			foreach ($sports as $sport)

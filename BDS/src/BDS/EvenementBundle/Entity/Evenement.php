@@ -14,6 +14,11 @@ use Symfony\Component\Config\Definition\IntegerNode;
 class Evenement
 {
 	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="evenements")
+	 */
+	private $sports;
+	
+	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
 	 */
 	private $calendriers;
@@ -35,10 +40,11 @@ class Evenement
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
 	/**
 	 * @var string
 	 * 
-	 * @ORM\Column(name="couleur", type="string", length=255)
+	 * @ORM\Column(name="couleur", type="string", length=255, nullable=true)
 	 */
 	 private $couleur;
 	 

@@ -37,12 +37,12 @@ class Calendrier
     private $couleur;
     
     /**
-     * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="Calendriers")
+     * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="calendriers")
      */
     private $evenements;
     
     /**
-     * @ORM\ManyToMany(targetEntity="BDS\UserBundle\Entity\User", mappedBy="Calendriers")
+     * @ORM\ManyToMany(targetEntity="BDS\UserBundle\Entity\User", inversedBy="calendriers")
      */
     private $users;
 

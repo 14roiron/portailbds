@@ -16,7 +16,7 @@ use BDS\ChatBundle\Entity\AuthorInterface;
 class User extends BaseUser implements AuthorInterface
 {
 	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="users")
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", mappedBy="users")
 	 */
 	private $calendriers;
 	
