@@ -18,7 +18,6 @@ $(document).ready(function(){
     	for (var i = 1; i <= 7; i++){
     		$("[id^=jour_"+i+"_]").empty();
     	}
-    	alert ("c'est vide");
     	
     	//charger les nouveaux noms de colonne
         $.ajax({
@@ -27,11 +26,13 @@ $(document).ready(function(){
             data: 'string',
             dataType: 'json',
             success: function(json) {
-                data = json;
-                for (var i = 1; i <= 7; i++){
-                	$("[id^=jour_"+i+"_]").attr({id: "jour_"+i+"_"+timestamp});
+            	var day;
+            	var time;
+                for (var i = 0; i < 7; i++){
+                	day = i+1;
+                	time = new Date(json[i]).getTime()/1000;
+                	$("[id^=jour_"+day+"_]").attr('id', "jour_"+day+"_"+time);
                 }
-                alert("titre de colonnes changés")
             },
             error: function (jqXHR, textStatus, errorThrown){
                 alert(errorThrown);
@@ -39,15 +40,10 @@ $(document).ready(function(){
             
         });
         
-        //chargers les évènements avec ajax
+        //chargers les évènements avec ajax et les placer dans le nouveau calendrier
+        loadSport(pathLoadSportCal, timestamp);
         
-        //les placer dans le nouveau calendrier
-        
-        //enlever le loader
-        
-        //recharger la barre d'aujourdhui 
-        
-    	//retourner false 
-    	return false;
+        //empecher le comportement naturel
+        return false;
     });
 });

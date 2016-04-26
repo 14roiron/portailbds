@@ -9,3 +9,7 @@ bds_calendrier_header:
 bds_calendrier_jour_semaine:
     path:     calendrier/jours/semaine/{date}
     defaults: {_controller: BDSCalendrierBundle:Calendrier:nomJourSemaine, date: null }
+    
+bds_load_cal_sport:
+    path:     calendrier/events/{nom}/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:loadCalSport, date: null }

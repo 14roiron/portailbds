@@ -1,15 +1,14 @@
-var data;
-
-function loadSport(pathLoadSportCal){
+function loadSport(pathLoadSportCal, timestamp){
   
     //envoyer la requette Ajax 
     $.ajax({
-        url: pathLoadfullSportCal,
+        url: pathLoadSportCal+"/"+timestamp,
         type: 'POST',
         data: 'string',
         dataType: 'json',
         success: function(json) {
-            data = json;
+        	majFullCal(json)
+        	//enlever le loader
         },
         error: function (jqXHR, textStatus, errorThrown){
             alert(errorThrown);

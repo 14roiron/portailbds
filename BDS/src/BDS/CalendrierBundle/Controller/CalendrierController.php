@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use BDS\SportBundle\Entity\Sport;
 use BDS\CalendrierBundle\Entity\Calendrier;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 class CalendrierController extends Controller
 {
@@ -19,6 +21,7 @@ class CalendrierController extends Controller
 		
 		//on charge la date actuelle 
 		$now = new \DateTime();
+		$now->setTime(0, 0, 0);
 		
 		//on récupère le lundi de la semaine
 		$lundi = new \DateTime();
@@ -46,27 +49,42 @@ class CalendrierController extends Controller
 		));
 	}
 	
-	public function loadCalSportAction (Calendrier $cal, $day)
+	public function loadCalSportAction (Calendrier $cal, $date)
 	{
+		//si la date est null
+		$now = new \DateTime();
+		$now->setTime(0, 0, 0);
+		if ($date = null){ $date = $now->getTimestamp(); }
+		
 		//on récupère le domaine
 		$domaine = $this->get('bds_sport.manager')->getSport($cal->getNom());
 	
-		//on cherche la semaine en cours
-		$day = new \DateTime($day);
-		$lundi = $day - (DateTime(strftime('%u', $day->getTimestamp())*24*60*60));
-		$dimanche = $day + (DateTime((7 - strftime('%u', $day->getTimestamp()))*24*60*60));
+		//on cherche lundi matin
+		$lundi = new \DateTime();
+		$jsemaine = strftime('%u', $date)-1; //-1 car le jour 0 st dimanche dans le php
+		$lundi->setTime(0, 0, 0);
+		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
+		
+		//on cherche dimanche soir 
+		$dimanche = new \DateTime();
+		$dimanche->setTimestamp($lundi->getTimestamp());
+		$dimanche->add(new \DateInterval("P".(7-$jsemaine)."D"));
+		$dimanche->setTime(23, 59, 59);
+		
 	
 		//on recupere les evenementscompris entre ces 2 date
 		//$events = $this->get('bds_evnement.manager')getbyDateIntervallCal($lundi, $dimanche, $cal);
+		$events = $this->get('bds_evenement.manager')->getAll();
+		
+		foreach ($events as $event)
+		{
+			$event->setCouleur($cal->getCouleur());
+		}
+		
+		
 	
 		//on renvoit les infos au script
-		$response = new JsonResponse();
-		$response->setDate(array(
-				'lundi'		=>	$lundi,
-				//'events'	=>	$events,
-					
-		));
-			
+		$response = new Response($this->get('jms_serializer')->serialize($events, 'json', SerializationContext::create()->enableMaxDepthChecks()));
 		return $response;
 	
 	}
@@ -137,8 +155,7 @@ class CalendrierController extends Controller
 		}
 		
 		//on renvoit les infos au script
-		$response = new JsonResponse(json_encode(array('joursSemaine'	=>	$joursSemaine)));
-		
+		$response = new Response($this->get('jms_serializer')->serialize($joursSemaine, 'json'));
 		return $response;
 	}
 }

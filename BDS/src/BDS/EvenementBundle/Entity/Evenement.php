@@ -4,22 +4,31 @@ namespace BDS\EvenementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Config\Definition\IntegerNode;
+use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\AccessType;
+use JMS\Serializer\Annotation\Accessor;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="bds_evenement")
  * @ORM\Entity(repositoryClass="BDS\EvenementBundle\Entity\EvenementRepository")
+ * @ExclusionPolicy("all")
+ * 
  */
 class Evenement
 {
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="evenements")
+	 * 
 	 */
 	private $sports;
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
+	 * 
 	 */
 	private $calendriers;
 	/**
@@ -28,6 +37,7 @@ class Evenement
 	private $lieu;
 	
 	/**
+	 * 
 	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement", orphanRemoval=true)
 	 */
 	private $participations;
@@ -38,6 +48,8 @@ class Evenement
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Accessor(getter="getId")
      */
     private $id;
     
@@ -45,6 +57,8 @@ class Evenement
 	 * @var string
 	 * 
 	 * @ORM\Column(name="couleur", type="string", length=255, nullable=true)
+	 * @Expose
+	 * @Accessor(getter="getCouleur",setter="setCouleur")
 	 */
 	 private $couleur;
 	 
@@ -52,6 +66,8 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Expose
+     * @Accessor(getter="getNom",setter="setNom")
      */
     private $nom;
 
@@ -59,6 +75,8 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="debut_evenement", type="datetime")
+     * @Expose
+     * @Accessor(getter="getDebutEvenement",setter="setDebutEvenement")
      */
     private $debutEvenement;
 
@@ -66,6 +84,8 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="fin_evenement", type="datetime")
+     * @Expose
+     * @Accessor(getter="getFinEvenement",setter="setFinEvenement")
      */
     private $finEvenement;
 

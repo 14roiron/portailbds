@@ -39,12 +39,13 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<table  style="position: absolute; top 0px; right: 0px; z-index: 2; opacity: 1; height:1440px" class="table table-hover">
+		<table  style="position: absolute; top 0px; z-index: 2; opacity: 1; height:1440px" class="table table-hover">
 			<!-- cette table contiendra les evenements chargés en javascript -->
 			<tbody>
 				<tr>
+					<td style="width:40px;"></td>
 					{% for jour in joursSemaine %}
-					<td id="jour_1_{{ jour.timestamp }}"></td>
+					<td id="jour_{{ loop.index }}_{{ jour.timestamp }}"></td>
 					{% endfor %}
 				</tr>
 			</tbody>
@@ -61,8 +62,11 @@
 
 {{ parent() }}
 <script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/fullCalSport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/loadEvents.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/fullCal.js') }}"></script>
 <script type="text/javascript">
 	var pathToNomSemaine = "{{ path("bds_calendrier_jour_semaine") }}";
+	var pathLoadSportCal = "{{ path("bds_load_cal_sport", {'nom': domaine.nom}) }}";
 </script>
 {% endblock %}
 
