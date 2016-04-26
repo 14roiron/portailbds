@@ -300,7 +300,8 @@ class EvenementController extends Controller
 		//on verifie que l'utilisateur courant est bien le capitaine 
 		
 		//on récupère tous les evenements du domaine
-		$listEvents = $domaine->getEvenements();
+		$cal = $this->get('bds_calendrier.manager')->get($domaine->getNom());
+		$listEvents = $cal->getEvenements();
 		
 		//on passe à la vue 
 		return $this->render('BDSEvenementBundle:Evenement:capitaineEvenement.html.twig', array(

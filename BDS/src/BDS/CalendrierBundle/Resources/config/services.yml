@@ -1,4 +1,4 @@
 services:
-#    bds_canlendrier.example:
-#        class: BDS\CanlendrierBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    bds_calendrier.manager:
+        class: BDS\CalendrierBundle\Manager\CalendrierManager
+        arguments: [ @doctrine.orm.entity_manager ]
