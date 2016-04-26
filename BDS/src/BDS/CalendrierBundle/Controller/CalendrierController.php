@@ -73,9 +73,11 @@ class CalendrierController extends Controller
 	
 	public function headerAction ( $date = null)
 	{
-		//on récupère la date d'aujourd'hui 
+		//on récupère la date d'aujourd'hui et la date cible 
 		$now = new \DateTime();
 		if($date == null){ $date = $now->getTimestamp();}
+		$dateCible = new \DateTime();
+		$dateCible->setTimestamp($date);
 		
 		//on récupère le lundi de la semaine
 		$lundi = new \DateTime();
@@ -105,7 +107,8 @@ class CalendrierController extends Controller
 				'now'			=>	$now,
 				'joursSemaine'	=>	$joursSemaine,
 				'lundiPrec'		=>	$lundiPrec,
-				'lundiSui'		=>	$lundiSui
+				'lundiSui'		=>	$lundiSui,
+				'dateCible'		=>	$dateCible
 		));
 		
 	}
