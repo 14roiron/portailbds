@@ -1,3 +1,7 @@
 bds_calendrier_sport:
     path:     sport/{nom}/calendrier/{jour}/{mois}/{annee}
     defaults: {_controller: BDSCalendrierBundle:Calendrier:sportCal, jour: null, mois: null, annee: null }
+    
+bds_calendrier_header:
+    path:     calendrier/header/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:header, date: null}

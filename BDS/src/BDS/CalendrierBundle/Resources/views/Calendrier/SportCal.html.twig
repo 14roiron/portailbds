@@ -8,43 +8,12 @@
 
 <div class="col-lg-2">
 	<div class="row">
-		<div class="">{{ now|strftime('%b') }}</div>
+		<div class=""></div>
 	</div>
 </div>
 <div class="col-lg-10">
-	<div class="row">
-		<div class="col-lg-6"><h1>{{ now|strftime('%B') }} <small>S{{ now|strftime('%U') }}</small></h1></div>
-		<div class="col-lg-6 text-right">
-			<div class="col-lg-12">
-				<div class="btn-group" role="group">
-	  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"/></button>
-	  				<button type="button" class="btn btn-default">Aujourd'hui</button>
-	  				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"/></button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-12">
-		<table class="col-lg-12 table table-hover">
-			<tbody>
-				<tr>
-					<td style="width: 40px;"></td>
-					{% for jourSemaine in joursSemaine %}
-					<td>
-						<h3>{{ jourSemaine|strftime('%a') }}
-							{% if jourSemaine|date('d/m/Y') == now|date('d/m/Y') %}
-								<span  class="badge">
-							{% else %}
-								<span class="">
-							{% endif %}
-								{{ jourSemaine|strftime('%e') }}
-							</span>
-						</h3>
-					</td>
-					{% endfor %}
-				</tr>
-			</tbody>
-		</table>
+	<div id="header_cal">
+		{{ render(controller('BDSCalendrierBundle:Calendrier:header')) }}
 	</div>
 	<div class="col-lg-12" style="overflow-y: scroll; height: 913px; position: relative;">
 		<table class="table table-hover">
@@ -70,17 +39,13 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<table style="position: absolute; top 0px; right: 0px; z-index: 2; opacity: 0">
+		<table  style="position: absolute; top 0px; right: 0px; z-index: 2; opacity: 1; height:1440px" class="table table-hover">
 			<!-- cette table contiendra les evenements chargés en javascript -->
 			<tbody>
 				<tr>
-					<td id="jour_1"></td>
-					<td id="jour_2"></td>
-					<td id="jour_3"></td>
-					<td id="jour_4"></td>
-					<td id="jour_5"></td>
-					<td id="jour_6"></td>
-					<td id="jour_7"></td>
+					{% for jour in joursSemaine %}
+					<td id="jour_{{ jour.timestamp }}"></td>
+					{% endfor %}
 				</tr>
 			</tbody>
 		</table>
@@ -89,7 +54,5 @@
 		</div>
 	</div>
 </div>
-{{ dump(lundi) }}
-{{ dump(now) }}
 
 {% endblock %}

@@ -20,24 +20,29 @@ class CalendrierController extends Controller
 		//on charge la date actuelle 
 		$now = new \DateTime();
 		
-		//on fait un tableau contenant toute les dates à afficher
-		$joursSemaine = array ();
+		//on récupère le lundi de la semaine
 		$lundi = new \DateTime();
-		//$jsemaine = strftime('%u', $now->getTimestamp());
+		$jsemaine = strftime('%u', $now->getTimestamp())-1; //-1 car le jour 0 st dimanche dans le php
 		$lundi->setTime(0, 0, 0);
+		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
 		
+		//on tabule ls jours de la semaine
+		$joursSemaine = array ();
 		for ($i = 0; $i < 7; $i++)
 		{
-			$joursSemaine[$i] = $lundi;
-			$joursSemaine[$i]->add(new \DateInterval(("P".$i."D")));
+			$joursSemaine[$i] = new \DateTime();
+			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
+			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
 		}
+
+		
+
 	
 		//on appelle le template
 		return $this->render('BDSCalendrierBundle:Calendrier:sportCal.html.twig', array(
-				'joursSemaine'	=>	$joursSemaine,
 				'domaine'		=>	$domaine,
-				'now'			=>	$now,
-				'lundi'			=>	$lundi,
+				'joursSemaine'	=>	$joursSemaine
+
 		));
 	}
 	
@@ -64,5 +69,44 @@ class CalendrierController extends Controller
 			
 		return $response;
 	
+	}
+	
+	public function headerAction ( $date = null)
+	{
+		//on récupère la date d'aujourd'hui 
+		$now = new \DateTime();
+		if($date == null){ $date = $now->getTimestamp();}
+		
+		//on récupère le lundi de la semaine
+		$lundi = new \DateTime();
+		$jsemaine = strftime('%u', $date)-1; //-1 car le jour 0 st dimanche dans le php
+		$lundi->setTime(0, 0, 0);
+		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
+		
+		//on tabule ls jours de la semaine 
+		$joursSemaine = array ();
+		for ($i = 0; $i < 7; $i++)
+		{
+			$joursSemaine[$i] = new \DateTime();
+			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
+			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
+		}
+		
+		//lundi suivant et lundi precedent
+		$lundiPrec = new \DateTime();
+		$lundiPrec->setTimestamp($lundi->getTimestamp());
+		$lundiPrec->sub(new \DateInterval("P7D"));
+		$lundiSui = new \DateTime();
+		$lundiSui->setTimestamp($lundi->getTimestamp());
+		$lundiSui->add(new \DateInterval("P7D"));
+		
+		//on retourne la vue 
+		return $this->render('BDSCalendrierBundle:Calendrier:header_content.html.twig', array(
+				'now'			=>	$now,
+				'joursSemaine'	=>	$joursSemaine,
+				'lundiPrec'		=>	$lundiPrec,
+				'lundiSui'		=>	$lundiSui
+		));
+		
 	}
 }
