@@ -5,3 +5,7 @@ bds_calendrier_sport:
 bds_calendrier_header:
     path:     calendrier/header/{date}
     defaults: {_controller: BDSCalendrierBundle:Calendrier:header, date: null}
+    
+bds_calendrier_jour_semaine:
+    path:     calendrier/jours/semaine/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:nomJourSemaine, date: null }

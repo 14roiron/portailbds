@@ -112,4 +112,33 @@ class CalendrierController extends Controller
 		));
 		
 	}
+	
+	public function nomJourSemaineAction ($date = null)
+	{
+		//on récupère la date d'aujourd'hui et la date cible
+		$now = new \DateTime();
+		if($date == null){ $date = $now->getTimestamp();}
+		$dateCible = new \DateTime();
+		$dateCible->setTimestamp($date);
+		
+		//on récupère le lundi de la semaine
+		$lundi = new \DateTime();
+		$jsemaine = strftime('%u', $date)-1; //-1 car le jour 0 st dimanche dans le php
+		$lundi->setTimestamp($date);
+		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
+		
+		//on tabule ls jours de la semaine
+		$joursSemaine = array ();
+		for ($i = 0; $i < 7; $i++)
+		{
+			$joursSemaine[$i] = new \DateTime();
+			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
+			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
+		}
+		
+		//on renvoit les infos au script
+		$response = new JsonResponse(json_encode(array('joursSemaine'	=>	$joursSemaine)));
+		
+		return $response;
+	}
 }

@@ -44,7 +44,7 @@
 			<tbody>
 				<tr>
 					{% for jour in joursSemaine %}
-					<td id="jour_{{ jour.timestamp }}"></td>
+					<td id="jour_1_{{ jour.timestamp }}"></td>
 					{% endfor %}
 				</tr>
 			</tbody>
@@ -61,6 +61,8 @@
 
 {{ parent() }}
 <script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/fullCalSport.js') }}"></script>
-
+<script type="text/javascript">
+	var pathToNomSemaine = "{{ path("bds_calendrier_jour_semaine") }}";
+</script>
 {% endblock %}
 
