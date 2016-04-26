@@ -3,9 +3,9 @@
 	<div class="col-lg-6 text-right">
 		<div class="col-lg-12">
 			<div class="btn-group" role="group">
-  				<button type="button" class="btn btn-default" id="button_{{ lundiPrec.timestamp }}"><span class="glyphicon glyphicon-chevron-left"/></button>
-  				<button type="button" class="btn btn-default" id="button_{{ now.timestamp }}">Aujourd'hui</button>
-  				<button type="button" class="btn btn-default" id="button_{{ lundiSui.timestamp }}"><span class="glyphicon glyphicon-chevron-right"/></button>
+  				<button type="button" class="btn btn-default" id="button_lundi_{{ lundiPrec.timestamp }}"><span class="glyphicon glyphicon-chevron-left"/></button>
+  				<button type="button" class="btn btn-default" id="button_lundi_{{ now.timestamp }}">Aujourd'hui</button>
+  				<button type="button" class="btn btn-default" id="button_lundi_{{ lundiSui.timestamp }}"><span class="glyphicon glyphicon-chevron-right"/></button>
 			</div>
 		</div>
 	</div>
@@ -32,3 +32,6 @@
 		</tbody>
 	</table>
 </div>
+<script type="text/javascript">
+	var pathToHeader = "{{ path('bds_calendrier_header') }}";
+</script>

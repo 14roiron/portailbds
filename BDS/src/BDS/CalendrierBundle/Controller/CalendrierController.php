@@ -80,7 +80,7 @@ class CalendrierController extends Controller
 		//on récupère le lundi de la semaine
 		$lundi = new \DateTime();
 		$jsemaine = strftime('%u', $date)-1; //-1 car le jour 0 st dimanche dans le php
-		$lundi->setTime(0, 0, 0);
+		$lundi->setTimestamp($date);
 		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
 		
 		//on tabule ls jours de la semaine 

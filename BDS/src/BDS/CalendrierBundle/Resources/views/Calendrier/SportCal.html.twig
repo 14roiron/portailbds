@@ -56,3 +56,11 @@
 </div>
 
 {% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/fullCalSport.js') }}"></script>
+
+{% endblock %}
+
