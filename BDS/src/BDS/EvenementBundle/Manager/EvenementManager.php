@@ -7,6 +7,7 @@ use BDS\EvenementBundle\Entity\Evenement;
 use BDS\SportBundle\Entity\Sport;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use BDS\CalendrierBundle\Entity\Calendrier;
 
 class EvenementManager
 {
@@ -130,7 +131,18 @@ class EvenementManager
 		$semaine[7] = 'dimanche';
 		
 		return $semaine;
-
+	
+	}
+	
+	public function getbyDateIntervallCal($lundi, $dimanche, Calendrier $cal)
+	{		
+		$query = $this->getRepository()->createQueryBuilder('ev')
+		->where('ev.debut_evenement < '.$dimanche->format('Y-m-d H:i:s'))
+		->where('ev.fin_evenement > '.$lundi->format('Y-m-d H:i:s'))
+		->where('ev.calendrier.nom = '.$cal->getNom())
+		->orderBy('ev.debut_evenement', 'ASC')
+		->getQuery();
 		
+		return $query->getResult();
 	}
 }

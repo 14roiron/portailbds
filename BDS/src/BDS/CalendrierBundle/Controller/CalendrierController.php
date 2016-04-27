@@ -73,7 +73,7 @@ class CalendrierController extends Controller
 		
 	
 		//on recupere les evenementscompris entre ces 2 date
-		//$events = $this->get('bds_evnement.manager')getbyDateIntervallCal($lundi, $dimanche, $cal);
+		//$events = $this->get('bds_evenement.manager')->getbyDateIntervallCal($lundi, $dimanche, $cal);
 		$events = $this->get('bds_evenement.manager')->getAll();
 		
 		foreach ($events as $event)

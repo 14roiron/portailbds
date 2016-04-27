@@ -9,6 +9,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\AccessType;
 use JMS\Serializer\Annotation\Accessor;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Evenement
@@ -77,6 +78,7 @@ class Evenement
      * @ORM\Column(name="debut_evenement", type="datetime")
      * @Expose
      * @Accessor(getter="getDebutEvenement",setter="setDebutEvenement")
+     * @Type("DateTime<'Y-m-d\TH:i:s'>")
      */
     private $debutEvenement;
 
@@ -86,6 +88,7 @@ class Evenement
      * @ORM\Column(name="fin_evenement", type="datetime")
      * @Expose
      * @Accessor(getter="getFinEvenement",setter="setFinEvenement")
+     * @Type("DateTime<'Y-m-d\TH:i:s'>")
      */
     private $finEvenement;
 
