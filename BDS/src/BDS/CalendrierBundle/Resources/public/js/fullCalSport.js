@@ -3,6 +3,9 @@ $(document).ready(function(){
     //on part sur la semaine suivante 
     $("[id^=button_lundi_]").click(function(){
         //afficher le loader
+    	e = document.createElement('div');
+    	$(e).html('<img; src="'+pathToLoader+'" id="Loader" />');
+    	$("#header-cal .row").append(e);
         
          //recuperer la date cible
     	var timestamp = $(this).attr('id').replace('button_lundi_', '');

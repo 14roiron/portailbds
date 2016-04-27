@@ -9,6 +9,7 @@ function loadSport(pathLoadSportCal, timestamp){
         success: function(json) {
         	majFullCal(json)
         	//enlever le loader
+        	$("#loader").remove();
         },
         error: function (jqXHR, textStatus, errorThrown){
             alert(errorThrown);
