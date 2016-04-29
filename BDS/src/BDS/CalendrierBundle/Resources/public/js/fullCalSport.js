@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	//initialisation de la page 
+	//recuperer la date cible
+	var timestamp = moment().format('X');
+	//chargers les évènements avec ajax et les placer dans le nouveau calendrier
+    loadSport(pathLoadSportCal, timestamp);
 
     //on part sur la semaine suivante 
     $("[id^=button_lundi_]").click(clickEvent);
