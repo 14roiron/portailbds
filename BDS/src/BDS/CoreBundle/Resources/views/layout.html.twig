@@ -180,7 +180,8 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   		<script type="text/javascript" src="{{ asset('js/bootstrap_fileInput_js/fileinput.min.js') }}"></script>
   		<script type="text/javascript" src="{{ asset('js/bootstrap_fileInput_js/fileinput_locale_LANG.js') }}"></script>
-  		<script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
+  		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
     {% endblock %}
 	
 </body>

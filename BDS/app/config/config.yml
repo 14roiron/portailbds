@@ -129,6 +129,10 @@ bds_chat:
     update_interval: 5000
     number_of_messages: 10
     
+#fos JS Routing
+fos_js_routing:
+     routes_to_expose: [ (.*) ] 
+    
 
 
 

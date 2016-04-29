@@ -54,7 +54,7 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script type="text/javascript" src="{{ asset('js/poney.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/poney.js') }}"></script>
 <script type="text/javascript">
 {% if evenement.lieu %}
 	var myLat = {{ evenement.lieu.lat }};
@@ -65,7 +65,7 @@
 <script async defer 
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
 </script>
-<script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/map.js') }}"></script>
 
 
 

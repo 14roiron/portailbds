@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div id="channel_{{ channel }}" class="panel panel-default">
 	<div class="panel-heading">
 		<p class="panel-title"><span class="glyphicon glyphicon-comment"/> Chat</p>
 	</div>
@@ -19,6 +19,5 @@
 
 <script type="text/javascript">
 	var updateInterval = {{ updateInterval }};
-	var pathPost = "{{ path('bds_chat_post', {'channel': channel}) }}";
-	var pathList = "{{ path('bds_chat_list', {'channel': channel}) }}";
+	
 </script>
