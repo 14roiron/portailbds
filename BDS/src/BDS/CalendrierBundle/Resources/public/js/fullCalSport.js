@@ -10,7 +10,7 @@ $(document).ready(function(){
     	$("#header-cal .row").append(e);
         
          //recuperer la date cible
-    	var timestamp = $(this).attr('id').replace('button_lundi_', '');
+    	var timestamp = parseInt($(this).attr('id').replace('button_lundi_', ''));
     	
     	//charger le tableau superieur pour changer les dates des jours
     	$.post( pathToHeader+'/'+timestamp, function(data){
@@ -32,11 +32,9 @@ $(document).ready(function(){
             data: 'string',
             dataType: 'json',
             success: function(json) {
-            	var day;
-            	var time;
                 for (var i = 0; i < 7; i++){
-                	day = i+1;
-                	time = new Date(json[i]).getTime()/1000;
+                	var day = i+1;
+                	var time = moment(json[i]).format('X');
                 	$("[id^=jour_"+day+"_]").attr('id', "jour_"+day+"_"+time);
                 }
             },

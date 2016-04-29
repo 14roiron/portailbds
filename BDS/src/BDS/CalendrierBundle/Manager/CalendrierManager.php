@@ -32,11 +32,11 @@ class CalendrierManager
     						'cal.evenements',
     						'ev',
     						'WITH',
-    						$queryBuilder->expr()->andX(
-        									$queryBuilder->expr()->lt('ev.debutEvenement', ':dimanche'),
-        									$queryBuilder->expr()->gt('ev.finEvenement',':lundi')
-    										)
-						)
+    						$queryBuilder->expr()->orX(
+        									$queryBuilder->expr()->between('ev.debutEvenement', ':lundi', ':dimanche'),
+    										$queryBuilder->expr()->between('ev.finEvenement', ':lundi', ':dimanche')
+											)
+							)
 					->setParameters(
     							[
         							'nom'=>$cal->getNom(),

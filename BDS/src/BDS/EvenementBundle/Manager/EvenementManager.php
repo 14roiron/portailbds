@@ -133,33 +133,4 @@ class EvenementManager
 		return $semaine;
 	
 	}
-	
-	public function getbyDateIntervallCal($lundi, $dimanche, Calendrier $cal)
-	{		
-		$query = $this->getRepository()->createQueryBuilder('ev')
-		->where('ev.debut_evenement < '.$dimanche->format('Y-m-d H:i:s'))
-		->andWhere('ev.fin_evenement > '.$lundi->format('Y-m-d H:i:s'))
-		->orderBy('ev.debut_evenement', 'ASC')
-		->getQuery();
-		
-		$events = $query->getResult();
-		
-		foreach($events as $event)
-		{
-			$present = false;
-			$cals = $event->getCalendar();
-			foreach($cals as $cale)
-			{
-				if($cale == $cal )
-				{
-					$present = true;
-					break;
-				}
-			}
-			
-			if ($present == false){
-				unset($event);
-			}
-		}
-	}
 }

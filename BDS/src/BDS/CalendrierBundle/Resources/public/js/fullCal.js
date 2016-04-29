@@ -7,7 +7,7 @@
 function majFullCal(events){
 	
 	//on cherche le date de lundi 
-	var lundi = moment.unix($("[id^=jour_1_").attr('id').replace('jour_1_', ''));
+	var lundi = moment.unix(parseInt($("[id^=jour_1_").attr('id').replace('jour_1_', '')));
 	var jour = 1;
 	var journeeCourante = moment(lundi); //format date
 	var finPrecedent = [];

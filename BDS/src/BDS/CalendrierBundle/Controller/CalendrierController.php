@@ -36,6 +36,7 @@ class CalendrierController extends Controller
 			$joursSemaine[$i] = new \DateTime();
 			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
 			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
+			$joursSemaine[$i]->setTime(0, 0, 0);
 		}
 		
 		$lundi = new \DateTime('04/25/2016');
@@ -58,10 +59,7 @@ class CalendrierController extends Controller
 		//si la date est null
 		$now = new \DateTime();
 		$now->setTime(0, 0, 0);
-		if ($date = null){ $date = $now->getTimestamp(); }
-		
-		//on récupère le domaine
-		$domaine = $this->get('bds_sport.manager')->getSport($cal->getNom());
+		if ($date == null){ $date = $now->getTimestamp(); }
 	
 		//on cherche lundi matin
 		$lundi = new \DateTime();
@@ -78,7 +76,6 @@ class CalendrierController extends Controller
 	
 		//on recupere les evenementscompris entre ces 2 date
 		$events = $this->get('bds_calendrier.manager')->getbyDateIntervallCal($lundi, $dimanche, $cal);
-		//$events = $this->get('bds_evenement.manager')->getAll();
 		
 		foreach ($events as $event)
 		{
@@ -93,7 +90,7 @@ class CalendrierController extends Controller
 	
 	}
 	
-	public function headerAction ( $date = null)
+	public function headerAction ($date = null)
 	{
 		//on récupère la date d'aujourd'hui et la date cible 
 		$now = new \DateTime();
@@ -114,6 +111,7 @@ class CalendrierController extends Controller
 			$joursSemaine[$i] = new \DateTime();
 			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
 			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
+			$joursSemaine[$i]->setTime(0, 0, 0);
 		}
 		
 		//lundi suivant et lundi precedent
@@ -148,6 +146,7 @@ class CalendrierController extends Controller
 		$jsemaine = strftime('%u', $date)-1; //-1 car le jour 0 st dimanche dans le php
 		$lundi->setTimestamp($date);
 		$lundi->sub(new \DateInterval("P".$jsemaine."D"));
+		$lundi->setTime(0, 0, 0);
 		
 		//on tabule ls jours de la semaine
 		$joursSemaine = array ();
