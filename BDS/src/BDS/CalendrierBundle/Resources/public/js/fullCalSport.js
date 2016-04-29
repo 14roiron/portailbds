@@ -1,7 +1,9 @@
 $(document).ready(function(){
-    
+
     //on part sur la semaine suivante 
-    $("[id^=button_lundi_]").click(function(){
+    $("[id^=button_lundi_]").click(clickEvent);
+    
+    function clickEvent (){
         //afficher le loader
     	e = document.createElement('div');
     	$(e).html('<img; src="'+pathToLoader+'" id="Loader" />');
@@ -14,6 +16,7 @@ $(document).ready(function(){
     	$.post( pathToHeader+'/'+timestamp, function(data){
     		
     		$('#header_cal').html(data); //on remplit le header
+    	    $("[id^=button_lundi_]").click(clickEvent); //on ajoute les clickEvent
     		
     	});
         
@@ -48,5 +51,5 @@ $(document).ready(function(){
         
         //empecher le comportement naturel
         return false;
-    });
+    };
 });

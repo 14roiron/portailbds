@@ -37,14 +37,18 @@ class CalendrierController extends Controller
 			$joursSemaine[$i]->setTimestamp($lundi->getTimestamp());
 			$joursSemaine[$i]->add(new \DateInterval("P".$i."D"));
 		}
-
 		
+		$lundi = new \DateTime('04/25/2016');
+		$dimanche = new \DateTime('04/30/2016');
+		$cal = $domaine->getCalendrier();
+		$events = $this->get('bds_calendrier.manager')->getbyDateIntervallCal($lundi, $dimanche, $cal);
 
 	
 		//on appelle le template
 		return $this->render('BDSCalendrierBundle:Calendrier:sportCal.html.twig', array(
 				'domaine'		=>	$domaine,
-				'joursSemaine'	=>	$joursSemaine
+				'joursSemaine'	=>	$joursSemaine,
+				'events'		=>	$events
 
 		));
 	}
@@ -73,7 +77,7 @@ class CalendrierController extends Controller
 		
 	
 		//on recupere les evenementscompris entre ces 2 date
-		//$events = $this->get('bds_evenement.manager')->getbyDateIntervallCal($lundi, $dimanche, $cal);
+		//$events = $this->get('bds_calendrier.manager')->getbyDateIntervallCal($lundi, $dimanche, $cal);
 		$events = $this->get('bds_evenement.manager')->getAll();
 		
 		foreach ($events as $event)
