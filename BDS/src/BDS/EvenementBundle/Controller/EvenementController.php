@@ -26,7 +26,7 @@ class EvenementController extends Controller
 		//on vérifie que l'utilisateur à accès à cette page 
 		
 		//on récupère touts les évènements
-		$listEvents = $domaine->getEvenements();
+		$listEvents = $domaine->getCalendrier()->getEvenements();
 		
 		//trouver un moyen de faire le tri 
 		
@@ -115,6 +115,14 @@ class EvenementController extends Controller
 		//on fait le lien requete formulaire 
 		$form->handleRequest($request);
 		
+		//on ajoute les sport 
+		$cals = $evenement->getCalendriers();
+		if ($cals != null){
+			foreach ($cals as $cal)
+			{
+				$evenement->addSport($this->get('bds_sport.manager')->getSport($cal->getNom()));
+			}
+		}
 		/*
 		 * si les champs complémentaires n'ont pas été rempli on
 		 * charge une date de fin et de début des inscripsion pour éviter les inscripsions sauvages
@@ -134,7 +142,7 @@ class EvenementController extends Controller
 		//on passe par une étape de validation 
 		if($form->isValid())
 		{	
-			//on parcour chaque sport de l'évenement 
+			//on parcour chaque sport associés à de l'évenement 
 			$sports = $evenement->getSports();
 			
 			foreach ($sports as $sport)
@@ -255,7 +263,7 @@ class EvenementController extends Controller
 		$domaine = $this->get('bds_sport.manager')->getSport($domaine);
 		
 		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
-		$listEvents = $domaine->getEvenements();
+		$listEvents = $domaine->getCalendrier()->getEvenements();
 		//trouver un moyen de faire le tri 
 		
 		//on donne les mois de l'année 
@@ -294,50 +302,14 @@ class EvenementController extends Controller
 				'evenement'			=>	$evenement
 		));
 	}
-
-	public function calendrierAction(Sport $domaine)
-	{
-		
-		//on vérifie que l'utilisateur à accès à cette page 
-		
-		//on récupère touts les évènements (filtre à bosser en fx de l'utilisateur, ce sera le même que dans aside)
-		$listEvents = $domaine->getEvenements();
-		//trouver un moyen de faire le tri 
-		
-		//variables utiles 
-		$anneeDebut = $listEvents->first()->getDebutEvenement()->format('Y');
-		$anneeFin = $listEvents->last()->getFinEvenement()->format('Y');
-		
-		//on donne les jours de la semaine
-		$listJour = $this->get('bds_evenement.manager')->getJourSemaine();
-		//on donne les mois de l'année 
-		$listMois = $this->get('bds_evenement.manager')->getMois();
-		//on fait un tableau contenant toute les dates à afficher 
-		$listDate = $this->get('bds_evenement.manager')->getDate($anneeDebut, $anneeFin);
-		
-		$listAnnee = array();
-		for ($i = $anneeDebut; $i <= $anneeFin; $i++)
-		{
-			$listAnnee[$i] = $i;
-		}
-		
-		//on appelle le template 
-		return $this->render('BDSEvenementBundle:Evenement:calendrier.html.twig', array(
-				'listEvents'	=>	$listEvents,
-				'domaine'		=>	$domaine,
-				'listJour'			=>	$listJour,
-				'listMois'			=>	$listMois,
-				'listDate'			=>	$listDate,
-				'listAnnee'		=>	$listAnnee
-		));
-	}
 	
 	public function CapitaineEvenementAction (Sport $domaine)
 	{
 		//on verifie que l'utilisateur courant est bien le capitaine 
 		
 		//on récupère tous les evenements du domaine
-		$listEvents = $domaine->getEvenements();
+		$cal = $this->get('bds_calendrier.manager')->get($domaine->getNom());
+		$listEvents = $cal->getEvenements();
 		
 		//on passe à la vue 
 		return $this->render('BDSEvenementBundle:Evenement:capitaineEvenement.html.twig', array(

@@ -1,0 +1,15 @@
+bds_calendrier_sport:
+    path:     sport/{nom}/calendrier/{jour}/{mois}/{annee}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:sportCal, jour: null, mois: null, annee: null }
+    
+bds_calendrier_header:
+    path:     calendrier/header/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:header, date: null}
+    
+bds_calendrier_jour_semaine:
+    path:     calendrier/jours/semaine/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:nomJourSemaine, date: null }
+    
+bds_load_cal_sport:
+    path:     calendrier/events/{nom}/{date}
+    defaults: {_controller: BDSCalendrierBundle:Calendrier:loadCalSport, date: null }

@@ -103,5 +103,52 @@ class Configuration
     {
         return $this->contenu;
     }
-}
 
+    /**
+     * Set sport
+     *
+     * @param \BDS\SportBundle\Entity\Sport $sport
+     *
+     * @return Configuration
+     */
+    public function setSport(\BDS\SportBundle\Entity\Sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \BDS\SportBundle\Entity\Sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \BDS\ImageBundle\Entity\Image $image
+     *
+     * @return Configuration
+     */
+    public function setImage(\BDS\ImageBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \BDS\ImageBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

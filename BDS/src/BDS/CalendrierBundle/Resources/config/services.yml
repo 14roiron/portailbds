@@ -1,0 +1,4 @@
+services:
+    bds_calendrier.manager:
+        class: BDS\CalendrierBundle\Manager\CalendrierManager
+        arguments: [ @doctrine.orm.entity_manager ]

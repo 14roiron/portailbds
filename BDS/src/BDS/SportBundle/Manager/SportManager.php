@@ -29,6 +29,12 @@ class SportManager
 	
 	public function save(Sport $sport)
 	{
+		//à la crétion il faut donner au calendrier le nom du sport 
+		if($sport->getCalendrier()->getNom() == null)
+		{
+			$sport->getCalendrier()->setNom($sport->getNom());
+		}
+		
 		$logo = $sport->getLogo();
 		//si le logo est non nul il faut la sauvegarder 
 		if($logo != NULL && $logo->getFile() !=NULL)

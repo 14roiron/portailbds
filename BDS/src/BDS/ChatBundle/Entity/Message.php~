@@ -3,11 +3,12 @@
 namespace BDS\ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use BDS\ChatBundle\Entity\AuthorInterface;
 
 /**
  * Message
  *
- * @ORM\Table()
+ * @ORM\Table(name="bds_chat_message")
  * @ORM\Entity(repositoryClass="BDS\ChatBundle\Entity\MessageRepository")
  */
 class Message
@@ -24,7 +25,7 @@ class Message
     /**
      * @var AuthorInterface
      *
-     * @ORM\ManyToOne(targetEntity="BDS\ChatBundle\Entity\AuthorInterface")
+     * @ORM\ManyToOne(targetEntity="AuthorInterface")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
@@ -132,5 +133,28 @@ class Message
     {
         return $this->insertDate;
     }
-}
 
+    /**
+     * Set author
+     *
+     * @param \BDS\ChatBundle\Entity\AuthorInterface $author
+     *
+     * @return Message
+     */
+    public function setAuthor(\BDS\ChatBundle\Entity\AuthorInterface $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \BDS\ChatBundle\Entity\AuthorInterface
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+}

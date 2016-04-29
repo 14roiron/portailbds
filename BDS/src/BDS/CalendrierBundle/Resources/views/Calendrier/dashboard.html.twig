@@ -1,0 +1,23 @@
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	dashboard de {{ user.username }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<section id="statistics">
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>About me</h3>
+					<p>TODO:<br />Here, information about my account, some of my next calendar events, and my upcoming todos.</p>
+				</div>
+                <div class="col-sm-6">
+                	<h3>License and credits</h3>
+                	<p> on a pas de licence !!</p>
+            	</div>
+        	</div>
+    	</section>
+	</div>
+{% endblock %}

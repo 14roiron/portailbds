@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\BooleanNode;
 use BDS\SportBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
+use BDS\CalendrierBundle\Entity\Calendrier;
 
 /**
  * Sport
@@ -16,6 +17,15 @@ use Symfony\Component\HttpFoundation\Tests\StringableObject;
  */
 class Sport
 {
+	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
+	 */
+	private $evenements;
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $calendrier;
 	/**
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Configuration", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
@@ -40,11 +50,6 @@ class Sport
 	 * @ORM\OneToMany(targetEntity="BDS\SportBundle\Entity\Role", mappedBy="sport", cascade={"persist"}, orphanRemoval=true)
 	 */
 	private $roles;
-	
-	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\EvenementBundle\Entity\Evenement", mappedBy="sports")
-	 */
-	private $Evenements;
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\NewsBundle\Entity\News", mappedBy="sports")
@@ -147,6 +152,7 @@ class Sport
         $this->News = new ArrayCollection();
         $this->roles = new ArrayCollection();
         
+        
         //on ajoute les 4 roles par défaut 
         $joueur = new Role();
         $joueur->setNom("joueur");
@@ -167,6 +173,13 @@ class Sport
         $autre->setNom("autre");
         $autre->setSport($this);
         $this->addRole($autre);
+        
+        //on creer le calendrier à la construction d'un nouveau sport
+        $this->calendrier = new ArrayCollection();
+        
+        $calendrier = new Calendrier();
+        $this->setCalendrier($calendrier);
+        
         
         
         
@@ -386,7 +399,7 @@ class Sport
      *
      * @param \BDS\SportBundle\Entity\Role $roles
      */
-    public function removeRole(\BDS\CSportBundle\Entity\Role $roles)
+    public function removeRole(\BDS\SportBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }
@@ -529,5 +542,63 @@ class Sport
     public function getUrlVideo()
     {
         return $this->urlVideo;
+    }
+
+    /**
+     * Add configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     *
+     * @return Sport
+     */
+    public function addConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations[] = $configuration;
+
+        return $this;
+    }
+
+    /**
+     * Remove configuration
+     *
+     * @param \BDS\SportBundle\Entity\Configuration $configuration
+     */
+    public function removeConfiguration(\BDS\SportBundle\Entity\Configuration $configuration)
+    {
+        $this->configurations->removeElement($configuration);
+    }
+
+    /**
+     * Get configurations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
+    }
+
+    /**
+     * Set calendrier
+     *
+     * @param \BDS\CalendrierBundle\Calendrier $calendrier
+     *
+     * @return Sport
+     */
+    public function setCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier = null)
+    {
+        $this->calendrier = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Get calendrier
+     *
+     * @return \BDS\CalendrierBundle\Calendrier
+     */
+    public function getCalendrier()
+    {
+        return $this->calendrier;
     }
 }

@@ -7,6 +7,7 @@ use BDS\EvenementBundle\Entity\Evenement;
 use BDS\SportBundle\Entity\Sport;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use BDS\CalendrierBundle\Entity\Calendrier;
 
 class EvenementManager
 {
@@ -130,7 +131,6 @@ class EvenementManager
 		$semaine[7] = 'dimanche';
 		
 		return $semaine;
-
-		
+	
 	}
 }

@@ -1,0 +1,3 @@
+bds_sabre_dav_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDSSabreDavBundle:Default:index }

@@ -1,3 +1,11 @@
+bds_sabre_dav:
+    resource: "@BDSSabreDavBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bds_calendrier:
+    resource: "@BDSCalendrierBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bds_chat:
     resource: "@BDSChatBundle/Resources/config/routing.yml"
     prefix:   /chat/
