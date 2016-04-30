@@ -1,14 +1,16 @@
 /**
  * 
  */
-/**
- * 
- */
+var channel = $("[id^=channel_]").attr('id').replace('channel_', '');
+var pathPost = Routing.generate('bds_chat_post', {'channel': channel});
+var pathList = Routing.generate('bds_chat_list', {'channel': channel});
+
 
 $("#chatForm").submit(function() {
     postMessage();
     return false;
 });
+
 function postMessage()
 {
     $.post( pathPost, 
