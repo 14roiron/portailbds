@@ -62,7 +62,7 @@ function majFullCal(events){
 			if ( dEvent < journeePlus){
 				divCourant.css('top', "0px");
 				temps = 0;
-				divCourant.html("<strong>"+this['nom']+"</strong>");
+				divCourant.html("<strong><small>"+this['nom']+"</small></strong>");
 				this['debut_evenement'] = journeePlus.format(format);
 				dEvent = moment(this['debut_evenement'], format);
 			} else {
