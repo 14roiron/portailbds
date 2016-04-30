@@ -29,9 +29,10 @@ class Evenement
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
-	 * 
+	 * @Expose
 	 */
 	private $calendriers;
+	
 	/**
 	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"}, orphanRemoval=true)
 	 */

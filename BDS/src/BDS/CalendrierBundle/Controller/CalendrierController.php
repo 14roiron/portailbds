@@ -11,6 +11,7 @@ use BDS\CalendrierBundle\Entity\Calendrier;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializationContext;
+use BDS\EvenementBundle\Entity\Evenement;
 
 class CalendrierController extends Controller
 {
