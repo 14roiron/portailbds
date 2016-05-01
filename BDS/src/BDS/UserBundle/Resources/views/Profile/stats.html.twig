@@ -17,7 +17,7 @@
 		</div>
 		<div class="panel-body">
 			<p><strong>Evenements depuis l'inscripsion de {{ user.username }} :</strong> {{ evenements|length }}</p>
-			<p><strong>Nombre de partiipations (debug) : </strong>{{ membre.participations|length }}</p>
+			<p><strong>Nombre de participations (debug) : </strong>{{ membre.participations|length }}</p>
 			<p><strong>Il était là : </strong>{{ participations[membre.sport.nom][1] }}</p>
 			<p><strong>Il était pas là : </strong>{{ participations[membre.sport.nom][0] }}</p>
 			<p><strong>Il sait pas où il était : </strong>{{ participations[membre.sport.nom][2] }}</p>

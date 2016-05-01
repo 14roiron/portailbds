@@ -88,7 +88,8 @@ class SportManager
 	public function getEvenementSince(Sport $sport, \DateTime $date)
 	{
 		//on récupère tous les evenements 
-		$evenements = $sport->getEvenements();
+		$cal = $sport->getCalendrier();
+		$evenements = $cal->getEvenements();
 		
 		//on trie 
 		foreach($evenements as $key => $evenement)
