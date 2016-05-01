@@ -1,0 +1,97 @@
+{% extends "BDSEvenementBundle::layout.html.twig" %}
+
+
+{% block title %}
+	Calendrier - {{ parent() }}
+{% endblock %}
+
+{% block head %}
+	<div id="annnee">
+		<ul class="list-unstyled list-inline">
+			{%  for annee in listAnnee %}
+			<li>
+				<a id="lien_annee_{{ annee }}" href="#"><h3>{{ annee }}</h3></a>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+	<div id="mois">
+		<ul class="list-unstyled list-inline">
+			{% for key, mois in listMois %}
+			<li id = "{{ key }}"><a id="lien_mois_{{ key }}" href="#"><h2>{{ mois [:3]}}</h2></a></li> <!--je veux que les 3 première lettres -->
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
+
+{% block bds_evenement_body %}
+	{% for annee, list_mois in listDate %}
+	<div id="annee_{{ annee }}">
+		{% for mois, list_jours in list_mois %}
+		<div id="mois_{{ mois }}">
+			<table class="table col-lg-12">
+				<thead>
+					<tr>
+						{%  for jour in listJour %}
+						<th class="col-lg-1 text-muted">{{ jour [:3]}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						{% for jour, jour_semaine in list_jours %}
+							{% if loop.first and jour_semaine != 1%}
+						<td height="100" colspan="{{ jour_semaine - 1 }}"></td>
+							{% endif %}
+							{% if annee == "now"|date('Y') and mois == "now"|date('m') and jour == "now"|date('d') %}
+						<td height="100" class="text-center table-bordered info"><h2>{{ jour }}</h2>
+							{% else %}						
+						<td height="100" class="text-center table-bordered"><h2>{{ jour }}</h2>
+							{% endif %}
+							<ul class="list-inline">
+							{% for event in listEvents %}
+								{% if event.debutEvenement|date('d/m/Y') == jour~"/"~mois~"/"~annee %}
+								<li><a id="lien_event_{{ event.id }}" href="#"><span class="glyphicon glyphicon-info-sign"></a></a></span></li>
+								{% endif %}
+							{% endfor %}
+							</ul>
+						</td>
+							{% if jour_semaine == 7 and loop != loop.last %}
+					</tr><tr>
+							{% endif %}
+							{% if loop.last and jour_semaine != 7 %}
+						<td height="100" colspan="{{ 7- jour_semaine }}"></td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		{% endfor %}
+	</div>
+	{% endfor %}
+{% endblock %}
+
+{% block aside %}
+
+	{% for key, event in listEvents  %}
+		<div id="panel_event_{{ event.id }}" class="panel panel-default">
+			<div class="panel-heading">
+				<a href="{{ path('bds_evenement_view', {'nom':domaine.nom, 'id':event.id}) }}">{{ event.nom }}</a>
+			</div>
+			<div class="panel-body">
+				<div>
+				<span class="glyphicon glyphicon-calendar"> {{ event.debutEvenement|date('d/m/Y h:i') }}</span>
+				<span class="glyphicon glyphicon-map-marker"> {{ event.lieu.fullAdr }}</span>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/calendrier.js') }}"></script>
+{% endblock %}

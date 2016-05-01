@@ -34,7 +34,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    #bundles:        []
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -64,6 +64,8 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        resolve_target_entities:
+            BDS\ChatBundle\Entity\AuthorInterface: BDS\UserBundle\Entity\User
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -81,19 +83,56 @@ fos_user:
     registration:
         confirmation:
             enabled:  true
+    profile:
+        form:
+            type: bds_user_edit
     from_email:
         address:  noreply@bdsmines.fr
         sender_name:  BDS MINES ParisTech
-
-# BladeTesterCalendar Configuration
-blade_tester_calendar:
-    driver: doctrine/orm
-    engine: twig
-    classes:
-        event:
-            entity: BDS\CalendarBundle\Entity\Event
-        category:
-            entity: BladeTester\CalendarBundle\Entity\EventCategory
-            
+           
 # ornicar (gravatar) configuration
 ornicar_gravatar: ~
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+stfalcon_tinymce:
+     include_jquery: true
+     tinymce_jquery: true
+     theme:
+            # Simple theme: same as default theme
+            simple: ~
+            # Advanced theme with almost all enabled plugins
+            advanced:
+                 plugins:
+                     - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                     - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                     - "insertdatetime media nonbreaking save table contextmenu directionality"
+                     - "emoticons template paste textcolor"
+                 toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                 toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
+                 image_advtab: true
+                 templates:
+                     - {title: 'Test template 1', content: 'Test 1'}
+                     - {title: 'Test template 2', content: 'Test 2'}
+                     
+#datepicker configuration
+sc_datetimepicker:
+    picker: ~
+    
+#chat configuration
+bds_chat:
+    # en milliseconde
+    update_interval: 5000
+    number_of_messages: 10
+    
+#fos JS Routing
+fos_js_routing:
+     routes_to_expose: [ (.*) ] 
+    
+
+
+

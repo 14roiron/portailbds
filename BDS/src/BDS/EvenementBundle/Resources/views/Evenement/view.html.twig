@@ -6,21 +6,69 @@
 
 {% block bds_evenement_body %}
 <h2>Voir l'evenement</h2>
-<div class="panel panel-primary">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">{{ evenement.nom }}</h3>
 	</div>
 	<div class="panel-body">
 		<p>commence le {{ evenement.debutEvenement | date('d/m/Y') }}</p>
 		<p>fini le {{ evenement.finEvenement | date('d/m/Y') }}</p>
-		<div class="well">
+		
+		{% if evenement.lieu %}
+			<p> à {{ evenement.lieu.fullAdr }}</p>
+			{# la map #}
+			<div id="map" style="height: 300px; margin-top: 10px;"></div>
+		{% endif %}
+		<ul class="nav nav-tabs" id="panneau">
+			<li class="active"><a href"#">liste</a></li>
+			<li><a href="{{ path('bds_evenement_view', {'nom': domaine.nom, 'id': evenement.id}) }}">drag n drop</a></li>
+		</ul>
+		<div>
+			{{ form_start(form, {'attr': {'class': 'form-horizontal'}})}}
+	
+			{# les erreurs du formulaire #}
+			{{ form_errors(form) }}
 			
+			{# on plac la liste des champs participations #}
+			<ul class="list-unstyled">
+				{% for participation in form.participations %}
+					<li class="well">
+						{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
+						{{ form_widget(participation)}}
+					</li>
+				{% endfor %}
+			</ul>
+			
+			{# génération automatique de tout le reste #}
+			{{ form_rest(form) }}
+	
+			{# fermeture de la balise form #}
+			{{ form_end(form) }}
+	
 		</div>
 	</div>
-		
-	   	<a class="btn btn-lg btn-warning" href="{{ path('bds_evenement_edit', {'domaine':domaine.nom, 'id':evenement.id}) }}">éditer l'evenement</a>
-   		<a class="btn btn-lg btn-danger" href="{{ path('bds_evenement_delete', {'domaine':domaine.nom, 'id': evenement.id}) }}">supprimer l'evenement</a>
-</div>
+
 
 
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/poney.js') }}"></script>
+<script type="text/javascript">
+{% if evenement.lieu %}
+	var myLat = {{ evenement.lieu.lat }};
+	var myLng = {{ evenement.lieu.lng }};
+	var fullAdr = "{{ evenement.lieu.fullAdr }}";
+{% endif %}
+</script>
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/map.js') }}"></script>
+
+
+
+
+{% endblock %}
+

@@ -7,6 +7,80 @@
 {% block bds_evenement_body %}
 <h2>Ajouter un evenement</h2>
 <div class="well">
-	{{ form(form) }}
+	{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id': 'form'}})}}
+	
+	{# les erreurs du formulaire #}
+	{{ form_errors(form) }}
+	
+	{# nom de l'évènement #}
+	{{ form_label(form.nom, "nom de l'évènement", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+	
+	{#date de début #}
+	{{ form_label(form.debutEvenement, "début", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.debutEvenement, {'attr': {'class': 'form-control'}}) }}
+	
+	{# date de fin #}
+	{{ form_label(form.finEvenement, "fin", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.finEvenement, {'attr': {'class':'form-control'}}) }}
+	
+	{# lieu #}
+	{{ form_label(form.lieu.fullAdr, "Adresse", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.lieu.fullAdr, {'id': 'infoadress', 'attr': {'class': 'form-control'}}) }}
+	
+	{{ form_widget(form.lieu.numVoie, {'id': 'street_number', 'attr': {'class': 'form-control', 'placeholder': 'numVoie'}}) }}
+    {{ form_widget(form.lieu.voie, {'id': 'route', 'attr': {'class': 'form-control', 'placeholder': 'voie'}}) }}
+    {{ form_widget(form.lieu.ville, {'id': 'locality', 'attr': {'class': 'form-control', 'placeholder': 'ville'}}) }}
+    {{ form_widget(form.lieu.region, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control', 'placeholder': 'region'}}) }}
+    {{ form_widget(form.lieu.pays, {'id': 'country', 'attr': {'class': 'form-control', 'placeholder': 'pays'}}) }}
+    {{ form_widget(form.lieu.zipcode, {'id': 'postal_code', 'attr': {'class': 'form-control', 'placeholder': 'zipcode'}}) }}
+    {{ form_widget(form.lieu.lat, {'id': 'lat', 'attr': {'class': 'form-control', 'placeholder': 'lat'}}) }}
+    {{ form_widget(form.lieu.lng, {'id': 'lng', 'attr': {'class': 'form-control', 'placeholder': 'lng'}}) }}
+    
+    {# la map #}
+    <div class="col-xs-12" id="map" style="height: 300px; margin-top: 10px;"></div>
+    
+	{# début des inscripsion #}
+	{{ form_label(form.debutInscripsion, "Ouverture des inscripsions", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.debutInscripsion, {'attr': {'class':'form-control'}}) }}
+	
+	{# fin des inscripsions #}
+	{{ form_label(form.finInscripsion, "fin des inscripsions", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.finInscripsion, {'attr': {'class':'form-control'}}) }}
+	
+	{# information #}
+	{{ form_label(form.info, "Informations utiles", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.info, {'attr': {'class':'form-control'}}) }}
+	
+	{# nombre maximum d'inscrit #}
+	{{ form_label(form.maxInscrit, "nombre maximum de participant", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.maxInscrit, {'attr': {'class':'form-control'}}) }}
+	
+	{# sport #}
+	{{ form_label(form.calendriers, "Sport(s)", {'label_attr': {'class':'control-label'}}) }}
+	{{ form_widget(form.calendriers) }}
+		
+	{# génération automatique de tout le reste #}
+	{{ form_rest(form) }}
+	
+	{# fermeture de la balise form #}
+	{{ form_end(form) }}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+{{ form_javascript(form) }}
+{{ form_stylesheet(form) }}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+{# <script src="{{asset('js/jquery.ui.addresspicker.js')}}"></script> #}
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/autoload.js') }}"></script>
+
+
 {% endblock %}

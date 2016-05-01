@@ -6,30 +6,106 @@
 
 
 {% block bdsnews_body %}
-<div class="panel panel-primary">
+<div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">{{ news.titre }}</h3>
+		<div class="panel-title"><h2>{{ news.titre }}</h2></div>
 	</div>
-	<div class="well">{{ news.resumer }}</div>
 	<div class="panel-body">
-		<p>{{ news.contenu }}</p>
-		<p><b>{{ news.auteur.username }}</b></p>
-		<p>{{ news.datePublication|date('d/m/Y') }}</p>
-			
-		{% for commentaire in listCommentaire %}
-			<div class="well">
-				<p>{{ commentaire.contenu }}</p>
-				<p>par {{ commentaire.auteur.username }}, le {{ commentaire.datePublication|date('d/m/Y') }}</p>
-			</div>
-		{% endfor %}
-			<div class="well">{{ form(form) }}</div>
-   		<a class="btn btn-lg btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
-   		<a class="btn btn-lg btn-danger" href="{{ path('bds_news_delete', {'sport':domaine.nom, 'id': news.id}) }}">supprimer la news</a>
-   		<a class="btn btn-lg btn-default" href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Retour au news</a>
-   		{# on s'interesse au news qui n'ont pas encore été validée #}
-   		{% if news.validation == FALSE %}
-   			<a class="btn btn-lg btn-primary" href="{{ path('bds_news_validate', {'sport':domaine.nom, 'id':news.id}) }}">Valider</a>
-   		{% endif %}
-   	</div>
+		<p>{{ news.contenu | raw}}</p>
+		<div class="container-fluid">
+			<div class="col-lg-6"><b>{{ news.auteur.username }}</b></div>
+			<div class="text-muted text-right col-lg-6">{{ news.datePublication|date('d/m/Y') }}</div>
+		</div>
+		<hr>
+		<table class="table table-striped table-bordered table-hover col-lg-12">
+			<tbody>
+					{% for commentaire in listCommentaire %}
+					<tr>
+						<th>
+							<div class="col-lg-2">
+								{% if gravatar_exists(commentaire.auteur.email) %}
+								<img src="{{ gravatar(commentaire.auteur.email) }}" width=100%>
+								{% else %}
+								<img src="{{ asset('images/no_profile_pic') }}" width=100%>
+								{% endif %}
+							</div>
+							<div class="col-lg-10">
+								<p><a href="#">{{ commentaire.auteur.username }} </a>{{ commentaire.contenu }}</p>
+								<p class="text-muted">{{ commentaire.datePublication|date('d/m/Y') }}</p>
+							</div>
+						</th>
+					</tr>
+					{% endfor %}
+				<tr>
+					<th>
+						<div class="col-lg-2">
+							{% if gravatar_exists(app.user.email) %}
+							<img src="{{ gravatar(app.user.email) }}" width=100%>
+							{% else %}
+							<img src="{{ asset('images/no_profile_pic') }}" width=100%>
+							{% endif %}
+						</div>
+						<div class="col-lg-10">
+				  			{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id':'form'}}) }}
+	
+	    					{# Les erreurs générales du formulaire. #}
+	    					{{ form_errors(form) }}
+	
+	    					<div class="form-group">
+	      						{# Affichage des erreurs pour ce champ précis. #}
+	      						{{ form_errors(form.contenu) }}
+	        					{# Génération de l'input. #}
+	        					{{ form_widget(form.contenu, {'attr': {'class': 'form-control', 'placeholder':'Votre Commentaire ...'}}) }}
+	    					</div>
+
+	        				{{ form_widget(form.commenter, {'attr': {'class': 'btn btn-primary btn-block'}}) }}
+
+	
+							{# Génération automatique des champs pas encore écrits #}
+							{{ form_rest(form) }}
+	  
+	  						{# Fermeture de la balise <form> du formulaire HTML #}
+	  						{{ form_end(form) }}
+						</div>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+		
+		<hr>
+	   	<div class="btn-group btn-group-justified">
+			<a class="btn btn-warning" href="{{ path('bds_news_edit', {'nom':domaine.nom, 'id':news.id}) }}">
+				<span class="glyphicon glyphicon-pencil"/>
+			 	 Editer
+			</a>
+			{% if app.user == domaine.capitaine %}
+	   		<a class="btn btn-danger" href="{{ path('bds_news_delete', {'nom':domaine.nom, 'id': news.id}) }}">
+	   			<span class="glyphicon glyphicon-remove"/>	
+	   		 	 Supprimer
+	   		</a>
+	   		{% endif %}
+	   		<a class="btn btn-default" href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">Retour</a>
+	   		{% if news.validation == FALSE and app.user == domaine.capitaine %}
+	   		<a class="btn btn-primary" href="{{ path('bds_news_validate', {'nom':domaine.nom, 'id':news.id}) }}">
+	   			<span class="glyphicon glyphicon-ok"/>	
+	   		 	 Valider
+	   		</a>
+	   		{% endif %}
+		</div>
+	</div>
 </div>
+
+{% endblock %}
+
+{% block aside %}
+
+{{ parent() }}
+
+{% endblock %}
+
+{% block javascript %}
+
+{{ parent() }}
+
+
 {% endblock %}

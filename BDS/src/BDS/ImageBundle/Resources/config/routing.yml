@@ -1,7 +1,3 @@
-bds_image_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSImageBundle:Default:index }
-    
 bds_image_upload:
     path:     /image/upload
     defaults: {_controller: BDSImageBundle:Image:upload }

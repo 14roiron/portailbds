@@ -1,0 +1,10 @@
+{# permet d'afficher les différentes photos possible des personnes
+	en 1 appel #}
+	
+{% if user.profilePic != null %}
+	<img src="{{ asset('images/no_profile_pic') }}" width=100%>
+{% elseif  gravatar_exists(user.email) %}
+	<img src="{{ gravatar(user.email, size) }}" width=100%>
+{% else %}
+	<img src="{{ asset('images/no_profile_pic') }}" width=100%>
+{% endif %}

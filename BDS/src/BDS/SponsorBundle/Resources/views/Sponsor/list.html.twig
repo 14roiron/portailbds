@@ -1,0 +1,14 @@
+{% extends "BDSSponsorBundle:Sponsor:layout.html.twig" %}
+
+{% block title %}
+  Liste - {{ parent() }}
+{% endblock %}
+
+{% block bds_sponsor_body %}
+<a class="btn btn-success" href="{{ path('bds_sponsor_add') }}">ajouter</a>
+	{% for sponsor in listSponsors %}
+		<div class="well"><a href="{{ path('bds_sponsor_view', {'nom':sponsor.nom}) }}">{{ sponsor.nom }}</a></div>
+	{% else %}
+		<div class="well">Pas encore de Sponsors</div>
+	{% endfor %}
+{% endblock %}

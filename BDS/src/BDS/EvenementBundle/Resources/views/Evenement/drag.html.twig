@@ -1,0 +1,94 @@
+{% extends "BDSEvenementBundle::layout.html.twig" %}
+
+{% block title %}
+  Voir - {{ parent() }}
+{% endblock %}
+
+{% block bds_evenement_body %}
+<h2>Voir l'evenement</h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ evenement.nom }}</h3>
+	</div>
+	<div class="panel-body">
+		<p>commence le {{ evenement.debutEvenement | date('d/m/Y') }}</p>
+		<p>fini le {{ evenement.finEvenement | date('d/m/Y') }}</p>
+		
+		{% if evenement.lieu %}
+			<p> à {{ evenement.lieu.fullAdr }}</p>
+			{# la map #}
+			<div id="map" style="height: 300px; margin-top: 10px;"></div>
+		{% endif %}
+		<ul class="nav nav-tabs", id="panneau">
+			<li><a href="{{ path('bds_evenement_view', {'nom': domaine.nom, 'id': evenement.id, 'affichage': 'liste'}) }}">liste</a></li>
+			<li class="active"><a href="#">drag n drop</a></li>
+		</ul>
+		<div>
+			<ul id="dropzone" class="list-unstyled">
+				<li id="dropper_oui" class="alert alert-success">
+					<h3>evdement je viens</h3>
+					{% for participation in participationOui %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+				</li>
+				<li id="dropper_non" class="alert alert-danger">
+					<h3>c'est mort j'ai poney</h3>
+					{% for participation in participationNon %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+				</li>
+				<li id="dropper_aucun" class="alert alert-warning">
+					<h3>Pour l'instant je m'en fou</h3>
+					{% for participation in participationAucun %}
+						<p class="btn btn-default">{{ participation.membre.user.username }}</p>
+					{% endfor %}
+				</li>
+			</ul>
+		<div>
+			<div class="hidden">
+				{{ form_start(form, {'attr': {'id': 'form', 'class': 'form-horizontal'}})}}
+		
+				{# les erreurs du formulaire #}
+				{{ form_errors(form) }}
+				
+				{# on plac la liste des champs participations #}
+				<ul class="list-unstyled">
+					{% for participation in form.participations %}
+						<li id="{{ objParticipations[loop.index0].membre.user.username }}">
+							{{ form_label(participation, objParticipations[loop.index0].membre.user.username, {'label_attr': {'class':'control-label', 'name':'participation'}}) }}
+							{{ form_widget(participation)}}
+						</li>
+					{% endfor %}
+				</ul>
+				{# génération automatique de tout le reste #}
+				{{ form_rest(form) }}
+			
+				{# fermeture de la balise form #}
+				{{ form_end(form) }}
+			</div>
+	
+		</div>
+	</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/poney.js') }}"></script>
+<script async defer 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+</script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/map.js') }}"></script>
+<script type="text/javascript">
+{% if evenement.lieu %}
+	var myLat = {{ evenement.lieu.lat }};
+	var myLng = {{ evenement.lieu.lng }};
+	var fullAdr = "{{ evenement.lieu.fullAdr }}";
+{% endif %}
+</script>
+<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/drag_n_drop.js') }}"></script>
+
+{% endblock %}
+

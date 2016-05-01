@@ -7,16 +7,30 @@
 {% endblock %}
 
 {% block body %}
+	{# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  	<div class="col-md-8">
+  		<div class="">
+  		{% block bdsnews_body %}
+  		{% endblock %}
+  		</div>
+  	</div>
+  	<div id="aside" class="col-md-4">
+    	<div class="">
+			{% block aside %}
+			{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
+				{% if domaine is defined %}
+					{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}
+				{% endif %}		
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}
 
-  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h1>News</h1>
- 
-  
+{% block javascripts %}
 
-  <hr>
+{{ parent() }}
 
-  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
-  {% block bdsnews_body %}
-  {% endblock %}
+<script type="text/javascript" src="{{ asset('js/miniCal.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdschat/js/chat.js') }}"></script>
 
 {% endblock %}

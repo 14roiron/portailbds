@@ -1,0 +1,11 @@
+services:
+#    bds_sport.example:
+#        class: BDS\SportBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    bds_sport.manager:
+        class:      BDS\SportBundle\Manager\SportManager
+        arguments:  [ @doctrine.orm.entity_manager ]
+        
+    bds_configuration.manager:
+        class:      BDS\SportBundl\Manager\ConfigurationManager
+        arguments:  [ @doctrine.orm.entity_manager ]

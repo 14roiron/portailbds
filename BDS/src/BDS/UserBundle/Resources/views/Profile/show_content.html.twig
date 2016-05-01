@@ -1,32 +1,204 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="well well-lg">
-	<div>
-	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">modifier</a>
-	</div>
-	
-	<div class="media">
-		<div class="media-body">
-	    	<p><strong>Nom d'utilisateur : </strong> {{ user.username }}</p>
-	    	<p><strong>Email : </strong> {{ user.email }}</p>
-	    	<p><strong>mot de passe : </strong><a href="{{ path('fos_user_change_password') }}">changer le mot de passe</a>
-	    	<p><strong>sports : </strong><a href="{{ path('bds_user_sport_add') }}">ajouter un sport</a>
-	    		<ul>
-	    			{% for membre in user.membres %}
-	    				<li><a href="{{ path('bds_news_home', {'sport': membre.sport.nom}) }}">{{ membre.sport.nom }}</a><a href="{{ path('bds_user_sport_delete', {'id': membre.id}) }}"> (supprimer)</a></li>
-	    			{% else %}
-	    				<li>pas encore de sport ! il faut en ajouter au moin un !</li>
-	    			{% endfor %}
-				</ul>
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block body %}
+
+<div class="col-lg-12">
+	<div class="col-lg-3">
+	{% block personne %}
+		<div class="col-lg-12">
+			{{ render(controller('BDSUserBundle:Security:profilePic', {'username':user.username, 'size':250})) }}
 		</div>
-		<div class="media-right">
-			<a href=#>
-			{% if gravatar_exists(user.email) %}
-  				<img class="media-object" src="{{ gravatar(user.email) }}" width="150">
-			{% else %}	
-				<img class="media-object" src={{ asset('images/no_profile_pic') }} width="150">
+		<div class="col-lg-12">
+			<h3>{{ user.nom }} {{ user.prenom }}</h3> 
+			<p class="text-muted">{{ user.username }}</p>
+		</div>
+		<hr>
+		<div class="col-lg-12 text-muted small">derniere connexion le : {{ user.lastLogin|date('d/m/Y') }}</div>
+		<hr>
+		<div class="col-lg-12">
+			<div class="col-lg-3">
+				<a id="lien_sport"><h3>{{ user.membres|length }}</h3></a>
+				<p class="text-muted">Sports</p>
+			</div>
+			{#  <div class="col-lg-3">
+				<a id="lien_participation"><h3>{{ user.membres.participations.participation[true]|length }}</h3></a>
+				<p class="text-muted">{{ partcipations }}</p>
+			</div> #}
+			<div class="col-lg-3">
+				<a id="lien_news"><h3>{{ user.news|length }}</h3></a>
+				<p class="text-muted">news</p>
+			</div>
+			<div class="col-lg-3">
+				<a id="lien_commentaire"><h3>{{ user.commentaires|length }}</h3></a>
+				<p class="text-muted">commentaires</p>
+			</div>
+		</div>
+		<hr>
+	{% endblock %}
+	</div>
+	<div class="col-lg-9">
+	{% block navigation %}
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">Profile</a></li>
+			{% if user == app.user %}
+			<li><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
+			<li><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
+			<li><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
 			{% endif %}
-			</a>
-		</div>		
+		</ul>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">{{ user.username }} en bref</p>
+			</div>
+			<div class="panel-body">
+				{% if user.sexe == true %}
+				<p>{{ user.prenom }} est un bel homme viril.</p>
+				{% elseif user.sexe == false %}
+				<p>{{ user.username }} est une gracieuse jeune femme.</p>
+				{% else %}
+				<p>{{ user.username }} n'a pas de genre !</p>
+				{% endif %}
+				<p><strong>Son petit nom : </strong>{{ user.nom }}</p>
+				<p><strong>Son petit prénom : </strong>{{ user.prenom }}</p>
+				<p><span class="glyphicon glyphicon-gift"/>
+					{% if user.anniversaire %}
+						{{ user.anniversaire|date('d/m/Y') }}
+					{% endif %}
+				<p><strong> contact :</strong></p>
+				<p><span class="glyphicon glyphicon-phone-alt"/>
+					{% if user.telephone %}
+						{{ user.telephone }}
+					{% endif %}
+				</p>
+				<p><span class="glyphicon glyphicon-envelope"/> {{ user.email }}</p>
+				<p><span class="glyphicon glyphicon-map-marker"/> 
+					{% if user.adresse %}
+						<strong>Adresse : </strong> {{ user.adresse.fullAdr }}
+				</p>
+				{# la map #}
+				<div id="map" style="height: 300px; margin-top: 10px;"></div>
+					{% endif %}
+			</div>
+		</div>
+		
+		{# panneau des ports pratiqués par l'utilisateur #}
+		<div id="panneau_sport" class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">Sport Pratiqués par {{ user.username }}</p>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+				{% for membre in user.membres %}
+				{% if loop.index0 is divisible by (2) %}
+				</div>
+				<div class="row">
+				{%  endif %}
+					<div class="col-lg-6" style="height:10em;">
+						<a style="text-decoration:none" href="{{ path('bds_news_home', {'nom':membre.sport.nom}) }}">
+							{% if membre.sport.fond %}
+							<div class="text-center" style="height: 100%; background: transparent url( {{ asset(membre.sport.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
+							{% else %}	
+							<div class="text-center" style="height:100%; background: transparent url( {{ asset('images/no_fond_pic') }}) no-repeat scroll center center / cover;">
+							{% endif %}
+								<h2>{{ membre.sport.nom }}</h2>
+							</div>
+						</a>
+					</div>
+			{% else %}
+					<div>Pas encore de sport ! </div>
+			{%  endfor %}
+				</div>
+			</div>
+		{% endblock %}
+		</div>
+		
+		{# panneau des news écrites par l'utilisateur #}
+		<div id="panneau_news" class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">News écrites par {{ user.username }}</div>
+			</div>
+  			<div class="panel-body">
+	    		{% for news in user.news %}
+	    			{% if loop.index0 is divisible by(3) %}
+	    		{% if loop.index0 != 0 %}
+	    		</div>
+	    		{% endif %}
+				<div class="row">
+					{% endif %}
+					<div class="col-lg-4">
+	      				<div class="thumbnail">
+	      					{# à terme j'aimerai que ce soit le logo de la news #}
+	      					<img src="{{ asset(news.sports[0].logo.getWebPath) }}">
+	      					<div class="caption">
+	        					<h3><a href="{{ path('bds_news_view', {'id': news.id, 'nom': news.sports[0].nom}) }}">{{ news.titre }}</a></h3>
+								<p>{{news.contenu|slice(0,150)|raw}}</p>
+	   							<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
+	      					</div>
+	      				</div>
+	      			</div>
+	    		{% else %}
+	      		<div>{{ user.username }} ne s'exprime pas par écrit, il clame ses exploits sur le toit de la Mine
+	    		{% endfor %}
+	    		</div>
+	    	</div>
+ 		</div>
+ 		
+ 		{# panneau des commentaires de l'utilisateur #}
+ 		<div id="panneau_commentaire" class="panel panel-default">
+ 			<div class="panel-heading">
+ 				<div class="panel-title"> Commentaires de {{ user.username }}</div>
+ 			</div>
+ 			<div class="panel-body">
+ 				<table class="table table-striped table-bordered table-hover col-lg-12">
+ 					<tbody>
+ 						{% for commentaire in user.commentaires %}
+ 						<tr>
+ 							<th>
+ 								<div class="col-lg-1">
+									{{ render(controller('BDSUserBundle:Security:profilePic', {'username':user.username})) }}
+								</div>
+								<div class="col-lg-9">
+									<p><a>{{ commentaire.auteur.username }} </a>{{ commentaire.contenu }}</p>
+									<p class="text-muted">
+										{{ commentaire.datePublication|date('d/m/Y') }} dans 
+										<a href="{{ path('bds_news_view', {'nom':commentaire.news.sports[0].nom, 'id':commentaire.news.id}) }}">
+											{{ commentaire.news.titre }}
+										</a>
+									</p>
+								</div>
+							</th>
+						</tr>
+						{% else %}
+						<tr>
+							{{ user.username }} ne commente rien, il n'a pas d'avis et en plus il est timide.
+						</tr>
+						{% endfor %}
+ 					</tbody>
+ 				</table>
+ 			</div>
+ 		</div>
+ 		
 	</div>
 </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript">
+		{% if user.adresse %}
+			var myLat = {{ user.adresse.lat }};
+			var myLng = {{ user.adresse.lng }};
+			var fullAdr = "{{ user.adresse.fullAdr }}";
+		{% endif %}
+	</script>
+	<script async defer 
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5TPr8jCgNyH1D0gOV8u968DIIijQIBIY&libraries=places&callback=initMap">
+	</script>
+	<script type="text/javascript" src="{{ asset('bundles/bdsuser/js/profile.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/bdsevenement/js/Map.js') }}"></script>
+{% endblock %}

@@ -1,16 +1,28 @@
-bds_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSUserBundle:Default:index }
-    
 bds_user_list:
     path:     /admin/utilisateur/liste
     defaults: {_controller: BDSUserBundle:Default:index }
     
 bds_user_sport_add:
     path:     /profile/ajouter_un_sport
-    defaults: {_controller: BDSUserBundle:Sport:add }
+    defaults: {_controller: BDSUserBundle:Membre:add }
     
 bds_user_sport_delete:
     path:     /profile/supprimer/{id}
-    defaults: {_controller: BDSUserBundle:Sport:delete }
+    defaults: {_controller: BDSUserBundle:Membre:delete }
+    
+bds_user_show:
+    path:     /{username}/profile
+    defaults: {_controller: BDSUserBundle:MonUser:show }
        
+bds_user_message:
+    path:     /{username}/message
+    defaults: {_controller: BDSUserBundle:MonUser:Message }
+    
+bds_user_stats:
+    path:     /{username}/stats
+    defaults: {_controller: BDSUserBundle:MonUser:Stats }
+    
+bds_user_pic:
+    path:     /profilePic/changer_tof
+    defaults: {_controller: BDSUserBundle:MonUser:Pic }
+    

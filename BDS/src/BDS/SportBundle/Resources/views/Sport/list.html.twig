@@ -1,0 +1,38 @@
+{% extends "BDSSportBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste - {{ parent() }}
+{% endblock %}
+
+
+{% block bds_sport_body %}
+<h1>Sports pratiqués à l'école</h1>
+<hr>
+	<div class="row">
+		{% for sport in listSport %}
+		{% if loop.index0 is divisible by (3) %}
+	</div>
+	<div class="row">
+		{%  endif %}
+			<div class="col-lg-4" style="height:20em;">
+				<a style="text-decoration:none" href="{{ path('bds_news_home', {'nom':sport.nom}) }}">
+					{% if sport.fond %}
+					<div class="text-center" style="height: 100%; background: transparent url( {{ asset(sport.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
+					{% else %}	
+					<div class="text-center" style="height:100%; background: transparent url( {{ asset('images/no_fond_pic') }}) no-repeat scroll center center / cover;">
+					{% endif %}
+						<h2>{{ sport.nom }}</h2>
+					</div>
+				</a>
+			</div>
+		{% else %}
+			<div>Pas encore de sport ! </div>
+		{%  endfor %}
+	</div>
+
+<hr>
+
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+<a class="btn btn-lg btn-success" href="{{ path('bds_sport_add') }}">ajouter un sport</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "BDSSportBundle::layout.html.twig" %}
+
+{% block title %}
+  ajouter un mot - {{ parent() }}
+{% endblock %}
+
+{% block bds_sport_body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title"><h2>ajouter un mot pour vos ouailles</h2></div>
+	</div>
+	<div class="panel-body">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_errors(form) }}
+	
+	{{ form_rest(form) }}
+	<hr>
+	<button type="submit" class="btn btn-primary btn-block">editer</button>
+	
+	{{ form_end(form) }}
+	 
+	</div>
+</div>
+ {{ tinymce_init({ 'theme': {'simple': {'menubar': false}}}) }}
+{% endblock %}

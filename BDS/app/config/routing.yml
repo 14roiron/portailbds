@@ -1,5 +1,21 @@
-bds_calendar:
-    resource: "@BDSCalendarBundle/Resources/config/routing.yml"
+bds_sabre_dav:
+    resource: "@BDSSabreDavBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bds_calendrier:
+    resource: "@BDSCalendrierBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bds_chat:
+    resource: "@BDSChatBundle/Resources/config/routing.yml"
+    prefix:   /chat/
+
+bds_sport:
+    resource: "@BDSSportBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bds_sponsor:
+    resource: "@BDSSponsorBundle/Resources/config/routing.yml"
     prefix:   /
 
 bds_evenement:
@@ -20,10 +36,6 @@ bds_news:
 
 bds_user:
     resource: "@BDSUserBundle/Resources/config/routing.yml"
-    prefix:   /
-    
-bladetester_calendar:
-    resource: "@BladeTesterCalendarBundle/Resources/config/routing.yml"
     prefix:   /
 
 app:
@@ -51,9 +63,7 @@ fos_user_change_password:
     
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-    
-adesigns_calendar:
-  resource: "@ADesignsCalendarBundle/Resources/config/routing.yml" 
+ 
   
 
   

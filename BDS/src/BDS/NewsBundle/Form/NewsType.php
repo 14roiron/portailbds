@@ -5,7 +5,7 @@ namespace BDS\NewsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 
 class NewsType extends AbstractType
 {
@@ -18,14 +18,16 @@ class NewsType extends AbstractType
         $builder
             ->add('titre',				'text')
             ->add('resumer',			'text')
-            ->add('contenu',			'textarea')
+            ->add('contenu',			'textarea',
+            array(
+            'attr' => array(
+            'class' => 'tinymce')))
             ->add('sports',				'entity',		array(
-            												'class'			=>	'BDSCoreBundle:Sport',
+            												'class'			=>	'BDSSportBundle:Sport',
             												'property'		=>	'nom',
             												'multiple'		=>	true,
             												'expanded'		=>	true,
             ))
-            ->add('ajouter',			'submit')
         ;
     }
     
@@ -35,7 +37,8 @@ class NewsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BDS\NewsBundle\Entity\News'
+            'data_class' => 'BDS\NewsBundle\Entity\News',
+        	'allow_extra_fields'	=>	true
         ));
     }
 

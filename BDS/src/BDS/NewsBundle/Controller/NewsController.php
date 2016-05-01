@@ -11,11 +11,14 @@ use BDS\NewsBundle\Form\NewsType;
 use BDS\NewsBundle\Entity\Commentaire;
 use BDS\NewsBundle\Form\CommentaireType;
 use BDS\NewsBundle\Manager\NewsManager;
+use BDS\SportBundle\Entity\Sport;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class NewsController extends Controller
 {
-	public function indexAction($sport, $page)
+	
+	public function indexAction( Sport $sportEdit, $page)
 	{
 		//si la page est inferieur à 1, pas la peine de chercher
 		if ($page < 1) 
@@ -24,8 +27,6 @@ class NewsController extends Controller
 		}
 		
 		//on recupere la liste des news du sport, on en affiche 10 par page 		
-		//on récupere le sport
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on récupere les news
 		$listNews = $sportEdit->getNews();
@@ -41,20 +42,13 @@ class NewsController extends Controller
 				'domaine' => $sportEdit
 		));
 	}
-	public function viewAction($sport, $id, Request $request)
+	
+	/**
+	 * @ParamConverter("sportEdit", options={"mapping": {"nom": "nom"}})
+	 */
+	public function viewAction(Sport $sportEdit, News $news, Request $request)
 	{
-		//on récupère la news
-		$news = $this->get('bds_news.manager')->getNews($id);
-		
-		//on récupère le sport 
-		$sportEdit = $this->get('bds_sport.manager')->getSport($sport);
-		
-		//on lance une exception si la news n'existe pas 
-		if ($news == NULL)
-		{
-			throw new NotFoundHttpException('News "' .$id. '" inexistante');
-		}
-		
+
 		//on crée un objet commentaire
 		$commentaire = new Commentaire();
 		
@@ -69,12 +63,12 @@ class NewsController extends Controller
 		{
 			$this->get('bds_commentaire.manager')->saveCommentaire($commentaire, $news);
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistré.');
+			$request->getSession()->getFlashBag()->add('success', 'Commentaire bien enregistré.');
 			
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'sport' => $sport,
-					'id' => $id
+					'nom' => $sportEdit->getNom(),
+					'id' => $news->getId()
 			)));
 			
 			
@@ -98,12 +92,10 @@ class NewsController extends Controller
 		));
 		
 	}
-	public function addAction($sport, Request $request)
+	
+	public function addAction(Sport $sport, Request $request)
 	{
 		//verifier que le visiteur a le droit d'acceder à cette page
-		
-		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//On crée un objet news
 		$news = new News();
@@ -120,13 +112,14 @@ class NewsController extends Controller
 			//on enregistre l'objet dans la base de donnée
 			$this->get('bds_news.manager')->firstSave($news);
 
-			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('warning', 'La news '.$news->getTitre().' a été enregistré, elle est maintenant en attente de validation.');
+
 				
 			//on envoie un mail au VP comunication pour qu'il valide la news
 
 			//on affiche la page de la nouvelle news
 			return $this->redirect($this->generateUrl('bds_news_view', array(
-					'sport' => $sport->getNom(),
+					'nom' => $sport->getNom(),
 					'id' => $news->GetId()
 			)));
 			
@@ -139,25 +132,20 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
-				'form' =>$form->createView()
+				'form' =>$form->createView(),
+				'affichage' => 'ajouter'
 		));
 	}
 	
-	public function editAction($sport, $id, Request $request)
+	/**
+	 * @paramConverter("sport", options={"mapping": {"nom": "nom"}})
+	 */
+	public function editAction(Sport $sport, News $news, Request $request)
 	{
 		//verifier que le visiteur à le droit d'acceder à cette page 
 		
-	//on récupère la news
-		$news = $this->get('bds_news.manager')->getNews($id);
-		
-		//on lance une exception si la news n'existe pas 
-		if ($news == NULL)
-		{
-			throw new NotFoundHttpException('News "' .$id. '" inexistante');
-		}
-		
 		//on crée le formulaire
-		$form = $this->createForm( new NewsEditType(), $news );
+		$form = $this->createForm( new NewsType(), $news );
 		
 		//si le visiteur a soumis le formulaire 
 		if ($request->isMethod('POST'))
@@ -171,11 +159,11 @@ class NewsController extends Controller
 				//on enregistre dans la bdd
 				$this->get('bds_news.manager')->save($news);
 				
-				$request->getSession()->getFlashBag()->add('notice', 'News bien modifiée.');
+				$request->getSession()->getFlashBag()->add('info', 'La news ' .$news->getTitre() .' a été modifiée.');
 				
 				//on affiche la page de la nouvelle news
 				return $this->redirect($this->generateUrl('bds_news_view', array(
-						'domaine' => $sport,
+						'nom' => $sport->getNom(),
 						'id' => $news->GetId()
 				)));
 			}
@@ -184,45 +172,61 @@ class NewsController extends Controller
 		//on passe le formulaire à la vue pour qu'elle puisse l'afficher 
 		return $this->render('BDSNewsBundle:News:add.html.twig', array(
 				'domaine' => $sport,
-				'form' =>$form->createView()
+				'form' =>$form->createView(),
+				'affichage'	=> 'editer'
 		));
 		 
 		
 	}
 	
-	public function deleteAction($sport, $id)
+	/**
+	 * @ParamConverter("sport", options={"mapping": {"nom": "nom"}})
+	 */
+	public function deleteAction(Sport $sport, News $news, Request $request)
 	{
-		//on récupere la news
-		$news = $this->get('bds_news.manager')->getNews($id);
-		
-		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on supprime l'objet de la base de donnée 
 		$this->get('bds_news.manager')->deleteNews($news);
 		
-		//on rend la page de suppression
-		return $this->render('BDSNewsBundle:News:delete.html.twig', array(
-				'domaine' => $sport,
-				'news' => $news
-		));
+		//on fait un flag
+		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' a été supprimée avec succès.');
+		
+		//on retourne à l'index 
+		return $this->redirect($this->generateUrl('bds_capitaine_news', array(
+				'nom'	=>	$sport->getNom()
+		)));
+		
 	}
 	
-	public function validateAction($id, $sport)
+	/**
+	 * @ParamConverter("sport", options={"mapping": {"nom": "nom"}})
+	 */
+	public function validateAction(News $news, Sport $sport, Request $request)
 	{
-		//on récupere la news
-		$news = $this->get('bds_news.manager')->getNews($id);
-		
-		//on récupère le sport
-		$sport = $this->get('bds_sport.manager')->getSport($sport);
 		
 		//on valide la news 
 		$this->get('bds_news.manager')->validateNews($news);
 		
-		//on rend la page de validation 
-		return $this->render('BDSNewsBundle:News:validate.html.twig', array(
-				'domaine' => $sport,
-				'news' => $news
+		//on fait un flag
+		$request->getSession()->getFlashBag()->add('success', 'La news '.$news->getTitre().' est désormais affichée.');
+		
+		//on retourne à l'index
+		return $this->redirect($this->generateUrl('bds_capitaine_news', array(
+				'nom'	=>	$sport->getNom()
+		)));
+
+	}
+	
+	public function CapitaineNewsAction (Sport $domaine)
+	{
+		//on verifie que l'utilisateur courant est bien le capitaine 
+		
+		//on recupere les news du domaine 
+		$listNews = $domaine->getNews();
+		
+		return $this->render('BDSNewsBundle:News:capitaineNews.html.twig', array(
+				'domaine'	=>	$domaine,
+				'listNews'	=>	$listNews
 		));
 	}
 }

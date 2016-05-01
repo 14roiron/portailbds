@@ -6,23 +6,42 @@
 
 
 {% block bdsnews_body %}
- <a class="btn btn-lg btn-success" href="{{ path('bds_news_add', {'sport': domaine.nom}) }}">ajouter une news</a>
-  <h2>Liste des news</h2>
-  <ul>
-    {% for news in listNews %}
-      <li>
-        <a href="{{ path('bds_news_view', {'id': news.id, 'sport': domaine.nom}) }}">{{ news.titre }}</a>
-        par {{ news.auteur.username }},
-        le {{ news.datePublication|date('d/m/Y') }}
-        <p>
-        	<a class="btn btn-md btn-warning" href="{{ path('bds_news_edit', {'sport':domaine.nom, 'id':news.id}) }}">éditer la news</a>
-   			<a class="btn btn-md btn-danger" href="{{ path('bds_news_delete', {'sport':domaine.nom, 'id':news.id}) }}">supprimer la news</a>
-   		</p>
-   		<p> il y a {{ news.commentaires|length }} commentaires</p>
-      </li>
-    {% else %}
-      <li>Pas (encore !) de news</li>
-    {% endfor %}
-  </ul>
+<div class="panel panel-default">
+	<div class="panel-heading"><h2>Liste des news</h2></div>
+  		<div class="panel-body">
+  			<div class="row">
+	    		{% for news in listNews %}
+	    		{% if news.validation == true or app.user == news.auteur or app.user == news.editeur %}
+				<div class="col-lg-4">
+		      		<div class="thumbnail">
+		      			{# à terme j'aimerai que ce soit le logo de la news #}
+		      			<img src="{{ asset(domaine.logo.getWebPath) }}">
+		      			<div class="caption">
+		        			<h3><a href="{{ path('bds_news_view', {'id': news.id, 'nom': domaine.nom}) }}">{{ news.titre }}</a></h3>
+		        			<p><strong>par <em>{{ news.auteur.username }}</em>, le {{ news.datePublication|date('d/m/Y') }}</strong></p>
+							<p>{{news.contenu|slice(0,150)|raw}}</p>
+		   					<p><em>{{ news.commentaires|length }} <span class="glyphicon glyphicon-comment"/></em></p>
+		   					{% if news.validation == false %}
+		   					<p class="alert alert-warning">La news n'est pas publique</p>
+		   					{% endif %}
+		      			</div>
+		      		</div>
+	      		</div>
+	      		{% endif %}
+	    		{% else %}
+	      		<div>Pas (encore !) de news</div>
+	    		{% endfor %}
+ 		 	</div>
+ 		 </div>
+ </div>
+{% endblock %}
+
+{% block aside %}
+{{ parent() }}
+<hr>
+ <a class="btn btn-success btn-block" href="{{ path('bds_news_add', {'nom': domaine.nom}) }}">ajouter une news</a>
+ <hr>
+ {% render(controller('BDSChatBundle:Chat:show', {'channel':'default'})) %}
 
 {% endblock %}
+

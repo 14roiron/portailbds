@@ -1,0 +1,33 @@
+{% extends "BDSUserBundle:Profile:show_content.html.twig" %}
+
+{% block navigation %}
+	<ul class="nav nav-tabs">
+		<li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+		{% if user == app.user %}
+		<li><a href="{{ path('bds_user_message', {'username':user.username}) }}">messages</a></li>
+		<li><a href="{{ path('fos_user_profile_edit') }}">modifier profile</a></li>
+		<li class="active"><a href="{{ path('bds_user_stats', {'username':user.username}) }}">statistique</a></li>
+		{% endif %}
+	</ul>
+	
+	{% for membre in membres %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">{{ membre.sport.nom }}</p>
+		</div>
+		<div class="panel-body">
+			<p><strong>Evenements depuis l'inscripsion de {{ user.username }} :</strong> {{ evenements|length }}</p>
+			<p><strong>Nombre de partiipations (debug) : </strong>{{ membre.participations|length }}</p>
+			<p><strong>Il était là : </strong>{{ participations[membre.sport.nom][1] }}</p>
+			<p><strong>Il était pas là : </strong>{{ participations[membre.sport.nom][0] }}</p>
+			<p><strong>Il sait pas où il était : </strong>{{ participations[membre.sport.nom][2] }}</p>
+			<p><strong>Bilan : </strong>
+			{% if participations[membre.sport.nom][1] > (evenements|length)/2 %}
+				c'est un sportif assidu !!
+			{% else %}
+				Il est un peu fumiste !! 
+			{% endif %}
+		</div>
+	</div>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+services:
+#    bds_sponsor.example:
+#        class: BDS\SponsorBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    bds_sponsor.manager:
+        class:      BDS\SponsorBundle\Manager\SponsorManager
+        arguments:   [ @doctrine.orm.entity_manager ]

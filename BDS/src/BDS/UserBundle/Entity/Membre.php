@@ -13,7 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Membre
 {
 	/**
-	 * @ORM\ManyToOne(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="membres")
+	 * @var \DateTime
+	 * @ORM\Column(name="inscripsion", type="datetime")
+	 */
+	private $inscripsion;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="membre")
+	 */
+	private $participations;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="membres")
 	 */
 	private $sport;
 	
@@ -30,8 +41,7 @@ class Membre
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
+    
     /**
      * Get id
      *
@@ -68,10 +78,10 @@ class Membre
     /**
      * Set sport
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sport
+     * @param \BDS\SportBundle\Entity\Sport $sport
      * @return Membre
      */
-    public function setSport(\BDS\CoreBundle\Entity\Sport $sport = null)
+    public function setSport(\BDS\SportBundle\Entity\Sport $sport = null)
     {
         $this->sport = $sport;
 
@@ -81,10 +91,76 @@ class Membre
     /**
      * Get sport
      *
-     * @return \BDS\CoreBundle\Entity\Sport 
+     * @return \BDS\SportBundle\Entity\Sport 
      */
     public function getSport()
     {
         return $this->sport;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscripsion = new \DateTime();
+    }
+
+    /**
+     * Add participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     *
+     * @return Membre
+     */
+    public function addParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations[] = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Remove participation
+     *
+     * @param \BDS\EvenementBundle\Entity\Participation $participation
+     */
+    public function removeParticipation(\BDS\EvenementBundle\Entity\Participation $participation)
+    {
+        $this->participations->removeElement($participation);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
+    }
+
+    /**
+     * Set inscripsion
+     *
+     * @param \DateTime $inscripsion
+     *
+     * @return Membre
+     */
+    public function setInscripsion($inscripsion)
+    {
+        $this->inscripsion = $inscripsion;
+
+        return $this;
+    }
+
+    /**
+     * Get inscripsion
+     *
+     * @return \DateTime
+     */
+    public function getInscripsion()
+    {
+        return $this->inscripsion;
     }
 }

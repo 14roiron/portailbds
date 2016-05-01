@@ -7,14 +7,19 @@
 	<title>{% block title %}BDS MinesParistech{% endblock %}</title>
 	
 	{% block stylesheets %}
+		{# on charge le bootstrap depuis le dossier web 
+		<link rel="stylesheet" href="{{ asset('bootstrap-3.3.6-dist/css/bootstrap.min.css') }}">#}
 		{# On charge le bootstrap depuis le site directement #}
-		<link rel="stylesheet" href="http://localhost:8888/BDS/bootstrap-3.3.1/dist/css/bootstrap.min.css">
-		{#<link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" /> #}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
+   		<link rel="stylesheet" href="{{ asset('bundles/bdscore/css/main.css') }}" type="text/css" />
+   		<link rel="stylesheet" href="{{ asset('css/bootstrap_fileInput_css/fileinput.css') }}" media="all" type="text/css"/>
 		{% if domaine is defined and domaine.fond != null %}
 		<style>
 			body
 			{
-				background: url( {{ asset(domaine.fond.getWebPath) }} ) no-repeat center fixed;
+        margin-top:50px;
+				/*background: url( {{ asset(domaine.fond.getWebPath) }} ) no-repeat center fixed;*/
 				-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 				background-size: cover;			/* version stadardisé */
 				
@@ -23,7 +28,7 @@
 		{% endif %}
 	{% endblock %}
 </head>
-
+<body>
 <!--  barre de navigation évolutive -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -47,41 +52,52 @@
     	{% block menu %}
     	{% if domaine is defined %}
     	<ul class="nav navbar-nav">
-        	<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">Accueil</a></li>
-        	<li><a href="{{ path('bds_sport_list',{'sport':domaine.nom }) }}">Sports</a></li>
+        	<li><a href="{{ path('bds_news_home', {'nom':domaine.nom}) }}"><span class="glyphicon glyphicon-home"/></a></li>
+        	<li><a href="{{ path('bds_sport_list') }}">Sports</a></li>
         	<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ domaine.nom }}<span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
-          			<li><a href="{{ path('bds_news_home', {'sport':domaine.nom}) }}">News</a></li>
-            		<li><a href="#">équipe</a></li>
-            		<li><a href="#">Le mot du capitaine</a></li>
-            		<li><a href="#">presentation</a></li>
+          			<li><a href="{{ path('bds_news_home', {'nom':domaine.nom}) }}">News</a></li>
+            		<li><a href="{{ path('bds_sport_equipe', {'nom':domaine.nom}) }}">équipe</a></li>
+            		<li><a href="{{ path('bds_sport_motCapitaine', {'nom':domaine.nom}) }}">Le mot du capitaine</a></li>
+            		<li>
+            			<a href="{{ path('bds_sport_presentation', {'nom':domaine.nom}) }}"><span class="glyphicon glyphicon-film"/> presentation</a></li>
           		</ul>
         	</li>
         	<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Membre de l'équipe {{ domaine.nom }}<span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
-            		<li><a href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">calendrier</a></li>
-            		<li><a href="#">resultats</a></li>
-            		<li><a href="#">feuille de match</a></li>
-            		<li><a href="{{ path('bds_evenement_index', {'domaine':domaine.nom}) }}">évènements</a></li>
+            		<li><a href="{{ path('bds_calendrier_sport', {'nom':domaine.nom}) }}"><span class="glyphicon glyphicon-calendar"/> calendrier</a></li>
+            		<li><a href="#"><span class="glyphicon glyphicon-tower"/> resultats</a></li>
+            		<li><a href="{{ path('bds_evenement_index', {'nom':domaine.nom}) }}"><span class="glyphicon glyphicon-th-list"/> évènements</a></li>
           		</ul>
         	</li>
+        	{% if app.user == domaine.capitaine %}
+        	<li class="dropdown">
+        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Capitaine de l'équipe {{ domaine.nom }}<span class="caret"/></a>
+        		<ul class="dropdown-menu" role="menu">
+	        		<li><a href="{{ path('bds_capitaine_evenement', {'nom': domaine.nom}) }}"><span class="glyphicon glyphicon-calendar"/> Evenements</a></li>
+	        		<li><a href="{{ path('bds_capitaine_news', {'nom': domaine.nom}) }}"><span class="glyphicon glyphicon-list"/> News</a></li>
+	        		<li><a href="{{ path('bds_capitaine_equipe', {'nom': domaine.nom}) }}"><span class="glyphicon glyphicon-user"/> Equipe</a></li>
+	        		<li><a href="{{ path('bds_sport_edit', {'nom': domaine.nom}) }}"><span class="glyphicon glyphicon-pencil"/> Sport</a></li>
+	        	</ul>
+        	</li>
+        	{% endif %}
       </ul>
       {% else %}
       <ul class="nav navbar-nav">
-      	<li><a href="{{ path('bds_news_home', {'sport':'bds'}) }}">Accueil</a></li>
+      	<li><a href="{{ path('bds_news_home', {'nom':'bds'}) }}">Accueil</a></li>
       </ul>
       {% endif %}
       {% endblock %}
       <ul class="nav navbar-nav navbar-right">
       	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         	<li class="dropdown">
-          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"/> {{ app.user.username }} <span class="caret"></span></a>
           			<ul class="dropdown-menu" role="menu">
             			<li><a href="{{ path('fos_user_profile_show') }}">Ma page</a></li>
             			<li class="divider"></li>
-            				<li><a href="{{ path('fos_user_security_logout') }}">se deconecter</a></li>
+            				<li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"/> se déconnecter</a></li>
           			</ul>
         	</li>
         {% else %}
@@ -91,33 +107,64 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+{% if domaine is defined  and domaine.fond != null %}
+ <header class="intro-header" style="background: transparent url( {{ asset(domaine.fond.getWebPath)  }})  no-repeat scroll center center / cover;">
+ <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        {% if domaine is defined %}
+                          <h1> {{ domaine.equipe }}</h1>
+                       {% else %}
+                          <h1>BDS Mines Paristech</h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+ {% else %}
+ <header class="intro-header" >
+ <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-lite">
+                        {% if domaine is defined %}
+                          <h1> {{ domaine.equipe }}</h1>
+                       {% else %}
+                          <h1>BDS Mines Paristech</h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+ {%endif%}
 
-<body>    
-	<div class="container">
-		<div id="header" class="jumbotron">
-			{% if domaine is defined %}
-			<h1> {{ domaine.equipe }}</h1>
-			{% else %}
-			<h1>BDS Mines Paristech</h1>
-			{% endif %}
-		</div>
-		
-		
+	<br>
+	
+    <!-- Main Content -->
+    <div class="container">	
 		<div class= "row">
-			<div id="content" class="col-md-8"> 
-				{% block body %}
-				{% endblock %}
-			</div>
-			<div id="aside" class="col-md-4">
-				{% block aside %}
-				{# à modifier quand on fera le filtre en fonction de l'uilisateur #}
-				{% if domaine is defined %}
-				{{ render(controller("BDSEvenementBundle:Evenement:aside", {'domaine': domaine.nom})) }}
-				{% endif %}		
-				{% endblock %}
-			</div>
-		</div>
-		
+    		<div id="content" class="col-md-12"> 
+    			<div>
+    				<!-- c'est certain il existe une meilleure façon de faire mais pour l'instant la flemme -->
+    				{% for key in app.session.flashbag.keys %}
+    					{% for message in app.session.flashbag.get(key) %}
+    				<div class="alert alert-{{ key }} alert-dismissible" role="alert">
+    					<button type="button" class="close" data-dismiss="alert" aria-label="close">
+    						<span aria-hidden="true">&times;</span>
+    					</button>
+    					{{ message }}
+    				</div>
+    					{% endfor %}
+    				{% endfor %}
+    			</div>
+					{% block body %}
+				
+					{% endblock %}
+      		</div>
+      	</div>	
 		<hr>
 		
 		<footer>
@@ -126,14 +173,16 @@
 	</div>
 	
   	{% block javascripts %}
-		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    	<script src="http://localhost:8888/BDS/bootstrap-3.3.1/dist/js/bootstrap.min.js"></script>
-    	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
-		{#<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script>#} 
-  	{% endblock %}
+    	{#<script src="{{ asset('bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>#}
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  		<script type="text/javascript" src="{{ asset('js/bootstrap_fileInput_js/fileinput.min.js') }}"></script>
+  		<script type="text/javascript" src="{{ asset('js/bootstrap_fileInput_js/fileinput_locale_LANG.js') }}"></script>
+  		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% endblock %}
 	
 </body>
 </html>

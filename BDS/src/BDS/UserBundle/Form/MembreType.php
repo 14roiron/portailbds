@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use BDS\UserBundle\Entity\Membre;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use Symfony\Component\HttpFoundation\Tests\StringableObject;
 
 class MembreType extends AbstractType
@@ -19,13 +19,12 @@ class MembreType extends AbstractType
 	{
 		$builder
 			->add('sport',				'entity',		array(
-															'class'			=>	'BDSCoreBundle:Sport',
+															'class'			=>	'BDSSportBundle:Sport',
 															'property'		=>	'nom',
 															'expanded'		=>	true,
 															'multiple'		=>	false,
 
 			))
-			->add('ajouter',			'submit')
 			;
 	}
 	

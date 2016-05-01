@@ -12,3 +12,7 @@ services:
         #arguments:  [ @doctrine.orm.entity_manager, @bds_evenement.manager ]
         #tags: 
             #- { name: kernel.event_listener, event: calendar.load_events, method: loadEvents }
+
+    bds_participation.manager:
+        class:      BDS\EvenementBundle\Manager\ParticipationManager
+        arguments:  [ @doctrine.orm.entity_manager ]

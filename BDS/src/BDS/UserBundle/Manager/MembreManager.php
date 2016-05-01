@@ -4,7 +4,7 @@ namespace BDS\UserBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use BDS\UserBundle\Entity\User;
-use BDS\CoreBundle\Entity\Sport;
+use BDS\SportBundle\Entity\Sport;
 use Doctrine\Common\Collections\Criteria;
 use BDS\UserBundle\Entity\Membre;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -14,7 +14,7 @@ class MembreManager
 	protected $em;
 	protected $securityContext;
 	
-	public function __construct (entitymanager $em, $securityContext)
+	public function __construct (EntityManager $em, $securityContext)
 	{
 		//on récupère l'entitymanager
 		$this->em = $em;

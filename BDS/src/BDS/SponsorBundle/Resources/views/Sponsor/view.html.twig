@@ -1,0 +1,38 @@
+{% extends "BDSSponsorBundle:Sponsor:layout.html.twig" %}
+
+{% block title %}
+  Voir - {{ parent() }}
+{% endblock %}
+
+{% block bds_sponsor_body %}
+<h2>{{ sponsor.nom }}</h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			Contact Entreprise
+		</div>
+	</div>
+	<div class="panel-body">
+		<ul class="list-unstyled">
+			<li><strong>{{ sponsor.contactPrenom }} {{ sponsor.contactNom }}</strong></li>
+			<li><strong>Telephone : </strong>{{ sponsor.contactTelephone }}</li>
+			<li><strong>Mail : </strong>{{ sponsor.contactMail }}</li>
+		</ul>
+	</div>
+</div>
+
+<div class="well" href="{{ sponsor.url }}">
+	{% if sponsor.logo %}
+		<img src="{{ asset(sponsor.logo.getWebPath()) }}" width="300" />
+	{% else %}
+		<p>Pas encore de logo !!!!!?</p>
+	{% endif %}
+</div>
+<div>
+	   	<a class="btn btn-lg btn-warning" href="#">éditer la news</a>
+   		<a class="btn btn-lg btn-danger" href="{{ path('bds_sponsor_delete', {'nom':sponsor.nom}) }}">supprimer le sponsor</a>
+   		<a class="btn btn-lg btn-default" href="{{ path('bds_sponsor_list') }}">Retour aux sponsors</a>
+</div>
+
+{% endblock %}

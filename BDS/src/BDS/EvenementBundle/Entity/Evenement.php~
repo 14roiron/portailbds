@@ -4,25 +4,42 @@ namespace BDS\EvenementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Config\Definition\IntegerNode;
+use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\AccessType;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="bds_evenement")
  * @ORM\Entity(repositoryClass="BDS\EvenementBundle\Entity\EvenementRepository")
+ * @ExclusionPolicy("all")
+ * @AccessType("public_method") 
  */
 class Evenement
 {
 	/**
-	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement")
-	 */
-	private $participations;
-	
-	/**
-	 * @ORM\ManyToMany(targetEntity="BDS\CoreBundle\Entity\Sport", inversedBy="Evenements", cascade={"persist"})
-	 * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
+	 * @ORM\ManyToMany(targetEntity="BDS\SportBundle\Entity\Sport", inversedBy="evenements")
+	 * 
 	 */
 	private $sports;
+	
+	/**
+	 * @ORM\ManyToMany(targetEntity="BDS\CalendrierBundle\Entity\Calendrier", inversedBy="evenements")
+	 * 
+	 */
+	private $calendriers;
+	/**
+	 * @ORM\OneToOne(targetEntity="BDS\EvenementBundle\Entity\Lieu", cascade={"persist"}, orphanRemoval=true)
+	 */
+	private $lieu;
+	
+	/**
+	 * 
+	 * @ORM\OneToMany(targetEntity="BDS\EvenementBundle\Entity\Participation", mappedBy="evenement", orphanRemoval=true)
+	 */
+	private $participations;
 	
     /**
      * @var integer
@@ -30,13 +47,23 @@ class Evenement
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
-
+    
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="couleur", type="string", length=255, nullable=true)
+	 * @Expose
+	 */
+	 private $couleur;
+	 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Expose
      */
     private $nom;
 
@@ -44,6 +71,7 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="debut_evenement", type="datetime")
+     * @Expose
      */
     private $debutEvenement;
 
@@ -51,34 +79,35 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="fin_evenement", type="datetime")
+     * @Expose
      */
     private $finEvenement;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="debut_inscripsion", type="datetime")
+     * @ORM\Column(name="debut_inscripsion", type="datetime", nullable=true)
      */
     private $debutInscripsion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fin_inscripsion", type="datetime")
+     * @ORM\Column(name="fin_inscripsion", type="datetime", nullable=true)
      */
     private $finInscripsion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="info", type="string", length=255)
+     * @ORM\Column(name="info", type="string", length=255, nullable=true)
      */
     private $info;
 
     /**
      * @var IntegerNode
      * 
-     * @ORM\Column(name="max_inscrit", type="integer")
+     * @ORM\Column(name="max_inscrit", type="integer", nullable=true)
      */
     private $maxInscrit;
 
@@ -235,6 +264,8 @@ class Evenement
     public function __construct()
     {
         $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
 
     /**
@@ -263,10 +294,10 @@ class Evenement
     /**
      * Add sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      * @return Evenement
      */
-    public function addSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function addSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports[] = $sports;
 
@@ -276,9 +307,9 @@ class Evenement
     /**
      * Remove sports
      *
-     * @param \BDS\CoreBundle\Entity\Sport $sports
+     * @param \BDS\SportBundle\Entity\Sport $sports
      */
-    public function removeSport(\BDS\CoreBundle\Entity\Sport $sports)
+    public function removeSport(\BDS\SportBundle\Entity\Sport $sports)
     {
         $this->sports->removeElement($sports);
     }
@@ -324,5 +355,86 @@ class Evenement
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    /**
+     * Set lieu
+     *
+     * @param \BDS\EvenementBundle\Entity\Lieu $lieu
+     *
+     * @return Evenement
+     */
+    public function setLieu(\BDS\EvenementBundle\Entity\Lieu $lieu = null)
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * Get lieu
+     *
+     * @return \BDS\EvenementBundle\Entity\Lieu
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * Add calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     *
+     * @return Evenement
+     */
+    public function addCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers[] = $calendrier;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendrier
+     *
+     * @param \BDS\CalendrierBundle\Entity\Calendrier $calendrier
+     */
+    public function removeCalendrier(\BDS\CalendrierBundle\Entity\Calendrier $calendrier)
+    {
+        $this->calendriers->removeElement($calendrier);
+    }
+
+    /**
+     * Get calendriers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCalendriers()
+    {
+        return $this->calendriers;
+    }
+
+    /**
+     * Get couleur
+     *
+     * @return string 
+     */
+    public function getCouleur()
+    {
+        return $this->couleur;
+    }
+    
+    /**
+     * Set couleur
+     *
+     * @param string $couleur
+     * @return Evenement
+     */
+    public function setCouleur($couleur)
+    {
+        $this->couleur = $couleur;
+
+        return $this;
     }
 }

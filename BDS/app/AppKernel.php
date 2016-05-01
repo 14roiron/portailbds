@@ -15,6 +15,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
         	new AppBundle\AppBundle(),
             new BDS\UserBundle\BDSUserBundle(),
@@ -23,11 +24,17 @@ class AppKernel extends Kernel
             new BDS\CoreBundle\BDSCoreBundle(),
             new BDS\ImageBundle\BDSImageBundle(),
         	new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-        	new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
             new BDS\EvenementBundle\BDSEvenementBundle(),
-            new BDS\CalendarBundle\BDSCalendarBundle(),
-        	new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
-        	new Ornicar\GravatarBundle\OrnicarGravatarBundle()
+        	new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+			new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+        	new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            new BDS\SponsorBundle\BDSSponsorBundle(),
+            new BDS\SportBundle\BDSSportBundle(),
+        	new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new BDS\ChatBundle\BDSChatBundle(),
+            new BDS\CalendrierBundle\BDSCalendrierBundle(),
+            new BDS\SabreDavBundle\BDSSabreDavBundle(),
+        	new JMS\SerializerBundle\JMSSerializerBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -36,6 +43,8 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
+
         }
 
         return $bundles;

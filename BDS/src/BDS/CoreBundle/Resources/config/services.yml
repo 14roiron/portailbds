@@ -2,6 +2,5 @@ services:
 #    bds_core.example:
 #        class: BDS\CoreBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    bds_sport.manager:
-        class:      BDS\CoreBundle\Manager\SportManager
-        arguments:  [ @doctrine.orm.entity_manager ]
+
+    

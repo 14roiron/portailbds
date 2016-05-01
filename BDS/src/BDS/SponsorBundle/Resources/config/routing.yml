@@ -1,0 +1,15 @@
+bds_sponsor_add:
+    path:     /admin/sponsor/add
+    defaults: {_controller: BDSSponsorBundle:Sponsor:add }
+    
+bds_sponsor_view:
+    path:     /admin/sponsor/view/{nom}
+    defaults: {_controller: BDSSponsorBundle:Sponsor:view } 
+    
+bds_sponsor_list:
+    path:     /admin/sponsor/list
+    defaults: {_controller: BDSSponsorBundle:Sponsor:list }
+
+bds_sponsor_delete:
+    path:     /admin/sponsor/delete/{nom}
+    defaults: {_controller: BDSSponsorBundle:Sponsor:delete }

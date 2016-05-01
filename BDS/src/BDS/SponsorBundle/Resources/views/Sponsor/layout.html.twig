@@ -1,0 +1,20 @@
+{% extends "BDSCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Sponsor - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  <h1>Sponsor</h1>
+ 
+  
+
+  <hr>
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block bds_sponsor_body %}
+  {% endblock %}
+
+{% endblock %}

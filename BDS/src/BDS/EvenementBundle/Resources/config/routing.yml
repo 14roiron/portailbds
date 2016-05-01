@@ -1,37 +1,36 @@
-bds_evenement_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDSEvenementBundle:Default:index }
-    
 bds_evenement_index:
-    path:     /{domaine}/evenement/{page}
+    path:     /{nom}/evenement/{page}
     defaults: { _controller: BDSEvenementBundle:Evenement:index, page: 1 }
     requirements:
         page: \d*
     
     
 bds_evenement_view:
-    path:     /{domaine}/evenement/view/{id}
-    defaults: { _controller: BDSEvenementBundle:Evenement:view }
+    path:     /{nom}/evenement/view/{id}/{affichage}
+    defaults: { _controller: BDSEvenementBundle:Evenement:view, affichage: 'drag_n_drop' }
     requirements:
         id: \d*
     
 bds_evenement_add:
-    path:     /{domaine}/evenement/add
+    path:     /{nom}/evenement/add
     defaults: { _controller: BDSEvenementBundle:Evenement:add }
     
 bds_evenement_delete:
-    path:     /{domaine}/evenement/delete/{id}
+    path:     /{nom}/evenement/delete/{id}
     defaults: { _controller: BDSEvenementBundle:Evenement:delete }
     requirements:
         id: \d*
     
 bds_evenement_edit:
-    path:     /{domaine}/evenement/edit/{id}
+    path:     /{nom}/evenement/edit/{id}
     defaults: { _controller: BDSEvenementBundle:Evenement:edit }
     requirements:
         id: \d*
-        
-bds_evenement_calendrier:
-    path:     /{domaine}/evenement/calendrier
-    defaults: { _controller: BDSEvenementBundle:Evenement:calendar }
     
+bds_evenement_feuille:
+    path:     /{nom}/evenement/{id}/feuilleDeMatche
+    defaults: { _controller: BDSEvenementBundle:Evenement:feuille }
+
+bds_capitaine_evenement:
+    path:     /capitaine/{nom}/evenement
+    defaults: {_controller: BDSEvenementBundle:Evenement:CapitaineEvenement }
