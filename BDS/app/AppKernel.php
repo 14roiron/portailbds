@@ -34,7 +34,8 @@ class AppKernel extends Kernel
             new BDS\ChatBundle\BDSChatBundle(),
             new BDS\CalendrierBundle\BDSCalendrierBundle(),
             new BDS\SabreDavBundle\BDSSabreDavBundle(),
-        	new JMS\SerializerBundle\JMSSerializerBundle()
+        	new JMS\SerializerBundle\JMSSerializerBundle(),
+        	new Ob\HighchartsBundle\ObHighchartsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

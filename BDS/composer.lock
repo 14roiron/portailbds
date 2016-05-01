@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96392d12259d85701734b2629d3127ec",
-    "content-hash": "205843ded347626724f15df337565f4e",
+    "hash": "87c5287af2317a218aff75a9e618e252",
+    "content-hash": "c71a6bfb17c296036ec689b757d311c1",
     "packages": [
         {
             "name": "coresphere/console-bundle",
@@ -1900,6 +1900,60 @@
             "time": "2016-04-12 18:29:35"
         },
         {
+            "name": "ob/highcharts-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcaube/ObHighchartsBundle.git",
+                "reference": "22424de49e04c63bc34a2492389f4ad4d95c2557"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcaube/ObHighchartsBundle/zipball/22424de49e04c63bc34a2492389f4ad4d95c2557",
+                "reference": "22424de49e04c63bc34a2492389f4ad4d95c2557",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "symfony/symfony": "~2.3|~3.0",
+                "zendframework/zend-json": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ob\\HighchartsBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Aubé"
+                }
+            ],
+            "description": "Symfony2 Bundle that ease the use of highcharts to display rich graph and charts in your app",
+            "homepage": "https://github.com/marcaube/ObHighchartsBundle",
+            "keywords": [
+                "Symfony2",
+                "chart",
+                "charting",
+                "charts",
+                "graph",
+                "graphs",
+                "highcharts",
+                "marcaube",
+                "ob"
+            ],
+            "time": "2016-02-04 18:08:30"
+        },
+        {
             "name": "ocramius/proxy-manager",
             "version": "1.0.2",
             "source": {
@@ -3586,12 +3640,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "701b892db881c8a9248dac895818e47d20c6c559"
+                "reference": "a477de6ba493412e1c33f76da8419677d7040f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/701b892db881c8a9248dac895818e47d20c6c559",
-                "reference": "701b892db881c8a9248dac895818e47d20c6c559",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/a477de6ba493412e1c33f76da8419677d7040f44",
+                "reference": "a477de6ba493412e1c33f76da8419677d7040f44",
                 "shasum": ""
             },
             "require": {
@@ -3650,7 +3704,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-20 18:54:21"
+            "time": "2016-04-25 17:26:34"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -4138,6 +4192,61 @@
                 "zf2"
             ],
             "time": "2016-02-18 20:53:00"
+        },
+        {
+            "name": "zendframework/zend-json",
+            "version": "2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-json.git",
+                "reference": "4c8705dbe4ad7d7e51b2876c5b9eea0ef916ba28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-json/zipball/4c8705dbe4ad7d7e51b2876c5b9eea0ef916ba28",
+                "reference": "4c8705dbe4ad7d7e51b2876c5b9eea0ef916ba28",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5 || ^7.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "zendframework/zend-http": "^2.5.4",
+                "zendframework/zend-server": "^2.6.1",
+                "zendframework/zend-stdlib": "^2.5 || ^3.0",
+                "zendframework/zendxml": "^1.0.2"
+            },
+            "suggest": {
+                "zendframework/zend-http": "Zend\\Http component, required to use Zend\\Json\\Server",
+                "zendframework/zend-server": "Zend\\Server component, required to use Zend\\Json\\Server",
+                "zendframework/zend-stdlib": "Zend\\Stdlib component, for use with caching Zend\\Json\\Server responses",
+                "zendframework/zendxml": "To support Zend\\Json\\Json::fromXml() usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
+            "homepage": "https://github.com/zendframework/zend-json",
+            "keywords": [
+                "json",
+                "zf2"
+            ],
+            "time": "2016-02-04 21:20:26"
         }
     ],
     "packages-dev": [
@@ -4255,7 +4364,8 @@
         "stephanecollot/datetimepicker-bundle": 20,
         "teraone/twig-strftime-extension": 20,
         "jms/serializer-bundle": 20,
-        "symfony/serializer": 20
+        "symfony/serializer": 20,
+        "ob/highcharts-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
