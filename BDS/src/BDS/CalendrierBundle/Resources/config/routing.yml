@@ -13,3 +13,4 @@ bds_calendrier_jour_semaine:
 bds_load_cal_sport:
     path:     calendrier/events/{nom}/{date}
     defaults: {_controller: BDSCalendrierBundle:Calendrier:loadCalSport, date: null }
+    

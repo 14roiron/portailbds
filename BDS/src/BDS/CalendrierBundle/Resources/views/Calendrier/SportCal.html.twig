@@ -50,9 +50,14 @@
 				</tr>
 			</tbody>
 		</table>
-		<div style="z_index: 50;">
-			<!-- contiendra la ligne de maintenant (je sais pas encore comment la faire mais j'y travaille -->
-		</div>
+		<table style="position: absolute; top: 0; z-index: 3; height: 1440px;" class="table">
+			<tbody>
+				<tr id="premiere_ligne"  style="height: 600px;">
+					<td style="border-bottom: 1px #ff0000 solid;"></td>
+				</tr>
+				<tr></tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 {% endblock %}
@@ -64,6 +69,8 @@
 <script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/loadEvents.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/fullCal.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/moment.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bdscalendrier/js/horaire.js') }}"></script>
+
 <script type="text/javascript">
 	var pathToNomSemaine = "{{ path("bds_calendrier_jour_semaine") }}";
 	var pathLoadSportCal = "{{ path("bds_load_cal_sport", {'nom': domaine.nom}) }}";
