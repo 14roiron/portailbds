@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "87c5287af2317a218aff75a9e618e252",
-    "content-hash": "c71a6bfb17c296036ec689b757d311c1",
+    "hash": "9e08a806be5796cfa2d3bcdd06d775d6",
+    "content-hash": "14de9d1b8ea59d400d3e5b2bdf4f5e6c",
     "packages": [
         {
             "name": "coresphere/console-bundle",
@@ -1901,16 +1901,16 @@
         },
         {
             "name": "ob/highcharts-bundle",
-            "version": "dev-master",
+            "version": "1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcaube/ObHighchartsBundle.git",
-                "reference": "22424de49e04c63bc34a2492389f4ad4d95c2557"
+                "reference": "0e28797c3bc1b1dcd3f4fe9e4465c42cec804e05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcaube/ObHighchartsBundle/zipball/22424de49e04c63bc34a2492389f4ad4d95c2557",
-                "reference": "22424de49e04c63bc34a2492389f4ad4d95c2557",
+                "url": "https://api.github.com/repos/marcaube/ObHighchartsBundle/zipball/0e28797c3bc1b1dcd3f4fe9e4465c42cec804e05",
+                "reference": "0e28797c3bc1b1dcd3f4fe9e4465c42cec804e05",
                 "shasum": ""
             },
             "require": {
@@ -1951,7 +1951,7 @@
                 "marcaube",
                 "ob"
             ],
-            "time": "2016-02-04 18:08:30"
+            "time": "2016-01-10 16:12:25"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -4364,8 +4364,7 @@
         "stephanecollot/datetimepicker-bundle": 20,
         "teraone/twig-strftime-extension": 20,
         "jms/serializer-bundle": 20,
-        "symfony/serializer": 20,
-        "ob/highcharts-bundle": 20
+        "symfony/serializer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

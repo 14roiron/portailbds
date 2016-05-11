@@ -18,21 +18,14 @@
 		<div class="panel-body">
 			<p><strong>Evenements depuis l'inscripsion de {{ user.username }} :</strong> {{ evenements|length }}</p>
 			<p><strong>Nombre de participations (debug) : </strong>{{ membre.participations|length }}</p>
-			<p><strong>Il était là : </strong>{{ participations[membre.sport.nom][1] }}</p>
-			<p><strong>Il était pas là : </strong>{{ participations[membre.sport.nom][0] }}</p>
-			<p><strong>Il sait pas où il était : </strong>{{ participations[membre.sport.nom][2] }}</p>
-			<script>
-				var oui = {{ participations[membre.sport.nom][1] }};
-				var non = {{ participations[membre.sport.nom][0] }};
-				var peutEtre = {{ participations[membre.sport.nom][2] }}
-			</script>
+			<div id="pie_{{ membre.id }}" style="min-width: 400px; height: 400px;"></div>
 			<p><strong>Bilan : </strong>
 			{% if participations[membre.sport.nom][1] > (evenements|length)/2 %}
 				c'est un sportif assidu !!
 			{% else %}
 				Il est un peu fumiste !! 
 			{% endif %}
-			<canvas class="myDoughnutChart" width="400" height="400"></canvas>
+			
 		</div>
 	</div>
 	{% endfor %}
@@ -40,5 +33,9 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script type="text/javascript" src="{{ asset('bundles/bdsuser/js/graphParticipation.js') }}"</script>
+
+{% for chart in ob %}
+<script type="text/javascript">{{ chart(chart) }}</script>
+{% endfor %}
+
 {% endblock %}

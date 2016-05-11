@@ -35,7 +35,7 @@
 		"teraone/twig-strftime-extension" : "dev-master",
 		"jms/serializer-bundle" : "dev-master",
 		"symfony/serializer" : "dev-master",
-		"ob/highcharts-bundle" : "dev-master"
+		"ob/highcharts-bundle" : "1.*"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3",

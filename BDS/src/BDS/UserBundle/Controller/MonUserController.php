@@ -12,6 +12,7 @@ use BDS\UserBundle\Form\PicEditType;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Model\UserInterface;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 
 class MonUserController  extends Controller
 {
@@ -52,6 +53,7 @@ class MonUserController  extends Controller
 		$membres = $user->getMembres();
 		$evenements = array();
 		$participations = array();
+		$ob = array();
 		foreach ($membres as $membre)
 		{
 			$sport = $membre->getSport();
@@ -68,19 +70,33 @@ class MonUserController  extends Controller
 			$participations[$sport->getNom()][0] = 0;
 			foreach ($membre->getParticipations() as $participation)
 			{
-				switch ($participation->getParticipation())
+				$etat = $participation->getParticipation();
+				if($etat === false)
 				{
-					case null:
-						$participations[$sport->getNom()][2]++;
-						break;
-					case true:
+					$participations[$sport->getNom()][0]++;
+				} else if($etat === null){
+					$participations[$sport->getNom()][2]++;
+				} else if ($etat === true){
 						$participations[$sport->getNom()][1]++;
-						break;
-					case false:
-						$participations[$sport->getNom()][0]++;
-						break;
 				}
 			}
+			
+			//on crée un graphique pour ces participations : 
+			$ob[$membre->getId()] = new Highchart();
+			$ob[$membre->getId()]->chart->renderTo('pie_'.$membre->getId());
+			$ob[$membre->getId()]->title->text('participation aux evenements de '.$membre->getSport()->getNom());
+			$ob[$membre->getId()]->plotOptions->pie(array(
+					'allowPointSelect'  => true,
+					'cursor'    => 'pointer',
+					'dataLabels'    => array('enabled' => false),
+					'showInLegend'  => false
+			));
+			$data = array(
+					array('il était là', $participations[$sport->getNom()][1]),
+					array('il était pas là', $participations[$sport->getNom()][0]),
+					array("il s'en battait les couilles", $participations[$sport->getNom()][2])
+			);
+			$ob[$membre->getId()]->series(array(array('type' => 'pie','name' => 'Browser share', 'data' => $data)));
 		}
 		
 		//on retourne à la vue
@@ -89,6 +105,7 @@ class MonUserController  extends Controller
 				'membres'			=>	$membres,
 				'evenements'		=>	$evenements,
 				'participations'	=>	$participations,
+				'ob'				=>	$ob
 		));
 		
 	}
