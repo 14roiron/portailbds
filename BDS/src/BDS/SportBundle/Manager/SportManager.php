@@ -84,27 +84,4 @@ class SportManager
 	{
 		return $this->getRepository()->findAll();
 	}
-	
-	public function getEvenementSince(Sport $sport, \DateTime $date)
-	{
-		//on récupère tous les evenements 
-		$cal = $sport->getCalendrier();
-		$evenements = $cal->getEvenements();
-		
-		//on trie 
-		foreach($evenements as $key => $evenement)
-		{
-			if($evenement->getDebutEvenement() < $date)
-			{
-				//on détruit la variable
-				unset($evenements[$key]);
-			}
-		}
-		
-		//on refait un tableau bien incrémenté : 
-		//$evenements = array_values($evenements);
-		
-		return $evenements;
-		
-	}
 }

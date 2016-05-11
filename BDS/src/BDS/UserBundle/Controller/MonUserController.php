@@ -58,9 +58,6 @@ class MonUserController  extends Controller
 		{
 			$sport = $membre->getSport();
 			
-			//compter le nombre d'evenement depuis son inscripsion 
-			$evenements[$sport->getNom()] = $this->get('bds_sport.manager')->getEvenementSince($sport, $membre->getInscripsion());
-			
 			//compter le nombre de participation (s'il n'est pas égal c'est qu'il y a un bug)
 			$participations[$sport->getNom()] = array();
 			
