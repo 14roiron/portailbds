@@ -93,7 +93,7 @@ class MonUserController  extends Controller
 					array('il était pas là', $participations[$sport->getNom()][0]),
 					array("il s'en battait les couilles", $participations[$sport->getNom()][2])
 			);
-			$ob[$membre->getId()]->series(array(array('type' => 'pie','name' => 'Browser share', 'data' => $data)));
+			$ob[$membre->getId()]->series(array(array('type' => 'pie','name' => 'nombre', 'data' => $data)));
 		}
 		
 		//on retourne à la vue
